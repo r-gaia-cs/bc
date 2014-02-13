@@ -62,6 +62,8 @@ BOOK_SRC = \
 BOOK_TMP = \
 	$(patsubst %,tmp/%,$(BOOK_SRC))
 
+BOOK_MD = book.md
+
 BOOK_DST = $(OUT)/book.html
 
 # Mark cached versions of compiled notebooks as SECONDARY so that GNU
@@ -86,12 +88,12 @@ install : $(OUT)/index.html
 ## site     : build site.
 site : $(BOOK_DST)
 
-$(BOOK_DST) : $(OUT)/index.html $(BOOK_TMP) _templates/book.tpl tmp/gloss.md bin/make-book.py
-	python bin/make-book.py $(BOOK_TMP) \
-	| pandoc --email-obfuscation=none --template=_templates/book.tpl -t html -o - \
-	| sed -e 's!../../gloss.html#!#g:!g' \
-	| sed -e 's!../gloss.html#!#g:!g' \
-	> $@
+$(BOOK_DST) : $(OUT)/index.html $(BOOK_MD) _templates/book.tpl tmp/gloss.md bin/make-book.py
+	time pandoc --email-obfuscation=none --template=_templates/book.tpl -t html \
+	    -o $@ $(BOOK_MD) 2> test.time
+
+$(BOOK_MD): $(BOOK_TMP)
+	time python bin/make-book.py $(BOOK_TMP) > $@ 2> test.time
 
 # Build HTML versions of Markdown source files using Jekyll.
 $(OUT)/index.html : $(MARKDOWN_SRC) $(NOTEBOOK_MD)
