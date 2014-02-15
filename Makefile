@@ -2,6 +2,7 @@
 # Re-make lecture materials.
 #-----------------------------------------------------------
 
+SHELL=/bin/bash
 # Directories.
 OUT = _site
 LINK_OUT = /tmp/bc-links
@@ -93,7 +94,12 @@ $(BOOK_DST) : $(OUT)/index.html $(BOOK_MD) _templates/book.tpl tmp/gloss.md bin/
 	    -o $@ $(BOOK_MD) 2> test.time
 
 $(BOOK_MD): $(BOOK_TMP)
-	time python bin/make-book.py $(BOOK_TMP) > $@ 2> test.time
+	for i in $(BOOK_TMP); \
+	do \
+	    echo $${i}; \
+	    time python bin/make-book.py $${i} > $${i/.md/-book.md}; \
+	    time pandoc -f markdown -t html $${i/.md/-book.md} -o _site/$${i/.md/.html}; \
+	done;
 
 # Build HTML versions of Markdown source files using Jekyll.
 $(OUT)/index.html : $(MARKDOWN_SRC) $(NOTEBOOK_MD)
