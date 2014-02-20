@@ -60,9 +60,11 @@ print 'grid height:', grid.height
 print 'grid lines on:', grid.lines_on
 ~~~
 
+~~~
     grid width: 5
     grid height: 3
     grid lines on: True
+~~~
 
 
 
@@ -80,8 +82,10 @@ color = (10, 20, 30)
 print 'color is:', color
 ~~~
 
+~~~
     position is: (12.3, 45.6)
     color is: (10, 20, 30)
+~~~
 
 
 
@@ -94,7 +98,9 @@ print 'color is:', color
 print 'first element of color is:', color[0]
 ~~~
 
+~~~
     first element of color is: 10
+~~~
 
 
 
@@ -109,6 +115,7 @@ print 'first element of color after change:', color[0]
 ~~~
 
 
+~~~
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
 
@@ -118,6 +125,7 @@ print 'first element of color after change:', color[0]
 
 
     TypeError: 'tuple' object does not support item assignment
+~~~
 
 
 
@@ -211,8 +219,10 @@ else:
 print 'done'
 ~~~
 
+~~~
     not greater
     done
+~~~
 
 
 
@@ -239,8 +249,10 @@ if num > 100:
 print '...after conditional'
 ~~~
 
+~~~
     before conditional...
     ...after conditional
+~~~
 
 
 
@@ -261,7 +273,9 @@ def sign(num):
 print 'sign of -3:', sign(-3)
 ~~~
 
+~~~
     sign of -3: -1
+~~~
 
 
 
@@ -278,7 +292,9 @@ else:
     print 'one part is not true'
 ~~~
 
+~~~
     one part is not true
+~~~
 
 
 
@@ -292,7 +308,9 @@ if (1 < 0) or ('left' < 'right'):
     print 'at least one test is true'
 ~~~
 
+~~~
     at least one test is true
+~~~
 
 
 
@@ -332,7 +350,9 @@ for n in numbers:
 print 'sum of positive values:', total
 ~~~
 
+~~~
     sum of positive values: 20
+~~~
 
 
 
@@ -352,7 +372,9 @@ for n in numbers:
 print 'negative and positive sums are:', neg_total, pos_total
 ~~~
 
+~~~
     negative and positive sums are: -6 20
+~~~
 
 
 
@@ -367,12 +389,14 @@ for consonant in 'bcd':
         print consonant + vowel
 ~~~
 
+~~~
     ba
     be
     ca
     ce
     da
     de
+~~~
 
 
 
@@ -442,7 +466,9 @@ data = np.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'data shape:', data.shape
 ~~~
 
+~~~
     data shape: (60, 40)
+~~~
 
 
 
