@@ -10,6 +10,28 @@
     <link rel="stylesheet" type="text/css" href="{{page.root}}/css/lesson.css" />
   </head>
   <body>
+  {% comment %} The url is of the former "/foo/bar/sample.html"{% endcomment %}
+  {% assign this_url = page.url | split: '/' %}
+  {% if this_url.size == 4 %}
+    {% assign this_number = this_url[3] | split: '-' %}
+    {% assign this_number = this_number[0] | plus: 0 %}
+    {% for other_page in site.pages %}
+      {% assign other_url = other_page.url | split: '/' %}
+      {% if other_url[1] == this_url[1] and other_url[2] == this_url[2] %}
+        {% assign other_number = other_url[3] | split: '-' %}
+        {% assign other_number = other_number[0] | plus: 0 %}
+        {% if this_number | minus: 1 == other_number %}
+        {% assign previous = other_page.url %}
+        {% endif %}
+        {% if this_number | plus: 1 == other_number %}
+        {% assign next = other_page.url %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    <hr>
+    Previous: {{ previous }} <br>
+    Next: {{ next }} <br>
+  {% endif %}
     <div class="container">
       {% include banner.html %}
 
