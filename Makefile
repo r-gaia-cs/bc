@@ -30,6 +30,12 @@ SITE = _site
 # Installation directory on server.
 INSTALL = $(HOME)/sites/software-carpentry.org/v5
 
+# Printed/PDF version of book
+BOOK_PDF = ./book.pdf
+
+# Principal target files.
+INDEX = $(SITE)/index.html
+
 # Jekyll configuration file.
 CONFIG = _config.yml
 
@@ -83,6 +89,28 @@ INDEX = $(SITE)/index.html
 $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	jekyll -t build -d $(SITE)
 
+_site/book.tex: $(INDEX) _site/book.html
+	pandoc -f html -t latex \
+	    --standalone --table-of-contents --no-highlight \
+	    --ascii --template _templates/tex.tpl \
+	    -o $@ _site/book.html
+	sed -i \
+	    -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' \
+	    -e 's@\.svg@\.png@g' \
+	    -e 's@π@\$$\\pi\$$@' $@
+	for i in $$(find _site -name '*.svg' -type f); \
+	do \
+	    convert $$i $${i/.svg/.png}; \
+	done;
+
+
+$(BOOK_PDF) : _site/book.tex
+	# pdflatex \
+	#     -interaction nonstopmode \
+	#     _site/book.tex
+	cd _site && pdflatex \
+	    book.tex
+
 #----------------------------------------------------------------------
 # Create all-in-one book version of notes.
 #----------------------------------------------------------------------
@@ -134,8 +162,12 @@ install : $(INDEX)
 	cp -r $(SITE)/* $(INSTALL)
 	mv $(INSTALL)/contents.html $(INSTALL)/index.html
 
+## print    : generate printed version of lessons
+print : $(BOOK_PDF)
+
 ## contribs : list contributors.
 #  Relies on ./.mailmap to translate user IDs into names.
+
 contribs :
 	git log --pretty=format:%aN | sort | uniq
 
