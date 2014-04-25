@@ -94,10 +94,10 @@ _site/book.tex: $(INDEX) _site/book.html
 	    --standalone --table-of-contents --no-highlight \
 	    --ascii --template _templates/tex.tpl \
 	    -o $@ _site/book.html
-	sed -i \
-	    -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' \
-	    -e 's@\.svg@\.png@g' \
-	    -e 's@π@\$$\\pi\$$@' $@
+	# Call sed three times as workaround using -e three times
+	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' $@
+	sed -i -e 's@\.svg@\.png@g' $@
+	sed -i -e 's@π@\$$\\pi\$$@' $@
 	for i in $$(find _site -name '*.svg' -type f); \
 	do \
 	    convert $$i $${i/.svg/.png}; \
