@@ -7,7 +7,15 @@ root: ../..
 
 
 <div class="">
-<p>Our previous lessons have shown us how to manipulate data, define our own functions, and repeat things. However, the programs we have written so far always do the same things, regardless of what data they're given. We want programs to make choices based on the values they are manipulating. To help us see what decisions they're making, we'll start by looking at how computers manipulate images.</p>
+<p>Our previous lessons have shown us how to manipulate data,
+define our own functions,
+and repeat things.
+However,
+the programs we have written so far always do the same things,
+regardless of what data they&#39;re given.
+We want programs to make choices based on the values they are manipulating.
+To help us see what decisions they&#39;re making,
+we&#39;ll start by looking at how computers manipulate images.</p>
 </div>
 
 
@@ -28,7 +36,9 @@ root: ../..
 
 
 <div class="">
-<p>Let's start by creating some simple heat maps of our own using a library called <code>ipythonblocks</code>. The first step is to create our own &quot;image&quot;:</p>
+<p>Let&#39;s start by creating some simple heat maps of our own
+using a library called <code>ipythonblocks</code>.
+The first step is to create our own &quot;image&quot;:</p>
 </div>
 
 
@@ -38,8 +48,13 @@ root: ../..
 
 
 <div>
-<p>Unlike the <code>import</code> statements we have seen earlier, this one doesn't load the entire <code>ipythonblocks</code> library. Instead, it just loads <code>ImageGrid</code> from that library, since that's the only thing we need (for now).</p>
-<p>Once we have <code>ImageGrid</code> loaded, we can use it to create a very simple grid of colored cells:</p>
+<p>Unlike the <code>import</code> statements we have seen earlier,
+this one doesn&#39;t load the entire <code>ipythonblocks</code> library.
+Instead,
+it just loads <code>ImageGrid</code> from that library,
+since that&#39;s the only thing we need (for now).</p>
+<p>Once we have <code>ImageGrid</code> loaded,
+we can use it to create a very simple grid of colored cells:</p>
 </div>
 
 
@@ -54,7 +69,8 @@ grid.show()</pre>
 
 
 <div class="">
-<p>Just like a NumPy array, an <code>ImageGrid</code> has some properties that hold information about it:</p>
+<p>Just like a NumPy array,
+an <code>ImageGrid</code> has some properties that hold information about it:</p>
 </div>
 
 
@@ -73,9 +89,20 @@ grid lines on: True
 
 
 <div class="">
-<p>The obvious thing to do with a grid like this is color in its cells, but in order to do that, we need to know how computers represent color. The most common schemes are <a href="../../gloss.html#rgb">RGB</a>, which is short for &quot;red, green, blue&quot;. RGB is an <a href="../../gloss.html#additive-color-model">additive color model</a>: every shade is some combination of red, green, and blue intensities. We can think of these three values as being the axes in a cube:</p>
+<p>The obvious thing to do with a grid like this is color in its cells,
+but in order to do that,
+we need to know how computers represent color.
+The most common schemes are <a href="../../gloss.html#rgb">RGB</a>,
+which is short for &quot;red, green, blue&quot;.
+RGB is an <a href="../../gloss.html#additive-color-model">additive color model</a>:
+every shade is some combination of red, green, and blue intensities.
+We can think of these three values as being the axes in a cube:</p>
 <p><img src="img/color-cube.png" alt="RGB Color Cube" /></p>
-<p>An RGB color is an example of a multi-part value: like a Cartesian coordinate, it is one thing with several parts. We can represent such a value in Python using a <a href="../../gloss.html#tuple">tuple</a>, which we write using parentheses instead of the square brackets used for a list:</p>
+<p>An RGB color is an example of a multi-part value:
+like a Cartesian coordinate,
+it is one thing with several parts.
+We can represent such a value in Python using a <a href="../../gloss.html#tuple">tuple</a>,
+which we write using parentheses instead of the square brackets used for a list:</p>
 </div>
 
 
@@ -94,7 +121,8 @@ color is: (10, 20, 30)
 
 
 <div class="">
-<p>We can select elements from tuples using indexing, just as we do with lists and arrays:</p>
+<p>We can select elements from tuples using indexing,
+just as we do with lists and arrays:</p>
 </div>
 
 
@@ -109,7 +137,10 @@ color is: (10, 20, 30)
 
 
 <div class="">
-<p>Unlike lists and arrays, though, tuples cannot be changed after they are created—in technical terms, they are <a href="../../gloss.html#immutable">immutable</a>:</p>
+<p>Unlike lists and arrays,
+though,
+tuples cannot be changed after they are created&mdash;in technical terms,
+they are <a href="../../gloss.html#immutable">immutable</a>:</p>
 </div>
 
 
@@ -130,8 +161,15 @@ TypeError: &#39;tuple&#39; object does not support item assignment</pre>
 
 
 <div class="">
-<p>If a tuple represents an RGB color, its red, green, and blue components can take on values between 0 and 255. The upper bound may seem odd, but it's the largest number that can be represented in an 8-bit byte (i.e., 2<sup>8</sup>-1). This makes it easy for computers to manipulate colors, while providing fine enough gradations to fool most human eyes, most of the time.</p>
-<p>Let's see what a few RGB colors actually look like:</p>
+<p>If a tuple represents an RGB color,
+its red, green, and blue components can take on values between 0 and 255.
+The upper bound may seem odd,
+but it&#39;s the largest number that can be represented in an 8-bit byte
+(i.e., 2<sup>8</sup>-1).
+This makes it easy for computers to manipulate colors,
+while providing fine enough gradations to fool most human eyes,
+most of the time.</p>
+<p>Let&#39;s see what a few RGB colors actually look like:</p>
 </div>
 
 
@@ -154,7 +192,10 @@ row.show()</pre>
 
 
 <div class="">
-<p>Simple color values like <code>(0,255,0)</code> are easy enough to decipher with a bit of practice, but what color is <code>(214,90,127)</code>? To help us, <code>ipythonblocks</code> provides a function called <code>show_color</code>:</p>
+<p>Simple color values like <code>(0,255,0)</code> are easy enough to decipher with a bit of practice,
+but what color is <code>(214,90,127)</code>?
+To help us,
+<code>ipythonblocks</code> provides a function called <code>show_color</code>:</p>
 </div>
 
 
@@ -192,13 +233,16 @@ c.show()</pre>
 
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
+<ol>
 <li><p>Fill in the <code>____</code> in the code below to create a bar that changes color from dark blue to black.</p>
-<pre class="sourceCode python"><code class="sourceCode python">bar = ImageGrid(<span class="dv">10</span>, <span class="dv">1</span>)
-<span class="kw">for</span> x in <span class="dt">range</span>(<span class="dv">10</span>):
-    bar[x, <span class="dv">0</span>] = (<span class="dv">0</span>, <span class="dv">0</span>, ____)
-bar.show()</code></pre></li>
-<li><p>Why do computers use red, green, and blue as their primary colors?</p></li>
+<pre><code class="language-python">bar = ImageGrid(<span class="number">10</span>, <span class="number">1</span>)
+<span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>):
+    bar[x, <span class="number">0</span>] = (<span class="number">0</span>, <span class="number">0</span>, ____)
+bar.show()
+</code></pre>
+</li>
+<li><p>Why do computers use red, green, and blue as their primary colors?</p>
+</li>
 </ol>
 </div>
 
@@ -206,7 +250,10 @@ bar.show()</code></pre></li>
 
 
 <div class="">
-<p>The other thing we need in order to create a heat map of our own is a way to pick a color based on a data value. The tool Python gives us for doing this is called a <a href="../../gloss.html#conditional-statement">conditional statement</a>, and looks like this:</p>
+<p>The other thing we need in order to create a heat map of our own
+is a way to pick a color based on a data value.
+The tool Python gives us for doing this is called a <a href="../../gloss.html#conditional-statement">conditional statement</a>,
+and looks like this:</p>
 </div>
 
 
@@ -227,7 +274,13 @@ done
 
 
 <div class="">
-<p>The second line of this code uses the keyword <code>if</code> to tell Python that we want to make a choice. If the test that follows it is true, the body of the <code>if</code> (i.e., the lines indented underneath it) are executed. If the test is false, the body of the <code>else</code> is executed instead. Only one or the other is ever executed:</p>
+<p>The second line of this code uses the keyword <code>if</code> to tell Python that we want to make a choice.
+If the test that follows it is true,
+the body of the <code>if</code>
+(i.e., the lines indented underneath it) are executed.
+If the test is false,
+the body of the <code>else</code> is executed instead.
+Only one or the other is ever executed:</p>
 </div>
 
 
@@ -237,7 +290,9 @@ done
 
 
 <div class="">
-<p>Conditional statements don't have to include an <code>else</code>. If there isn't one, Python simply does nothing if the test is false:</p>
+<p>Conditional statements don&#39;t have to include an <code>else</code>.
+If there isn&#39;t one,
+Python simply does nothing if the test is false:</p>
 </div>
 
 
@@ -257,7 +312,9 @@ print &#39;...after conditional&#39;</pre>
 
 
 <div class="">
-<p>We can also chain several tests together using <code>elif</code>, which is short for &quot;else if&quot;. This makes it simple to write a function that returns the sign of a number:</p>
+<p>We can also chain several tests together using <code>elif</code>,
+which is short for &quot;else if&quot;.
+This makes it simple to write a function that returns the sign of a number:</p>
 </div>
 
 
@@ -280,8 +337,14 @@ print &#39;sign of -3:&#39;, sign(-3)</pre>
 
 
 <div class="">
-<p>One important thing to notice the code above is that we use a double equals sign <code>==</code> to test for equality rather than a single equals sign because the latter is used to mean assignment. This convention was inherited from C, and while many other programming languages work the same way, it does take a bit of getting used to...</p>
-<p>We can also combine tests using <code>and</code> and <code>or</code>. <code>and</code> is only true if both parts are true:</p>
+<p>One important thing to notice the code above is that we use a double equals sign <code>==</code> to test for equality
+rather than a single equals sign
+because the latter is used to mean assignment.
+This convention was inherited from C,
+and while many other programming languages work the same way,
+it does take a bit of getting used to...</p>
+<p>We can also combine tests using <code>and</code> and <code>or</code>.
+<code>and</code> is only true if both parts are true:</p>
 </div>
 
 
@@ -315,21 +378,32 @@ else:
 
 
 <div class="">
-<p>In this case, &quot;either&quot; means &quot;either or both&quot;, not &quot;either one or the other but not both&quot;.</p>
+<p>In this case,
+&quot;either&quot; means &quot;either or both&quot;, not &quot;either one or the other but not both&quot;.</p>
 </div>
 
 
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li><p><code>True</code> and <code>False</code> aren't the only values in Python that are true and false. In fact, <em>any</em> value can be used in an <code>if</code> or <code>elif</code>. After reading and running the code below, explain what the rule is for which values are considered true and which are considered false. (Note that if the body of a conditional is a single statement, we can write it on the same line as the <code>if</code>.)</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> <span class="st">&#39;&#39;</span>: <span class="kw">print</span> <span class="st">&#39;empty string is true&#39;</span>
-<span class="kw">if</span> <span class="st">&#39;word&#39;</span>: <span class="kw">print</span> <span class="st">&#39;word is true&#39;</span>
-<span class="kw">if</span> []: <span class="kw">print</span> <span class="st">&#39;empty list is true&#39;</span>
-<span class="kw">if</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]: <span class="kw">print</span> <span class="st">&#39;non-empty list is true&#39;</span>
-<span class="kw">if</span> <span class="dv">0</span>: <span class="kw">print</span> <span class="st">&#39;zero is true&#39;</span>
-<span class="kw">if</span> <span class="dv">1</span>: <span class="kw">print</span> <span class="st">&#39;one is true&#39;</span></code></pre></li>
-<li><p>Write a function called <code>near</code> that returns <code>True</code> if its first parameter is within 10% of its second and <code>False</code> otherwise. Compare your implementation with your partner's: do you return the same answer for all possible pairs of numbers?</p></li>
+<ol>
+<li><p><code>True</code> and <code>False</code> aren&#39;t the only values in Python that are true and false.
+In fact, <em>any</em> value can be used in an <code>if</code> or <code>elif</code>.
+After reading and running the code below,
+explain what the rule is for which values are considered true and which are considered false.
+(Note that if the body of a conditional is a single statement, we can write it on the same line as the <code>if</code>.)</p>
+<pre><code class="language-python"><span class="keyword">if</span> <span class="string">''</span>: <span class="keyword">print</span> <span class="string">'empty string is true'</span>
+<span class="keyword">if</span> <span class="string">'word'</span>: <span class="keyword">print</span> <span class="string">'word is true'</span>
+<span class="keyword">if</span> []: <span class="keyword">print</span> <span class="string">'empty list is true'</span>
+<span class="keyword">if</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]: <span class="keyword">print</span> <span class="string">'non-empty list is true'</span>
+<span class="keyword">if</span> <span class="number">0</span>: <span class="keyword">print</span> <span class="string">'zero is true'</span>
+<span class="keyword">if</span> <span class="number">1</span>: <span class="keyword">print</span> <span class="string">'one is true'</span>
+</code></pre>
+</li>
+<li><p>Write a function called <code>near</code> that returns <code>True</code> if its first parameter is within 10% of its second
+and <code>False</code> otherwise.
+Compare your implementation with your partner&#39;s:
+do you return the same answer for all possible pairs of numbers?</p>
+</li>
 </ol>
 </div>
 
@@ -337,7 +411,11 @@ else:
 
 
 <div class="">
-<p>Another thing to realize is that <code>if</code> statements can be combined with loops just as easily as they can be combined with functions. For example, if we want to sum the positive numbers in a list, we can write this:</p>
+<p>Another thing to realize is that <code>if</code> statements can be combined with loops
+just as easily as they can be combined with functions.
+For example,
+if we want to sum the positive numbers in a list,
+we can write this:</p>
 </div>
 
 
@@ -401,7 +479,9 @@ de
 
 
 <div class="">
-<p>As the diagram below shows, the <a href="../../gloss.html#inner-loop">inner loop</a> runs from start to finish each time the <a href="../../gloss.html#outer-loop">outer loop</a> runs once:</p>
+<p>As the diagram below shows,
+the <a href="../../gloss.html#inner-loop">inner loop</a> runs from start to finish
+each time the <a href="../../gloss.html#outer-loop">outer loop</a> runs once:</p>
 </div>
 
 
@@ -434,21 +514,30 @@ square.show()</pre>
 
 
 <div class="">
-<p>This is our first hand-made data visualization: the colors show where <code>x</code> is less than, equal to, or greater than <code>y</code>.</p>
+<p>This is our first hand-made data visualization:
+the colors show where <code>x</code> is less than, equal to, or greater than <code>y</code>.</p>
 </div>
 
 
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li><p>Will changing the nesting of the loops in the code above—i.e., wrapping the Y-axis loop around the X-axis loop—change the final image? Why or why not?</p></li>
-<li><p>Python (and most other languages in the C family) provides <a href="../../gloss.html#in-place-operator">in-place operators</a> that work like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python">x = <span class="dv">1</span>  <span class="co"># original value</span>
-x += <span class="dv">1</span> <span class="co"># add one to x, assigning result back to x</span>
-x *= <span class="dv">3</span> <span class="co"># multiply x by 3</span>
-<span class="kw">print</span> x
-<span class="dv">6</span></code></pre>
-<p>Rewrite the code that sums the positive and negative numbers in a list using in-place operators. Do you think the result is more or less readable than the original?</p></li>
+<ol>
+<li><p>Will changing the nesting of the loops in the code above&mdash;i.e.,
+wrapping the Y-axis loop around the X-axis loop&mdash;change the final image?
+Why or why not?</p>
+</li>
+<li><p>Python (and most other languages in the C family) provides <a href="../../gloss.html#in-place-operator">in-place operators</a>
+that work like this:</p>
+<pre><code class="language-python">x = <span class="number">1</span>  <span class="comment"># original value</span>
+x += <span class="number">1</span> <span class="comment"># add one to x, assigning result back to x</span>
+x *= <span class="number">3</span> <span class="comment"># multiply x by 3</span>
+<span class="keyword">print</span> x
+<span class="number">6</span>
+</code></pre>
+<p>Rewrite the code that sums the positive and negative numbers in a list
+using in-place operators.
+Do you think the result is more or less readable than the original?</p>
+</li>
 </ol>
 </div>
 
@@ -456,7 +545,9 @@ x *= <span class="dv">3</span> <span class="co"># multiply x by 3</span>
 
 
 <div class="">
-<p>The last step is to turn our data into something we can see. As in previous lessons, the first step is to get the data into memory:</p>
+<p>The last step is to turn our data into something we can see.
+As in previous lessons,
+the first step is to get the data into memory:</p>
 </div>
 
 
@@ -484,8 +575,14 @@ heatmap = ImageGrid(width, height)</pre>
 
 
 <div class="">
-<p>(The first line of the code above takes advantage of a neat trick: we can unpack the values in a tuple by assigning it to as many variables as it has entries.)</p>
-<p>The third step is to decide <em>how</em> we are going to color the cells in the heat map. To keep things simple, we will use red, green, and blue as our colors, and compare data values to the data set's mean. Here's the code:</p>
+<p>(The first line of the code above takes advantage of a neat trick:
+we can unpack the values in a tuple by assigning it to
+as many variables as it has entries.)</p>
+<p>The third step is to decide <em>how</em> we are going to color the cells in the heat map.
+To keep things simple,
+we will use red, green, and blue as our colors,
+and compare data values to the data set&#39;s mean.
+Here&#39;s the code:</p>
 </div>
 
 
@@ -507,19 +604,20 @@ heatmap.show()</pre>
 
 
 <div class="">
-<p>This may be what we asked for, but both the image and the code are hideous:</p>
-<ol style="list-style-type: decimal">
-<li>It's too large for us to view the whole thing at once on a small laptop screen.</li>
+<p>This may be what we asked for,
+but both the image and the code are hideous:</p>
+<ol>
+<li>It&#39;s too large for us to view the whole thing at once on a small laptop screen.</li>
 <li>Our first heatmap had time along the X axis; this seems to have time along the Y axis.</li>
 <li>Red against blue is pretty hard on the eyes.</li>
 <li>The heatmap only shows two colors because none of the (integer) measurements has exactly the same value as the (fractional) mean.</li>
-<li>We are calculating the mean of <code>data</code> either once or twice each time we go through the loop. That means that on a 40×60 data set, we are performing the same calculation 2400 times.</li>
+<li>We are calculating the mean of <code>data</code> either once or twice each time we go through the loop.  That means that on a 40&times;60 data set, we are performing the same calculation 2400 times.</li>
 </ol>
-<p>Here's how we can improve it:</p>
-<ol style="list-style-type: decimal">
+<p>Here&#39;s how we can improve it:</p>
+<ol>
 <li>We can give <code>ImageGrid</code> an optional parameter <code>block_size</code> to set the size of each block.</li>
 <li>We can transpose our data before creating the grid.</li>
-<li>We can pick better colors (I'm personally fond of orchid, fuchsia, and hot pink).</li>
+<li>We can pick better colors (I&#39;m personally fond of orchid, fuchsia, and hot pink).</li>
 <li>Instead of checking if values are exactly equal to the mean, we can see if they are close to it.</li>
 <li>We can calculate the mean once, before we start our loops, and use that value over and over.</li>
 </ol>
@@ -549,8 +647,12 @@ heatmap.show()</pre>
 
 
 <div class="">
-<p>That's a bit better—but now the contrast between the colors isn't great enough. And there still aren't very many fuchsia cells: we may want to widen the band around the mean that gets that color.</p>
-<p>We could rewrite our loop a third time, but the right thing to do is to put our code in a function so that we can experiment with bands and colors more easily.</p>
+<p>That&#39;s a bit better&mdash;but now the contrast between the colors isn&#39;t great enough.
+And there still aren&#39;t very many fuchsia cells:
+we may want to widen the band around the mean that gets that color.</p>
+<p>We could rewrite our loop a third time,
+but the right thing to do is to put our code in a function
+so that we can experiment with bands and colors more easily.</p>
 </div>
 
 
@@ -573,7 +675,8 @@ heatmap.show()</pre>
 
 
 <div class="">
-<p>To test this function, we'll run it with the settings we just used:</p>
+<p>To test this function,
+we&#39;ll run it with the settings we just used:</p>
 </div>
 
 
@@ -588,7 +691,8 @@ h.show()</pre>
 
 
 <div class="">
-<p>That seems right, so let's widen the band and use more dramatic colors:</p>
+<p>That seems right,
+so let&#39;s widen the band and use more dramatic colors:</p>
 </div>
 
 
@@ -603,7 +707,13 @@ h.show()</pre>
 
 
 <div class="">
-<p>We'll probably want to experiment a bit more before publishing, but writing a function has made experimenting easy. We can make it even easier by re-defining our function one more time to give the parameters default values. While we're at it, let's put the low and high bands at the front, since they're more likely to change than our color choices:</p>
+<p>We&#39;ll probably want to experiment a bit more before publishing,
+but writing a function has made experimenting easy.
+We can make it even easier by re-defining our function one more time
+to give the parameters default values.
+While we&#39;re at it,
+let&#39;s put the low and high bands at the front,
+since they&#39;re more likely to change than our color choices:</p>
 </div>
 
 
@@ -630,8 +740,14 @@ h.show()</pre>
 
 
 <div class="">
-<p>Once default values are added, the function's first line is too long to fit comfortably on our screen. Rather than breaking it wherever it hits the right edge of the screen, we have divided the parameters into logical groups to make it more readable.</p>
-<p>Again, our first test is to re-run it with the same values as before (which we give it in a different order, since we've changed the order of parameters):</p>
+<p>Once default values are added,
+the function&#39;s first line is too long to fit comfortably on our screen.
+Rather than breaking it wherever it hits the right edge of the screen,
+we have divided the parameters into logical groups to make it more readable.</p>
+<p>Again,
+our first test is to re-run it with the same values as before
+(which we give it in a different order,
+since we&#39;ve changed the order of parameters):</p>
 </div>
 
 
@@ -646,7 +762,9 @@ h.show()</pre>
 
 
 <div class="">
-<p>We can now leave out everything except the data being visualized, or provide the data and the bands and re-use the default colors and block size:</p>
+<p>We can now leave out everything except the data being visualized,
+or provide the data and the bands
+and re-use the default colors and block size:</p>
 </div>
 
 
@@ -661,16 +779,30 @@ h.show()</pre>
 
 
 <div class="">
-<p>We can now explore our data with just a few keystrokes, which means we can concentrate on our science and not on our programming.</p>
+<p>We can now explore our data with just a few keystrokes,
+which means we can concentrate on our science
+and not on our programming.</p>
 </div>
 
 
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li><p>Why did we transpose our data outside our heat map function? Why not have the function perform the transpose?</p></li>
-<li><p>Why does the heat map function return the grid rather than displaying it immediately? Do you think this is a good or bad design choice?</p></li>
-<li><p>Explain what the overall effect of this code is: <sub>~</sub> temp = left left = right right = temp <sub>~</sub> Compare it to: <sub>~</sub> left, right = right, left <sub>~</sub> Do they always do the same thing? Which do you find easier to read?</p></li>
+<ol>
+<li><p>Why did we transpose our data outside our heat map function?
+Why not have the function perform the transpose?</p>
+</li>
+<li><p>Why does the heat map function return the grid rather than displaying it immediately?
+Do you think this is a good or bad design choice?</p>
+</li>
+<li><p>Explain what the overall effect of this code is:</p>
+<pre><code>temp = left
+left = right
+right = temp
+</code></pre><p>Compare it to:</p>
+<pre><code>left, right = right, left
+</code></pre><p>Do they always do the same thing?
+Which do you find easier to read?</p>
+</li>
 </ol>
 </div>
 
@@ -694,5 +826,10 @@ h.show()</pre>
 
 <div class="">
 <h4 id="next-steps">Next Steps</h4>
-<p>Our final heatmap function is 17 lines long, which means that if there's a 95% chance of each line being correct, the odds of the whole function being right are only 41%. Before we go any further, we need to learn how to test whether our code is doing what we want it to do, and that will be the subject of the next lesson.</p>
+<p>Our final heatmap function is 17 lines long,
+which means that if there&#39;s a 95% chance of each line being correct,
+the odds of the whole function being right are only 41%.
+Before we go any further,
+we need to learn how to test whether our code is doing what we want it to do,
+and that will be the subject of the next lesson.</p>
 </div>
