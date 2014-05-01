@@ -96,30 +96,38 @@ $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 # Temporary book file.
 BOOK_MD = ./book.md
 
+BOOK_MD2TEX = ./book.md2tex
+
 # Build the temporary input for the book by concatenating relevant
 # sections of Markdown files and then patching glossary references and
 # image paths.
 $(BOOK_MD) : $(MOST_SRC) bin/make-book.py
 	python bin/make-book.py $(MOST_SRC) > $@
 
-$(BOOK_PDF) : $(BOOK_MD)
+$(BOOK_MD2TEX): $(BOOK_MD)
+	tail -n +5 $< > $@
+
+$(BOOK_PDF) : $(BOOK_MD2TEX)
+	# markdown ignore img tag
+	sed -i -e 's@<img .*src="\(\.*\)" alt.*/>@![\1]@' $<
+	# Add hyperdef (don't work with markdown_php)
 	sed -i -e 's@^\*\*\(.*\)\*\*: <a name="\(.*\)"><\/a>@\\hyperdef{gloss}{\2}{\\textbf{\1}}@' $<
-	pandoc -f markdown_phpextra -t latex \
+	pandoc -f markdown -t latex \
 	    --standalone --table-of-contents --no-highlight \
 	    --ascii --template _templates/tex.tpl \
-	    -o ${subst .md,.tex,$<} $<
-	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' ${subst .md,.tex,$<}
-	sed -i -e 's@\.svg@\.png@g' ${subst .md,.tex,$<}
-	sed -i -e 's@π@\$$\\pi\$$@' ${subst .md,.tex,$<}
-	for i in $$(find . -name '*.svg' -type f); \
-	do \
-	    convert $$i $${i/.svg/.png}; \
-	done;
+	    -o ${subst .md2tex,.tex,$<} $<
+	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' ${subst .md2tex,.tex,$<}
+	sed -i -e 's@\.svg@\.png@g' ${subst .md2tex,.tex,$<}
+	sed -i -e 's@π@\$$\\pi\$$@' ${subst .md2tex,.tex,$<}
+	#for i in $$(find . -path _site -prune -o -name '*.svg' -type f); \
+	#do \
+	#    convert $$i $${i/.svg/.png}; \
+	#done;
 	# pdflatex \
 	#     -interaction nonstopmode \
 	#     _site/book.tex
 	pdflatex -halt-on-error -output-directory _printed \
-	    ${subst .md,.tex,$<}
+	    ${subst .md2tex,.tex,$<}
 
 #----------------------------------------------------------------------
 # Targets.
