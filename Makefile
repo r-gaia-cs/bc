@@ -89,7 +89,27 @@ INDEX = $(SITE)/index.html
 $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	jekyll -t build -d $(SITE)
 
-_site/book.tex: $(INDEX) _site/book.html
+#----------------------------------------------------------------------
+# Create all-in-one book version of notes.
+#----------------------------------------------------------------------
+
+# Temporary book file.
+BOOK_MD = ./book.md
+
+# Build the temporary input for the book by concatenating relevant
+# sections of Markdown files and then patching glossary references and
+# image paths.
+$(BOOK_MD) : $(MOST_SRC) bin/make-book.py
+	python bin/make-book.py $(MOST_SRC) > $@
+
+#----------------------------------------------------------------------
+# Create all-in-one printed book version of notes.
+#----------------------------------------------------------------------
+
+# Temporary book file
+BOOK_TEX = ./book.tex
+
+$(BOOK_TEX): $(INDEX) _site/book.html
 	pandoc -f html -t latex \
 	    --standalone --table-of-contents --no-highlight \
 	    --ascii --template _templates/tex.tpl \
@@ -104,25 +124,12 @@ _site/book.tex: $(INDEX) _site/book.html
 	done;
 
 
-$(BOOK_PDF) : _site/book.tex
-	# pdflatex \
-	#     -interaction nonstopmode \
-	#     _site/book.tex
-	cd _site && pdflatex \
-	    book.tex
-
-#----------------------------------------------------------------------
-# Create all-in-one book version of notes.
-#----------------------------------------------------------------------
-
-# Temporary book file.
-BOOK_MD = ./book.md
-
-# Build the temporary input for the book by concatenating relevant
-# sections of Markdown files and then patching glossary references and
-# image paths.
-$(BOOK_MD) : $(MOST_SRC) bin/make-book.py
-	python bin/make-book.py $(MOST_SRC) > $@
+$(BOOK_PDF) : $(BOOK_TEX)
+	mkdir -p _latex_aux_files
+	pdflatex -halt-on-error \
+	    -output-directory _latex_aux_files \
+	    $<
+	mv _latex_aux_files/$(subst .tex,.pdf,$(BOOK_TEX)) $(BOOK_PDF)
 
 #----------------------------------------------------------------------
 # Targets.
