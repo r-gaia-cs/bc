@@ -103,7 +103,7 @@ $(BOOK_MD) : $(MOST_SRC) bin/make-book.py
 	python bin/make-book.py $(MOST_SRC) > $@
 
 $(BOOK_PDF) : $(BOOK_MD)
-	sed -i -e 's@^\*\*\(.*\)\*\*: <a name="\(.*\)"><\/a>@\\hyperdef{gloss}{\2}{\\textbf{\1}}@p' $<
+	sed -i -e 's@^\*\*\(.*\)\*\*: <a name="\(.*\)"><\/a>@\\hyperdef{gloss}{\2}{\\textbf{\1}}@' $<
 	pandoc -f markdown_phpextra -t latex \
 	    --standalone --table-of-contents --no-highlight \
 	    --ascii --template _templates/tex.tpl \
