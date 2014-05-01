@@ -89,6 +89,19 @@ INDEX = $(SITE)/index.html
 $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	jekyll -t build -d $(SITE)
 
+#----------------------------------------------------------------------
+# Create all-in-one book version of notes.
+#----------------------------------------------------------------------
+
+# Temporary book file.
+BOOK_MD = ./book.md
+
+# Build the temporary input for the book by concatenating relevant
+# sections of Markdown files and then patching glossary references and
+# image paths.
+$(BOOK_MD) : $(MOST_SRC) bin/make-book.py
+	python bin/make-book.py $(MOST_SRC) > $@
+
 $(BOOK_PDF) : $(BOOK_MD)
 	sed -i -e 's@^\*\*\(.*\)\*\*: <a name="\(.*\)"><\/a>@\\hyperdef{gloss}{\2}{\\textbf{\1}}@p' $<
 	pandoc -f html -t latex \
@@ -107,19 +120,6 @@ $(BOOK_PDF) : $(BOOK_MD)
 	#     _site/book.tex
 	pdflatex -halt-on-error -output-directory _printed \
 	    ${subst .md,.tex,$<}
-
-#----------------------------------------------------------------------
-# Create all-in-one book version of notes.
-#----------------------------------------------------------------------
-
-# Temporary book file.
-BOOK_MD = ./book.md
-
-# Build the temporary input for the book by concatenating relevant
-# sections of Markdown files and then patching glossary references and
-# image paths.
-$(BOOK_MD) : $(MOST_SRC) bin/make-book.py
-	python bin/make-book.py $(MOST_SRC) > $@
 
 #----------------------------------------------------------------------
 # Targets.
