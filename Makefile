@@ -89,27 +89,24 @@ INDEX = $(SITE)/index.html
 $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	jekyll -t build -d $(SITE)
 
-_site/book.tex: $(INDEX) _site/book.html
+$(BOOK_PDF) : $(BOOK_MD)
+	sed -i -e 's@^\*\*\(.*\)\*\*: <a name="\(.*\)"><\/a>@\\hyperdef{gloss}{\2}{\\textbf{\1}}@p' $<
 	pandoc -f html -t latex \
 	    --standalone --table-of-contents --no-highlight \
 	    --ascii --template _templates/tex.tpl \
-	    -o $@ _site/book.html
-	# Call sed three times as workaround using -e three times
-	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' $@
-	sed -i -e 's@\.svg@\.png@g' $@
-	sed -i -e 's@π@\$$\\pi\$$@' $@
-	for i in $$(find _site -name '*.svg' -type f); \
+	    -o ${subst .md,.tex,$<} $<
+	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' ${subst .md,.tex,$<}
+	sed -i -e 's@\.svg@\.png@g' ${subst .md,.tex,$<}
+	sed -i -e 's@π@\$$\\pi\$$@' ${subst .md,.tex,$<}
+	for i in $$(find . -name '*.svg' -type f); \
 	do \
 	    convert $$i $${i/.svg/.png}; \
 	done;
-
-
-$(BOOK_PDF) : _site/book.tex
 	# pdflatex \
 	#     -interaction nonstopmode \
 	#     _site/book.tex
-	cd _site && pdflatex \
-	    book.tex
+	pdflatex -halt-on-error -output-directory _printed \
+	    ${subst .md,.tex,$<}
 
 #----------------------------------------------------------------------
 # Create all-in-one book version of notes.
