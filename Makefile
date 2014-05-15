@@ -89,13 +89,14 @@ $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 #----------------------------------------------------------------------
 
 # Convert SVG diagrams into PNG images for use in LaTeX.
-SVG_TO_PNG = convert --export-png
+INKSCAPE = /Applications/Inkscape.app/Contents/Resources/bin/inkscape
+SVG_TO_PNG = $(INKSCAPE) --export-png
 DIAGRAM_SRC = $(wildcard novice/*/img/*.svg)
-DIAGRAM_DST = $(patsubst %.svg,%.png,$(DIAGRAM_SRC)
+DIAGRAM_DST = $(patsubst %.svg,%.png,$(DIAGRAM_SRC))
 diagrams : $(DIAGRAM_DST)
 
 %.png : %.svg
-	$(SVG_TO_PNG) --export-png $@ $<
+	$(SVG_TO_PNG) $@ $<
 
 # Temporary book file.
 BOOK_MD = ./book.md
@@ -134,7 +135,7 @@ clean : tidy
 ## book     : build the site including the all-in-one book.
 #  To do this, we simply create the book Markdown file then build
 #  with Jekyll as usual.
-book : $(BOOK_MD)
+book : $(BOOK_MD) $(DIAGRAM_DST)
 	make site
 
 ## install  : install on the server.
