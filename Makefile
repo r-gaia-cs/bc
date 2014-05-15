@@ -20,12 +20,11 @@
 # that matches are ordered when necessary.
 #======================================================================
 
+include vars.mk
+
 #----------------------------------------------------------------------
 # Settings.
 #----------------------------------------------------------------------
-
-# Output directory for local build.
-SITE = _site
 
 # Installation directory on server.
 INSTALL = $(HOME)/sites/software-carpentry.org/v5
@@ -45,70 +44,12 @@ all : commands
 # committed in the repository's gh-pages branch.
 #----------------------------------------------------------------------
 
-# Source Markdown files.  These are listed in the order in which they
-# appear in the final book-format version of the notes.
-MOST_SRC = \
-	 intro.md \
-	 team.md \
-	 novice/shell/index.md $(sort $(wildcard novice/shell/??-*.md)) \
-	 novice/git/index.md $(sort $(wildcard novice/git/??-*.md)) \
-	 novice/python/index.md $(sort $(wildcard novice/python/??-*.md)) \
-	 novice/sql/index.md $(sort $(wildcard novice/sql/??-*.md)) \
-	 novice/extras/index.md $(sort $(wildcard novice/extras/??-*.md)) \
-	 novice/teaching/index.md  $(sort $(wildcard novice/teaching/??-*.md)) \
-	 novice/ref/index.md  $(sort $(wildcard novice/ref/??-*.md)) \
-	 bib.md \
-	 gloss.md \
-	 rules.md \
-	 LICENSE.md
-
-# All source pages (including things not in the book).
-ALL_SRC = \
-	contents.md \
-	$(wildcard intermediate/python/*.md) \
-	$(wildcard intermediate/doit/*.md) \
-	$(MOST_SRC)
-
-# Other files that the site depends on.
-EXTRAS = \
-       $(wildcard css/*.css) \
-       $(wildcard css/*/*.css)
-
-# Principal target files
-INDEX = $(SITE)/index.html
-
 # Convert from Markdown to HTML.  This builds *all* the pages (Jekyll
 # only does batch mode), and erases the SITE directory first, so
 # having the output index.html file depend on all the page source
 # Markdown files triggers the desired build once and only once.
 $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	 jekyll -t build -d $(SITE)
-
-#----------------------------------------------------------------------
-# Create all-in-one book version of notes.
-#----------------------------------------------------------------------
-
-# Convert SVG diagrams into PNG images for use in LaTeX.
-INKSCAPE = /Applications/Inkscape.app/Contents/Resources/bin/inkscape
-SVG_TO_PNG = $(INKSCAPE) --export-png
-DIAGRAM_SRC = $(wildcard novice/*/img/*.svg)
-DIAGRAM_DST = $(patsubst %.svg,%.png,$(DIAGRAM_SRC))
-diagrams : $(DIAGRAM_DST)
-
-%.png : %.svg
-	$(SVG_TO_PNG) $@ $<
-
-# Temporary book file.
-BOOK_MD = ./book.md
-
-# Generated HTML file for book.
-BOOK_HTML = $(SITE)/book.html
-
-# Build the temporary input for the book by concatenating relevant
-# sections of Markdown files and then patching glossary references and
-# image paths.
-$(BOOK_MD) : $(MOST_SRC) bin/make-book.py
-	   python bin/make-book.py $(MOST_SRC) > $@
 
 #----------------------------------------------------------------------
 # Targets.
@@ -131,37 +72,9 @@ check :
 
 ## clean    : clean up all generated files.
 clean : tidy
-	rm -rf $(SITE)
+	rm -rf $(SITE) $(BOOK_MD)
 
 ## ---------------------------------------
-
-## book     : build the site including the all-in-one book.
-#  To do this, we simply create the book Markdown file, build with
-#  with Jekyll as usual, then hack up the HTML, convert it to LaTeX,
-#  and compile that.  Simple, right?
-book : $(BOOK_HTML)
-
-$(BOOK_HTML) : $(BOOK_MD) $(DIAGRAM_DST)
-	make site
-	sed -i -e 's@\.\./\.\./gloss.html#@#g:@g' $@
-	sed -i -e 's@\.svg@\.png@g' $@
-	sed -i -e 's@<h4 id="challenges.*">@<h4>@g' $@
-	sed -i -e 's@<h4 id="key-points.*">@<h4>@g' $@
-	sed -i -e 's@<h4 id="objectives.*">@<h4>@g' $@
-	sed -i -e 's@<h4 id="next-steps.*">@<h4>@g' $@
-	sed -i -e 's@<pre class="in"><code>@<pre class="in">@g' $@
-	sed -i -e 's@<pre class="out"><code>@<pre class="out">@g' $@
-	sed -i -e 's@<pre class="err"><code>@<pre class="err">@g' $@
-
-BOOK_TEX = $(SITE)/book.tex
-
-$(BOOK_TEX) : $(BOOK_HTML)
-	pandoc -f html -t latex \
-	  --standalone --table-of-contents --no-highlight --ascii \
-	  --template _templates/tex.tpl \
-	  -o $@ $<
-	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' $@
-	sed -i -e 's@π@\$$\\pi\$$@' $@
 
 ## install  : install on the server.
 install : $(INDEX)
@@ -196,5 +109,15 @@ tidy :
 #  This uses an auxiliary Makefile 'ipynb.mk'.
 ipynb :
 	make -f ipynb.mk
+
+## html     : create HTML version of notes.
+#  This uses an auxiliary Makefile 'book.mk'.
+html :
+	make -f book.mk html
+
+## pdf      : create PDF version of notes.
+#  This uses an auxiliary Makefile 'book.mk'.
+pdf :
+	make -f book.mk pdf
 
 ## ---------------------------------------
