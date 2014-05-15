@@ -88,6 +88,15 @@ $(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
 # Create all-in-one book version of notes.
 #----------------------------------------------------------------------
 
+# Convert SVG diagrams into PNG images for use in LaTeX.
+SVG_TO_PNG = convert --export-png
+DIAGRAM_SRC = $(wildcard novice/*/img/*.svg)
+DIAGRAM_DST = $(patsubst %.svg,%.png,$(DIAGRAM_SRC)
+diagrams : $(DIAGRAM_DST)
+
+%.png : %.svg
+	$(SVG_TO_PNG) --export-png $@ $<
+
 # Temporary book file.
 BOOK_MD = ./book.md
 
