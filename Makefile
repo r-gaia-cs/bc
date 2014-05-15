@@ -101,6 +101,9 @@ diagrams : $(DIAGRAM_DST)
 # Temporary book file.
 BOOK_MD = ./book.md
 
+# Generated HTML file for book.
+BOOK_HTML = $(SITE)/book.html
+
 # Build the temporary input for the book by concatenating relevant
 # sections of Markdown files and then patching glossary references and
 # image paths.
@@ -133,10 +136,14 @@ clean : tidy
 ## ---------------------------------------
 
 ## book     : build the site including the all-in-one book.
-#  To do this, we simply create the book Markdown file then build
-#  with Jekyll as usual.
-book : $(BOOK_MD) $(DIAGRAM_DST)
+#  To do this, we simply create the book Markdown file, build with
+#  with Jekyll as usual, then hack up the HTML, convert it to LaTeX,
+#  and compile that.  Simple, right?
+book : $(BOOK_HTML)
+
+$(BOOK_HTML) : $(BOOK_MD) $(DIAGRAM_DST)
 	make site
+	sed -i -e 's@\.\./\.\./gloss.html#@#g:@g' $@
 
 ## install  : install on the server.
 install : $(INDEX)
