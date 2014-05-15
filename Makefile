@@ -144,6 +144,11 @@ book : $(BOOK_HTML)
 $(BOOK_HTML) : $(BOOK_MD) $(DIAGRAM_DST)
 	make site
 	sed -i -e 's@\.\./\.\./gloss.html#@#g:@g' $@
+	sed -i -e 's@\.svg@\.png@g' $@
+	sed -i -e 's@<h4 id="challenges.*">@<h4>@g' $@
+	sed -i -e 's@<h4 id="key-points.*">@<h4>@g' $@
+	sed -i -e 's@<h4 id="objectives.*">@<h4>@g' $@
+	sed -i -e 's@<h4 id="next-steps.*">@<h4>@g' $@
 
 ## install  : install on the server.
 install : $(INDEX)
