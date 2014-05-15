@@ -153,6 +153,16 @@ $(BOOK_HTML) : $(BOOK_MD) $(DIAGRAM_DST)
 	sed -i -e 's@<pre class="out"><code>@<pre class="out">@g' $@
 	sed -i -e 's@<pre class="err"><code>@<pre class="err">@g' $@
 
+BOOK_TEX = $(SITE)/book.tex
+
+$(BOOK_TEX) : $(BOOK_HTML)
+	pandoc -f html -t latex \
+	  --standalone --table-of-contents --no-highlight --ascii \
+	  --template _templates/tex.tpl \
+	  -o $@ $<
+	sed -i -e 's@\\paragraph@\\mbox\{\}\\paragraph@g' $@
+	sed -i -e 's@π@\$$\\pi\$$@' $@
+
 ## install  : install on the server.
 install : $(INDEX)
 	rm -rf $(INSTALL)
