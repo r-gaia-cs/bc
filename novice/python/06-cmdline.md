@@ -47,15 +47,12 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>!cat sys-version.py</pre>
-</div>
+<pre class="in"><code>!cat sys-version.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 print &#39;version is&#39;, sys.version
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -63,15 +60,12 @@ print &#39;version is&#39;, sys.version
 </div>
 
 
-<div class="in">
-<pre>%run sys-version.py</pre>
-</div>
+<pre class="in"><code>%run sys-version.py
+</code></pre>
 
-<div class="out">
-<pre>version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20) 
+<pre class="out"><code>version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20) 
 [GCC 4.0.1 (Apple Inc. build 5493)]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -79,15 +73,12 @@ print &#39;version is&#39;, sys.version
 </div>
 
 
-<div class="in">
-<pre>!ipython sys-version.py</pre>
-</div>
+<pre class="in"><code>!ipython sys-version.py
+</code></pre>
 
-<div class="out">
-<pre>version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20) 
+<pre class="out"><code>version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20) 
 [GCC 4.0.1 (Apple Inc. build 5493)]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -100,15 +91,12 @@ print &#39;version is&#39;, sys.version
 </div>
 
 
-<div class="in">
-<pre>!cat argv-list.py</pre>
-</div>
+<pre class="in"><code>!cat argv-list.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 print &#39;sys.argv is&#39;, sys.argv
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -116,14 +104,11 @@ print &#39;sys.argv is&#39;, sys.argv
 </div>
 
 
-<div class="in">
-<pre>!ipython argv-list.py</pre>
-</div>
+<pre class="in"><code>!ipython argv-list.py
+</code></pre>
 
-<div class="out">
-<pre>sys.argv is [&#39;/Users/gwilson/s/bc/python/novice/argv-list.py&#39;]
-</pre>
-</div>
+<pre class="out"><code>sys.argv is [&#39;/Users/gwilson/s/bc/python/novice/argv-list.py&#39;]
+</code></pre>
 
 
 <div class="">
@@ -131,14 +116,11 @@ print &#39;sys.argv is&#39;, sys.argv
 </div>
 
 
-<div class="in">
-<pre>!ipython argv-list.py first second third</pre>
-</div>
+<pre class="in"><code>!ipython argv-list.py first second third
+</code></pre>
 
-<div class="out">
-<pre>sys.argv is [&#39;/Users/gwilson/s/bc/python/novice/argv-list.py&#39;, &#39;first&#39;, &#39;second&#39;, &#39;third&#39;]
-</pre>
-</div>
+<pre class="out"><code>sys.argv is [&#39;/Users/gwilson/s/bc/python/novice/argv-list.py&#39;, &#39;first&#39;, &#39;second&#39;, &#39;third&#39;]
+</code></pre>
 
 
 <div class="">
@@ -151,12 +133,10 @@ print &#39;sys.argv is&#39;, sys.argv
 </div>
 
 
-<div class="in">
-<pre>!cat readings-01.py</pre>
-</div>
+<pre class="in"><code>!cat readings-01.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 import numpy as np
 
 def main():
@@ -165,8 +145,7 @@ def main():
     data = np.loadtxt(filename, delimiter=&#39;,&#39;)
     for m in data.mean(axis=1):
         print m
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -174,9 +153,8 @@ def main():
 </div>
 
 
-<div class="in">
-<pre>%run readings-01.py inflammation-01.csv</pre>
-</div>
+<pre class="in"><code>%run readings-01.py inflammation-01.csv
+</code></pre>
 
 
 <div class="">
@@ -184,12 +162,10 @@ def main():
 </div>
 
 
-<div class="in">
-<pre>!cat readings-02.py</pre>
-</div>
+<pre class="in"><code>!cat readings-02.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 import numpy as np
 
 def main():
@@ -200,8 +176,7 @@ def main():
         print m
 
 main()
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -209,12 +184,10 @@ main()
 </div>
 
 
-<div class="in">
-<pre>%run readings-02.py inflammation-01.csv</pre>
-</div>
+<pre class="in"><code>%run readings-02.py inflammation-01.csv
+</code></pre>
 
-<div class="out">
-<pre>5.45
+<pre class="out"><code>5.45
 5.425
 6.1
 5.9
@@ -274,8 +247,7 @@ main()
 6.4
 7.05
 5.9
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -303,36 +275,27 @@ main()
 </div>
 
 
-<div class="in">
-<pre>!ls small-*.csv</pre>
-</div>
+<pre class="in"><code>!ls small-*.csv
+</code></pre>
 
-<div class="out">
-<pre>small-01.csv small-02.csv small-03.csv
-</pre>
-</div>
+<pre class="out"><code>small-01.csv small-02.csv small-03.csv
+</code></pre>
 
 
-<div class="in">
-<pre>!cat small-01.csv</pre>
-</div>
+<pre class="in"><code>!cat small-01.csv
+</code></pre>
 
-<div class="out">
-<pre>0,0,1
+<pre class="out"><code>0,0,1
 0,1,2
-</pre>
-</div>
+</code></pre>
 
 
-<div class="in">
-<pre>%run readings-02.py small-01.csv</pre>
-</div>
+<pre class="in"><code>%run readings-02.py small-01.csv
+</code></pre>
 
-<div class="out">
-<pre>0.333333333333
+<pre class="out"><code>0.333333333333
 1.0
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -342,12 +305,10 @@ main()
 </div>
 
 
-<div class="in">
-<pre>!cat readings-03.py</pre>
-</div>
+<pre class="in"><code>!cat readings-03.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 import numpy as np
 
 def main():
@@ -358,8 +319,7 @@ def main():
             print m
 
 main()
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -367,17 +327,14 @@ main()
 </div>
 
 
-<div class="in">
-<pre>%run readings-03.py small-01.csv small-02.csv</pre>
-</div>
+<pre class="in"><code>%run readings-03.py small-01.csv small-02.csv
+</code></pre>
 
-<div class="out">
-<pre>0.333333333333
+<pre class="out"><code>0.333333333333
 1.0
 13.6666666667
 11.0
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -400,12 +357,10 @@ main()
 </div>
 
 
-<div class="in">
-<pre>!cat readings-04.py</pre>
-</div>
+<pre class="in"><code>!cat readings-04.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 import numpy as np
 
 def main():
@@ -427,8 +382,7 @@ def main():
             print m
 
 main()
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -436,15 +390,12 @@ main()
 </div>
 
 
-<div class="in">
-<pre>%run readings-04.py --max small-01.csv</pre>
-</div>
+<pre class="in"><code>%run readings-04.py --max small-01.csv
+</code></pre>
 
-<div class="out">
-<pre>1.0
+<pre class="out"><code>1.0
 2.0
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -457,12 +408,10 @@ main()
 </div>
 
 
-<div class="in">
-<pre>!cat readings-05.py</pre>
-</div>
+<pre class="in"><code>!cat readings-05.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 import numpy as np
 
 def main():
@@ -488,8 +437,7 @@ def process(filename, action):
         print m
 
 main()
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -519,20 +467,17 @@ main()
 </div>
 
 
-<div class="in">
-<pre>!cat count-stdin.py</pre>
-</div>
+<pre class="in"><code>!cat count-stdin.py
+</code></pre>
 
-<div class="out">
-<pre>import sys
+<pre class="out"><code>import sys
 
 count = 0
 for line in sys.stdin:
     count += 1
 
 print count, &#39;lines in standard input&#39;
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -540,14 +485,11 @@ print count, &#39;lines in standard input&#39;
 </div>
 
 
-<div class="in">
-<pre>!ipython count-stdin.py &lt; small-01.csv</pre>
-</div>
+<pre class="in"><code>!ipython count-stdin.py &lt; small-01.csv
+</code></pre>
 
-<div class="out">
-<pre>2 lines in standard input
-</pre>
-</div>
+<pre class="out"><code>2 lines in standard input
+</code></pre>
 
 
 <div class="">
@@ -555,14 +497,11 @@ print count, &#39;lines in standard input&#39;
 </div>
 
 
-<div class="in">
-<pre>%run count-stdin.py &lt; fractal_1.txt</pre>
-</div>
+<pre class="in"><code>%run count-stdin.py &lt; fractal_1.txt
+</code></pre>
 
-<div class="out">
-<pre>0 lines in standard input
-</pre>
-</div>
+<pre class="out"><code>0 lines in standard input
+</code></pre>
 
 
 <div class="">
@@ -594,12 +533,10 @@ print count, &#39;lines in standard input&#39;
 </div>
 
 
-<div class="in">
-<pre>!ipython readings-06.py --mean &lt; small-01.csv | head -10</pre>
-</div>
+<pre class="in"><code>!ipython readings-06.py --mean &lt; small-01.csv | head -10
+</code></pre>
 
-<div class="out">
-<pre>[TerminalIPythonApp] CRITICAL | Bad config encountered during initialization:
+<pre class="out"><code>[TerminalIPythonApp] CRITICAL | Bad config encountered during initialization:
 [TerminalIPythonApp] CRITICAL | Unrecognized flag: &#39;--mean&#39;
 =========
  IPython
@@ -611,8 +548,7 @@ Tools for Interactive Computing in Python
     A Python shell with automatic history (input and output), dynamic object
     introspection, easier configuration, command completion, access to the
     system shell and more.  IPython can also be embedded in running programs.
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -620,15 +556,12 @@ Tools for Interactive Computing in Python
 </div>
 
 
-<div class="in">
-<pre>!ipython readings-06.py -- --mean &lt; small-01.csv</pre>
-</div>
+<pre class="in"><code>!ipython readings-06.py -- --mean &lt; small-01.csv
+</code></pre>
 
-<div class="out">
-<pre>0.333333333333
+<pre class="out"><code>0.333333333333
 1.0
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">

@@ -389,7 +389,6 @@ rad
 </td>
 </tr>
 </table>
-
 </div>
 
 
@@ -398,25 +397,21 @@ rad
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select family, personal from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select family, personal from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>Dyer</td><td>William</td></tr>
 <tr><td>Pabodie</td><td>Frank</td></tr>
 <tr><td>Lake</td><td>Anderson</td></tr>
 <tr><td>Roerich</td><td>Valentina</td></tr>
 <tr><td>Danforth</td><td>Frank</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -424,20 +419,17 @@ select family, personal from Person;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>Dyer</td><td>William</td></tr>
 <tr><td>Pabodie</td><td>Frank</td></tr>
 <tr><td>Lake</td><td>Anderson</td></tr>
 <tr><td>Roerich</td><td>Valentina</td></tr>
 <tr><td>Danforth</td><td>Frank</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -450,20 +442,17 @@ SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select personal, family from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select personal, family from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>William</td><td>Dyer</td></tr>
 <tr><td>Frank</td><td>Pabodie</td></tr>
 <tr><td>Anderson</td><td>Lake</td></tr>
 <tr><td>Valentina</td><td>Roerich</td></tr>
 <tr><td>Frank</td><td>Danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -471,20 +460,17 @@ select personal, family from Person;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select ident, ident, ident from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select ident, ident, ident from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>dyer</td><td>dyer</td></tr>
 <tr><td>pb</td><td>pb</td><td>pb</td></tr>
 <tr><td>lake</td><td>lake</td><td>lake</td></tr>
 <tr><td>roe</td><td>roe</td><td>roe</td></tr>
 <tr><td>danforth</td><td>danforth</td><td>danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -492,20 +478,17 @@ select ident, ident, ident from Person;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>William</td><td>Dyer</td></tr>
 <tr><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
 <tr><td>lake</td><td>Anderson</td><td>Lake</td></tr>
 <tr><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
 <tr><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

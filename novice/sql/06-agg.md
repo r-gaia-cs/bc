@@ -22,18 +22,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select dated from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select dated from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1927-02-08</td></tr>
 <tr><td>1927-02-10</td></tr>
 <tr><td>1939-01-07</td></tr>
@@ -42,8 +39,7 @@ select dated from Visited;</pre>
 <tr><td>None</td></tr>
 <tr><td>1932-01-14</td></tr>
 <tr><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -51,16 +47,13 @@ select dated from Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select min(dated) from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select min(dated) from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1927-02-08</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -68,16 +61,13 @@ select min(dated) from Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select max(dated) from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select max(dated) from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1939-01-07</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -85,40 +75,31 @@ select max(dated) from Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select avg(reading) from Survey where quant=&#39;sal&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select avg(reading) from Survey where quant=&#39;sal&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>7.20333333333</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select count(reading) from Survey where quant=&#39;sal&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select count(reading) from Survey where quant=&#39;sal&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>9</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select sum(reading) from Survey where quant=&#39;sal&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select sum(reading) from Survey where quant=&#39;sal&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>64.83</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -127,16 +108,13 @@ select sum(reading) from Survey where quant=&#39;sal&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select min(reading), max(reading) from Survey where quant=&#39;sal&#39; and reading&lt;=1.0;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select min(reading), max(reading) from Survey where quant=&#39;sal&#39; and reading&lt;=1.0;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>0.05</td><td>0.21</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -144,16 +122,13 @@ select min(reading), max(reading) from Survey where quant=&#39;sal&#39; and read
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select person, count(*) from Survey where quant=&#39;sal&#39; and reading&lt;=1.0;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select person, count(*) from Survey where quant=&#39;sal&#39; and reading&lt;=1.0;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>lake</td><td>7</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -162,16 +137,13 @@ select person, count(*) from Survey where quant=&#39;sal&#39; and reading&lt;=1.
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select person, max(reading), sum(reading) from Survey where quant=&#39;missing&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select person, max(reading), sum(reading) from Survey where quant=&#39;missing&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>None</td><td>None</td><td>None</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -179,16 +151,13 @@ select person, max(reading), sum(reading) from Survey where quant=&#39;missing&#
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select min(dated) from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select min(dated) from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1927-02-08</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -196,16 +165,13 @@ select min(dated) from Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select min(dated) from Visited where dated is not null;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select min(dated) from Visited where dated is not null;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1927-02-08</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -213,18 +179,15 @@ select min(dated) from Visited where dated is not null;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select person, count(reading), round(avg(reading), 2)
 from  Survey
-where quant=&#39;rad&#39;;</pre>
-</div>
+where quant=&#39;rad&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>roe</td><td>8</td><td>6.56</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -232,19 +195,16 @@ where quant=&#39;rad&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select person, count(reading), round(avg(reading), 2)
 from  Survey
 where quant=&#39;rad&#39;
-and   person=&#39;dyer&#39;;</pre>
-</div>
+and   person=&#39;dyer&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>2</td><td>8.81</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -253,22 +213,19 @@ and   person=&#39;dyer&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select   person, count(reading), round(avg(reading), 2)
 from     Survey
 where    quant=&#39;rad&#39;
-group by person;</pre>
-</div>
+group by person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>2</td><td>8.81</td></tr>
 <tr><td>lake</td><td>2</td><td>1.82</td></tr>
 <tr><td>pb</td><td>3</td><td>6.66</td></tr>
 <tr><td>roe</td><td>1</td><td>11.25</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -281,15 +238,13 @@ group by person;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select   person, quant, count(reading), round(avg(reading), 2)
 from     Survey
-group by person, quant;</pre>
-</div>
+group by person, quant;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>None</td><td>sal</td><td>1</td><td>0.06</td></tr>
 <tr><td>None</td><td>temp</td><td>1</td><td>-26.0</td></tr>
 <tr><td>dyer</td><td>rad</td><td>2</td><td>8.81</td></tr>
@@ -301,8 +256,7 @@ group by person, quant;</pre>
 <tr><td>pb</td><td>temp</td><td>2</td><td>-20.0</td></tr>
 <tr><td>roe</td><td>rad</td><td>1</td><td>11.25</td></tr>
 <tr><td>roe</td><td>sal</td><td>2</td><td>32.05</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -311,17 +265,15 @@ group by person, quant;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select   person, quant, count(reading), round(avg(reading), 2)
 from     Survey
 where    person is not null
 group by person, quant
-order by person, quant;</pre>
-</div>
+order by person, quant;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>rad</td><td>2</td><td>8.81</td></tr>
 <tr><td>dyer</td><td>sal</td><td>2</td><td>0.11</td></tr>
 <tr><td>lake</td><td>rad</td><td>2</td><td>1.82</td></tr>
@@ -331,8 +283,7 @@ order by person, quant;</pre>
 <tr><td>pb</td><td>temp</td><td>2</td><td>-20.0</td></tr>
 <tr><td>roe</td><td>rad</td><td>1</td><td>11.25</td></tr>
 <tr><td>roe</td><td>sal</td><td>2</td><td>32.05</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

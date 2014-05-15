@@ -22,18 +22,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
 <tr><td>734</td><td>DR-3</td><td>1939-01-07</td></tr>
@@ -42,8 +39,7 @@ select * from Visited;</pre>
 <tr><td>752</td><td>DR-3</td><td>None</td></tr>
 <tr><td>837</td><td>MSK-4</td><td>1932-01-14</td></tr>
 <tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -51,17 +47,14 @@ select * from Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated&lt;&#39;1930-00-00&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated&lt;&#39;1930-00-00&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -69,20 +62,17 @@ select * from Visited where dated&lt;&#39;1930-00-00&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated&gt;=&#39;1930-00-00&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated&gt;=&#39;1930-00-00&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>DR-3</td><td>1939-01-07</td></tr>
 <tr><td>735</td><td>DR-3</td><td>1930-01-12</td></tr>
 <tr><td>751</td><td>DR-3</td><td>1930-02-26</td></tr>
 <tr><td>837</td><td>MSK-4</td><td>1932-01-14</td></tr>
 <tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -91,28 +81,22 @@ select * from Visited where dated&gt;=&#39;1930-00-00&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated=NULL;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated=NULL;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 
-</table></pre>
-</div>
+</table></code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated!=NULL;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated!=NULL;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -120,16 +104,13 @@ select * from Visited where dated!=NULL;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated is NULL;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated is NULL;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>752</td><td>DR-3</td><td>None</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -137,13 +118,11 @@ select * from Visited where dated is NULL;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where dated is not NULL;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where dated is not NULL;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
 <tr><td>734</td><td>DR-3</td><td>1939-01-07</td></tr>
@@ -151,8 +130,7 @@ select * from Visited where dated is not NULL;</pre>
 <tr><td>751</td><td>DR-3</td><td>1930-02-26</td></tr>
 <tr><td>837</td><td>MSK-4</td><td>1932-01-14</td></tr>
 <tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -160,19 +138,16 @@ select * from Visited where dated is not NULL;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where quant=&#39;sal&#39; and person!=&#39;lake&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where quant=&#39;sal&#39; and person!=&#39;lake&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>dyer</td><td>sal</td><td>0.13</td></tr>
 <tr><td>622</td><td>dyer</td><td>sal</td><td>0.09</td></tr>
 <tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -180,20 +155,17 @@ select * from Survey where quant=&#39;sal&#39; and person!=&#39;lake&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where quant=&#39;sal&#39; and (person!=&#39;lake&#39; or person is null);</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where quant=&#39;sal&#39; and (person!=&#39;lake&#39; or person is null);
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>dyer</td><td>sal</td><td>0.13</td></tr>
 <tr><td>622</td><td>dyer</td><td>sal</td><td>0.09</td></tr>
 <tr><td>735</td><td>None</td><td>sal</td><td>0.06</td></tr>
 <tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

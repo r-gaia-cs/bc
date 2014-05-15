@@ -31,15 +31,13 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>import pandas as pd
+<pre class="in"><code>import pandas as pd
 
 d = pd.read_csv(&#39;A2_mosquito_data.csv&#39;)
-print d</pre>
-</div>
+print d
+</code></pre>
 
-<div class="out">
-<pre>    year  temperature  rainfall  mosquitos
+<pre class="out"><code>    year  temperature  rainfall  mosquitos
 0   1960           82       200        180
 1   1961           70       227        194
 2   1962           89       231        207
@@ -91,8 +89,7 @@ print d</pre>
 48  2008           73       198        176
 49  2009           86       215        187
 50  2010           87       127        129
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -101,22 +98,19 @@ print d</pre>
 </div>
 
 
-<div class="in">
-<pre>import pandas as pd
+<pre class="in"><code>import pandas as pd
 
 data = pd.read_csv(&#39;A2_mosquito_data.csv&#39;)
-print data.head()</pre>
-</div>
+print data.head()
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  1960           82       200        180
 1  1961           70       227        194
 2  1962           89       231        207
 3  1963           74       114        121
 4  1964           78       147        140
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -126,20 +120,17 @@ print data.head()</pre>
 </div>
 
 
-<div class="in">
-<pre>data[&#39;temperature&#39;] = (data[&#39;temperature&#39;] - 32) * 5 / 9.0
-print data.head()</pre>
-</div>
+<pre class="in"><code>data[&#39;temperature&#39;] = (data[&#39;temperature&#39;] - 32) * 5 / 9.0
+print data.head()
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  1960    27.777778       200        180
 1  1961    21.111111       227        194
 2  1962    31.666667       231        207
 3  1963    23.333333       114        121
 4  1964    25.555556       147        140
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -147,15 +138,13 @@ print data.head()</pre>
 </div>
 
 
-<div class="in">
-<pre>import statsmodels.api as sm
+<pre class="in"><code>import statsmodels.api as sm
 
 regr_results = sm.OLS.from_formula(&#39;mosquitos ~ temperature + rainfall&#39;, data).fit()
-regr_results.summary()</pre>
-</div>
+regr_results.summary()
+</code></pre>
 
-<div class="out">
-<pre>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
+<pre class="out"><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
 &#34;&#34;&#34;
                             OLS Regression Results                            
 ==============================================================================
@@ -183,8 +172,7 @@ Kurtosis:                       3.343   Cond. No.                     1.92e+03
 Warnings:
 [1] The condition number is large, 1.92e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
-&#34;&#34;&#34;</pre>
-</div>
+&#34;&#34;&#34;</code></pre>
 
 
 <div>
@@ -192,19 +180,16 @@ strong multicollinearity or other numerical problems.
 </div>
 
 
-<div class="in">
-<pre>print regr_results.params
-print regr_results.rsquared</pre>
-</div>
+<pre class="in"><code>print regr_results.params
+print regr_results.rsquared
+</code></pre>
 
-<div class="out">
-<pre>Intercept      17.545739
+<pre class="out"><code>Intercept      17.545739
 temperature     0.871943
 rainfall        0.696717
 dtype: float64
 0.996966873691
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -212,10 +197,9 @@ dtype: float64
 </div>
 
 
-<div class="in">
-<pre>parameters = regr_results.params
-rsquared = regr_results.rsquared</pre>
-</div>
+<pre class="in"><code>parameters = regr_results.params
+rsquared = regr_results.rsquared
+</code></pre>
 
 
 <div>
@@ -223,25 +207,21 @@ rsquared = regr_results.rsquared</pre>
 </div>
 
 
-<div class="in">
-<pre>%matplotlib inline</pre>
-</div>
+<pre class="in"><code>%matplotlib inline
+</code></pre>
 
 
-<div class="in">
-<pre>import matplotlib.pyplot as plt
+<pre class="in"><code>import matplotlib.pyplot as plt
 
 predicted = parameters[0] + parameters[1] * data[&#39;temperature&#39;] + parameters[2] * data[&#39;rainfall&#39;]
 plt.plot(predicted, data[&#39;mosquitos&#39;], &#39;ro&#39;)
 min_mosquitos, max_mosquitos = min(data[&#39;mosquitos&#39;]), max(data[&#39;mosquitos&#39;])
-plt.plot([min_mosquitos, max_mosquitos], [min_mosquitos, max_mosquitos], &#39;k-&#39;)</pre>
-</div>
+plt.plot([min_mosquitos, max_mosquitos], [min_mosquitos, max_mosquitos], &#39;k-&#39;)
+</code></pre>
 
-<div class="out">
-<pre>[&lt;matplotlib.lines.Line2D at 0x56eb950&gt;]
+<pre class="out"><code>[&lt;matplotlib.lines.Line2D at 0x56eb950&gt;]
 <img src="../../intermediate/python/02-modularization-documentation_files/intermediate/python/02-modularization-documentation_19_1.png">
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -249,8 +229,7 @@ plt.plot([min_mosquitos, max_mosquitos], [min_mosquitos, max_mosquitos], &#39;k-
 </div>
 
 
-<div class="in">
-<pre>import pandas as pd
+<pre class="in"><code>import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
@@ -264,19 +243,17 @@ plt.plot(predicted, data[&#39;mosquitos&#39;], &#39;ro&#39;)
 min_mosquitos, max_mosquitos = min(data[&#39;mosquitos&#39;]), max(data[&#39;mosquitos&#39;])
 plt.plot([min_mosquitos, max_mosquitos], [min_mosquitos, max_mosquitos], &#39;k-&#39;)
 print parameters
-print &#34;R^2 = &#34;, rsquared</pre>
-</div>
+print &#34;R^2 = &#34;, rsquared
+</code></pre>
 
-<div class="out">
-<pre>Intercept      17.545739
+<pre class="out"><code>Intercept      17.545739
 temperature     0.871943
 rainfall        0.696717
 dtype: float64
 R^2 =  0.996966873691
 
 <img src="../../intermediate/python/02-modularization-documentation_files/intermediate/python/02-modularization-documentation_21_1.png">
-</pre>
-</div>
+</code></pre>
 
 ## Functions
 
@@ -291,20 +268,17 @@ R^2 =  0.996966873691
 </div>
 
 
-<div class="in">
-<pre>def square(x):
+<pre class="in"><code>def square(x):
     x_squared = x ** 2
     return x_squared
 
 print &#34;Four squared is&#34;, square(4)
-print &#34;Five squared is&#34;, square(5)</pre>
-</div>
+print &#34;Five squared is&#34;, square(5)
+</code></pre>
 
-<div class="out">
-<pre>Four squared is 16
+<pre class="out"><code>Four squared is 16
 Five squared is 25
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -312,17 +286,14 @@ Five squared is 25
 </div>
 
 
-<div class="in">
-<pre>def square(x):
+<pre class="in"><code>def square(x):
     return x ** 2
 
-print square(3)</pre>
-</div>
+print square(3)
+</code></pre>
 
-<div class="out">
-<pre>9
-</pre>
-</div>
+<pre class="out"><code>9
+</code></pre>
 
 
 <div>
@@ -330,15 +301,12 @@ print square(3)</pre>
 </div>
 
 
-<div class="in">
-<pre>two_squared = square(2)
-print two_squared</pre>
-</div>
+<pre class="in"><code>two_squared = square(2)
+print two_squared
+</code></pre>
 
-<div class="out">
-<pre>4
-</pre>
-</div>
+<pre class="out"><code>4
+</code></pre>
 
 ### Challenges
 
@@ -359,14 +327,13 @@ print two_squared</pre>
 </div>
 
 
-<div class="in">
-<pre>def fahr_to_celsius(tempF):
+<pre class="in"><code>def fahr_to_celsius(tempF):
     tempC = (tempF - 32) * 5 / 9.0
     return tempC
 
 original = 32.0
-final = fahr_to_celsius(original)</pre>
-</div>
+final = fahr_to_celsius(original)
+</code></pre>
 
 
 <div>
@@ -381,18 +348,15 @@ final = fahr_to_celsius(original)</pre>
 </div>
 
 
-<div class="in">
-<pre>print tempC</pre>
-</div>
+<pre class="in"><code>print tempC
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 &lt;ipython-input-14-3054d7679e45&gt; in &lt;module&gt;()
 ----&gt; 1 print tempC
 
-NameError: name &#39;tempC&#39; is not defined</pre>
-</div>
+NameError: name &#39;tempC&#39; is not defined</code></pre>
 
 
 <div>
@@ -407,10 +371,9 @@ NameError: name &#39;tempC&#39; is not defined</pre>
 </div>
 
 
-<div class="in">
-<pre>def center(data):
-    return data - data.mean()</pre>
-</div>
+<pre class="in"><code>def center(data):
+    return data - data.mean()
+</code></pre>
 
 
 <div class="">
@@ -418,19 +381,16 @@ NameError: name &#39;tempC&#39; is not defined</pre>
 </div>
 
 
-<div class="in">
-<pre>import pandas as pd
+<pre class="in"><code>import pandas as pd
 
 test_data = pd.DataFrame([[1, 1], [1, 2]])
-print test_data</pre>
-</div>
+print test_data
+</code></pre>
 
-<div class="out">
-<pre>   0  1
+<pre class="out"><code>   0  1
 0  1  1
 1  1  2
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -439,16 +399,13 @@ print test_data</pre>
 </div>
 
 
-<div class="in">
-<pre>print center(test_data)</pre>
-</div>
+<pre class="in"><code>print center(test_data)
+</code></pre>
 
-<div class="out">
-<pre>   0    1
+<pre class="out"><code>   0    1
 0  0 -0.5
 1  0  0.5
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -456,13 +413,11 @@ print test_data</pre>
 </div>
 
 
-<div class="in">
-<pre>data = pd.read_csv(&#39;A2_mosquito_data.csv&#39;)
-print center(data)</pre>
-</div>
+<pre class="in"><code>data = pd.read_csv(&#39;A2_mosquito_data.csv&#39;)
+print center(data)
+</code></pre>
 
-<div class="out">
-<pre>    year  temperature    rainfall  mosquitos
+<pre class="out"><code>    year  temperature    rainfall  mosquitos
 0    -25     1.607843   -7.039216  -5.235294
 1    -24   -10.392157   19.960784   8.764706
 2    -23     8.607843   23.960784  21.764706
@@ -514,8 +469,7 @@ print center(data)</pre>
 48    23    -7.392157   -9.039216  -9.235294
 49    24     5.607843    7.960784   1.764706
 50    25     6.607843  -80.039216 -56.235294
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -523,17 +477,15 @@ print center(data)</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;original mean:&#39;
+<pre class="in"><code>print &#39;original mean:&#39;
 print data.mean()
 centered = center(data)
 print
 print &#39;mean of centered data:&#39;
-centered.mean()</pre>
-</div>
+centered.mean()
+</code></pre>
 
-<div class="out">
-<pre>original mean:
+<pre class="out"><code>original mean:
 year           1985.000000
 temperature      80.392157
 rainfall        207.039216
@@ -545,8 +497,7 @@ year           0.000000e+00
 temperature    1.393221e-15
 rainfall       6.687461e-15
 mosquitos     -1.337492e-14
-dtype: float64</pre>
-</div>
+dtype: float64</code></pre>
 
 
 <div class="">
@@ -554,15 +505,13 @@ dtype: float64</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;std dev before and after:&#39;
+<pre class="in"><code>print &#39;std dev before and after:&#39;
 print data.std()
 print
-print centered.std()</pre>
-</div>
+print centered.std()
+</code></pre>
 
-<div class="out">
-<pre>std dev before and after:
+<pre class="out"><code>std dev before and after:
 year           14.866069
 temperature     6.135400
 rainfall       56.560396
@@ -574,8 +523,7 @@ temperature     6.135400
 rainfall       56.560396
 mosquitos      39.531551
 dtype: float64
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -592,11 +540,10 @@ dtype: float64
 </div>
 
 
-<div class="in">
-<pre># center(data): return a new DataFrame containing the original data centered around zero.
+<pre class="in"><code># center(data): return a new DataFrame containing the original data centered around zero.
 def center(data, desired):
-    return data - data.mean()</pre>
-</div>
+    return data - data.mean()
+</code></pre>
 
 
 <div class="">
@@ -604,11 +551,10 @@ def center(data, desired):
 </div>
 
 
-<div class="in">
-<pre>def center(data, desired):
+<pre class="in"><code>def center(data, desired):
     &#34;&#34;&#34;Return a new DataFrame containing the original data centered around zero.&#34;&#34;&#34;
-    return data - data.mean()</pre>
-</div>
+    return data - data.mean()
+</code></pre>
 
 
 <div class="">
@@ -616,18 +562,15 @@ def center(data, desired):
 </div>
 
 
-<div class="in">
-<pre>help(center)</pre>
-</div>
+<pre class="in"><code>help(center)
+</code></pre>
 
-<div class="out">
-<pre>Help on function center in module __main__:
+<pre class="out"><code>Help on function center in module __main__:
 
 center(data, desired)
     Return a new DataFrame containing the original data centered around zero.
 
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -635,8 +578,7 @@ center(data, desired)
 </div>
 
 
-<div class="in">
-<pre>def center(data):
+<pre class="in"><code>def center(data):
     &#34;&#34;&#34;Return a new array containing the original data centered on zero
     
     Example:
@@ -651,11 +593,10 @@ center(data, desired)
     &#34;&#34;&#34;
     return data - data.mean()
 
-help(center)</pre>
-</div>
+help(center)
+</code></pre>
 
-<div class="out">
-<pre>Help on function center in module __main__:
+<pre class="out"><code>Help on function center in module __main__:
 
 center(data)
     Return a new array containing the original data centered on zero
@@ -668,8 +609,7 @@ center(data)
     0  0 -0.5
     1  0  0.5
 
-</pre>
-</div>
+</code></pre>
 
 ### Challenge
 
@@ -689,8 +629,7 @@ center(data)
 </div>
 
 
-<div class="in">
-<pre>import pandas as pd
+<pre class="in"><code>import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
@@ -722,18 +661,16 @@ def analyze(data):
 data = pd.read_csv(&#39;A2_mosquito_data.csv&#39;)
 data[&#39;temperature&#39;] = fahr_to_celsius(data[&#39;temperature&#39;])
 regr_results = analyze(data)
-print parameters</pre>
-</div>
+print parameters
+</code></pre>
 
-<div class="out">
-<pre>Intercept      17.545739
+<pre class="out"><code>Intercept      17.545739
 temperature     0.871943
 rainfall        0.696717
 dtype: float64
 
 <img src="../../intermediate/python/02-modularization-documentation_files/intermediate/python/02-modularization-documentation_64_1.png">
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -741,17 +678,14 @@ dtype: float64
 </div>
 
 
-<div class="in">
-<pre>import glob
+<pre class="in"><code>import glob
 
 filenames = glob.glob(&#39;*.csv&#39;)
-print filenames</pre>
-</div>
+print filenames
+</code></pre>
 
-<div class="out">
-<pre>[&#39;A1_mosquito_data.csv&#39;, &#39;B2_mosquito_data.csv&#39;, &#39;A3_mosquito_data.csv&#39;, &#39;B1_mosquito_data.csv&#39;, &#39;A2_mosquito_data.csv&#39;]
-</pre>
-</div>
+<pre class="out"><code>[&#39;A1_mosquito_data.csv&#39;, &#39;B2_mosquito_data.csv&#39;, &#39;A3_mosquito_data.csv&#39;, &#39;B1_mosquito_data.csv&#39;, &#39;A2_mosquito_data.csv&#39;]
+</code></pre>
 
 
 <div>
@@ -759,15 +693,12 @@ print filenames</pre>
 </div>
 
 
-<div class="in">
-<pre>mylist = [1, &#39;a&#39;, center]
-print mylist</pre>
-</div>
+<pre class="in"><code>mylist = [1, &#39;a&#39;, center]
+print mylist
+</code></pre>
 
-<div class="out">
-<pre>[1, &#39;a&#39;, &lt;function center at 0x5c63b18&gt;]
-</pre>
-</div>
+<pre class="out"><code>[1, &#39;a&#39;, &lt;function center at 0x5c63b18&gt;]
+</code></pre>
 
 
 <div>
@@ -776,20 +707,17 @@ print mylist</pre>
 </div>
 
 
-<div class="in">
-<pre>filenames =glob.glob(&#39;*data.csv&#39;)
+<pre class="in"><code>filenames =glob.glob(&#39;*data.csv&#39;)
 for filename in filenames:
-    print filename</pre>
-</div>
+    print filename
+</code></pre>
 
-<div class="out">
-<pre>A1_mosquito_data.csv
+<pre class="out"><code>A1_mosquito_data.csv
 B2_mosquito_data.csv
 A3_mosquito_data.csv
 B1_mosquito_data.csv
 A2_mosquito_data.csv
-</pre>
-</div>
+</code></pre>
 
 ### Challenge
 

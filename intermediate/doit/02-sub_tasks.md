@@ -22,13 +22,11 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext doitmagic</pre>
-</div>
+<pre class="in"><code>%load_ext doitmagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # automatic_variables.py
 
@@ -48,14 +46,12 @@ def task_reformat_sunshine_data():
         &#39;actions&#39;: [&#39;python reformat_weather_data.py %(dependencies)s &gt; %(targets)s&#39;],
         &#39;file_dep&#39;: [&#39;UK_Sunshine_data.txt&#39;],
         &#39;targets&#39;: [&#39;UK_Sunshine_data.reformatted.txt&#39;],
-    }</pre>
-</div>
+    }
+</code></pre>
 
-<div class="out">
-<pre>-- reformat_temperature_data
+<pre class="out"><code>-- reformat_temperature_data
 -- reformat_sunshine_data
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -64,8 +60,7 @@ def task_reformat_sunshine_data():
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # sub_tasks.py
 
@@ -81,14 +76,12 @@ def task_reformat_data():
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
             &#39;name&#39;: &#39;UK_{}_data.txt&#39;.format(data_type),
         }
-    </pre>
-</div>
+    
+</code></pre>
 
-<div class="out">
-<pre>-- reformat_data:UK_Sunshine_data.txt
+<pre class="out"><code>-- reformat_data:UK_Sunshine_data.txt
 .  reformat_data:UK_Tmean_data.txt
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -97,51 +90,42 @@ def task_reformat_data():
 </div>
 
 
-<div class="in">
-<pre>def not_a_generator():
+<pre class="in"><code>def not_a_generator():
     for i in range(5):
         return i
     
-not_a_generator()</pre>
-</div>
+not_a_generator()
+</code></pre>
 
-<div class="out">
-<pre>0</pre>
-</div>
+<pre class="out"><code>0</code></pre>
 
 
-<div class="in">
-<pre>def is_a_generator():
+<pre class="in"><code>def is_a_generator():
     for i in range(5):
         yield i
         
-is_a_generator()</pre>
-</div>
+is_a_generator()
+</code></pre>
 
-<div class="out">
-<pre>&lt;generator object is_a_generator at 0x3052780&gt;</pre>
-</div>
+<pre class="out"><code>&lt;generator object is_a_generator at 0x3052780&gt;</code></pre>
 
 
-<div class="in">
-<pre>def is_a_generator():
+<pre class="in"><code>def is_a_generator():
     for i in range(5):
         yield i
         
 g = is_a_generator()
 
 for x in g:
-    print x</pre>
-</div>
+    print x
+</code></pre>
 
-<div class="out">
-<pre>0
+<pre class="out"><code>0
 1
 2
 3
 4
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -151,8 +135,7 @@ for x in g:
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # sub_tasks_no_name.py
 
@@ -167,13 +150,11 @@ def task_reformat_data():
             &#39;file_dep&#39;: [&#39;UK_{}_data.txt&#39;.format(data_type)],
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
         }
-    </pre>
-</div>
+    
+</code></pre>
 
-<div class="out">
-<pre>ERROR: Task &#39;reformat_data&#39; must contain field &#39;name&#39; or &#39;basename&#39;. {&#39;file_dep&#39;: [&#39;UK_Tmean_data.txt&#39;], &#39;targets&#39;: [&#39;UK_Tmean_data.reformatted.txt&#39;], &#39;actions&#39;: [&#39;python reformat_weather_data.py %(dependencies)s &gt; %(targets)s&#39;]}
-</pre>
-</div>
+<pre class="out"><code>ERROR: Task &#39;reformat_data&#39; must contain field &#39;name&#39; or &#39;basename&#39;. {&#39;file_dep&#39;: [&#39;UK_Tmean_data.txt&#39;], &#39;targets&#39;: [&#39;UK_Tmean_data.reformatted.txt&#39;], &#39;actions&#39;: [&#39;python reformat_weather_data.py %(dependencies)s &gt; %(targets)s&#39;]}
+</code></pre>
 
 
 <div>
@@ -182,12 +163,10 @@ def task_reformat_data():
 </div>
 
 
-<div class="in">
-<pre>!tail UK_Tmean_data.reformatted.txt</pre>
-</div>
+<pre class="in"><code>!tail UK_Tmean_data.reformatted.txt
+</code></pre>
 
-<div class="out">
-<pre>2012-03-01,6.4
+<pre class="out"><code>2012-03-01,6.4
 2012-04-01,8.3
 2012-05-01,11.3
 2012-06-01,13.7
@@ -197,8 +176,7 @@ def task_reformat_data():
 2012-10-01,10.5
 2012-11-01,7.0
 2012-12-01,5.3
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -206,8 +184,7 @@ def task_reformat_data():
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # download_temp_data.py
 
@@ -233,11 +210,10 @@ def task_reformat_data():
             &#39;file_dep&#39;: [&#39;UK_{}_data.txt&#39;.format(data_type)],
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
             &#39;name&#39;: &#39;UK_{}_data.txt&#39;.format(data_type),
-        }</pre>
-</div>
+        }
+</code></pre>
 
-<div class="out">
-<pre>.  get_temp_data
+<pre class="out"><code>.  get_temp_data
 -- reformat_data:UK_Sunshine_data.txt
 .  reformat_data:UK_Tmean_data.txt
 --2014-04-05 12:08:16--  http://www.metoffice.gov.uk/climate/uk/datasets/Tmean/ranked/UK.txt
@@ -251,8 +227,7 @@ Saving to: ‘UK_Tmean_data.txt’
 
 2014-04-05 12:08:16 (2.15 MB/s) - ‘UK_Tmean_data.txt’ saved [25576/25576]
 
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -260,12 +235,10 @@ Saving to: ‘UK_Tmean_data.txt’
 </div>
 
 
-<div class="in">
-<pre>!tail UK_Tmean_data.reformatted.txt</pre>
-</div>
+<pre class="in"><code>!tail UK_Tmean_data.reformatted.txt
+</code></pre>
 
-<div class="out">
-<pre>2013-03-01,5.1
+<pre class="out"><code>2013-03-01,5.1
 2013-04-01,7.0
 2013-05-01,10.0
 2013-06-01,12.8
@@ -275,8 +248,7 @@ Saving to: ‘UK_Tmean_data.txt’
 2013-10-01,9.2
 2013-11-01,5.7
 2013-12-01,3.9
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -291,6 +263,5 @@ Saving to: ‘UK_Tmean_data.txt’
 </div>
 
 
-<div class="in">
-<pre></pre>
-</div>
+<pre class="in"><code>
+</code></pre>

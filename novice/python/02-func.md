@@ -31,10 +31,9 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>def fahr_to_kelvin(temp):
-    return ((temp - 32) * (5/9)) + 273.15</pre>
-</div>
+<pre class="in"><code>def fahr_to_kelvin(temp):
+    return ((temp - 32) * (5/9)) + 273.15
+</code></pre>
 
 
 <div class="">
@@ -44,16 +43,13 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>print &#39;freezing point of water:&#39;, fahr_to_kelvin(32)
-print &#39;boiling point of water:&#39;, fahr_to_kelvin(212)</pre>
-</div>
+<pre class="in"><code>print &#39;freezing point of water:&#39;, fahr_to_kelvin(32)
+print &#39;boiling point of water:&#39;, fahr_to_kelvin(212)
+</code></pre>
 
-<div class="out">
-<pre>freezing point of water: 273.15
+<pre class="out"><code>freezing point of water: 273.15
 boiling point of water: 273.15
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -70,25 +66,19 @@ boiling point of water: 273.15
 </div>
 
 
-<div class="in">
-<pre># We&#39;ll use temp = 212, the boiling point of water, which was incorrect
-print &#34;212 - 32:&#34;, 212 - 32</pre>
-</div>
+<pre class="in"><code># We&#39;ll use temp = 212, the boiling point of water, which was incorrect
+print &#34;212 - 32:&#34;, 212 - 32
+</code></pre>
 
-<div class="out">
-<pre>212 - 32: 180
-</pre>
-</div>
+<pre class="out"><code>212 - 32: 180
+</code></pre>
 
 
-<div class="in">
-<pre>print &#34;(212 - 32) * (5/9):&#34;, (212 - 32) * (5/9)</pre>
-</div>
+<pre class="in"><code>print &#34;(212 - 32) * (5/9):&#34;, (212 - 32) * (5/9)
+</code></pre>
 
-<div class="out">
-<pre>(212 - 32) * (5/9): 0
-</pre>
-</div>
+<pre class="out"><code>(212 - 32) * (5/9): 0
+</code></pre>
 
 
 <div>
@@ -96,13 +86,10 @@ print &#34;212 - 32:&#34;, 212 - 32</pre>
 </div>
 
 
-<div class="in">
-<pre>5/9</pre>
-</div>
+<pre class="in"><code>5/9
+</code></pre>
 
-<div class="out">
-<pre>0</pre>
-</div>
+<pre class="out"><code>0</code></pre>
 
 
 <div class="">
@@ -110,14 +97,11 @@ print &#34;212 - 32:&#34;, 212 - 32</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;10/3 is:&#39;, 10/3</pre>
-</div>
+<pre class="in"><code>print &#39;10/3 is:&#39;, 10/3
+</code></pre>
 
-<div class="out">
-<pre>10/3 is: 3
-</pre>
-</div>
+<pre class="out"><code>10/3 is: 3
+</code></pre>
 
 
 <div class="">
@@ -125,14 +109,11 @@ print &#34;212 - 32:&#34;, 212 - 32</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;10.0/3 is:&#39;, 10.0/3</pre>
-</div>
+<pre class="in"><code>print &#39;10.0/3 is:&#39;, 10.0/3
+</code></pre>
 
-<div class="out">
-<pre>10.0/3 is: 3.33333333333
-</pre>
-</div>
+<pre class="out"><code>10.0/3 is: 3.33333333333
+</code></pre>
 
 
 <div class="">
@@ -145,19 +126,16 @@ print &#34;212 - 32:&#34;, 212 - 32</pre>
 </div>
 
 
-<div class="in">
-<pre>def fahr_to_kelvin(temp):
+<pre class="in"><code>def fahr_to_kelvin(temp):
     return ((temp - 32) * (5.0/9.0)) + 273.15
 
 print &#39;freezing point of water:&#39;, fahr_to_kelvin(32)
-print &#39;boiling point of water:&#39;, fahr_to_kelvin(212)</pre>
-</div>
+print &#39;boiling point of water:&#39;, fahr_to_kelvin(212)
+</code></pre>
 
-<div class="out">
-<pre>freezing point of water: 273.15
+<pre class="out"><code>freezing point of water: 273.15
 boiling point of water: 373.15
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -172,17 +150,14 @@ boiling point of water: 373.15
 </div>
 
 
-<div class="in">
-<pre>def kelvin_to_celsius(temp):
+<pre class="in"><code>def kelvin_to_celsius(temp):
     return temp - 273.15
 
-print &#39;absolute zero in Celsius:&#39;, kelvin_to_celsius(0.0)</pre>
-</div>
+print &#39;absolute zero in Celsius:&#39;, kelvin_to_celsius(0.0)
+</code></pre>
 
-<div class="out">
-<pre>absolute zero in Celsius: -273.15
-</pre>
-</div>
+<pre class="out"><code>absolute zero in Celsius: -273.15
+</code></pre>
 
 
 <div class="">
@@ -190,19 +165,16 @@ print &#39;absolute zero in Celsius:&#39;, kelvin_to_celsius(0.0)</pre>
 </div>
 
 
-<div class="in">
-<pre>def fahr_to_celsius(temp):
+<pre class="in"><code>def fahr_to_celsius(temp):
     temp_k = fahr_to_kelvin(temp)
     result = kelvin_to_celsius(temp_k)
     return result
 
-print &#39;freezing point of water in Celsius:&#39;, fahr_to_celsius(32.0)</pre>
-</div>
+print &#39;freezing point of water in Celsius:&#39;, fahr_to_celsius(32.0)
+</code></pre>
 
-<div class="out">
-<pre>freezing point of water in Celsius: 0.0
-</pre>
-</div>
+<pre class="out"><code>freezing point of water in Celsius: 0.0
+</code></pre>
 
 
 <div class="">
@@ -230,10 +202,9 @@ hm</code></pre></li>
 </div>
 
 
-<div class="in">
-<pre>original = 32.0
-final = fahr_to_celsius(original)</pre>
-</div>
+<pre class="in"><code>original = 32.0
+final = fahr_to_celsius(original)
+</code></pre>
 
 
 <div class="">
@@ -312,18 +283,15 @@ final = fahr_to_celsius(original)</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;final value of temp after all function calls:&#39;, temp</pre>
-</div>
+<pre class="in"><code>print &#39;final value of temp after all function calls:&#39;, temp
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 &lt;ipython-input-12-ffd9b4dbd5f1&gt; in &lt;module&gt;()
 ----&gt; 1 print &#39;final value of temp after all function calls:&#39;, temp
 
-NameError: name &#39;temp&#39; is not definedfinal value of temp after all function calls:</pre>
-</div>
+NameError: name &#39;temp&#39; is not definedfinal value of temp after all function calls:</code></pre>
 
 
 <div class="">
@@ -331,21 +299,18 @@ NameError: name &#39;temp&#39; is not definedfinal value of temp after all funct
 </div>
 
 
-<div class="in">
-<pre>import numpy
+<pre class="in"><code>import numpy
 
 def span(a):
     diff = a.max() - a.min()
     return diff
 
 data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-print &#39;span of data&#39;, span(data)</pre>
-</div>
+print &#39;span of data&#39;, span(data)
+</code></pre>
 
-<div class="out">
-<pre> span of data 20.0
-</pre>
-</div>
+<pre class="out"><code> span of data 20.0
+</code></pre>
 
 
 <div class="">
@@ -353,15 +318,12 @@ print &#39;span of data&#39;, span(data)</pre>
 </div>
 
 
-<div class="in">
-<pre>diff = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-print &#39;span of data:&#39;, span(diff)</pre>
-</div>
+<pre class="in"><code>diff = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+print &#39;span of data:&#39;, span(diff)
+</code></pre>
 
-<div class="out">
-<pre>span of data: 20.0
-</pre>
-</div>
+<pre class="out"><code>span of data: 20.0
+</code></pre>
 
 
 <div class="">
@@ -389,10 +351,9 @@ print &#39;span of data:&#39;, span(diff)</pre>
 </div>
 
 
-<div class="in">
-<pre>def center(data, desired):
-    return (data - data.mean()) + desired</pre>
-</div>
+<pre class="in"><code>def center(data, desired):
+    return (data - data.mean()) + desired
+</code></pre>
 
 
 <div class="">
@@ -400,16 +361,13 @@ print &#39;span of data:&#39;, span(diff)</pre>
 </div>
 
 
-<div class="in">
-<pre>z = numpy.zeros((2,2))
-print center(z, 3)</pre>
-</div>
+<pre class="in"><code>z = numpy.zeros((2,2))
+print center(z, 3)
+</code></pre>
 
-<div class="out">
-<pre>[[ 3.  3.]
+<pre class="out"><code>[[ 3.  3.]
  [ 3.  3.]]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -417,21 +375,18 @@ print center(z, 3)</pre>
 </div>
 
 
-<div class="in">
-<pre>data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-print center(data, 0)</pre>
-</div>
+<pre class="in"><code>data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+print center(data, 0)
+</code></pre>
 
-<div class="out">
-<pre>[[-6.14875 -6.14875 -5.14875 ..., -3.14875 -6.14875 -6.14875]
+<pre class="out"><code>[[-6.14875 -6.14875 -5.14875 ..., -3.14875 -6.14875 -6.14875]
  [-6.14875 -5.14875 -4.14875 ..., -5.14875 -6.14875 -5.14875]
  [-6.14875 -5.14875 -5.14875 ..., -4.14875 -5.14875 -5.14875]
  ..., 
  [-6.14875 -5.14875 -5.14875 ..., -5.14875 -5.14875 -5.14875]
  [-6.14875 -6.14875 -6.14875 ..., -6.14875 -4.14875 -6.14875]
  [-6.14875 -6.14875 -5.14875 ..., -5.14875 -5.14875 -6.14875]]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -439,17 +394,14 @@ print center(data, 0)</pre>
 </div>
 
 
-<div class="in">
-<pre>print &#39;original min, mean, and max are:&#39;, data.min(), data.mean(), data.max()
+<pre class="in"><code>print &#39;original min, mean, and max are:&#39;, data.min(), data.mean(), data.max()
 centered = center(data, 0)
-print &#39;min, mean, and and max of centered data are:&#39;, centered.min(), centered.mean(), centered.max()</pre>
-</div>
+print &#39;min, mean, and and max of centered data are:&#39;, centered.min(), centered.mean(), centered.max()
+</code></pre>
 
-<div class="out">
-<pre>original min, mean, and max are: 0.0 6.14875 20.0
+<pre class="out"><code>original min, mean, and max are: 0.0 6.14875 20.0
 min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.85125
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -457,14 +409,11 @@ min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.8512
 </div>
 
 
-<div class="in">
-<pre>print &#39;std dev before and after:&#39;, data.std(), centered.std()</pre>
-</div>
+<pre class="in"><code>print &#39;std dev before and after:&#39;, data.std(), centered.std()
+</code></pre>
 
-<div class="out">
-<pre>std dev before and after: 4.61383319712 4.61383319712
-</pre>
-</div>
+<pre class="out"><code>std dev before and after: 4.61383319712 4.61383319712
+</code></pre>
 
 
 <div class="">
@@ -472,14 +421,11 @@ min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.8512
 </div>
 
 
-<div class="in">
-<pre>print &#39;difference in standard deviations before and after:&#39;, data.std() - centered.std()</pre>
-</div>
+<pre class="in"><code>print &#39;difference in standard deviations before and after:&#39;, data.std() - centered.std()
+</code></pre>
 
-<div class="out">
-<pre>difference in standard deviations before and after: -3.5527136788e-15
-</pre>
-</div>
+<pre class="out"><code>difference in standard deviations before and after: -3.5527136788e-15
+</code></pre>
 
 
 <div class="">
@@ -488,11 +434,10 @@ min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.8512
 </div>
 
 
-<div class="in">
-<pre># center(data, desired): return a new array containing the original data centered around the desired value.
+<pre class="in"><code># center(data, desired): return a new array containing the original data centered around the desired value.
 def center(data, desired):
-    return (data - data.mean()) + desired</pre>
-</div>
+    return (data - data.mean()) + desired
+</code></pre>
 
 
 <div class="">
@@ -500,11 +445,10 @@ def center(data, desired):
 </div>
 
 
-<div class="in">
-<pre>def center(data, desired):
+<pre class="in"><code>def center(data, desired):
     &#39;&#39;&#39;Return a new array containing the original data centered around the desired value.&#39;&#39;&#39;
-    return (data - data.mean()) + desired</pre>
-</div>
+    return (data - data.mean()) + desired
+</code></pre>
 
 
 <div class="">
@@ -512,18 +456,15 @@ def center(data, desired):
 </div>
 
 
-<div class="in">
-<pre>help(center)</pre>
-</div>
+<pre class="in"><code>help(center)
+</code></pre>
 
-<div class="out">
-<pre>Help on function center in module __main__:
+<pre class="out"><code>Help on function center in module __main__:
 
 center(data, desired)
     Return a new array containing the original data centered around the desired value.
 
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -531,24 +472,21 @@ center(data, desired)
 </div>
 
 
-<div class="in">
-<pre>def center(data, desired):
+<pre class="in"><code>def center(data, desired):
     &#39;&#39;&#39;Return a new array containing the original data centered around the desired value.
     Example: center([1, 2, 3], 0) =&gt; [-1, 0, 1]&#39;&#39;&#39;
     return (data - data.mean()) + desired
 
-help(center)</pre>
-</div>
+help(center)
+</code></pre>
 
-<div class="out">
-<pre>Help on function center in module __main__:
+<pre class="out"><code>Help on function center in module __main__:
 
 center(data, desired)
     Return a new array containing the original data centered around the desired value.
     Example: center([1, 2, 3], 0) =&gt; [-1, 0, 1]
 
-</pre>
-</div>
+</code></pre>
 
 
 <div class="challenges">
@@ -568,19 +506,16 @@ center(data, desired)
 </div>
 
 
-<div class="in">
-<pre>numpy.loadtxt(&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)</pre>
-</div>
+<pre class="in"><code>numpy.loadtxt(&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+</code></pre>
 
-<div class="out">
-<pre>array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
+<pre class="out"><code>array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  2., ...,  1.,  0.,  1.],
        [ 0.,  1.,  1., ...,  2.,  1.,  1.],
        ..., 
        [ 0.,  1.,  1., ...,  1.,  1.,  1.],
        [ 0.,  0.,  0., ...,  0.,  2.,  0.],
-       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</pre>
-</div>
+       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</code></pre>
 
 
 <div class="">
@@ -588,12 +523,10 @@ center(data, desired)
 </div>
 
 
-<div class="in">
-<pre>numpy.loadtxt(&#39;inflammation-01.csv&#39;, &#39;,&#39;)</pre>
-</div>
+<pre class="in"><code>numpy.loadtxt(&#39;inflammation-01.csv&#39;, &#39;,&#39;)
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 &lt;ipython-input-26-e3bc6cf4fd6a&gt; in &lt;module&gt;()
 ----&gt; 1 numpy.loadtxt(&#39;inflammation-01.csv&#39;, &#39;,&#39;)
@@ -605,8 +538,7 @@ TypeError                                 Traceback (most recent call last)
     778         defconv = _getconv(dtype)
     779 
 
-TypeError: data type &#34;,&#34; not understood</pre>
-</div>
+TypeError: data type &#34;,&#34; not understood</code></pre>
 
 
 <div class="">
@@ -614,12 +546,11 @@ TypeError: data type &#34;,&#34; not understood</pre>
 </div>
 
 
-<div class="in">
-<pre>def center(data, desired=0.0):
+<pre class="in"><code>def center(data, desired=0.0):
     &#39;&#39;&#39;Return a new array containing the original data centered around the desired value (0 by default).
     Example: center([1, 2, 3], 0) =&gt; [-1, 0, 1]&#39;&#39;&#39;
-    return (data - data.mean()) + desired</pre>
-</div>
+    return (data - data.mean()) + desired
+</code></pre>
 
 
 <div class="">
@@ -627,16 +558,13 @@ TypeError: data type &#34;,&#34; not understood</pre>
 </div>
 
 
-<div class="in">
-<pre>test_data = numpy.zeros((2, 2))
-print center(test_data, 3)</pre>
-</div>
+<pre class="in"><code>test_data = numpy.zeros((2, 2))
+print center(test_data, 3)
+</code></pre>
 
-<div class="out">
-<pre>[[ 3.  3.]
+<pre class="out"><code>[[ 3.  3.]
  [ 3.  3.]]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -644,19 +572,16 @@ print center(test_data, 3)</pre>
 </div>
 
 
-<div class="in">
-<pre>more_data = 5 + numpy.zeros((2, 2))
+<pre class="in"><code>more_data = 5 + numpy.zeros((2, 2))
 print &#39;data before centering:&#39;, more_data
-print &#39;centered data:&#39;, center(more_data)</pre>
-</div>
+print &#39;centered data:&#39;, center(more_data)
+</code></pre>
 
-<div class="out">
-<pre>data before centering: [[ 5.  5.]
+<pre class="out"><code>data before centering: [[ 5.  5.]
  [ 5.  5.]]
 centered data: [[ 0.  0.]
  [ 0.  0.]]
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -664,8 +589,7 @@ centered data: [[ 0.  0.]
 </div>
 
 
-<div class="in">
-<pre>def display(a=1, b=2, c=3):
+<pre class="in"><code>def display(a=1, b=2, c=3):
     print &#39;a:&#39;, a, &#39;b:&#39;, b, &#39;c:&#39;, c
 
 print &#39;no parameters:&#39;
@@ -673,18 +597,16 @@ display()
 print &#39;one parameter:&#39;
 display(55)
 print &#39;two parameters:&#39;
-display(55, 66)</pre>
-</div>
+display(55, 66)
+</code></pre>
 
-<div class="out">
-<pre>no parameters:
+<pre class="out"><code>no parameters:
 a: 1 b: 2 c: 3
 one parameter:
 a: 55 b: 2 c: 3
 two parameters:
 a: 55 b: 66 c: 3
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -692,16 +614,13 @@ a: 55 b: 66 c: 3
 </div>
 
 
-<div class="in">
-<pre>print &#39;only setting the value of c&#39;
-display(c=77)</pre>
-</div>
+<pre class="in"><code>print &#39;only setting the value of c&#39;
+display(c=77)
+</code></pre>
 
-<div class="out">
-<pre>only setting the value of c
+<pre class="out"><code>only setting the value of c
 a: 1 b: 2 c: 77
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -709,12 +628,10 @@ a: 1 b: 2 c: 77
 </div>
 
 
-<div class="in">
-<pre>help(numpy.loadtxt)</pre>
-</div>
+<pre class="in"><code>help(numpy.loadtxt)
+</code></pre>
 
-<div class="out">
-<pre>Help on function loadtxt in module numpy.lib.npyio:
+<pre class="out"><code>Help on function loadtxt in module numpy.lib.npyio:
 
 loadtxt(fname, dtype=&lt;type &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)
     Load data from a text file.
@@ -799,8 +716,7 @@ loadtxt(fname, dtype=&lt;type &#39;float&#39;&gt;, comments=&#39;#&#39;, delimit
     &gt;&gt;&gt; y
     array([ 2.,  4.])
 
-</pre>
-</div>
+</code></pre>
 
 
 <div class="">
@@ -816,7 +732,7 @@ loadtxt(fname, dtype=&lt;type &#39;float&#39;&gt;, comments=&#39;#&#39;, delimit
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li>Rewrite the <code>normalize</code> function so that it scales data to lie between 0.0 and 1.0 by default, but will allow the caller to specify lower and upper bounds if they want. Compare your implementation to your neighbor's: do the two functions always behave the same way?</li>
+<li>Rewrite the <code>center</code> function so that it scales data to lie between 0.0 and 1.0 by default, but will allow the caller to specify lower and upper bounds if they want. Compare your implementation to your neighbor's: do the two functions always behave the same way?</li>
 </ol>
 </div>
 

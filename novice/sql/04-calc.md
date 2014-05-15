@@ -19,18 +19,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select 1.05 * reading from Survey where quant=&#39;rad&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select 1.05 * reading from Survey where quant=&#39;rad&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>10.311</td></tr>
 <tr><td>8.19</td></tr>
 <tr><td>8.8305</td></tr>
@@ -39,8 +36,7 @@ select 1.05 * reading from Survey where quant=&#39;rad&#39;;</pre>
 <tr><td>2.2995</td></tr>
 <tr><td>1.533</td></tr>
 <tr><td>11.8125</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -48,19 +44,16 @@ select 1.05 * reading from Survey where quant=&#39;rad&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select taken, round(5*(reading-32)/9, 2) from Survey where quant=&#39;temp&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select taken, round(5*(reading-32)/9, 2) from Survey where quant=&#39;temp&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>-29.72</td></tr>
 <tr><td>735</td><td>-32.22</td></tr>
 <tr><td>751</td><td>-28.06</td></tr>
 <tr><td>752</td><td>-26.67</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -68,20 +61,17 @@ select taken, round(5*(reading-32)/9, 2) from Survey where quant=&#39;temp&#39;;
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select personal || &#39; &#39; || family from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select personal || &#39; &#39; || family from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>William Dyer</td></tr>
 <tr><td>Frank Pabodie</td></tr>
 <tr><td>Anderson Lake</td></tr>
 <tr><td>Valentina Roerich</td></tr>
 <tr><td>Frank Danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -176,17 +166,14 @@ and saints according to the names by which they were canonized
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Person where ident=&#39;dyer&#39; union select * from Person where ident=&#39;roe&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Person where ident=&#39;dyer&#39; union select * from Person where ident=&#39;roe&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>dyer</td><td>William</td><td>Dyer</td></tr>
 <tr><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -233,8 +220,6 @@ select * from Person where ident=&#39;dyer&#39; union select * from Person where
 0.225
 </td> </tr>
 </table>
-
-
 </div>
 
 
@@ -245,18 +230,15 @@ select * from Person where ident=&#39;dyer&#39; union select * from Person where
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct site from Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select distinct site from Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>DR-1</td></tr>
 <tr><td>DR-3</td></tr>
 <tr><td>MSK-4</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

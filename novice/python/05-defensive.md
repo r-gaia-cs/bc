@@ -38,17 +38,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>numbers = [1.5, 2.3, 0.7, -0.001, 4.4]
+<pre class="in"><code>numbers = [1.5, 2.3, 0.7, -0.001, 4.4]
 total = 0.0
 for n in numbers:
     assert n &gt;= 0.0, &#39;Data should only contain positive values&#39;
     total += n
-print &#39;total is:&#39;, total</pre>
-</div>
+print &#39;total is:&#39;, total
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-3-33d87ea29ae4&gt; in &lt;module&gt;()
       2 total = 0.0
@@ -57,8 +55,7 @@ AssertionError                            Traceback (most recent call last)
       5     total += n
       6 print &#39;total is:&#39;, total
 
-AssertionError: Data should only contain positive values</pre>
-</div>
+AssertionError: Data should only contain positive values</code></pre>
 
 
 <div class="">
@@ -72,8 +69,7 @@ AssertionError: Data should only contain positive values</pre>
 </div>
 
 
-<div class="in">
-<pre>def normalize_rectangle(rect):
+<pre class="in"><code>def normalize_rectangle(rect):
     &#39;&#39;&#39;Normalizes a rectangle so that it is at the origin and 1.0 units long on its longest axis.&#39;&#39;&#39;
     assert len(rect) == 4, &#39;Rectangles must contain 4 coordinates&#39;
     x0, y0, x1, y1 = rect
@@ -92,8 +88,8 @@ AssertionError: Data should only contain positive values</pre>
     assert 0 &lt; upper_x &lt;= 1.0, &#39;Calculated upper X coordinate invalid&#39;
     assert 0 &lt; upper_y &lt;= 1.0, &#39;Calculated upper Y coordinate invalid&#39;
 
-    return (0, 0, upper_x, upper_y)</pre>
-</div>
+    return (0, 0, upper_x, upper_y)
+</code></pre>
 
 
 <div class="">
@@ -101,12 +97,10 @@ AssertionError: Data should only contain positive values</pre>
 </div>
 
 
-<div class="in">
-<pre>print normalize_rectangle( (0.0, 1.0, 2.0) ) # missing the fourth coordinate</pre>
-</div>
+<pre class="in"><code>print normalize_rectangle( (0.0, 1.0, 2.0) ) # missing the fourth coordinate
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-5-3a97b1dcab70&gt; in &lt;module&gt;()
 ----&gt; 1 print normalize_rectangle( (0.0, 1.0, 2.0) ) # missing the fourth coordinate
@@ -118,16 +112,13 @@ AssertionError                            Traceback (most recent call last)
       4     x0, y0, x1, y1 = rect
       5     assert x0 &lt; x1, &#39;Invalid X coordinates&#39;
 
-AssertionError: Rectangles must contain 4 coordinates</pre>
-</div>
+AssertionError: Rectangles must contain 4 coordinates</code></pre>
 
 
-<div class="in">
-<pre>print normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ) # X axis inverted</pre>
-</div>
+<pre class="in"><code>print normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ) # X axis inverted
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-6-f05ae7878a45&gt; in &lt;module&gt;()
 ----&gt; 1 print normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ) # X axis inverted
@@ -139,8 +130,7 @@ AssertionError                            Traceback (most recent call last)
       6     assert y0 &lt; y1, &#39;Invalid Y coordinates&#39;
       7 
 
-AssertionError: Invalid X coordinates</pre>
-</div>
+AssertionError: Invalid X coordinates</code></pre>
 
 
 <div class="">
@@ -148,14 +138,11 @@ AssertionError: Invalid X coordinates</pre>
 </div>
 
 
-<div class="in">
-<pre>print normalize_rectangle( (0.0, 0.0, 1.0, 5.0) )</pre>
-</div>
+<pre class="in"><code>print normalize_rectangle( (0.0, 0.0, 1.0, 5.0) )
+</code></pre>
 
-<div class="out">
-<pre>(0, 0, 0.2, 1.0)
-</pre>
-</div>
+<pre class="out"><code>(0, 0, 0.2, 1.0)
+</code></pre>
 
 
 <div class="">
@@ -163,12 +150,10 @@ AssertionError: Invalid X coordinates</pre>
 </div>
 
 
-<div class="in">
-<pre>print normalize_rectangle( (0.0, 0.0, 5.0, 1.0) )</pre>
-</div>
+<pre class="in"><code>print normalize_rectangle( (0.0, 0.0, 5.0, 1.0) )
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-8-5f0ef7954aeb&gt; in &lt;module&gt;()
 ----&gt; 1 print normalize_rectangle( (0.0, 0.0, 5.0, 1.0) )
@@ -180,8 +165,7 @@ AssertionError                            Traceback (most recent call last)
      19 
      20     return (0, 0, upper_x, upper_y)
 
-AssertionError: Calculated upper Y coordinate invalid</pre>
-</div>
+AssertionError: Calculated upper Y coordinate invalid</code></pre>
 
 
 <div class="">
@@ -243,11 +227,10 @@ AssertionError: Calculated upper Y coordinate invalid</pre>
 </div>
 
 
-<div class="in">
-<pre>assert range_overlap([ (0.0, 1.0) ]) == (0.0, 1.0)
+<pre class="in"><code>assert range_overlap([ (0.0, 1.0) ]) == (0.0, 1.0)
 assert range_overlap([ (0.0, 1.0), (0.0, 2.0) ]) == (0.0, 1.0)
-assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)</pre>
-</div>
+assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)
+</code></pre>
 
 
 <div class="">
@@ -268,20 +251,17 @@ assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)</pre
 </div>
 
 
-<div class="in">
-<pre>assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
-assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None</pre>
-</div>
+<pre class="in"><code>assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
+assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-10-d877ef460ba2&gt; in &lt;module&gt;()
 ----&gt; 1 assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
       2 assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
 
-AssertionError: </pre>
-</div>
+AssertionError: </code></pre>
 
 
 <div class="">
@@ -289,16 +269,15 @@ AssertionError: </pre>
 </div>
 
 
-<div class="in">
-<pre>def range_overlap(ranges):
+<pre class="in"><code>def range_overlap(ranges):
     &#39;&#39;&#39;Return common overlap among a set of [low, high] ranges.&#39;&#39;&#39;
     lowest = 0.0
     highest = 1.0
     for (low, high) in ranges:
         lowest = max(lowest, low)
         highest = min(highest, high)
-    return (lowest, highest)</pre>
-</div>
+    return (lowest, highest)
+</code></pre>
 
 
 <div class="">
@@ -306,14 +285,13 @@ AssertionError: </pre>
 </div>
 
 
-<div class="in">
-<pre>def test_range_overlap():
+<pre class="in"><code>def test_range_overlap():
     assert range_overlap([ (0.0, 1.0) ]) == (0.0, 1.0)
     assert range_overlap([ (0.0, 1.0), (0.0, 2.0) ]) == (0.0, 1.0)
     assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)
     assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
-    assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None</pre>
-</div>
+    assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
+</code></pre>
 
 
 <div class="">
@@ -321,12 +299,10 @@ AssertionError: </pre>
 </div>
 
 
-<div class="in">
-<pre>test_range_overlap()</pre>
-</div>
+<pre class="in"><code>test_range_overlap()
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 &lt;ipython-input-13-cf9215c96457&gt; in &lt;module&gt;()
 ----&gt; 1 test_range_overlap()
@@ -337,8 +313,7 @@ AssertionError                            Traceback (most recent call last)
 ----&gt; 5     assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
       6     assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
 
-AssertionError: </pre>
-</div>
+AssertionError: </code></pre>
 
 
 <div class="">

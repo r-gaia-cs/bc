@@ -36,9 +36,8 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>import pandas</pre>
-</div>
+<pre class="in"><code>import pandas
+</code></pre>
 
 
 <div>
@@ -46,12 +45,10 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>pandas.read_csv(&#39;mosquito_data_A1.csv&#39;)</pre>
-</div>
+<pre class="in"><code>pandas.read_csv(&#39;mosquito_data_A1.csv&#39;)
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  2001           87       222        198
 1  2002           72       103        105
 2  2003           77       176        166
@@ -61,8 +58,7 @@ root: ../..
 6  2007           71       121        117
 7  2008           88       267        232
 8  2009           85       211        191
-9  2010           75       101        106</pre>
-</div>
+9  2010           75       101        106</code></pre>
 
 
 <div>
@@ -72,9 +68,8 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>data = pandas.read_csv(&#39;mosquito_data_A1.csv&#39;)</pre>
-</div>
+<pre class="in"><code>data = pandas.read_csv(&#39;mosquito_data_A1.csv&#39;)
+</code></pre>
 
 
 <div>
@@ -82,12 +77,10 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>print data</pre>
-</div>
+<pre class="in"><code>print data
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  2001           87       222        198
 1  2002           72       103        105
 2  2003           77       176        166
@@ -98,8 +91,7 @@ root: ../..
 7  2008           88       267        232
 8  2009           85       211        191
 9  2010           75       101        106
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -107,12 +99,10 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>data</pre>
-</div>
+<pre class="in"><code>data
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  2001           87       222        198
 1  2002           72       103        105
 2  2003           77       176        166
@@ -122,8 +112,7 @@ root: ../..
 6  2007           71       121        117
 7  2008           88       267        232
 8  2009           85       211        191
-9  2010           75       101        106</pre>
-</div>
+9  2010           75       101        106</code></pre>
 
 
 <div>
@@ -138,14 +127,11 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>print type(data)</pre>
-</div>
+<pre class="in"><code>print type(data)
+</code></pre>
 
-<div class="out">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-</pre>
-</div>
+<pre class="out"><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</code></pre>
 
 
 <div>
@@ -158,12 +144,10 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>print data[&#39;year&#39;]</pre>
-</div>
+<pre class="in"><code>print data[&#39;year&#39;]
+</code></pre>
 
-<div class="out">
-<pre>0    2001
+<pre class="out"><code>0    2001
 1    2002
 2    2003
 3    2004
@@ -174,8 +158,7 @@ root: ../..
 8    2009
 9    2010
 Name: year, dtype: int64
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -183,12 +166,10 @@ Name: year, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>print data[[&#39;rainfall&#39;, &#39;temperature&#39;]]</pre>
-</div>
+<pre class="in"><code>print data[[&#39;rainfall&#39;, &#39;temperature&#39;]]
+</code></pre>
 
-<div class="out">
-<pre>   rainfall  temperature
+<pre class="out"><code>   rainfall  temperature
 0       222           87
 1       103           72
 2       176           77
@@ -199,8 +180,7 @@ Name: year, dtype: int64
 7       267           88
 8       211           85
 9       101           75
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -208,16 +188,13 @@ Name: year, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>print data[0:2]</pre>
-</div>
+<pre class="in"><code>print data[0:2]
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 0  2001           87       222        198
 1  2002           72       103        105
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -231,12 +208,10 @@ Name: year, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>data[1]</pre>
-</div>
+<pre class="in"><code>data[1]
+</code></pre>
 
-<div class="out">
-<pre>---------------------------------------------------------------------------
+<pre class="out"><code>---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
 &lt;ipython-input-10-c805864c0d75&gt; in &lt;module&gt;()
 ----&gt; 1 data[1]
@@ -276,8 +251,7 @@ KeyError                                  Traceback (most recent call last)
    1943 
    1944     def reindex_axis(self, new_axis, method=None, axis=0, copy=True):
 
-KeyError: u&#39;no item named 1&#39;</pre>
-</div>
+KeyError: u&#39;no item named 1&#39;</code></pre>
 
 
 <div>
@@ -285,15 +259,12 @@ KeyError: u&#39;no item named 1&#39;</pre>
 </div>
 
 
-<div class="in">
-<pre>print data[1:2]</pre>
-</div>
+<pre class="in"><code>print data[1:2]
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 1  2002           72       103        105
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -301,18 +272,15 @@ KeyError: u&#39;no item named 1&#39;</pre>
 </div>
 
 
-<div class="in">
-<pre>print data.iloc[1]</pre>
-</div>
+<pre class="in"><code>print data.iloc[1]
+</code></pre>
 
-<div class="out">
-<pre>year           2002
+<pre class="out"><code>year           2002
 temperature      72
 rainfall        103
 mosquitos       105
 Name: 1, dtype: int64
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -320,16 +288,13 @@ Name: 1, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>print data.iloc[1:3]</pre>
-</div>
+<pre class="in"><code>print data.iloc[1:3]
+</code></pre>
 
-<div class="out">
-<pre>   year  temperature  rainfall  mosquitos
+<pre class="out"><code>   year  temperature  rainfall  mosquitos
 1  2002           72       103        105
 2  2003           77       176        166
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -337,19 +302,16 @@ Name: 1, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>print data[&#39;temperature&#39;][data[&#39;year&#39;] &gt; 2005]</pre>
-</div>
+<pre class="in"><code>print data[&#39;temperature&#39;][data[&#39;year&#39;] &gt; 2005]
+</code></pre>
 
-<div class="out">
-<pre>5    89
+<pre class="out"><code>5    89
 6    71
 7    88
 8    85
 9    75
 Name: temperature, dtype: int64
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -357,18 +319,15 @@ Name: temperature, dtype: int64
 </div>
 
 
-<div class="in">
-<pre>print data.mean()</pre>
-</div>
+<pre class="in"><code>print data.mean()
+</code></pre>
 
-<div class="out">
-<pre>year           2005.5
+<pre class="out"><code>year           2005.5
 temperature      82.1
 rainfall        187.1
 mosquitos       171.4
 dtype: float64
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -376,38 +335,29 @@ dtype: float64
 </div>
 
 
-<div class="in">
-<pre>print data.max()</pre>
-</div>
+<pre class="in"><code>print data.max()
+</code></pre>
 
-<div class="out">
-<pre>year           2010
+<pre class="out"><code>year           2010
 temperature      89
 rainfall        283
 mosquitos       242
 dtype: int64
-</pre>
-</div>
+</code></pre>
 
 
-<div class="in">
-<pre>print data[&#39;temperature&#39;].min()</pre>
-</div>
+<pre class="in"><code>print data[&#39;temperature&#39;].min()
+</code></pre>
 
-<div class="out">
-<pre>71
-</pre>
-</div>
+<pre class="out"><code>71
+</code></pre>
 
 
-<div class="in">
-<pre>print data[&#39;mosquitos&#39;][1:3].std()</pre>
-</div>
+<pre class="in"><code>print data[&#39;mosquitos&#39;][1:3].std()
+</code></pre>
 
-<div class="out">
-<pre>43.1335136524
-</pre>
-</div>
+<pre class="out"><code>43.1335136524
+</code></pre>
 
 ### Challenge
 
@@ -427,15 +377,13 @@ dtype: int64
 </div>
 
 
-<div class="in">
-<pre>temps = data[&#39;temperature&#39;]
+<pre class="in"><code>temps = data[&#39;temperature&#39;]
 for temp_in_f in temps:
     temp_in_c = (temp_in_f - 32) * 5 / 9.0
-    print temp_in_c</pre>
-</div>
+    print temp_in_c
+</code></pre>
 
-<div class="out">
-<pre>30.5555555556
+<pre class="out"><code>30.5555555556
 22.2222222222
 25.0
 31.6666666667
@@ -445,8 +393,7 @@ for temp_in_f in temps:
 31.1111111111
 29.4444444444
 23.8888888889
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -454,14 +401,11 @@ for temp_in_f in temps:
 </div>
 
 
-<div class="in">
-<pre>print &#39;10/3 is:&#39;, 10 / 3</pre>
-</div>
+<pre class="in"><code>print &#39;10/3 is:&#39;, 10 / 3
+</code></pre>
 
-<div class="out">
-<pre>10/3 is: 3
-</pre>
-</div>
+<pre class="out"><code>10/3 is: 3
+</code></pre>
 
 
 <div>
@@ -469,14 +413,11 @@ for temp_in_f in temps:
 </div>
 
 
-<div class="in">
-<pre>print &#39;10/3.0 is:&#39;, 10 / 3.0</pre>
-</div>
+<pre class="in"><code>print &#39;10/3.0 is:&#39;, 10 / 3.0
+</code></pre>
 
-<div class="out">
-<pre>10/3.0 is: 3.33333333333
-</pre>
-</div>
+<pre class="out"><code>10/3.0 is: 3.33333333333
+</code></pre>
 
 
 <div>
@@ -494,16 +435,13 @@ for temp_in_f in temps:
 </div>
 
 
-<div class="in">
-<pre>temp = data[&#39;temperature&#39;][0]
+<pre class="in"><code>temp = data[&#39;temperature&#39;][0]
 if temp &gt; 80:
-    print &#34;The temperature is greater than 80&#34;</pre>
-</div>
+    print &#34;The temperature is greater than 80&#34;
+</code></pre>
 
-<div class="out">
-<pre>The temperature is greater than 80
-</pre>
-</div>
+<pre class="out"><code>The temperature is greater than 80
+</code></pre>
 
 
 <div>
@@ -512,20 +450,17 @@ if temp &gt; 80:
 </div>
 
 
-<div class="in">
-<pre>temp = data[&#39;temperature&#39;][0]
+<pre class="in"><code>temp = data[&#39;temperature&#39;][0]
 if temp &lt; 87:
     print &#34;The temperature is &lt; 87&#34;
 elif temp &gt; 87:
     print &#34;The temperature is &gt; 87&#34;
 else:
-    print &#34; The temperature is equal to 87&#34;</pre>
-</div>
+    print &#34; The temperature is equal to 87&#34;
+</code></pre>
 
-<div class="out">
-<pre> The temperature is equal to 87
-</pre>
-</div>
+<pre class="out"><code> The temperature is equal to 87
+</code></pre>
 
 ### Challenge
 
@@ -542,9 +477,8 @@ else:
 </div>
 
 
-<div class="in">
-<pre>%matplotlib inline</pre>
-</div>
+<pre class="in"><code>%matplotlib inline
+</code></pre>
 
 
 <div>
@@ -552,9 +486,8 @@ else:
 </div>
 
 
-<div class="in">
-<pre>from matplotlib import pyplot as plt</pre>
-</div>
+<pre class="in"><code>from matplotlib import pyplot as plt
+</code></pre>
 
 
 <div>
@@ -563,16 +496,13 @@ else:
 </div>
 
 
-<div class="in">
-<pre>data = pandas.read_csv(&#39;mosquito_data_A2.csv&#39;)
-plt.plot(data[&#39;year&#39;], data[&#39;mosquitos&#39;])</pre>
-</div>
+<pre class="in"><code>data = pandas.read_csv(&#39;mosquito_data_A2.csv&#39;)
+plt.plot(data[&#39;year&#39;], data[&#39;mosquitos&#39;])
+</code></pre>
 
-<div class="out">
-<pre>[&lt;matplotlib.lines.Line2D at 0x4a88590&gt;]
+<pre class="out"><code>[&lt;matplotlib.lines.Line2D at 0x4a88590&gt;]
 <img src="../../intermediate/python/01-intro-python_files/intermediate/python/01-intro-python_66_1.png">
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -580,8 +510,7 @@ plt.plot(data[&#39;year&#39;], data[&#39;mosquitos&#39;])</pre>
 </div>
 
 
-<div class="in">
-<pre>plt.figure(figsize=(10.0, 3.0))
+<pre class="in"><code>plt.figure(figsize=(10.0, 3.0))
 
 plt.subplot(1, 2, 1)
 plt.plot(data[&#39;year&#39;], data[&#39;temperature&#39;], &#39;ro-&#39;)
@@ -592,14 +521,12 @@ plt.subplot(1, 2, 2)
 plt.plot(data[&#39;year&#39;], data[&#39;rainfall&#39;], &#39;bs-&#39;)
 plt.xlabel(&#39;Year&#39;)
 plt.ylabel(&#39;Rain Fall&#39;)
-plt.show()</pre>
-</div>
+plt.show()
+</code></pre>
 
-<div class="out">
-<pre>
+<pre class="out"><code>
 <img src="../../intermediate/python/01-intro-python_files/intermediate/python/01-intro-python_68_0.png">
-</pre>
-</div>
+</code></pre>
 
 ### Challenge
 

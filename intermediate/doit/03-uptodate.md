@@ -23,13 +23,11 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext doitmagic</pre>
-</div>
+<pre class="in"><code>%load_ext doitmagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # download_all_data.py
 
@@ -63,11 +61,10 @@ def task_reformat_data():
             &#39;file_dep&#39;: [&#39;UK_{}_data.txt&#39;.format(data_type)],
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
             &#39;name&#39;: &#39;UK_{}_data.txt&#39;.format(data_type),
-        }</pre>
-</div>
+        }
+</code></pre>
 
-<div class="out">
-<pre>.  download_data:Tmean
+<pre class="out"><code>.  download_data:Tmean
 .  download_data:Sunshine
 -- reformat_data:UK_Sunshine_data.txt
 -- reformat_data:UK_Tmean_data.txt
@@ -93,8 +90,7 @@ Saving to: ‘UK_Sunshine_data.txt’
 
 2014-04-05 12:08:57 (6.48 MB/s) - ‘UK_Sunshine_data.txt’ saved [20986/20986]
 
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -106,8 +102,7 @@ Saving to: ‘UK_Sunshine_data.txt’
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # monthly_raw_data_update.py
 
@@ -146,11 +141,10 @@ def task_reformat_data():
             &#39;file_dep&#39;: [&#39;UK_{}_data.txt&#39;.format(data_type)],
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
             &#39;name&#39;: &#39;UK_{}_data.txt&#39;.format(data_type),
-        }</pre>
-</div>
+        }
+</code></pre>
 
-<div class="out">
-<pre>.  download_data:Tmean
+<pre class="out"><code>.  download_data:Tmean
 .  download_data:Sunshine
 -- reformat_data:UK_Sunshine_data.txt
 -- reformat_data:UK_Tmean_data.txt
@@ -176,8 +170,7 @@ Saving to: ‘UK_Sunshine_data.txt’
 
 2014-04-05 12:08:57 (6.86 MB/s) - ‘UK_Sunshine_data.txt’ saved [20986/20986]
 
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -186,8 +179,7 @@ Saving to: ‘UK_Sunshine_data.txt’
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # rainfall_data.py
 
@@ -226,11 +218,10 @@ def task_reformat_data():
             &#39;file_dep&#39;: [&#39;UK_{}_data.txt&#39;.format(data_type)],
             &#39;targets&#39;: [&#39;UK_{}_data.reformatted.txt&#39;.format(data_type)],
             &#39;name&#39;: &#39;UK_{}_data.txt&#39;.format(data_type),
-        }</pre>
-</div>
+        }
+</code></pre>
 
-<div class="out">
-<pre>.  download_data:Rainfall
+<pre class="out"><code>.  download_data:Rainfall
 -- download_data:Tmean
 -- download_data:Sunshine
 .  reformat_data:UK_Rainfall_data.txt
@@ -247,8 +238,7 @@ Saving to: ‘UK_Rainfall_data.txt’
 
 2014-04-05 12:08:58 (1.68 MB/s) - ‘UK_Rainfall_data.txt’ saved [25518/25518]
 
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -256,12 +246,10 @@ Saving to: ‘UK_Rainfall_data.txt’
 </div>
 
 
-<div class="in">
-<pre>!head UK_Rainfall_data.reformatted.txt</pre>
-</div>
+<pre class="in"><code>!head UK_Rainfall_data.reformatted.txt
+</code></pre>
 
-<div class="out">
-<pre>month,value
+<pre class="out"><code>month,value
 1910-01-01,111.4
 1910-02-01,79.5
 1910-03-01,75.5
@@ -271,8 +259,7 @@ Saving to: ‘UK_Rainfall_data.txt’
 1910-07-01,81.6
 1910-08-01,90.3
 1910-09-01,92.0
-</pre>
-</div>
+</code></pre>
 
 ### Challenges:
 

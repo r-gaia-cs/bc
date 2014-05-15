@@ -31,14 +31,11 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>!ls *.txt</pre>
-</div>
+<pre class="in"><code>!ls *.txt
+</code></pre>
 
-<div class="out">
-<pre>UK_Sunshine_data.txt  UK_Tmean_data.txt
-</pre>
-</div>
+<pre class="out"><code>UK_Sunshine_data.txt  UK_Tmean_data.txt
+</code></pre>
 
 
 <div>
@@ -46,12 +43,10 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>!head UK_Tmean_data.txt</pre>
-</div>
+<pre class="in"><code>!head UK_Tmean_data.txt
+</code></pre>
 
-<div class="out">
-<pre>UK Mean Temperature (Degrees C)
+<pre class="out"><code>UK Mean Temperature (Degrees C)
 Areal series, starting from 1910
 Allowances have been made for topographic, coastal and urban effects where relationships are found to exist.
 Seasons: Winter=Dec-Feb, Spring=Mar-May, Summer=June-Aug, Autumn=Sept-Nov. (Winter: Year refers to Jan/Feb).
@@ -61,8 +56,7 @@ Data are provisional from January 2012 &amp; Winter 2012 Last updated 01/12/2012
 	JAN	Year	FEB	Year	MAR	Year	APR	Year	MAY	Year	JUN	Year	JUL	Year	AUG	Year	SEP	Year	OCT	Year	NOV	Year	DEC	Year	WIN	Year	SPR	Year	SUM	Year	AUT	Year	ANN	Year
 	6.3	1916	6.8	1998	8	1938	10.7	2011	12.2	2008	15	1976	17.8	2006	17.3	1995	15.2	2006	12.2	2001	8.8	1994	6.9	1934	5.81	1989	9.15	2011	15.78	2006	11.39	2006	9.73	2006
 	5.9	2007	5.9	1990	7.9	1957	10.2	2007	12	1992	14.9	1940	17.3	1983	17.1	1997	14.6	1949	11.8	1969	8.7	2011	6.6	1988	5.56	2007	9.05	2007	15.77	2003	11.26	2011	9.64	2011
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -72,12 +66,10 @@ Data are provisional from January 2012 &amp; Winter 2012 Last updated 01/12/2012
 </div>
 
 
-<div class="in">
-<pre>!python reformat_weather_data.py UK_Tmean_data.txt | head</pre>
-</div>
+<pre class="in"><code>!python reformat_weather_data.py UK_Tmean_data.txt | head
+</code></pre>
 
-<div class="out">
-<pre>month,value
+<pre class="out"><code>month,value
 1910-01-01,2.6
 1910-02-01,2.6
 1910-03-01,4.0
@@ -87,8 +79,7 @@ Data are provisional from January 2012 &amp; Winter 2012 Last updated 01/12/2012
 1910-07-01,14.0
 1910-08-01,13.8
 1910-09-01,11.8
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -97,17 +88,14 @@ Data are provisional from January 2012 &amp; Winter 2012 Last updated 01/12/2012
 </div>
 
 
-<div class="in">
-<pre>!pip install doit</pre>
-</div>
+<pre class="in"><code>!pip install doit
+</code></pre>
 
-<div class="out">
-<pre>Requirement already satisfied (use --upgrade to upgrade): doit in /usr/local/lib/python2.7/dist-packages
+<pre class="out"><code>Requirement already satisfied (use --upgrade to upgrade): doit in /usr/local/lib/python2.7/dist-packages
 Requirement already satisfied (use --upgrade to upgrade): six in /usr/local/lib/python2.7/dist-packages (from doit)
 Requirement already satisfied (use --upgrade to upgrade): pyinotify in /usr/lib/python2.7/dist-packages (from doit)
 Cleaning up...
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -116,9 +104,8 @@ Cleaning up...
 </div>
 
 
-<div class="in">
-<pre>%load_ext doitmagic</pre>
-</div>
+<pre class="in"><code>%load_ext doitmagic
+</code></pre>
 
 
 <div>
@@ -126,8 +113,7 @@ Cleaning up...
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # one_task.py
 
@@ -139,13 +125,11 @@ def task_reformat_temperature_data():
         &#39;targets&#39;: [&#39;UK_Tmean_data.reformatted.txt&#39;],
         &#39;actions&#39;: [&#39;python reformat_weather_data.py UK_Tmean_data.txt &gt; UK_Tmean_data.reformatted.txt&#39;],
     }
-</pre>
-</div>
 
-<div class="out">
-<pre>.  reformat_temperature_data
-</pre>
-</div>
+</code></pre>
+
+<pre class="out"><code>.  reformat_temperature_data
+</code></pre>
 
 
 <div>
@@ -159,12 +143,10 @@ def task_reformat_temperature_data():
 </div>
 
 
-<div class="in">
-<pre>!head UK_Tmean_data.reformatted.txt</pre>
-</div>
+<pre class="in"><code>!head UK_Tmean_data.reformatted.txt
+</code></pre>
 
-<div class="out">
-<pre>month,value
+<pre class="out"><code>month,value
 1910-01-01,2.6
 1910-02-01,2.6
 1910-03-01,4.0
@@ -174,8 +156,7 @@ def task_reformat_temperature_data():
 1910-07-01,14.0
 1910-08-01,13.8
 1910-09-01,11.8
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -184,8 +165,7 @@ def task_reformat_temperature_data():
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # two_tasks.py
 
@@ -205,14 +185,12 @@ def task_reformat_sunshine_data():
         &#39;file_dep&#39;: [&#39;UK_Sunshine_data.txt&#39;],
         &#39;targets&#39;: [&#39;UK_Sunshine_data.reformatted.txt&#39;],
         &#39;actions&#39;: [&#39;python reformat_weather_data.py UK_Sunshine_data.txt &gt; UK_Sunshine_data.reformatted.txt&#39;],
-    }</pre>
-</div>
+    }
+</code></pre>
 
-<div class="out">
-<pre>-- reformat_temperature_data
+<pre class="out"><code>-- reformat_temperature_data
 .  reformat_sunshine_data
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -225,8 +203,7 @@ def task_reformat_sunshine_data():
 </div>
 
 
-<div class="in">
-<pre>%%doit
+<pre class="in"><code>%%doit
 
 # automatic_variables.py
 
@@ -246,14 +223,12 @@ def task_reformat_sunshine_data():
         &#39;actions&#39;: [&#39;python reformat_weather_data.py %(dependencies)s &gt; %(targets)s&#39;],
         &#39;file_dep&#39;: [&#39;UK_Sunshine_data.txt&#39;],
         &#39;targets&#39;: [&#39;UK_Sunshine_data.reformatted.txt&#39;],
-    }</pre>
-</div>
+    }
+</code></pre>
 
-<div class="out">
-<pre>-- reformat_temperature_data
+<pre class="out"><code>-- reformat_temperature_data
 -- reformat_sunshine_data
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -272,8 +247,7 @@ def task_reformat_sunshine_data():
 </div>
 
 
-<div class="in">
-<pre>def task_giraffe():
+<pre class="in"><code>def task_giraffe():
     
     return {
             &#39;targets&#39; : [&#39;giraffe.txt&#39;],
@@ -293,5 +267,5 @@ def task_lion():
     return {
             &#39;targets&#39; : [&#39;lion.txt&#39;],
             &#39;actions&#39; : [&#39;touch %(targets)s&#39;]
-           }</pre>
-</div>
+           }
+</code></pre>

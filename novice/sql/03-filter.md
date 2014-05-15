@@ -20,23 +20,19 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where site=&#39;DR-1&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where site=&#39;DR-1&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
 <tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -49,18 +45,15 @@ select * from Visited where site=&#39;DR-1&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select ident from Visited where site=&#39;DR-1&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select ident from Visited where site=&#39;DR-1&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td></tr>
 <tr><td>622</td></tr>
 <tr><td>844</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -73,16 +66,13 @@ select ident from Visited where site=&#39;DR-1&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where (site=&#39;DR-1&#39;) and (dated&gt;=&#39;1930-00-00&#39;);</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Visited where (site=&#39;DR-1&#39;) and (dated&gt;=&#39;1930-00-00&#39;);
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -98,13 +88,11 @@ select * from Visited where (site=&#39;DR-1&#39;) and (dated&gt;=&#39;1930-00-00
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
 <tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
 <tr><td>752</td><td>lake</td><td>rad</td><td>2.19</td></tr>
@@ -115,8 +103,7 @@ select * from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
 <tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
 <tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -124,13 +111,11 @@ select * from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where person in (&#39;lake&#39;, &#39;roe&#39;);</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where person in (&#39;lake&#39;, &#39;roe&#39;);
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
 <tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
 <tr><td>752</td><td>lake</td><td>rad</td><td>2.19</td></tr>
@@ -141,8 +126,7 @@ select * from Survey where person in (&#39;lake&#39;, &#39;roe&#39;);</pre>
 <tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
 <tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -150,13 +134,11 @@ select * from Survey where person in (&#39;lake&#39;, &#39;roe&#39;);</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where quant=&#39;sal&#39; and person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where quant=&#39;sal&#39; and person=&#39;lake&#39; or person=&#39;roe&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
 <tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
 <tr><td>752</td><td>lake</td><td>sal</td><td>0.09</td></tr>
@@ -164,8 +146,7 @@ select * from Survey where quant=&#39;sal&#39; and person=&#39;lake&#39; or pers
 <tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
 <tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -173,21 +154,18 @@ select * from Survey where quant=&#39;sal&#39; and person=&#39;lake&#39; or pers
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where quant=&#39;sal&#39; and (person=&#39;lake&#39; or person=&#39;roe&#39;);</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Survey where quant=&#39;sal&#39; and (person=&#39;lake&#39; or person=&#39;roe&#39;);
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
 <tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
 <tr><td>752</td><td>lake</td><td>sal</td><td>0.09</td></tr>
 <tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
 <tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
 <tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -195,20 +173,17 @@ select * from Survey where quant=&#39;sal&#39; and (person=&#39;lake&#39; or per
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct person, quant from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select distinct person, quant from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>lake</td><td>sal</td></tr>
 <tr><td>lake</td><td>rad</td></tr>
 <tr><td>lake</td><td>temp</td></tr>
 <tr><td>roe</td><td>sal</td></tr>
 <tr><td>roe</td><td>rad</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

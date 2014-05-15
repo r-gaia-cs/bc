@@ -149,6 +149,9 @@ $(BOOK_HTML) : $(BOOK_MD) $(DIAGRAM_DST)
 	sed -i -e 's@<h4 id="key-points.*">@<h4>@g' $@
 	sed -i -e 's@<h4 id="objectives.*">@<h4>@g' $@
 	sed -i -e 's@<h4 id="next-steps.*">@<h4>@g' $@
+	sed -i -e 's@<pre class="in"><code>@<pre class="in">@g' $@
+	sed -i -e 's@<pre class="out"><code>@<pre class="out">@g' $@
+	sed -i -e 's@<pre class="err"><code>@<pre class="err">@g' $@
 
 ## install  : install on the server.
 install : $(INDEX)

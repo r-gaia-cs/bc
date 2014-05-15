@@ -22,8 +22,7 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>import sqlite3
+<pre class="in"><code>import sqlite3
 connection = sqlite3.connect(&#34;survey.db&#34;)
 cursor = connection.cursor()
 cursor.execute(&#34;select site.lat, site.long from site;&#34;)
@@ -31,15 +30,13 @@ results = cursor.fetchall()
 for r in results:
     print r
 cursor.close()
-connection.close()</pre>
-</div>
+connection.close()
+</code></pre>
 
-<div class="out">
-<pre>(-49.85, -128.57)
+<pre class="out"><code>(-49.85, -128.57)
 (-47.15, -126.72)
 (-48.87, -123.4)
-</pre>
-</div>
+</code></pre>
 
 
 <div>
@@ -56,8 +53,7 @@ connection.close()</pre>
 </div>
 
 
-<div class="in">
-<pre>def get_name(database_file, person_ident):
+<pre class="in"><code>def get_name(database_file, person_ident):
     query = &#34;select personal || &#39; &#39; || family from Person where ident=&#39;&#34; + person_ident + &#34;&#39;;&#34;
 
     connection = sqlite3.connect(database_file)
@@ -69,13 +65,11 @@ connection.close()</pre>
 
     return results[0][0]
 
-print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39;)</pre>
-</div>
+print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39;)
+</code></pre>
 
-<div class="out">
-<pre>full name for dyer: William Dyer
-</pre>
-</div>
+<pre class="out"><code>full name for dyer: William Dyer
+</code></pre>
 
 
 <div>
@@ -89,8 +83,7 @@ print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39
 </div>
 
 
-<div class="in">
-<pre>def get_name(database_file, person_ident):
+<pre class="in"><code>def get_name(database_file, person_ident):
     query = &#34;select personal || &#39; &#39; || family from Person where ident=?;&#34;
 
     connection = sqlite3.connect(database_file)
@@ -102,13 +95,11 @@ print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39
 
     return results[0][0]
 
-print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39;)</pre>
-</div>
+print &#34;full name for dyer:&#34;, get_name(&#39;survey.db&#39;, &#39;dyer&#39;)
+</code></pre>
 
-<div class="out">
-<pre>full name for dyer: William Dyer
-</pre>
-</div>
+<pre class="out"><code>full name for dyer: William Dyer
+</code></pre>
 
 
 <div>

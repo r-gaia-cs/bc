@@ -20,18 +20,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select quant from Survey;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select quant from Survey;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>rad</td></tr>
 <tr><td>sal</td></tr>
 <tr><td>rad</td></tr>
@@ -53,8 +50,7 @@ select quant from Survey;</pre>
 <tr><td>sal</td></tr>
 <tr><td>sal</td></tr>
 <tr><td>rad</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -62,18 +58,15 @@ select quant from Survey;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct quant from Survey;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select distinct quant from Survey;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>rad</td></tr>
 <tr><td>sal</td></tr>
 <tr><td>temp</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -81,13 +74,11 @@ select distinct quant from Survey;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct taken, quant from Survey;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select distinct taken, quant from Survey;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>rad</td></tr>
 <tr><td>619</td><td>sal</td></tr>
 <tr><td>622</td><td>rad</td></tr>
@@ -107,8 +98,7 @@ select distinct taken, quant from Survey;</pre>
 <tr><td>837</td><td>rad</td></tr>
 <tr><td>837</td><td>sal</td></tr>
 <tr><td>844</td><td>rad</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -129,20 +119,17 @@ select distinct taken, quant from Survey;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Person order by ident;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Person order by ident;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
 <tr><td>dyer</td><td>William</td><td>Dyer</td></tr>
 <tr><td>lake</td><td>Anderson</td><td>Lake</td></tr>
 <tr><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
 <tr><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -150,20 +137,17 @@ select * from Person order by ident;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from person order by ident desc;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from person order by ident desc;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
 <tr><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
 <tr><td>lake</td><td>Anderson</td><td>Lake</td></tr>
 <tr><td>dyer</td><td>William</td><td>Dyer</td></tr>
 <tr><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -172,13 +156,11 @@ select * from person order by ident desc;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select taken, person from Survey order by taken asc, person desc;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select taken, person from Survey order by taken asc, person desc;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>dyer</td></tr>
 <tr><td>619</td><td>dyer</td></tr>
 <tr><td>622</td><td>dyer</td></tr>
@@ -200,8 +182,7 @@ select taken, person from Survey order by taken asc, person desc;</pre>
 <tr><td>837</td><td>lake</td></tr>
 <tr><td>837</td><td>lake</td></tr>
 <tr><td>844</td><td>roe</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -209,13 +190,11 @@ select taken, person from Survey order by taken asc, person desc;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct taken, person from Survey order by taken asc, person desc;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select distinct taken, person from Survey order by taken asc, person desc;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>619</td><td>dyer</td></tr>
 <tr><td>622</td><td>dyer</td></tr>
 <tr><td>734</td><td>pb</td></tr>
@@ -229,8 +208,7 @@ select distinct taken, person from Survey order by taken asc, person desc;</pre>
 <tr><td>837</td><td>roe</td></tr>
 <tr><td>837</td><td>lake</td></tr>
 <tr><td>844</td><td>roe</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>

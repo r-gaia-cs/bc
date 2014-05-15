@@ -24,18 +24,15 @@ root: ../..
 </div>
 
 
-<div class="in">
-<pre>%load_ext sqlitemagic</pre>
-</div>
+<pre class="in"><code>%load_ext sqlitemagic
+</code></pre>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Site join Visited;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Site join Visited;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>734</td><td>DR-3</td><td>1939-01-07</td></tr>
@@ -60,8 +57,7 @@ select * from Site join Visited;</pre>
 <tr><td>MSK-4</td><td>-48.87</td><td>-123.4</td><td>752</td><td>DR-3</td><td>None</td></tr>
 <tr><td>MSK-4</td><td>-48.87</td><td>-123.4</td><td>837</td><td>MSK-4</td><td>1932-01-14</td></tr>
 <tr><td>MSK-4</td><td>-48.87</td><td>-123.4</td><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -70,13 +66,11 @@ select * from Site join Visited;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Site join Visited on Site.name=Visited.site;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select * from Site join Visited on Site.name=Visited.site;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
 <tr><td>DR-1</td><td>-49.85</td><td>-128.57</td><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
@@ -85,8 +79,7 @@ select * from Site join Visited on Site.name=Visited.site;</pre>
 <tr><td>DR-3</td><td>-47.15</td><td>-126.72</td><td>751</td><td>DR-3</td><td>1930-02-26</td></tr>
 <tr><td>DR-3</td><td>-47.15</td><td>-126.72</td><td>752</td><td>DR-3</td><td>None</td></tr>
 <tr><td>MSK-4</td><td>-48.87</td><td>-123.4</td><td>837</td><td>MSK-4</td><td>1932-01-14</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -96,15 +89,13 @@ select * from Site join Visited on Site.name=Visited.site;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select Site.lat, Site.long, Visited.dated
 from   Site join Visited
-on     Site.name=Visited.site;</pre>
-</div>
+on     Site.name=Visited.site;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>-49.85</td><td>-128.57</td><td>1927-02-08</td></tr>
 <tr><td>-49.85</td><td>-128.57</td><td>1927-02-10</td></tr>
 <tr><td>-49.85</td><td>-128.57</td><td>1932-03-22</td></tr>
@@ -113,8 +104,7 @@ on     Site.name=Visited.site;</pre>
 <tr><td>-47.15</td><td>-126.72</td><td>1930-02-26</td></tr>
 <tr><td>-47.15</td><td>-126.72</td><td>1939-01-07</td></tr>
 <tr><td>-48.87</td><td>-123.4</td><td>1932-01-14</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -122,17 +112,15 @@ on     Site.name=Visited.site;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
+<pre class="in"><code>%%sqlite survey.db
 select Site.lat, Site.long, Visited.dated, Survey.quant, Survey.reading
 from   Site join Visited join Survey
 on     Site.name=Visited.site
 and    Visited.ident=Survey.taken
-and    Visited.dated is not null;</pre>
-</div>
+and    Visited.dated is not null;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>-49.85</td><td>-128.57</td><td>1927-02-08</td><td>rad</td><td>9.82</td></tr>
 <tr><td>-49.85</td><td>-128.57</td><td>1927-02-08</td><td>sal</td><td>0.13</td></tr>
 <tr><td>-49.85</td><td>-128.57</td><td>1927-02-10</td><td>rad</td><td>7.8</td></tr>
@@ -150,8 +138,7 @@ and    Visited.dated is not null;</pre>
 <tr><td>-48.87</td><td>-123.4</td><td>1932-01-14</td><td>sal</td><td>0.21</td></tr>
 <tr><td>-48.87</td><td>-123.4</td><td>1932-01-14</td><td>sal</td><td>22.5</td></tr>
 <tr><td>-49.85</td><td>-128.57</td><td>1932-03-22</td><td>rad</td><td>11.25</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 
 <div>
@@ -160,20 +147,17 @@ and    Visited.dated is not null;</pre>
 </div>
 
 
-<div class="in">
-<pre>%%sqlite survey.db
-select rowid, * from Person;</pre>
-</div>
+<pre class="in"><code>%%sqlite survey.db
+select rowid, * from Person;
+</code></pre>
 
-<div class="out">
-<pre><table>
+<pre class="out"><code><table>
 <tr><td>1</td><td>dyer</td><td>William</td><td>Dyer</td></tr>
 <tr><td>2</td><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
 <tr><td>3</td><td>lake</td><td>Anderson</td><td>Lake</td></tr>
 <tr><td>4</td><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
 <tr><td>5</td><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
-</table></pre>
-</div>
+</table></code></pre>
 
 ### Data Hygiene
 
