@@ -1,10 +1,24 @@
-\documentclass[]{book}
-\usepackage{graphicx}
-\title{Software Carpentry\\Volume 1: Basics}
-\author{edited by Greg Wilson}
+\documentclass{book}
+
+\input{packages}
+
+% define page size and margins etc
+\geometry{
+  paperwidth=18.91cm,paperheight=24.589cm,
+  vmargin=1.9cm, % top and bottom margins
+  inner=1.9cm, % inside margin
+  outer=2.29cm, % outside margin
+  bindingoffset=0.89cm % gutter
+} 
+
+\input{commands}
+
+\title{Software Carpentry}
+% FIXME \subtitle{Volume 1: Basics}
+% FIXME \editor{Greg Wilson}
+\author{Greg Wilson}
 \date{2014}
-\newcommand{\urlfoot}[2]{{#1}\footnote{#2}}
-\newcommand{\glossdef}[2]{\emph{#2}}
+
 \begin{document}
 \chapter{Introduction}\label{introduction}
 
@@ -33,7 +47,7 @@ working correctly, how to share their work with others (except by
 mailing files to one another), or how to keep track of what they've
 done. This sorry state of affairs persists for four reasons:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \emph{No room, no time.} Everybody's curriculum is full---there's
   simply not space to add more about computing without dropping
@@ -51,14 +65,14 @@ done. This sorry state of affairs persists for four reasons:
   things that politicians and university presidents can brag about on
   opening day, rather than to the basic skills that almost everyone
   uses.
-\end{itemize}
+\end{swcitemize}
 
 Our goal is to show scientists and engineers how to do more in less time
 and with less pain. Our lessons have been used by more than four
 thousand learners in over a hundred two-day workshops since the spring
 of 2010. Here's how they can help:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   If you've ever overwritten the wrong file, we'll show you how to use
   version control.
@@ -74,7 +88,7 @@ of 2010. Here's how they can help:
 \item
   If you've ever spent days copying and pasting data in text files and
   spreadsheets, we'll show you how a database can do the work for you.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{About Us}
 
@@ -106,7 +120,7 @@ popular blog posts}.
 
 Software Carpentry has been made possible by the generous support of:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \urlfoot{http://continuum.io/}{Continuum Analytics}
 \item
@@ -148,7 +162,7 @@ Software Carpentry has been made possible by the generous support of:
   Research}
 \item
   \urlfoot{http://www.utoronto.ca}{The University of Toronto}
-\end{itemize}
+\end{swcitemize}
 
 Many thanks to all of the people who have contributed to Software
 Carpentry over the years.
@@ -178,14 +192,14 @@ things over and over again.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain how the shell relates to the keyboard, the screen, the
   operating system, and users' programs.
 \item
   Explain when and why command-line interfaces should be used instead of
   graphical interfaces.
-\end{itemize}
+\end{swcitemize}
 
 Nelle Nemo, a marine biologist, has just returned from a six-month
 survey of the
@@ -194,7 +208,7 @@ Gyre}, where she has been sampling gelatinous marine life in the
 \urlfoot{http://en.wikipedia.org/wiki/Great\_Pacific\_Garbage\_Patch}{Great
 Pacific Garbage Patch}. She has 300 samples in all, and now needs to:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Run each sample through an assay machine that will measure the
   relative abundance of 300 different proteins. The machine's output for
@@ -210,7 +224,7 @@ Pacific Garbage Patch}. She has 300 samples in all, and now needs to:
   Write up. Her supervisor would really like her to do this by the end
   of the month so that her paper can appear in an upcoming special issue
   of \emph{Aquatic Goo Letters}.
-\end{enumerate}
+\end{swcenumerate}
 
 It takes about half an hour for the assay machine to process each
 sample. The good news is, it only takes two minutes to set each one up.
@@ -235,7 +249,7 @@ whenever she collects more data.
 
 At a high level, computers do four things:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   run programs;
 \item
@@ -244,7 +258,7 @@ At a high level, computers do four things:
   communicate with each other; and
 \item
   interact with us.
-\end{itemize}
+\end{swcitemize}
 
 They can do the last of these in many different ways, including direct
 brain-computer links and speech interfaces. Since these are still in
@@ -298,7 +312,7 @@ to drive them is becoming a necessary skill.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A shell is a program whose primary purpose is to read commands and run
   other programs.
@@ -309,13 +323,13 @@ to drive them is becoming a necessary skill.
 \item
   The shell's main disadvantages are its primarily textual nature and
   how cryptic its commands and operation can be.
-\end{itemize}
+\end{swcitemize}
 
 \section{Files and Directories}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain the similarities and differences between a file and a
   directory.
@@ -331,7 +345,7 @@ to drive them is becoming a necessary skill.
   call.
 \item
   Demonstrate the use of tab completion, and explain its advantages.
-\end{itemize}
+\end{swcitemize}
 
 The part of the operating system responsible for managing files and
 directories is called the \glossdef{g:filesystem}{file system}. It
@@ -365,7 +379,7 @@ vlad
 
 More specifically, when we type \texttt{whoami} the shell:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   finds a program called \texttt{whoami},
 \item
@@ -374,7 +388,7 @@ More specifically, when we type \texttt{whoami} the shell:
   displays that program's output, then
 \item
   displays a new prompt to tell us that it's ready for more commands.
-\end{enumerate}
+\end{swcenumerate}
 
 Next, let's find out where we are by running a command called
 \texttt{pwd} (which stands for ``print working directory''). At any
@@ -731,7 +745,7 @@ other tools as we go on.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   The file system is responsible for managing information on the disk.
 \item
@@ -759,18 +773,18 @@ other tools as we go on.
   to indicate the type of data in the file.
 \item
   Most commands take options (flags) which begin with a `-'.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
 \includegraphics{novice/shell/img/filesystem-challenge.png}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   If \texttt{pwd} displays \texttt{/users/thing}, what will
   \texttt{ls ../backup} display?
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     \texttt{../backup: No such file or directory}
   \item
@@ -779,7 +793,7 @@ other tools as we go on.
     \texttt{2012-12-01/ 2013-01-08/ 2013-01-27/}
   \item
     \texttt{original pnas\_final pnas\_sub}
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   If \texttt{pwd} displays \texttt{/users/backup}, and \texttt{-r} tells
   \texttt{ls} to display things in reverse order, what command will
@@ -789,7 +803,7 @@ other tools as we go on.
 pnas-sub/ pnas-final/ original/
 \end{verbatim}
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     \texttt{ls pwd}
   \item
@@ -798,11 +812,11 @@ pnas-sub/ pnas-final/ original/
     \texttt{ls -r -F /users/backup}
   \item
     Either \#2 or \#3 above, but not \#1.
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   What does the command \texttt{cd} without a directory name do?
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     It has no effect.
   \item
@@ -811,17 +825,17 @@ pnas-sub/ pnas-final/ original/
     It changes the working directory to the user's home directory.
   \item
     It produces an error message.
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   What does the command \texttt{ls} do when used with the -s and -h
   arguments?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Creating Things}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Create a directory hierarchy that matches a given diagram.
 \item
@@ -831,7 +845,7 @@ pnas-sub/ pnas-final/ original/
   Display the contents of a directory using the command line.
 \item
   Delete specified files and/or directories.
-\end{itemize}
+\end{swcitemize}
 
 We now know how to explore files and directories, but how do we create
 them in the first place? Let's go back to Vlad's home directory,
@@ -1161,7 +1175,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Unix documentation uses `\^{}A' to mean ``control-A''.
 \item
@@ -1170,11 +1184,11 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \item
   Nano is a very simple text editor---please use something else for real
   work.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   What is the output of the closing \texttt{ls} command in the sequence
   shown below?
@@ -1229,13 +1243,13 @@ $ cp intro.txt methods.txt survey.txt
   \texttt{ls -t} lists things by time of last change, with most recently
   changed files or directories first. In what order does
   \texttt{ls -R -t} display things?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Pipes and Filters}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Redirect a command's output to a file.
 \item
@@ -1247,7 +1261,7 @@ $ cp intro.txt methods.txt survey.txt
   input to process.
 \item
   Explain Unix's ``small pieces, loosely joined'' philosophy.
-\end{itemize}
+\end{swcitemize}
 
 Now that we know a few basic commands, we can finally look at the
 shell's most powerful feature: the ease with which it lets us combine
@@ -1605,7 +1619,7 @@ has.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{command \textgreater{} file} redirects a command's output to a
   file.
@@ -1615,11 +1629,11 @@ has.
 \item
   The best way to use the shell is to use pipes to combine simple
   single-purpose programs (filters).
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   If we run \texttt{sort} on this file:
 
@@ -1732,13 +1746,13 @@ bear
   What other command(s) could be added to this in a pipeline to find out
   what animals the file contains (without any duplicates in their
   names)?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Loops}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write a loop that applies one or more commands separately to each file
   in a set of files.
@@ -1754,7 +1768,7 @@ bear
   Demonstrate how to see what commands have recently been executed.
 \item
   Re-run recently executed commands without retyping them.
-\end{itemize}
+\end{swcitemize}
 
 Wildcards and tab completion are two ways to reduce typing (and typing
 mistakes). Another is to tell the shell to do something over and over
@@ -2120,7 +2134,7 @@ by typing \texttt{!458}.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A \texttt{for} loop repeats commands once for every thing in a list.
 \item
@@ -2140,11 +2154,11 @@ by typing \texttt{!458}.
 \item
   Use \texttt{history} to display recent commands, and \texttt{!number}
   to repeat a command by number.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Suppose that \texttt{ls} initially displays:
 
@@ -2171,7 +2185,7 @@ do
 done
 \end{verbatim}
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
     \texttt{sucrose.dat}, and copies \texttt{sucrose.dat} to create
@@ -2186,7 +2200,7 @@ done
     \texttt{sucrose.dat} to create \texttt{xylose.dat}.
   \item
     None of the above.
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   The \texttt{expr} does simple arithmetic using command-line
   parameters:
@@ -2218,13 +2232,13 @@ do
     $how -limit 0.01 NENE01729B.txt
 done
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Shell Scripts}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write a shell script that runs a command or series of commands for a
   fixed set of files.
@@ -2235,7 +2249,7 @@ done
   user on the command line.
 \item
   Create pipelines that include user-written shell scripts.
-\end{itemize}
+\end{swcitemize}
 
 We are finally ready to see what makes the shell such a powerful
 programming environment. We are going to take the commands we repeat
@@ -2576,7 +2590,7 @@ flexibility and complexity.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Save commands in files (usually called shell scripts) for re-use.
 \item
@@ -2590,11 +2604,11 @@ flexibility and complexity.
 \item
   Letting users decide what files to process is more flexible and more
   consistent with built-in Unix commands.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Leah has several hundred data files, each of which is formatted like
   this:
@@ -2642,7 +2656,7 @@ history | tail -5 > recent.sh
   \texttt{fructose.dat}, \texttt{glucose.dat}, and \texttt{sucrose.dat}.
   Explain what a script called \texttt{example.sh} would do when run as
   \texttt{bash example.sh *.dat} if it contained the following lines:
-\end{enumerate}
+\end{swcenumerate}
 
 1.
 
@@ -2669,7 +2683,7 @@ echo $*.dat
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{grep} to select lines from text files that match simple
   patterns.
@@ -2681,7 +2695,7 @@ echo $*.dat
 \item
   Explain what is meant by ``text'' and ``binary'' files, and why many
   common tools don't handle the latter well.
-\end{itemize}
+\end{swcitemize}
 
 You can guess someone's age by how they talk about search: young people
 use ``Google'' as a verb, while crusty old Unix programmers use
@@ -3089,7 +3103,7 @@ about them.''
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{find} to find files and directories, and \texttt{grep} to
   find text patterns in files.
@@ -3097,11 +3111,11 @@ about them.''
   \texttt{\$(command)} inserts a command's output in place.
 \item
   \texttt{man command} displays the manual page for a given command.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a short explanatory comment for the following shell script:
 
@@ -3116,7 +3130,7 @@ find . -name '*.dat' -print | wc -l | sort -n
   \texttt{sucrose.dat} or \texttt{maltose.dat}), but do \emph{not}
   contain the word \texttt{temp}?
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     \texttt{find /data -name '*.dat' -print \textbar{} grep ose \textbar{} grep -v temp}
   \item
@@ -3125,8 +3139,8 @@ find . -name '*.dat' -print | wc -l | sort -n
     \texttt{grep -v temp \$(find /data -name '*ose.dat' -print)}
   \item
     None of the above.
-  \end{enumerate}
-\end{enumerate}
+  \end{swcenumerate2}
+\end{swcenumerate}
 
 \chapter{Version Control with Git}\label{s:git}
 
@@ -3153,7 +3167,7 @@ The right solution is to use \glossdef{g:version-control}{version
 control} to manage their work. Version control is better than mailing
 files back and forth because:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Nothing that is committed to version control is ever lost. This means
   it can be used like the ``undo'' feature in an editor, and since all
@@ -3168,7 +3182,7 @@ files back and forth because:
   someone's changes: the version control system automatically notifies
   users whenever there's a conflict between one person's work and
   another's.
-\end{itemize}
+\end{swcitemize}
 
 This lesson shows how to use a popular open source version control
 system called Git. It is more complex than some alternatives, but it is
@@ -3182,7 +3196,7 @@ encourage.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain which initialization and configuration steps are required once
   per machine, and which are required once per repository.
@@ -3198,7 +3212,7 @@ encourage.
 \item
   Configure Git to ignore specific files, and explain why it is
   sometimes useful to do so.
-\end{itemize}
+\end{swcitemize}
 
 We'll start by exploring how version control can be used to keep track
 of what one person did and when. Even if you aren't collaborating with
@@ -3227,7 +3241,7 @@ such as \texttt{notepad} on Windows.)
 Git commands are written \texttt{git verb}, where \texttt{verb} is what
 we actually want it to do. In this case, we're telling Git:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   our name and email address,
 \item
@@ -3236,7 +3250,7 @@ we actually want it to do. In this case, we're telling Git:
   what our favorite text editor is, and
 \item
   that we want to use these settings globally (i.e., for every project),
-\end{itemize}
+\end{swcitemize}
 
 The four commands above only need to be run once: the flag
 \texttt{-{}-global} tells Git to use the settings for every project on
@@ -3505,7 +3519,7 @@ The output is cryptic because it is actually a series of commands for
 tools like editors and \texttt{patch} telling them how to reconstruct
 one file given the other. If we can break it down into pieces:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   The first line tells us that Git is using the Unix \texttt{diff}
   command to compare the old and new versions of the file.
@@ -3517,7 +3531,7 @@ one file given the other. If we can break it down into pieces:
   The remaining lines show us the actual differences and the lines on
   which they occur. In particular, the \texttt{+} markers in the first
   column show where we are adding lines.
-\end{enumerate}
+\end{swcenumerate}
 
 Let's commit our change:
 
@@ -3963,7 +3977,7 @@ nothing to commit, working directory clean
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{git config} to configure a user name, email address,
   editor, and other preferences once per machine.
@@ -3988,11 +4002,11 @@ nothing to commit, working directory clean
   \texttt{git checkout} recovers old versions of files.
 \item
   The \texttt{.gitignore} file tells Git what files to ignore.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Create a new Git repository on your computer called \texttt{bio}.
   Write a three-line biography for yourself in a file called
@@ -4014,13 +4028,13 @@ git init     # make the beta sub-directory a Git repository
 \end{verbatim}
 
   Why is it a bad idea to do this?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Collaborating}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain what remote repositories are and why they are useful.
 \item
@@ -4028,7 +4042,7 @@ git init     # make the beta sub-directory a Git repository
 \item
   Explain what happens when changes are pushed to or pulled from a
   remote repository.
-\end{itemize}
+\end{swcitemize}
 
 Version control really comes into its own when we begin to collaborate
 with other people. We already have most of the machinery we need to do
@@ -4258,7 +4272,7 @@ work between different people and machines.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A local Git repository can be connected to one or more remote
   repositories.
@@ -4274,28 +4288,28 @@ work between different people and machines.
 \item
   \texttt{git clone} copies a remote repository to create a local
   repository with a remote called \texttt{origin} automatically set up.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Create a repository on GitHub, clone it, add a file, push those
   changes to GitHub, and then look at the
   \glossdef{g:timestamp}{timestamp} of the change on GitHub. How does
   GitHub record times, and why?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Conflicts}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain what conflicts are and when they can occur.
 \item
   Resolve conflicts resulting from a merge.
-\end{itemize}
+\end{swcitemize}
 
 As soon as people can work in parallel, someone's going to step on
 someone else's toes. This will even happen with a single person: if we
@@ -4572,7 +4586,7 @@ work up differently.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Conflicts occur when two or more people change the same file(s) at the
   same time.
@@ -4580,11 +4594,11 @@ work up differently.
   The version control system does not allow people to blindly overwrite
   each other's changes. Instead, it highlights conflicts so that they
   can be resolved.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Clone the repository created by your instructor. Add a new file to it,
   and modify an existing file (your instructor will tell you which one).
@@ -4593,13 +4607,13 @@ work up differently.
 \item
   What does Git do when there is a conflict in an image or some other
   non-textual file that is stored in version control?
-\end{enumerate}
+\end{swcenumerate}
 
 \section{Open Science}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain how the GNU Public License (GPL) differs from most other open
   licenses.
@@ -4612,7 +4626,7 @@ work up differently.
 \item
   Outline options for hosting code and data and the pros and cons of
   each.
-\end{itemize}
+\end{swcitemize}
 
 \begin{quote}
 The opposite of ``open'' isn't ``closed''. The opposite of ``open'' is
@@ -4624,7 +4638,7 @@ Free sharing of information might be the ideal in science, but the
 reality is often more complicated. Normal practice today looks something
 like this:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A scientist collects some data and stores it on a machine that is
   occasionally backed up by her department.
@@ -4649,11 +4663,11 @@ like this:
   online copy of her data, but the paper itself will be behind a
   paywall: only people who have personal or institutional access will be
   able to read it.
-\end{itemize}
+\end{swcitemize}
 
 For a growing number of scientists, though, the process looks like this:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   The data that the scientist collects is stored in an open access
   repository like \urlfoot{http://figshare.com/}{figshare} or
@@ -4677,7 +4691,7 @@ For a growing number of scientists, though, the process looks like this:
   The published paper includes links to her preprint and to her code and
   data repositories, which makes it much easier for other scientists to
   use her work as starting point for their own research.
-\end{itemize}
+\end{swcitemize}
 
 This open model accelerates discovery: the more open work is, the more
 widely it is cited and re-used. However, people who want to work this
@@ -4706,14 +4720,14 @@ source projects have had long and successful lives without this
 condition, and that the GPL makes it more difficult to combine code from
 different sources. At the end of the day, what matters most is that:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   every project have a file in its home directory called something like
   \texttt{LICENSE} or \texttt{LICENSE.txt} that clearly states what the
   license is, and
 \item
   people use existing licenses rather than writing new ones.
-\end{enumerate}
+\end{swcenumerate}
 
 The second point is as important as the first: most scientists are not
 lawyers, so wording that may seem sensible to a layperson may have
@@ -4727,7 +4741,7 @@ more options to choose from. The good news is that an organization
 called \urlfoot{http://creativecommons.org/}{Creative Commons} has prepared
 a set of licenses using combinations of four basic restrictions:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Attribution: derived works must give the original author credit for
   their work.
@@ -4739,7 +4753,7 @@ a set of licenses using combinations of four basic restrictions:
   terms as the original.
 \item
   Noncommercial: free use is allowed, but commercial use is not.
-\end{itemize}
+\end{swcitemize}
 
 These four restrictions are abbreviated ``BY'', ``ND'', ``SA'', and
 ``NC'' respectively, so ``CC-BY-ND'' means, ``People can re-use the work
@@ -4845,7 +4859,7 @@ or simply because what's new is often also frightening.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Open scientific work is more useful and more highly cited than closed.
 \item
@@ -4864,11 +4878,11 @@ or simply because what's new is often also frightening.
 \item
   Rules regarding intellectual property and storage of sensitive
   information apply no matter where code and data are hosted.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Find out whether you are allowed to apply an open license to your
   software. Can you do this unilaterally, or do you need permission from
@@ -4877,7 +4891,7 @@ or simply because what's new is often also frightening.
   Find out whether you are allowed to host your work openly on a public
   forge. Can you do this unilaterally, or do you need permission from
   someone in your institution? If so, who?
-\end{enumerate}
+\end{swcenumerate}
 
 \chapter{Programming with Python}\label{s:python}
 
@@ -4889,7 +4903,7 @@ Our real goal isn't to teach you Python, but to teach you the basic
 concepts that all programming depends on. We use Python in our lessons
 because:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   we have to use \emph{something} for examples;
 \item
@@ -4899,7 +4913,7 @@ because:
 \item
   experience shows that it's easier for novices to pick up than most
   other languages.
-\end{enumerate}
+\end{swcenumerate}
 
 But the two most important things are to use whatever language your
 colleagues are using, so that you can share you work with them easily,
@@ -4924,20 +4938,20 @@ look like this:
 
 We want to:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   load that data into memory,
 \item
   calculate the average inflammation per day across all patients, and
 \item
   plot the result.
-\end{itemize}
+\end{swcitemize}
 
 To do all that, we'll have to learn a little bit about programming.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain what a library is, and what libraries are used for.
 \item
@@ -4952,7 +4966,7 @@ To do all that, we'll have to learn a little bit about programming.
   Perform operations on arrays of data.
 \item
   Display simple graphs.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{Loading Data}
 
@@ -5116,7 +5130,7 @@ print data
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Draw diagrams showing what variables refer to what values after each
   statement in the following program:
@@ -5134,7 +5148,7 @@ first, second = `Grace', `Hopper'
 third, fourth = second, first
 print third, fourth
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Manipulating Data}
 
@@ -5411,7 +5425,7 @@ first three characters: oxy
 last three characters: gen
 \end{verbatim}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   What is the value of \texttt{element{[}:4{]}}? What about
   \texttt{element{[}4:{]}}? Or \texttt{element{[}:{]}}?
@@ -5424,7 +5438,7 @@ last three characters: gen
   no characters. If \texttt{data} holds our array of patient data, what
   does \texttt{data{[}3:3, 4:4{]}} produce? What about
   \texttt{data{[}3:3, :{]}}?
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Plotting}
 
@@ -5499,7 +5513,7 @@ with our data.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Why do all of our plots stop just short of the upper end of our graph?
   Why are the vertical lines in our plot of the minimum inflammation per
@@ -5507,7 +5521,7 @@ with our data.
 \item
   Create a plot showing the standard deviation of the inflammation data
   for each day across all patients.
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Wrapping Up}
 
@@ -5554,15 +5568,15 @@ together more closely.)
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Modify the program to display the three plots on top of one another
   instead of side by side.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Import a library into a program using \texttt{import libraryname}.
 \item
@@ -5598,7 +5612,7 @@ together more closely.)
 \item
   Use the \texttt{pyplot} library from \texttt{matplotlib} for creating
   simple visualizations.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -5620,7 +5634,7 @@ can repeat several operations with a single command.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Define a function that takes parameters.
 \item
@@ -5635,7 +5649,7 @@ can repeat several operations with a single command.
 \item
   Explain why we should divide programs into small, single-purpose
   functions.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{Defining a Function}
 
@@ -5812,7 +5826,7 @@ won't be able to understand what's going on.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   ``Adding'' two strings produces their concatention: \texttt{'a' + 'b'}
   is \texttt{'ab'}. Write a function called \texttt{fence} that takes
@@ -5834,7 +5848,7 @@ print fence('name', '*')
 print outer('helium')
 hm
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{The Call Stack}
 
@@ -5968,7 +5982,7 @@ again, which quickly overloads our short-term memory.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   We previously wrote functions called \texttt{fence} and
   \texttt{outer}. Draw a diagram showing how the call stack changes when
@@ -5976,7 +5990,7 @@ again, which quickly overloads our short-term memory.
 \begin{verbatim}
 print outer(fence('carbon', `+'))
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Testing and Documenting}
 
@@ -6123,7 +6137,7 @@ center(data, desired)
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a function called \texttt{analyze} that takes a filename as a
   parameter and displays the three graphs produced in the
@@ -6145,7 +6159,7 @@ center(data, desired)
   \texttt{help(numpy.linspace)} to see how to use these functions to
   generate regularly-spaced values, then use those values to test your
   \texttt{rescale} function.
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Defining Defaults}
 
@@ -6391,17 +6405,17 @@ parameter in the list. That's why we don't have to provide
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Rewrite the \texttt{center} function so that it scales data to lie
   between 0.0 and 1.0 by default, but will allow the caller to specify
   lower and upper bounds if they want. Compare your implementation to
   your neighbor's: do the two functions always behave the same way?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Define a function using \texttt{def name(...params...)}.
 \item
@@ -6430,7 +6444,7 @@ parameter in the list. That's why we don't have to provide
 \item
   Parameters can be passed by matching based on name, by position, or by
   omitting them (in which case the default value is used).
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -6503,7 +6517,7 @@ we'll have to teach the computer how to repeat things.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain what a for loop does.
 \item
@@ -6521,7 +6535,7 @@ we'll have to teach the computer how to repeat things.
   wildcard pattern.
 \item
   Use a for loop to process multiple files.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{For Loops}
 
@@ -6547,7 +6561,7 @@ d
 
 but that's a bad approach for two reasons:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   It doesn't scale: if we want to print the characters in a string
   that's hundreds of letters long, we'd be better off just typing them
@@ -6556,7 +6570,7 @@ but that's a bad approach for two reasons:
   It's fragile: if we give it a longer string, it only prints part of
   the data, and if we give it a shorter one, it produces an error
   because we're asking for characters that don't exist.
-\end{enumerate}
+\end{swcenumerate}
 
 \begin{verbatim}
 print_characters('tin')
@@ -6658,7 +6672,7 @@ use it when we can.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Python has a built-in function called \texttt{range} that creates a
   list of numbers: \texttt{range(3)} produces \texttt{{[}0, 1, 2{]}},
@@ -6693,7 +6707,7 @@ notweN
 \end{verbatim}
   As always, be sure to include a
   docstring.
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Lists}
 
@@ -6779,12 +6793,12 @@ print 'odds after reversing:', odds
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a function called \texttt{total} that calculates the sum of the
   values in a list. (Python has a built-in function called \texttt{sum}
   that does this for you. Please don't use it for this exercise.)
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Processing Multiple Files}
 
@@ -6849,16 +6863,16 @@ the first, and their minima show the same staircase structure.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a function called \texttt{analyze\_all} that takes a filename
   pattern as its sole argument and runs \texttt{analyze} for each file
   whose name matches the pattern.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{for variable in collection} to process the elements of a
   collection one at a time.
@@ -6882,7 +6896,7 @@ the first, and their minima show the same staircase structure.
 \item
   Use \texttt{*} in a pattern to match zero or more characters, and
   \texttt{?} to match any single character.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -6890,13 +6904,13 @@ We have now solved our original problem: we can analyze any number of
 data files with a single command. More importantly, we have met two of
 the most important ideas in programming:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Use functions to make code easier to re-use and easier to understand.
 \item
   Use lists and arrays to store related values, and loops to repeat
   operations on them.
-\end{enumerate}
+\end{swcenumerate}
 
 We have one more big idea to introduce, and then we will be able to go
 back and create a heat map like the one we initially used to display our
@@ -6913,7 +6927,7 @@ by looking at how computers manipulate images.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Create a simple ``image'' made out of colored blocks.
 \item
@@ -6932,7 +6946,7 @@ by looking at how computers manipulate images.
 \item
   Explain the advantages of putting frequently-modified code in a
   function.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{Image Grids}
 
@@ -7092,7 +7106,7 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Fill in the \texttt{\_\_\_\_} in the code below to create a bar that
   changes color from dark blue to black.
@@ -7105,7 +7119,7 @@ bar.show()
 \end{verbatim}
 \item
   Why do computers use red, green, and blue as their primary colors?
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Conditionals}
 
@@ -7208,7 +7222,7 @@ the other but not both''.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   \texttt{True} and \texttt{False} aren't the only values in Python that
   are true and false. In fact, \emph{any} value can be used in an
@@ -7231,7 +7245,7 @@ if 1: print 'one is true'
   its first parameter is within 10\% of its second and \texttt{False}
   otherwise. Compare your implementation with your partner's: do you
   return the same answer for all possible pairs of numbers?
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Nesting}
 
@@ -7318,7 +7332,7 @@ This is our first hand-made data visualization: the colors show where
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Will changing the nesting of the loops in the code above---i.e.,
   wrapping the Y-axis loop around the X-axis loop---change the final
@@ -7339,7 +7353,7 @@ print x
   Rewrite the code that sums the positive and negative numbers in a list
   using in-place operators. Do you think the result is more or less
   readable than the original?
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Creating a Heat Map}
 
@@ -7391,7 +7405,7 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 This may be what we asked for, but both the image and the code are
 hideous:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   It's too large for us to view the whole thing at once on a small
   laptop screen.
@@ -7407,11 +7421,11 @@ hideous:
   We are calculating the mean of \texttt{data} either once or twice each
   time we go through the loop. That means that on a 40×60 data set, we
   are performing the same calculation 2400 times.
-\end{enumerate}
+\end{swcenumerate}
 
 Here's how we can improve it:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   We can give \texttt{ImageGrid} an optional parameter
   \texttt{block\_size} to set the size of each block.
@@ -7426,7 +7440,7 @@ Here's how we can improve it:
 \item
   We can calculate the mean once, before we start our loops, and use
   that value over and over.
-\end{enumerate}
+\end{swcenumerate}
 
 Our modified code looks like this:
 
@@ -7560,7 +7574,7 @@ can concentrate on our science and not on our programming.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Why did we transpose our data outside our heat map function? Why not
   have the function perform the transpose?
@@ -7580,11 +7594,11 @@ left, right = right, left
 \end{verbatim}
   Do they always do the same thing?
   Which do you find easier to read?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use the \texttt{ImageGrid} class from the \texttt{ipythonblocks}
   library to create simple ``images'' made of colored blocks.
@@ -7611,7 +7625,7 @@ left, right = right, left
 \item
   Put code whose parameters change frequently in a function, then call
   it with different parameter values to customize its behavior.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -7631,14 +7645,14 @@ the right answer as we make changes to it.
 
 To achieve that, we need to:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   write programs that check their own operation,
 \item
   write and run tests for widely-used functions, and
 \item
   make sure we know what ``correct'' actually means.
-\end{itemize}
+\end{swcitemize}
 
 The good news is, doing these things will speed up our programming, not
 slow it down. As in real carpentry---the kind done with lumber---the
@@ -7647,7 +7661,7 @@ greater than the time that measuring takes.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain what an assertion is.
 \item
@@ -7662,7 +7676,7 @@ greater than the time that measuring takes.
   rather than arbitrary constants.
 \item
   Debug code containing an error systematically.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{Assertions}
 
@@ -7704,7 +7718,7 @@ Programs like the Firefox browser are full of assertions: 10-20\% of the
 code they contain are there to check that the other 80-90\% are working
 correctly. Broadly speaking, assertions fall into three categories:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A \glossdef{g:precondition}{precondition} is something that must be
   true at the start of a function in order for it to work correctly.
@@ -7714,7 +7728,7 @@ correctly. Broadly speaking, assertions fall into three categories:
 \item
   An \glossdef{g:invariant}{invariant} is something that is always true
   at a particular point inside a piece of code.
-\end{itemize}
+\end{swcitemize}
 
 For example, suppose we are representing rectangles using a tuple of
 four coordinates \texttt{(x0, y0, x1, y1)}. In order to do some
@@ -7854,7 +7868,7 @@ the long run, and helps to warn people who are reading the code
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Suppose you are writing a function called \texttt{average} that
   calculates the average of the numbers in a list. What pre-conditions
@@ -7875,7 +7889,7 @@ def running(values):
     assert result[-1] >= result[0]
     return result
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Test-Driven Development}
 
@@ -7892,7 +7906,7 @@ include:
 
 Most novice programmers would solve this problem like this:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a function \texttt{range\_overlap}.
 \item
@@ -7900,12 +7914,12 @@ Most novice programmers would solve this problem like this:
 \item
   If it produces the wrong answer, fix the function and re-run that
   test.
-\end{enumerate}
+\end{swcenumerate}
 
 This clearly works---after all, thousands of scientists are doing it
 right now---but there's a better way:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a short function for each test.
 \item
@@ -7913,13 +7927,13 @@ right now---but there's a better way:
 \item
   If \texttt{range\_overlap} produces any wrong answers, fix it and
   re-run the test functions.
-\end{enumerate}
+\end{swcenumerate}
 
 Writing the tests \emph{before} writing the function they exercise is
 called \glossdef{g:test-driven-development}{test-driven development}
 (TDD). Its advocates believe it produces better code faster because:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   If people write tests after writing the thing to be tested, they are
   subject to confirmation bias, i.e., they subconsciously write tests to
@@ -7927,7 +7941,7 @@ called \glossdef{g:test-driven-development}{test-driven development}
 \item
   Writing tests helps programmers figure out what the function is
   actually supposed to do.
-\end{enumerate}
+\end{swcenumerate}
 
 Here are three test functions for \texttt{range\_overlap}:
 
@@ -7977,13 +7991,13 @@ all.
 Since we're planning to use the range this function returns as the X
 axis in a time series chart, we decide that:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   every overlap has to have non-zero width, and
 \item
   we will return the special value \texttt{None} when there's no
   overlap.
-\end{enumerate}
+\end{swcenumerate}
 
 \texttt{None} is built into Python, and means ``nothing here''. (Other
 languages often call the equivalent value \texttt{null} or
@@ -8069,11 +8083,11 @@ from data}''. We'll leave it as an exercise to fix
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Fix \texttt{range\_overlap}. Re-run \texttt{test\_range\_overlap}
   after each change you make.
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Debugging}
 
@@ -8102,7 +8116,7 @@ the output of the scientific code was supposed to be, we wouldn't be
 running the software: we'd be writing up our results and moving on to
 the next program. In practice, scientists tend to do the following:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   \emph{Test with simplified data.} Before doing statistics on a real
   data set, we should try calculating statistics for a single record,
@@ -8140,7 +8154,7 @@ the next program. In practice, scientists tend to do the following:
   this tutorial). This should only be used for debugging as a last
   resort, though, since it's very hard to compare two visualizations
   automatically.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Make It Fail Every Time}
 
@@ -8175,7 +8189,7 @@ As well as making the program fail fast in time, we want to make it fail
 fast in space, i.e., we want to localize the failure to the smallest
 possible region of code:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   The smaller the gap between cause and effect, the easier the
   connection is to find. Many programmers therefore use a divide and
@@ -8186,7 +8200,7 @@ possible region of code:
   N things can interact in N\textsuperscript{2/2} different ways, so
   every line of code that \emph{isn't} run as part of a test means more
   than one thing we don't need to worry about.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Change One Thing at a Time, For a Reason}
 
@@ -8266,7 +8280,7 @@ working programs, not more.
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Program defensively, i.e., assume that errors are going to arise, and
   write code to detect them when they do.
@@ -8294,7 +8308,7 @@ working programs, not more.
   Keep track of what you've done.
 \item
   Be humble.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -8339,7 +8353,7 @@ $ python readings.py --max inflammation-*.csv
 
 Our overall requirements are:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   If no filename is given on the command line, read data from
   \glossdef{g:standard-input}{standard input}.
@@ -8349,7 +8363,7 @@ Our overall requirements are:
 \item
   Use the \texttt{-{}-min}, \texttt{-{}-mean}, or \texttt{-{}-max} flag
   to determine what statistic to print.
-\end{enumerate}
+\end{swcenumerate}
 
 To make this work, we need to know how to handle command-line arguments
 in a program, and how to get at standard input. We'll tackle these
@@ -8357,7 +8371,7 @@ questions in turn below.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use the values of command-line arguments in a program.
 \item
@@ -8365,7 +8379,7 @@ questions in turn below.
 \item
   Read data from standard input in a program so that it can be used in a
   pipeline.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{Command-Line Arguments}
 
@@ -8582,7 +8596,7 @@ messages for our users.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a command-line program that does addition and subtraction:
 \begin{verbatim}
@@ -8601,7 +8615,7 @@ python arith.py 3 - 4
 python my_ls.py py
 left.py right.py zero.py
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Handling Multiple Files}
 
@@ -8697,13 +8711,13 @@ though, we need all the successive versions side by side.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a program called \texttt{check.py} that takes the names of one
   or more inflammation data files as arguments and checks that all the
   files have the same number of rows and columns. What is the best way
   to test your program?
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Handling Command-Line Flags}
 
@@ -8753,7 +8767,7 @@ This works:
 
 but there are seveal things wrong with it:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   \texttt{main} is too large to read comfortably.
 \item
@@ -8761,7 +8775,7 @@ but there are seveal things wrong with it:
   program loads each file but does nothing with it (because none of the
   branches in the conditional match). \glossdef{g:silent-failure}{Silent
   failures} like this are always hard to debug.
-\end{enumerate}
+\end{swcenumerate}
 
 This version pulls the processing of each file out of the loop into a
 function of its own. It also checks that \texttt{action} is one of the
@@ -8813,7 +8827,7 @@ that is part of Python's Official Documentation.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Rewrite this program so that it uses \texttt{-n}, \texttt{-m}, and
   \texttt{-x} instead of \texttt{-{}-min}, \texttt{-{}-mean}, and
@@ -8826,7 +8840,7 @@ that is part of Python's Official Documentation.
 \item
   Separately, modify the program so that if no action is given it
   displays the means of the data.
-\end{enumerate}
+\end{swcenumerate}
 
 \subsection{Handling Standard Input}
 
@@ -8952,24 +8966,24 @@ set out to do.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a program called \texttt{line-count.py} that works like the Unix
   \texttt{wc} command:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     If no filenames are given, it reports the number of lines in
     standard input.
   \item
     If one or more filenames are given, it reports the number of lines
     in each, followed by the total number of lines.
-  \end{itemize}
-\end{enumerate}
+   \end{swcitemize2}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   The \texttt{sys} library connects a Python program to the system it is
   running on.
@@ -8984,7 +8998,7 @@ set out to do.
 \item
   The ``file'' \texttt{sys.stdout} connects to a program's standard
   output.
-\end{itemize}
+\end{swcitemize}
 
 \chapter{Using Databases and SQL}\label{s:sql}
 
@@ -9021,7 +9035,7 @@ put this data in a database, and these lessons will show how to do that.
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain the difference between a table, a record, and a field.
 \item
@@ -9029,7 +9043,7 @@ put this data in a database, and these lessons will show how to do that.
 \item
   Write a query to select all values for specific fields from a single
   table.
-\end{itemize}
+\end{swcitemize}
 
 \subsection{A Few Definitions}
 
@@ -9278,7 +9292,7 @@ danforthFrankDanforth
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a query that selects only site names from the \texttt{Site}
   table.
@@ -9296,11 +9310,11 @@ select Personal, Family from PERSON;
 \end{verbatim}
 
   What style do you find easiest to read, and why?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A relational database stores information in tables, each of which has
   a fixed set of columns and a variable number of records.
@@ -9312,18 +9326,18 @@ select Personal, Family from PERSON;
   information from databases.
 \item
   SQL is case-insensitive.
-\end{itemize}
+\end{swcitemize}
 
 \section{Sorting and Removing Duplicates}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write queries that display results in a particular order.
 \item
   Write queries that eliminate duplicate values from data.
-\end{itemize}
+\end{swcitemize}
 
 Data is often redundant, so queries often return redundant information.
 For example, if we select the quantitites that have been measured from
@@ -9413,11 +9427,11 @@ that rows aren't actually ordered: they're just displayed that way.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a query that selects distinct dates from the \texttt{Site}
   table.
-\end{enumerate}
+\end{swcenumerate}
 
 As we mentioned earlier, database records are not stored in any
 particular order. This means that query results aren't necessarily
@@ -9518,37 +9532,37 @@ select distinct taken, person from Survey order by taken asc, person desc;
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a query that returns the distinct dates in the \texttt{Visited}
   table.
 \item
   Write a query that displays the full names of the scientists in the
   \texttt{Person} table, ordered by family name.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   The records in a database table are not intrinsically ordered: if we
   want to display them in some order, we must specify that explicitly.
 \item
   The values in a database are not guaranteed to be unique: if we want
   to eliminate duplicates, we must specify that explicitly as well.
-\end{itemize}
+\end{swcitemize}
 
 \section{Filtering}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write queries that select records that satisfy user-specified
   conditions.
 \item
   Explain the order in which the clauses in a query are executed.
-\end{itemize}
+\end{swcitemize}
 
 One of the most powerful features of a database is the ability to
 \glossdef{g:filter}{filter} data, i.e., to select only those records
@@ -9736,7 +9750,7 @@ that.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Suppose we want to select all sites that lie more than 30° from the
   poles. Our first query is:
@@ -9779,26 +9793,26 @@ select * from Site where (lat > -60) or (lat < 60);
   test. Using \texttt{like}, write a query that finds all the records in
   \texttt{Visited} that \emph{aren't} from sites labelled
   `DR-something'.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{where} to filter records according to Boolean conditions.
 \item
   Filtering is done on whole records, so conditions can use fields that
   are not actually displayed.
-\end{itemize}
+\end{swcitemize}
 
 \section{Calculating New Values}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write queries that calculate new values for each selected record.
-\end{itemize}
+\end{swcitemize}
 
 After carefully re-reading the expedition logs, we realize that the
 radiation measurements they report may need to be corrected upward by
@@ -9905,7 +9919,7 @@ enough\ldots{}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   After further reading, we realize that Valentina Roerich was reporting
   salinity as percentages. Write a query that returns all of her
@@ -9913,7 +9927,7 @@ enough\ldots{}
   divided by 100.
 \item
   The \texttt{union} operator combines the results of two queries:
-\end{enumerate}
+\end{swcenumerate}
 
 \begin{verbatim}
 %%sqlite survey.db
@@ -9951,12 +9965,12 @@ like:
 \hline
 \end{tabular}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \setcounter{enumi}{2}
 \item
   The site identifiers in the \texttt{Visited} table have two parts
   separated by a `-':
-\end{enumerate}
+\end{swcenumerate}
 
 \begin{verbatim}
 %%sqlite survey.db
@@ -9979,17 +9993,17 @@ only ``DR'' and ``MSK'').
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   SQL can perform calculations using the values in a record as part of a
   query.
-\end{itemize}
+\end{swcitemize}
 
 \section{Missing Data}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain how databases represent missing information.
 \item
@@ -9997,7 +10011,7 @@ only ``DR'' and ``MSK'').
   information.
 \item
   Write queries that handle missing information correctly.
-\end{itemize}
+\end{swcitemize}
 
 Real-world data is never complete---there are always holes. Databases
 represent these holes using special value called \texttt{null}.
@@ -10161,7 +10175,7 @@ don't know who did the work.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a query that sorts the records in \texttt{Visited} by date,
   omitting entries for which the date is not known (i.e., is null).
@@ -10181,11 +10195,11 @@ select * from Visited where dated in ('1927-02-08', null);
   salinity or radiation reading (since actual readings cannot be
   negative). What does this simplify? What burdens or risks does it
   introduce?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Databases use \texttt{null} to represent missing information.
 \item
@@ -10194,13 +10208,13 @@ select * from Visited where dated in ('1927-02-08', null);
 \item
   The only operators that can safely be used with \texttt{null} are
   \texttt{is null} and \texttt{is not null}.
-\end{itemize}
+\end{swcitemize}
 
 \section{Aggregation}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Define ``aggregation'' and give examples of its use.
 \item
@@ -10209,7 +10223,7 @@ select * from Visited where dated in ('1927-02-08', null);
   Trace the execution of a query that performs aggregation.
 \item
   Explain how missing data is handled during aggregation.
-\end{itemize}
+\end{swcitemize}
 
 We now want to calculate ranges and averages for our data. We know how
 to select all of the dates from the \texttt{Visited} table:
@@ -10481,7 +10495,7 @@ roesal232.05
 
 Looking more closely, this query:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   selected records from the \texttt{Survey} table where the
   \texttt{person} field was not null;
@@ -10496,11 +10510,11 @@ Looking more closely, this query:
   \texttt{reading} in each, and chose a \texttt{person} and
   \texttt{quant} value from each (it doesn't matter which ones, since
   they're all equal).
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   How many temperature readings did Frank Pabodie record, and what was
   their average value?
@@ -10529,11 +10543,11 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 \end{verbatim}
 
   Can you find a way to order the list by surname?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   An aggregation function combines many values to produce a single new
   value.
@@ -10541,13 +10555,13 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
   Aggregation functions ignore \texttt{null} values.
 \item
   Aggregation happens after filtering.
-\end{itemize}
+\end{swcitemize}
 
 \section{Combining Data}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain the operation of a query that joins two tables.
 \item
@@ -10560,7 +10574,7 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 \item
   Explain what atomic values are, and why database fields should only
   contain atomic values.
-\end{itemize}
+\end{swcitemize}
 
 In order to submit her data to a web site that aggregates historical
 meteorological data, Gina needs to format it as latitude, longitude,
@@ -10813,7 +10827,7 @@ tool.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a query that lists all radiation readings from the DR-1 site.
 \item
@@ -10825,11 +10839,11 @@ tool.
 select Site.name from Site join Visited
 on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
 \end{verbatim}
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Every fact should be represented in a database exactly once.
 \item
@@ -10846,18 +10860,18 @@ on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
   primary keys and foreign keys between tables.
 \item
   Keys should be atomic values to make joins simpler and more efficient.
-\end{itemize}
+\end{swcitemize}
 
 \section{Creating and Modifying Data}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write queries that creates tables.
 \item
   Write queries to insert, modify, and delete records.
-\end{itemize}
+\end{swcitemize}
 
 So far we have only looked at how to get information out of a database,
 both because that is more frequent than adding information, and because
@@ -10985,7 +10999,7 @@ the MP3 files, but the files themselves live on disk.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write an SQL statement to replace all uses of \texttt{null} in
   \texttt{Survey.person} with the string \texttt{'unknown'}.
@@ -11014,11 +11028,11 @@ Taken,Temp
   version control is a good way to track and manage changes to the
   database. What are the pros and cons of this approach? (Hint: records
   aren't stored in any particular order.)
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Database tables are created using queries that specify their names and
   the names and properties of their fields.
@@ -11027,13 +11041,13 @@ Taken,Temp
 \item
   It is simpler and safer to modify data when every record has a unique
   primary key.
-\end{itemize}
+\end{swcitemize}
 
 \section{Programming with Databases}
 
 \mbox{}\paragraph{Objectives}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Write short programs that execute SQL queries.
 \item
@@ -11041,7 +11055,7 @@ Taken,Temp
 \item
   Explain why most database applications are written in a
   general-purpose language rather than in SQL.
-\end{itemize}
+\end{swcitemize}
 
 To close, let's have a look at how to access a database from a
 general-purpose programming language like Python. Other languages use
@@ -11188,7 +11202,7 @@ values into their escaped equivalents so that they are safe to use.
 
 \mbox{}\paragraph{Challenges}
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   Write a Python program that creates a new database in a file called
   \texttt{original.db} containing a single table called
@@ -11202,11 +11216,11 @@ values into their escaped equivalents so that they are safe to use.
   copies all the values greater than 20.0 from \texttt{original.db} to
   \texttt{backup.db}. Which is faster: filtering values in the query, or
   reading everything into memory and filtering in Python?
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Key Points}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   We usually write database applications in a general-purpose language,
   and embed SQL queries in it.
@@ -11218,7 +11232,7 @@ values into their escaped equivalents so that they are safe to use.
   have one or more cursors active in each.
 \item
   Programs can read query results in batches or all at once.
-\end{itemize}
+\end{swcitemize}
 
 \chapter{A Few Extras}\label{s:extras}
 
@@ -11562,7 +11576,7 @@ every change they want to make, then merge those branches back to
 \texttt{master} when the work is complete. Returning to our hypothetical
 example, we would:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   create a branch called something like
   \texttt{better-spatial-correlation} for those changes;
@@ -11577,7 +11591,7 @@ example, we would:
 \item
   finish work on the spatial correlation function and merge it all back
   into \texttt{master}.
-\end{enumerate}
+\end{swcenumerate}
 
 And if, partway through this process, our supervisor asked us to change
 the graph-plotting routines to conform to the university's new style
@@ -11726,7 +11740,7 @@ the letter `h' to get help, or the letter `q' to quit.
 designed to be used as a reference rather than a tutorial. Most man
 pages are divided into sections:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   NAME: gives the name of the command and a brief description
 \item
@@ -11741,7 +11755,7 @@ pages are divided into sections:
 \item
   SEE ALSO: list other commands that we might find useful or other
   sources of information that might help us.
-\end{itemize}
+\end{swcitemize}
 
 Other sections we might see include AUTHOR, REPORTING BUGS, COPYRIGHT,
 HISTORY, (known) BUGS, and COMPATIBILITY.
@@ -11918,7 +11932,7 @@ no
 
 it would mean that:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   the file's owner can read and write it, but not run it;
 \item
@@ -11926,7 +11940,7 @@ it would mean that:
   it; and
 \item
   everybody else can do nothing with it at all.
-\end{itemize}
+\end{swcitemize}
 
 Let's look at this model in action. If we \texttt{cd} into the
 \texttt{labs} directory and run \texttt{ls -F}, it puts a \texttt{*} at
@@ -13086,7 +13100,7 @@ wiki page}.
 
 \mbox{}\paragraph{Teaching Notes}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   For bootcamps that extend over more than two days (e.g., four
   afternoons spread over two weeks), it's a good idea to email the
@@ -13202,7 +13216,7 @@ wiki page}.
   There are (at least) three ways to get data files to learners at the
   start of a lesson:
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     Create a zip file, add it to your bootcamp's repository, and put a
     link to it in your bootcamp's \texttt{index.html} page so that they
@@ -13219,7 +13233,7 @@ wiki page}.
     Paste the data into an Etherpad for learners to copy. As a bonus,
     this lets you identify people who (are going to) have trouble using
     a text editor early.
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   If you are using multiple windows (e.g., a command window and an
   editor window) make sure they are both large enough to be visible by
@@ -13232,7 +13246,7 @@ wiki page}.
   As you type at the command line, read out what you're typing. Remember
   that most learners can only go half as fast as you, because they have
   to watch you type then type it all in again themselves.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Pitfalls}
 
@@ -13372,7 +13386,7 @@ joined'' is the same.
 All of this material can be covered in three hours as long as learners
 using Windows do not run into roadblocks such as:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   not being able to figure out where their home directory is
   (particularly if they're using Cygwin);
@@ -13380,11 +13394,11 @@ using Windows do not run into roadblocks such as:
   not being able to run a plain text editor; and
 \item
   the shell refusing to run scripts that include DOS line endings.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Teaching Notes}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Have learners open a shell and then do \texttt{whoami}, \texttt{pwd},
   and \texttt{ls}. Then have them create a directory called
@@ -13444,7 +13458,7 @@ $ cd Desktop
   will always put someone on their desktop. Have them create the example
   directory for the shell exercises there so that they can find it
   easily and watch it evolve.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Windows}
 
@@ -13453,7 +13467,7 @@ involves some fiddling and frustration. Please see the latest set of
 installation guidelines for advice, and try it out yourself
 \emph{before} teaching a class. Options we have explored include:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   \urlfoot{http://msysgit.github.io/}{msysGit} (also called ``Git Bash''),
 \item
@@ -13463,7 +13477,7 @@ installation guidelines for advice, and try it out yourself
 \item
   having learners connect to a remote Unix machine (typically a VM in
   the cloud).
-\end{enumerate}
+\end{swcenumerate}
 
 Cygwin was the preferred option until mid-2013, but once we started
 teaching Git, msysGit proved to work better. Desktop virtual machines
@@ -13471,7 +13485,7 @@ and cloud-based VMs work well for technically sophisticated learners,
 and can reduce installation and configuration at the start of the
 bootcamp, but:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   they don't work well on underpowered machines,
 \item
@@ -13483,7 +13497,7 @@ bootcamp, but:
 \item
   learners may show up without having downloaded the VM or the wireless
   will go down (or become congested) during the lesson.
-\end{enumerate}
+\end{swcenumerate}
 
 Whatever you use, please \emph{test it yourself} on a Windows machine
 \emph{before} your bootcamp: things may always have changed behind your
@@ -13504,18 +13518,18 @@ someone who is new to the idea of version control. This is also why we
 don't get into hashes and commit objects with novices, but try instead
 to convince them that version control is:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   a better backup system;
 \item
   a better Dropbox; and
 \item
   a better way to collaborate than mailing files back and forth.
-\end{enumerate}
+\end{swcenumerate}
 
 We close with material on licensing because:
 
-\begin{enumerate}
+\begin{swcenumerate}
 \item
   questions about who owns what, or can use what, arise naturally once
   we start talking about using public services like GitHub to store
@@ -13523,11 +13537,11 @@ We close with material on licensing because:
 \item
   the discussion gives learners a chance to catch their breath after
   what is often a frustrating couple of hours.
-\end{enumerate}
+\end{swcenumerate}
 
 \mbox{}\paragraph{Teaching Notes}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Make sure the network is working \emph{before} starting this lesson.
 \item
@@ -13581,14 +13595,14 @@ We close with material on licensing because:
   Subversion, or Mercurial primarily because of GitHub's growing
   popularity: CVS and Subversion are now seen as legacy systems, and
   Mercurial isn't nearly as widely used in the sciences right now.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Text Editor}
 
 We suggest instructors and students use \texttt{nano} as the text editor
 for this lessons because:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   it runs in all three major operating systems,
 \item
@@ -13596,7 +13610,7 @@ for this lessons because:
   students), and
 \item
   it has shortcut help at the bottom of the window.
-\end{itemize}
+\end{swcitemize}
 
 Please point out to students during setup that they can and should use
 another text editor if they're already familiar with it. Below you will
@@ -13649,11 +13663,11 @@ crucial they realize this is a difference of scale rather than kind.
 
 \mbox{}\paragraph{Teaching Notes}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Explain that we use Python because:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     It's free.
   \item
@@ -13667,14 +13681,14 @@ crucial they realize this is a difference of scale rather than kind.
     switched, we found that we could cover as much material in two days
     in Python as we'd covered in three days in Perl, and that retention
     was higher.)
-  \end{itemize}
+   \end{swcitemize2}
 \item
   We do \emph{not} include instructions on running the IPython Notebook
   in the tutorial because we want to focus on the language rather than
   the tools. Instructors should, however, walk learners through some
   basic operations:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     Launch from the command line with \texttt{ipython notebook}.
   \item
@@ -13684,7 +13698,7 @@ crucial they realize this is a difference of scale rather than kind.
   \item
     Explain the difference between \texttt{In{[}\#{]}} and
     \texttt{Out{[}\#{]}}.
-  \end{itemize}
+   \end{swcitemize2}
 \item
   Watching the instructor grow programs step by step is as helpful to
   learners as anything to do with Python. Resist the urge to update a
@@ -13706,7 +13720,7 @@ ipython notebook --pylab [backend]
 
   The \texttt{-{}-pylab} option has been deprecated for a long time, and
   is being removed soon.
-\end{itemize}
+\end{swcitemize}
 
 \section{Using Databases and SQL}
 
@@ -13720,7 +13734,7 @@ find what they want to.
 
 \mbox{}\paragraph{Teaching Notes}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   The first few sections (up to ``Missing Data'') usually go very
   quickly. The pace usually slows down a bit when null values are
@@ -13751,7 +13765,7 @@ find what they want to.
   don't use the relational model) are the next big thing, and ask why
   we're not teaching those. The answers are:
 
-  \begin{enumerate}
+  \begin{swcenumerate2}
   \item
     Relational databases are far more widely used than NoSQL databases.
   \item
@@ -13762,11 +13776,11 @@ find what they want to.
     NoSQL databases are as different from each other as they are from
     relational databases. Until a leader emerges, it isn't clear
     \emph{which} NoSQL database we should teach.
-  \end{enumerate}
+  \end{swcenumerate2}
 \item
   Run \texttt{sqlite3 survey.db \textless{} gen-survey-database.sql} to
   re-create survey database before loading notebooks.
-\end{itemize}
+\end{swcitemize}
 
 \chapter{Reference}\label{s:reference}
 
@@ -13777,7 +13791,7 @@ in our lessons.
 
 \mbox{}\paragraph{Basic Commands}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{cat} displays the contents of its inputs.
 \item
@@ -13816,11 +13830,11 @@ in our lessons.
   \texttt{wc} counts lines, words, and characters in its inputs.
 \item
   \texttt{whoami} shows the user's current identity.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Paths}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{/path/from/root} is an absolute path.
 \item
@@ -13835,11 +13849,11 @@ in our lessons.
 \item
   \texttt{?} matches any single character in a filename, so
   \texttt{?.txt} matches \texttt{a.txt} but not \texttt{any.txt}.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Combining Commands}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{command \textgreater{} file} redirects a command's output to a
   file.
@@ -13870,7 +13884,7 @@ done
   parameters.
 \item
   \texttt{\$(command)} inserts a command's output in place.
-\end{itemize}
+\end{swcitemize}
 
 \section{Git Reference}
 
@@ -14027,7 +14041,7 @@ lines from remote file
 
 \mbox{}\paragraph{Basic Operations}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Use \texttt{variable = value} to assign a value to a variable.
 \item
@@ -14046,11 +14060,11 @@ lines from remote file
   \texttt{{[}value1, value2, value3, ...{]}} creates a list.
 \item
   \texttt{list\_name{[}i{]}} selects the i'th value from a list.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Control Flow}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Create a \texttt{for} loop to process elements in a collection one at
   a time:
@@ -14080,11 +14094,11 @@ else:
 \item
   Use \texttt{assert condition, message} to check that something is true
   when the program is running.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Functions}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{def name(...params...)} defines a new function.
 \item
@@ -14092,31 +14106,31 @@ else:
   parameter.
 \item
   Call a function using \texttt{name(...values...)}.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Libraries}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Import a library into a program using \texttt{import libraryname}.
 \item
   The \texttt{sys} library contains:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     \texttt{sys.argv}: the command-line arguments a program was run
     with.
   \item
     \texttt{sys.stdin}, \texttt{sys.stdout}: standard input and output.
-  \end{itemize}
+   \end{swcitemize2}
 \item
   \texttt{glob.glob(pattern)} returns a list of files whose names match
   a pattern.
-\end{itemize}
+\end{swcitemize}
 
 \mbox{}\paragraph{Arrays}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \texttt{import numpy} to load the NumPy library.
 \item
@@ -14132,7 +14146,7 @@ else:
 \item
   \texttt{array.mean(axis=0)} calculates statistics across the specified
   axis.
-\end{itemize}
+\end{swcitemize}
 
 \section{SQL Reference}
 
@@ -14255,7 +14269,7 @@ CREATE TABLE survey(
 
 Execute queries in a general-purpose programming language by:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   loading the appropriate library
 \item
@@ -14265,17 +14279,17 @@ Execute queries in a general-purpose programming language by:
 \item
   repeatedly:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     execute a query
   \item
     fetch some or all results
-  \end{itemize}
+   \end{swcitemize2}
 \item
   disposing of the cursor
 \item
   closing the connection
-\end{itemize}
+\end{swcitemize}
 
 Python example:
 
@@ -14294,7 +14308,7 @@ connection.close()
 
 \section{Papers}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Susan A. Ambrose, Michael W. Bridges, Michele DiPietro, Marsha C.
   Lovett, and Marie K. Norman:
@@ -14344,11 +14358,11 @@ connection.close()
   Greg Wilson: ``Software Carpentry: Lessons Learned''. arXiv pre-print,
   submitted July 20, 2013. \\ Describes what we've learned about how to
   teach programming to scientists over the last 15 years.
-\end{itemize}
+\end{swcitemize}
 
 \section{Books}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   Chris Fehily: \emph{SQL: Visual QuickStart Guide} (3rd ed). Peachpit
   Press, 0321553578, 2002. \\ Describes the 5\% of SQL that covers 95\%
@@ -14376,7 +14390,7 @@ connection.close()
   Deborah S. Ray and Eric J. Ray: \emph{Unix and Linux: Visual
   QuickStart Guide}. Peachpit Press, 0321636783, 2009. \\ A gentle
   introduction to Unix, with many examples.
-\end{itemize}
+\end{swcitemize}
 
 \chapter{Glossary}\label{s:gloss}
 
@@ -14834,7 +14848,7 @@ shell, the wildcard ``*'' matches zero or more characters, so that
 
 \chapter{The Rules}\label{s:rules}
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   A week of hard work can sometimes save you an hour of thought.
 \item
@@ -14861,7 +14875,7 @@ shell, the wildcard ``*'' matches zero or more characters, so that
   Be humble.
 \item
   Throw low, catch high.
-\end{itemize}
+\end{swcitemize}
 
 \chapter{Licenses}\label{s:license}
 
@@ -14870,26 +14884,26 @@ shell, the wildcard ``*'' matches zero or more characters, so that
 All Software Carpentry instructional material is made available under
 the Creative Commons Attribution license. You are free:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   to \textbf{Share}---to copy, distribute and transmit the work
 \item
   to \textbf{Remix}---to adapt the work
-\end{itemize}
+\end{swcitemize}
 
 Under the following conditions:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \textbf{Attribution}---You must attribute the work using ``Copyright
   (c) Software Carpentry'' (but not in any way that suggests that we
   endorse you or your use of the work). Where practical, you must also
   include a hyperlink to http://software-carpentry.org.
-\end{itemize}
+\end{swcitemize}
 
 With the understanding that:
 
-\begin{itemize}
+\begin{swcitemize}
 \item
   \textbf{Waiver}---Any of the above conditions can be waived if you get
   permission from the copyright holder.
@@ -14897,7 +14911,7 @@ With the understanding that:
   \textbf{Other Rights}---In no way are any of the following rights
   affected by the license:
 
-  \begin{itemize}
+  \begin{swcitemize2}
   \item
     Your fair dealing or fair use rights;
   \item
@@ -14905,13 +14919,13 @@ With the understanding that:
   \item
     Rights other persons may have either in the work itself or in how
     the work is used, such as publicity or privacy rights. *
-  \end{itemize}
+   \end{swcitemize2}
 \item
   \textbf{Notice}---For any reuse or distribution, you must make clear
   to others the license terms of this work. The best way to do this is
   with a link to
   \urlfoot{http://creativecommons.org/licenses/by/3.0/}{http://creativecommons.org/licenses/by/3.0/}.
-\end{itemize}
+\end{swcitemize}
 
 For the full legal text of this license, please see
 \urlfoot{http://creativecommons.org/licenses/by/3.0/legalcode}{http://creativecommons.org/licenses/by/3.0/legalcode}.

@@ -1,0 +1,78 @@
+% define headers (empty) and footers
+% fiddle with chaptermark so we can make it not all caps
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+
+% next get rid of existing header and footer and header rule
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+% now make the footer the way we want it:
+% page number on right side of footer for odd pages 
+\rfoot[]{\small{\textsf{\thepage}}}
+\fancyhfoffset[EL]{0cm} % this looks like it doesn't do anything, but
+                        % it seems to remind it to line up headers with the
+                        % rest of the text
+
+% page number and chapter name on left side of footer for even pages 
+\lfoot[\small{\textsf{\thepage \hspace{0.25cm} \leftmark}}]{}
+
+% make plain pages have no headers or footers
+\fancypagestyle{plain}{\fancyhf{}}
+
+% set all section headers to be sans serif
+\allsectionsfont{\normalfont\sffamily}
+
+% format the table of contents
+\renewcommand{\cftchapfont}{\sffamily}     % set TOC entries to sserif
+\renewcommand{\cftchappagefont}{\sffamily} % set TOC page numbers to sserif
+
+% make all verbatim (code blocks) text smaller, just because it was bugging me
+\let\oldverbatim\verbatim
+\renewcommand\verbatim{\small\oldverbatim}
+
+
+% format title of TOC: make sure this matches chapter head format as set below
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\sffamily} 
+
+\setcounter{tocdepth}{0} % sets what level of header is shown in the TOC
+\setcounter{secnumdepth}{1} % sets what level of subsect. are numbered
+
+% introduce penalty for widows and orphans (can increase to 10 000, although
+% not recommended)
+% upped the widow/orphan penalty to 600 from 300; seems to have removed
+% all widows and orphans -- ARB Mar 30 2012
+\widowpenalty=600
+\clubpenalty=600
+
+\newenvironment{swcdescription}
+{\begin{description}[itemsep=-0.1ex,parsep=0.3ex,topsep=0.2ex,leftmargin=10mm]}
+{\end{description}}
+
+\newenvironment{swcenumerate}
+{\begin{enumerate}[itemsep=-0.8ex,topsep=0.2ex,leftmargin=10mm]}
+{\end{enumerate}}
+
+% new environment for second-level nested enumerated lists
+\newenvironment{swcenumerate2}
+{\begin{enumerate}[itemsep=-0.7ex,topsep=-1ex,leftmargin=10mm]}
+{\end{enumerate}}
+
+\newenvironment{swcitemize}
+{\begin{itemize}[itemsep=-0.8ex,topsep=0.2ex,leftmargin=8.5mm]}
+{\end{itemize}}
+
+% new environment for second-level nested itemized lists
+\newenvironment{swcitemize2}
+{\begin{itemize}[itemsep=-0.5ex,topsep=-1ex,leftmargin=9mm]}
+{\end{itemize}}
+
+%% Make the space above and below captions smaller
+\setlength{\abovecaptionskip}{1.2ex}
+\setlength{\belowcaptionskip}{-1.5ex}
+
+\newcommand{\urlfoot}[2]{{#1}\footnote{#2}}
+\newcommand{\glossdef}[2]{\emph{#2}}
+
+\raggedbottom
