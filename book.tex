@@ -1,10 +1,10 @@
 \documentclass[]{book}
 \usepackage{graphicx}
 \title{Software Carpentry\\Volume 1: Basics}
-\editor{Greg Wilson}
+\author{edited by Greg Wilson}
 \date{2014}
 \newcommand{\urlfoot}[2]{{#1}\footnote{#2}}
-\newcommand{\gdef}[2]{\emph{#2}}
+\newcommand{\glossdef}[2]{\emph{#2}}
 \begin{document}
 \chapter{Introduction}\label{introduction}
 
@@ -154,12 +154,12 @@ Special thanks go to Brent Gorda, who helped build and teach the first
 version of this course.
 
 This book is dedicated to
-\urlfoot{http://en.wikipedia.org/wiki/Jean_Bartik}{Betty Jennings},
-\urlfoot{http://en.wikipedia.org/wiki/Betty_Holberton}{Betty Snyder},
-\urlfoot{http://en.wikipedia.org/wiki/Frances_Spence}{Fran Bilas},
-\urlfoot{http://en.wikipedia.org/wiki/Kathleen_Antonelli}{Kay McNulty},
-\urlfoot{http://en.wikipedia.org/wiki/Marlyn_Meltzer}{Marlyn Wescoff}, and
-\urlfoot{http://en.wikipedia.org/wiki/Ruth_Teitelbaum}{Ruth Lichterman}, \\
+\urlfoot{http://en.wikipedia.org/wiki/Jean\_Bartik}{Betty Jennings},
+\urlfoot{http://en.wikipedia.org/wiki/Betty\_Holberton}{Betty Snyder},
+\urlfoot{http://en.wikipedia.org/wiki/Frances\_Spence}{Fran Bilas},
+\urlfoot{http://en.wikipedia.org/wiki/Kathleen\_Antonelli}{Kay McNulty},
+\urlfoot{http://en.wikipedia.org/wiki/Marlyn\_Meltzer}{Marlyn Wescoff}, and
+\urlfoot{http://en.wikipedia.org/wiki/Ruth\_Teitelbaum}{Ruth Lichterman}, \\
 the original programmers of the
 \urlfoot{http://en.wikipedia.org/wiki/ENIAC}{ENIAC}.
 
@@ -169,7 +169,7 @@ Many thanks to all of the people who have contributed to Software
 Carpentry over the years.
 
 \begin{small}
-\begin{table}{lll}
+\begin{tabular}{lll}
 Nasser Mohieddin Abukhdeir & Joshua Adelman & Aron Ahmadia \\
 Joshua Ainsley & Carlos Anderson & Mario Antonioletti \\
 Feth Arezki & Dhavide Aruliah & Pauline Barmby \\
@@ -189,7 +189,7 @@ Jonah Duckles & Jonathan Dursi & Curtis Dyreson \\
 Stephen J.\ Eglen & Justin Ely & Dethe Elza \\
 Remi Emonet & Richard Enbody & Julia Evans \\
 Milad Fatenejad & Luis Figueira & Mike Fletcher \\
-Fernanda Foertter & Patrick Fuller & Julian Garcia & Laurent Gatto \\
+Patrick Fuller & Julian Garcia & Laurent Gatto \\
 Molly Gibson & Matt Gidden & Ivan Gonzalez \\
 Alexandre Gramfort & Chris Gray & Julia Gustavsen \\
 Tommy Guy & Steven Haddock & Michael Hansen \\
@@ -209,27 +209,28 @@ Kyle Mandli & David Martin & Dan McGlinn \\
 Steve McGough & Jessica McKellar & Tim McNamara \\
 Emily Jane McTavish & Aronne Merrelli & Lauren Michael \\
 Ian Mitchell & Ben Morris & James Morrison \\
-R.\ David Murray & Sri Hari Krishna Narayanan & Lex Nederbragt & Victor Ng \\
-Charlene Nielsen & Danielle Nielsen & Randy Olson \\
-Geoff Oxberry & Aleksandra Pawlik & Jason Pell \\
-Fernando Perez & Hans Petter Langtangen & Caitlyn Pickens \\
-Bill Punch & Karthik Ram & David Rio Deiros \\
-Ariel Rokem & Jorden Schossau & Anthony Scopatz \\
-Michael Selik & Chang She & Jeffrey Shelton \\
-Raniere Silva & Gavin Simpson & Andrew Smith \\
-Joshua Ryan Smith & Jon Speicher & Adam Stark \\
-Becky Stewart & Shoaib Sufi & Sarah Supp \\
-Leszek Tarkowski & Tracy Teal & Andy Terrel \\
-Matt Terry & Samuel Thomson & Joan Touzet \\
-Laura Tremblay-Boyer & Will Trimble & Jacob Vanderplas \\
-Gael Varoquaux & Nelle Varoquaux & Alex Viana \\
-Jens von der Linden & Dominique Vuvan & David Warde-Farley \\
-Ben Waugh & Eric Weinstein & Ethan White \\
-Rick White & Amanda Whitlock & Lynne Williams \\
-Greg Wilson & Paul Wilson & Sasha Wood \\
-Christopher Woods & April Wright & Andromeda Yelton \\
-Enas Yunis & Qingpeng Zhang & Naupaka Zimmerman
-\end{table}
+R.\ David Murray & Sri Hari Krishna Narayanan & Lex Nederbragt \\
+Victor Ng & Charlene Nielsen & Danielle Nielsen \\
+Randy Olson & Geoff Oxberry & Aleksandra Pawlik \\
+Jason Pell & Fernando Perez & Hans Petter Langtangen \\
+Caitlyn Pickens & Bill Punch & Karthik Ram \\
+David Rio Deiros & Ariel Rokem & Jorden Schossau \\
+Anthony Scopatz & Michael Selik & Chang She \\
+Jeffrey Shelton & Raniere Silva & Gavin Simpson \\
+Andrew Smith & Joshua Ryan Smith & Jon Speicher \\
+Adam Stark & Becky Stewart & Shoaib Sufi \\
+Sarah Supp & Leszek Tarkowski & Tracy Teal \\
+Andy Terrel & Matt Terry & Samuel Thomson \\
+Joan Touzet & Laura Tremblay-Boyer & Will Trimble \\
+Jacob Vanderplas & Gael Varoquaux & Nelle Varoquaux \\
+Alex Viana & Jens von der Linden & Dominique Vuvan \\
+David Warde-Farley & Ben Waugh & Eric Weinstein \\
+Ethan White & Rick White & Amanda Whitlock \\
+Lynne Williams & Greg Wilson & Paul Wilson \\
+Sasha Wood & Christopher Woods & April Wright \\
+Andromeda Yelton & Enas Yunis & Qingpeng Zhang \\
+Naupaka Zimmerman & & \\
+\end{tabular}
 \end{small}
 
 \chapter{The Unix Shell}\label{the-unix-shell}
@@ -256,9 +257,9 @@ things over and over again.
 
 Nelle Nemo, a marine biologist, has just returned from a six-month
 survey of the
-\urlfoot{http://en.wikipedia.org/wiki/North_Pacific_Gyre}{North Pacific
+\urlfoot{http://en.wikipedia.org/wiki/North\_Pacific\_Gyre}{North Pacific
 Gyre}, where she has been sampling gelatinous marine life in the
-\urlfoot{http://en.wikipedia.org/wiki/Great_Pacific_Garbage_Patch}{Great
+\urlfoot{http://en.wikipedia.org/wiki/Great\_Pacific\_Garbage\_Patch}{Great
 Pacific Garbage Patch}. She has 300 samples in all, and now needs to:
 
 \begin{enumerate}
@@ -318,8 +319,8 @@ brain-computer links and speech interfaces. Since these are still in
 their infancy, most of us use windows, icons, mice, and pointers. These
 technologies didn't become widespread until the 1980s, but their roots
 go back to Doug Engelbart's work in the 1960s, which you can see in what
-has been called "\urlfoot{http://www.youtube.com/watch?v=a11JDLBXtPQ}{The
-Mother of All Demos}".
+has been called ``\urlfoot{http://www.youtube.com/watch?v=a11JDLBXtPQ}{The
+Mother of All Demos}''.
 
 Going back even further, the only way to interact with early computers
 was to rewire them. But in between, from the 1950s to the 1980s, most
@@ -328,10 +329,10 @@ of the letters, numbers, and punctuation found on a standard keyboard,
 so programming languages and interfaces had to be designed around that
 constraint.
 
-This kind of interface is called a \gdef{g:cli}{command-line
+This kind of interface is called a \glossdef{g:cli}{command-line
 interface}, or CLI, to distinguish it from the
-\gdef{g:gui}{graphical user interface}, or GUI, that most people now
-use. The heart of a CLI is a \gdef{g:repl}{read-evaluate-print
+\glossdef{g:gui}{graphical user interface}, or GUI, that most people now
+use. The heart of a CLI is a \glossdef{g:repl}{read-evaluate-print
 loop}, or REPL: when the user types a command and then presses the enter
 (or return) key, the computer reads it, executes it, and prints its
 output. The user then types another command, and so on until the user
@@ -340,7 +341,7 @@ logs off.
 This description makes it sound as though the user sends commands
 directly to the computer, and the computer sends output directly to the
 user. In fact, there is usually a program in between called a
-\gdef{g:shell}{command shell}. What the user types goes into the
+\glossdef{g:shell}{command shell}. What the user types goes into the
 shell; it figures out what commands to run and orders the computer to
 execute them.
 
@@ -401,7 +402,7 @@ to drive them is becoming a necessary skill.
 \end{itemize}
 
 The part of the operating system responsible for managing files and
-directories is called the \gdef{g:filesystem}{file system}. It
+directories is called the \glossdef{g:filesystem}{file system}. It
 organizes our data into files, which hold information, and directories
 (also called ``folders''), which hold files or other directories.
 
@@ -413,7 +414,7 @@ shell window:
 $
 \end{verbatim}
 
-The dollar sign is a \gdef{g:prompt}{prompt}, which shows us that
+The dollar sign is a \glossdef{g:prompt}{prompt}, which shows us that
 the shell is waiting for input; your shell may show something more
 elaborate.
 
@@ -445,11 +446,11 @@ More specifically, when we type \texttt{whoami} the shell:
 
 Next, let's find out where we are by running a command called
 \texttt{pwd} (which stands for ``print working directory''). At any
-moment, our \gdef{g:current-working-directory}{current working
+moment, our \glossdef{g:current-working-directory}{current working
 directory} is our current default directory, i.e., the directory that
 the computer assumes we want to run commands in unless we explicitly
 specify something else. Here, the computer's response is
-\texttt{/users/vlad}, which is Vlad's \gdef{g:home-directory}{home
+\texttt{/users/vlad}, which is Vlad's \glossdef{g:home-directory}{home
 directory}:
 
 \begin{verbatim}
@@ -477,7 +478,7 @@ uv Inglish speling, but we're stuck with it now.
 
 To understand what a ``home directory'' is, let's have a look at how the
 file system as a whole is organized. At the top is the
-\gdef{g:root-directory}{root directory} that holds everything else.
+\glossdef{g:root-directory}{root directory} that holds everything else.
 We refer to it using a slash character \texttt{/} on its own; this is
 the leading slash in \texttt{/users/vlad}.
 
@@ -526,7 +527,7 @@ solar.pdf    swc
 \texttt{ls} prints the names of the files and directories in the current
 directory in alphabetical order, arranged neatly into columns. We can
 make its output more comprehensible by using the
-\gdef{g:command-line-flag}{flag} \texttt{-F}, which tells
+\glossdef{g:command-line-flag}{flag} \texttt{-F}, which tells
 \texttt{ls} to add a trailing \texttt{/} to the names of directories:
 
 \begin{verbatim}
@@ -540,7 +541,7 @@ solar.pdf    swc/
 \end{verbatim}
 
 Here, we can see that \texttt{/users/vlad} contains seven
-\gdef{g:sub-directory}{sub-directories}. The names that don't have
+\glossdef{g:sub-directory}{sub-directories}. The names that don't have
 trailing slashes, like \texttt{notes.txt}, \texttt{pizza.cfg}, and
 \texttt{solar.pdf}, are plain old files. And note that there is a space
 between \texttt{ls} and \texttt{-F}: without it, the shell thinks we're
@@ -554,7 +555,7 @@ something''. This is just a convention: we can call a file
 \texttt{mythesis} or almost anything else we want. However, most people
 use two-part names most of the time to help them (and their programs)
 tell different kinds of files apart. The second part of such a name is
-called the \gdef{g:filename-extension}{filename extension}, and
+called the \glossdef{g:filename-extension}{filename extension}, and
 indicates what type of data the file holds: \texttt{.txt} signals a
 plain text file, \texttt{.pdf} indicates a PDF document, \texttt{.cfg}
 is a configuration file full of parameters for some program or other,
@@ -595,13 +596,13 @@ Notice, by the way that we spelled the directory name \texttt{data}. It
 doesn't have a trailing slash: that's added to directory names by
 \texttt{ls} when we use the \texttt{-F} flag to help us tell things
 apart. And it doesn't begin with a slash because it's a
-\gdef{g:relative-path}{relative path}, i.e., it tells \texttt{ls}
+\glossdef{g:relative-path}{relative path}, i.e., it tells \texttt{ls}
 how to find something from where we are, rather than from the root of
 the file system.
 
 If we run \texttt{ls -F /data} (\emph{with} a leading slash) we get a
 different answer, because \texttt{/data} is an
-\gdef{g:absolute-path}{absolute path}:
+\glossdef{g:absolute-path}{absolute path}:
 
 \begin{verbatim}
 $ ls -F /data
@@ -692,7 +693,7 @@ $ cd ..
 
 \texttt{..} is a special directory name meaning ``the directory
 containing this one'', or more succinctly, the
-\gdef{g:parent-directory}{parent} of the current directory. Sure
+\glossdef{g:parent-directory}{parent} of the current directory. Sure
 enough, if we run \texttt{pwd} after running \texttt{cd ..}, we're back
 in \texttt{/users/vlad}:
 
@@ -734,7 +735,7 @@ The special names \texttt{.} and \texttt{..} don't belong to
 example, if we are in \texttt{/users/vlad/data}, the command
 \texttt{ls ..} will give us a listing of \texttt{/users/vlad}. When the
 meanings of the parts are the same no matter how they're combined,
-programmers say they are \gdef{g:orthogonal}{orthogonal}: Orthogonal
+programmers say they are \glossdef{g:orthogonal}{orthogonal}: Orthogonal
 systems tend to be easier for people to learn because there are fewer
 special cases and exceptions to keep track of.
 \end{quote}
@@ -793,7 +794,7 @@ If she presses tab again, Bash will add \texttt{2012-07-03/} to the
 command, since it's the only possible completion. Pressing tab again
 does nothing, since there are 1520 possibilities; pressing tab twice
 brings up a list of all the files, and so on. This is called
-\gdef{g:tab-completion}{tab completion}, and we will see it in many
+\glossdef{g:tab-completion}{tab completion}, and we will see it in many
 other tools as we go on.
 
 \mbox{}\paragraph{Key Points}
@@ -962,7 +963,7 @@ $ nano draft.txt
 \begin{quote}
 \mbox{}\paragraph{Which Editor?}
 
-When we say, "\texttt{nano} is a text editor," we really do mean
+When we say, ``\texttt{nano} is a text editor'' we really do mean
 ``text'': it can only work with plain character data, not tables,
 images, or any other human-friendly media. We use it in examples because
 almost anyone can drive it anywhere without training, but please use
@@ -1357,7 +1358,7 @@ $ wc *.pdb
 \begin{quote}
 \mbox{}\paragraph{Wildcards}
 
-\texttt{*} is a \gdef{g:wildcard}{wildcard}. It matches zero or more
+\texttt{*} is a \glossdef{g:wildcard}{wildcard}. It matches zero or more
 characters, so \texttt{*.pdb} matches \texttt{ethane.pdb},
 \texttt{propane.pdb}, and so on. On the other hand, \texttt{p*.pdb} only
 matches \texttt{pentane.pdb} and \texttt{propane.pdb}, because the `p'
@@ -1411,7 +1412,7 @@ $ wc -l *.pdb > lengths
 \end{verbatim}
 
 The \texttt{\textgreater{}} tells the shell to
-\gdef{g:redirect}{redirect} the command's output to a file instead
+\glossdef{g:redirect}{redirect} the command's output to a file instead
 of printing it to the screen. The shell will create the file if it
 doesn't exist, or overwrite the contents of that file if it does. (This
 is why there is no screen output: everything that \texttt{wc} would have
@@ -1501,7 +1502,7 @@ $ sort lengths | head -1
 \end{verbatim}
 
 The vertical bar between the two commands is called a
-\gdef{g:pipe}{pipe}. It tells the shell that we want to use the
+\glossdef{g:pipe}{pipe}. It tells the shell that we want to use the
 output of the command on the left as the input to the command on the
 right. The computer might create a temporary file if it needs to, or
 copy data from one program to the other in memory, or something else
@@ -1519,18 +1520,18 @@ $ wc -l *.pdb | sort | head -1
 \end{verbatim}
 
 This is exactly like a mathematician nesting functions like
-\emph{sin($\pi$x)\textsuperscript{2}} and saying "the square of the sine of
-\emph{x} times $\pi$``. In our case, the calculation is''head of sort of
-word count of \texttt{*.pdb}".
+\emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
+\emph{x} times $\pi$''. In our case, the calculation is ``head of sort of
+word count of \texttt{*.pdb}''.
 
 Here's what actually happens behind the scenes when we create a pipe.
 When a computer runs a program---any program---it creates a
-\gdef{g:process}{process} in memory to hold the program's software
+\glossdef{g:process}{process} in memory to hold the program's software
 and its current state. Every process has an input channel called
-\gdef{g:standard-input}{standard input}. (By this point, you may be
+\glossdef{g:standard-input}{standard input}. (By this point, you may be
 surprised that the name is so memorable, but don't worry: most Unix
 programmers call it ``stdin''. Every process also has a default output
-channel called \gdef{g:standard-output}{standard output} (or
+channel called \glossdef{g:standard-output}{standard output} (or
 ``stdout'').
 
 The shell is actually just another program. Under normal circumstances,
@@ -1564,8 +1565,8 @@ This simple idea is why Unix has been so successful. Instead of creating
 enormous programs that try to do many different things, Unix programmers
 focus on creating lots of simple tools that each do one job well, and
 that work well with each other. This programming model is called
-\gdef{g:pipe-and-filter}{pipes and filters}. We've already seen
-pipes; a \gdef{g:filter}{filter} is a program like \texttt{wc} or
+\glossdef{g:pipe-and-filter}{pipes and filters}. We've already seen
+pipes; a \glossdef{g:filter}{filter} is a program like \texttt{wc} or
 \texttt{sort} that transforms a stream of input into a stream of output.
 Almost all of the standard Unix tools can work this way: unless told to
 do otherwise, they read from standard input, do something with what
@@ -1844,7 +1845,7 @@ $ mv basilisk.dat unicorn.dat
 This wouldn't back up our files: it would replace the content of
 \texttt{unicorn.dat} with whatever's in \texttt{basilisk.dat}.
 
-Instead, we can use a \gdef{g:for-loop}{loop} to do some operation
+Instead, we can use a \glossdef{g:for-loop}{loop} to do some operation
 once for each thing in a list. Here's a simple example that displays the
 first three lines of each file in turn:
 
@@ -1868,7 +1869,7 @@ When the shell sees the keyword \texttt{for}, it knows it is supposed to
 repeat a command (or group of commands) once for each thing in a list.
 In this case, the list is the two filenames. Each time through the loop,
 the name of the thing currently being operated on is assigned to the
-\gdef{g:variable}{variable} called \texttt{filename}. Inside the
+\glossdef{g:variable}{variable} called \texttt{filename}. Inside the
 loop, we get the variable's value by putting \texttt{\$} in front of it:
 \texttt{\$filename} is \texttt{basilisk.dat} the first time through the
 loop, \texttt{unicorn.dat} the second, and so on. Finally, the command
@@ -1920,7 +1921,7 @@ done
 \end{verbatim}
 
 The shell starts by expanding \texttt{*.dat} to create the list of files
-it will process. The \gdef{g:loop-body}{loop body} then executes two
+it will process. The \glossdef{g:loop-body}{loop body} then executes two
 commands for each of those files. The first, \texttt{echo}, just prints
 its command-line parameters to standard output. For example:
 
@@ -1994,7 +1995,7 @@ That's a problem: \texttt{head} can't read files called \texttt{red} and
 the file \texttt{red dragon.dat}.
 
 We can make our script a little bit more robust by
-\gdef{g:shell-quoting}{quoting} our use of the variable:
+\glossdef{g:shell-quoting}{quoting} our use of the variable:
 
 \begin{verbatim}
 for filename in *.dat
@@ -2309,7 +2310,7 @@ programming environment. We are going to take the commands we repeat
 frequently and save them in files so that we can re-run all those
 operations again later by typing a single command. For historical
 reasons, a bunch of commands saved in a file is usually called a
-\gdef{g:shell-script}{shell script}, but make no mistake: these are
+\glossdef{g:shell-script}{shell script}, but make no mistake: these are
 actually small programs.
 
 Let's start by putting the following line in the file
@@ -2426,7 +2427,7 @@ ATOM     18  C           1      -0.696  -2.628  -0.641
 
 This works, but it may take the next person who reads \texttt{middle.sh}
 a moment to figure out what it does. We can improve our script by adding
-some \gdef{g:comment}{comments} at the top:
+some \glossdef{g:comment}{comments} at the top:
 
 \begin{verbatim}
 $ cat middle.sh
@@ -2911,7 +2912,7 @@ matched.  (-F is specified by POSIX.)
 
 \texttt{grep}'s real power doesn't come from its options, though; it
 comes from the fact that patterns can include wildcards. (The technical
-name for these is \gdef{g:regular-expression}{regular expressions},
+name for these is \glossdef{g:regular-expression}{regular expressions},
 which is what the ``re'' in ``grep'' stands for.) Regular expressions
 are both complex and powerful; if you want to do complex searches,
 please look at the lesson on \urlfoot{http://software-carpentry.org}{our
@@ -3216,7 +3217,7 @@ time waiting for the other to finish, but if they work on their own
 copies and email changes back and forth things will be lost,
 overwritten, or duplicated.
 
-The right solution is to use \gdef{g:version-control}{version
+The right solution is to use \glossdef{g:version-control}{version
 control} to manage their work. Version control is better than mailing
 files back and forth because:
 
@@ -3319,7 +3320,7 @@ $ mkdir planets
 $ cd planets
 \end{verbatim}
 
-and tell Git to make it a \gdef{g:repository}{repository}---a place
+and tell Git to make it a \glossdef{g:repository}{repository}---a place
 where Git can store old versions of our files:
 
 \begin{verbatim}
@@ -3459,7 +3460,7 @@ $ git commit -m "Starting to think about Mars"
 When we run \texttt{git commit}, Git takes everything we have told it to
 save by using \texttt{git add} and stores a copy permanently inside the
 special \texttt{.git} directory. This permanent copy is called a
-\gdef{g:revision}{revision} and its short identifier is
+\glossdef{g:revision}{revision} and its short identifier is
 \texttt{f22b25e}. (Your revision may have another identifier.)
 
 We use the \texttt{-m} flag (for ``message'') to record a comment that
@@ -3577,7 +3578,7 @@ one file given the other. If we can break it down into pieces:
   The first line tells us that Git is using the Unix \texttt{diff}
   command to compare the old and new versions of the file.
 \item
-  The second line tells exactly which \gdef{g:revision}{revisions}
+  The second line tells exactly which \glossdef{g:revision}{revisions}
   of the file Git is comparing; \texttt{df0654a} and \texttt{315bf3a}
   are unique computer-generated labels for those revisions.
 \item
@@ -3626,7 +3627,7 @@ haven't finished yet).
 
 To allow for this, Git has a special staging area where it keeps track
 of things that have been added to the current
-\gdef{g:change-set}{change set} but not yet committed.
+\glossdef{g:change-set}{change set} but not yet committed.
 \texttt{git add} puts things in this area, and \texttt{git commit} then
 copies them to long-term storage (as a commit):
 
@@ -4140,13 +4141,13 @@ any files yet:
 \includegraphics{novice/git/img/git-freshly-made-github-repo.png}
 
 The next step is to connect the two repositories. We do this by making
-the GitHub repository a \gdef{g:repository-remote}{remote} for the
+the GitHub repository a \glossdef{g:repository-remote}{remote} for the
 local repository. The home page of the repository on GitHub includes the
 string we need to identify it:
 
 \includegraphics{novice/git/img/github-find-repo-string.png}
 
-Click on the `HTTPS' link to change the \gdef{g:protocol}{protocol}
+Click on the `HTTPS' link to change the \glossdef{g:protocol}{protocol}
 from SSH to HTTPS. It's slightly less convenient for day-to-day use, but
 much less work for beginners to set up:
 
@@ -4230,7 +4231,7 @@ repository on our local machine. To do this, \texttt{cd} to the
 directory \texttt{/tmp}. (Note the absolute path: don't make
 \texttt{tmp} a subdirectory of the existing repository). Instead of
 creating a new repository here with \texttt{git init}, we will
-\gdef{g:repository-clone}{clone} the existing repository from
+\glossdef{g:repository-clone}{clone} the existing repository from
 GitHub:
 
 \begin{verbatim}
@@ -4349,7 +4350,7 @@ work between different people and machines.
 \item
   Create a repository on GitHub, clone it, add a file, push those
   changes to GitHub, and then look at the
-  \gdef{g:timestamp}{timestamp} of the change on GitHub. How does
+  \glossdef{g:timestamp}{timestamp} of the change on GitHub. How does
   GitHub record times, and why?
 \end{enumerate}
 
@@ -4368,8 +4369,8 @@ As soon as people can work in parallel, someone's going to step on
 someone else's toes. This will even happen with a single person: if we
 are working on a piece of software on both our laptop and a server in
 the lab, we could make different changes to each copy. Version control
-helps us manage these \gdef{g:conflict}{conflicts} by giving us
-tools to \gdef{g:resolve}{resolve} overlapping changes.
+helps us manage these \glossdef{g:conflict}{conflicts} by giving us
+tools to \glossdef{g:resolve}{resolve} overlapping changes.
 
 To see how we can resolve conflicts, we must first create one. The file
 \texttt{mars.txt} currently looks like this in both local copies of our
@@ -4477,7 +4478,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Git detects that the changes made in one copy overlap with those made in
 the other and stops us from trampling on our previous work. What we have
 to do is pull the changes from GitHub,
-\gdef{g:repository-merge}{merge} them into the copy we're currently
+\glossdef{g:repository-merge}{merge} them into the copy we're currently
 working in, and then push that. Let's start by pulling:
 
 \begin{verbatim}
@@ -4761,7 +4762,7 @@ on the one hand, and licenses like the
 \urlfoot{http://opensource.org/licenses/MIT}{MIT} and
 \urlfoot{http://opensource.org/licenses/BSD-2-Clause}{BSD} licenses on the
 other. All of these licenses allow unrestricted sharing and modification
-of programs, but the GPL is \gdef{g:infective-license}{infective}:
+of programs, but the GPL is \glossdef{g:infective-license}{infective}:
 anyone who distributes a modified version of the code (or anything that
 includes GPL'd code) must make \emph{their} code freely available as
 well.
@@ -4822,7 +4823,7 @@ anyone can do anything they want with it, without needing to cite the
 original or restrict further re-use. The table below shows how the six
 Creative Commons licenses and PD relate to one another:
 
-\begin{longtable}[c]{@{}llllllll@{}}
+\begin{tabular}{llllllll}
 \hline\noalign{\medskip}
 & Licenses that can be used for derivative work or adaptation
 \\\noalign{\medskip}
@@ -4843,7 +4844,7 @@ by-sa & & & & & & X &
 pd & X & X & X & X & X & X & X
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \urlfoot{http://software-carpentry.org/license.html}{Software Carpentry}
 uses CC-BY for its lessons and the MIT License for its code in order to
@@ -4883,7 +4884,7 @@ available ten years from now, but that's well beyond the lifespan of
 most of the grants that fund academic infrastructure.
 
 Another option is to purchase a domain and pay an
-\gdef{g:isp}{Internet service provider} (ISP) to host it. This gives
+\glossdef{g:isp}{Internet service provider} (ISP) to host it. This gives
 the individual or group more control, and sidesteps problems that can
 arise when moving from one institution to another, but requires more
 time and effort to set up than either the option above or the option
@@ -4976,7 +4977,7 @@ and to use that language \emph{well}.
 
 We are studying inflammation in patients who have been given a new
 treatment for arthritis, and need to analyze the first dozen data sets.
-The data sets are stored in \gdef{g:csv}{comma-separated values}
+The data sets are stored in \glossdef{g:csv}{comma-separated values}
 (CSV) format: each row holds information for a single patient, and the
 columns represent successive days. The first few rows of our first file
 look like this:
@@ -5026,10 +5027,10 @@ To do all that, we'll have to learn a little bit about programming.
 Words are useful, but what's more useful are the sentences and stories
 we use them to build. Similarly, while a lot of powerful tools are built
 into languages like Python, even more lives in the
-\gdef{g:library}{libraries} they are used to build.
+\glossdef{g:library}{libraries} they are used to build.
 
 In order to load our inflammation data, we need to
-\gdef{g:import}{import} a library called NumPy that knows how to
+\glossdef{g:import}{import} a library called NumPy that knows how to
 operate on matrices:
 
 \begin{verbatim}
@@ -5055,15 +5056,15 @@ array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
 \end{verbatim}
 
 The expression \texttt{numpy.loadtxt(...)} is a
-\gdef{g:function-call}{function call} that asks Python to run the
+\glossdef{g:function-call}{function call} that asks Python to run the
 function \texttt{loadtxt} that belongs to the \texttt{numpy} library.
-This \gdef{g:dotted-notation}{dotted notation} is used everywhere in
+This \glossdef{g:dotted-notation}{dotted notation} is used everywhere in
 Python to refer to the parts of things as \texttt{whole.part}.
 
-\texttt{numpy.loadtxt} has two \gdef{g:parameter}{parameters}: the
+\texttt{numpy.loadtxt} has two \glossdef{g:parameter}{parameters}: the
 name of the file we want to read, and the
-\gdef{g:delimiter}{delimiter} that separates values on a line. These
-both need to be character strings (or \gdef{g:string}{strings} for
+\glossdef{g:delimiter}{delimiter} that separates values on a line. These
+both need to be character strings (or \glossdef{g:string}{strings} for
 short), so we put them in quotes.
 
 When we are finished typing and press Shift+Enter, the notebook runs our
@@ -5075,8 +5076,8 @@ To save space, Python displays numbers as \texttt{1.} instead of
 \texttt{1.0} when there's nothing interesting after the decimal point.
 
 Our call to \texttt{numpy.loadtxt} read our file, but didn't save the
-data in memory. To do that, we need to \gdef{g:assignment}{assign}
-the array to a \gdef{g:variable}{variable}. A variable is just a
+data in memory. To do that, we need to \glossdef{g:assignment}{assign}
+the array to a \glossdef{g:variable}{variable}. A variable is just a
 name for a value, such as \texttt{x}, \texttt{current\_temperature}, or
 \texttt{subject\_id}. We can create a new variable simply by assigning a
 value to it using \texttt{=}:
@@ -5196,15 +5197,17 @@ age = age - 20
 \end{verbatim}
 \item
   What does the following program print out?
-  \textsubscript{\textasciitilde{}}python first, second = `Grace',
-  `Hopper' third, fourth = second, first print third, fourth
-  \textsubscript{\textasciitilde{}}
+\begin{verbatim}
+first, second = `Grace', `Hopper'
+third, fourth = second, first
+print third, fourth
+\end{verbatim}
 \end{enumerate}
 
 \subsection{Manipulating Data}
 
 Now that our data is in memory, we can start doing things with it.
-First, let's ask what \gdef{g:data-type}{type} of thing
+First, let's ask what \glossdef{g:data-type}{type} of thing
 \texttt{data} refers to:
 
 \begin{verbatim}
@@ -5217,7 +5220,7 @@ print type(data)
 
 The output tells us that \texttt{data} currently refers to an
 N-dimensional array created by the NumPy library. We can see what its
-\gdef{g:shape}{shape} is like this:
+\glossdef{g:shape}{shape} is like this:
 
 \begin{verbatim}
 print data.shape
@@ -5228,13 +5231,13 @@ print data.shape
 \end{verbatim}
 
 This tells us that \texttt{data} has 60 rows and 40 columns.
-\texttt{data.shape} is a \gdef{g:member}{member} of \texttt{data},
+\texttt{data.shape} is a \glossdef{g:member}{member} of \texttt{data},
 i.e., a value that is stored as part of a larger value. We use the same
 dotted notation for the members of values that we use for the functions
 in libraries because they have the same part-and-whole relationship.
 
 If we want to get a single value from the matrix, we must provide an
-\gdef{g:index}{index} in square brackets, just as we do in math:
+\glossdef{g:index}{index} in square brackets, just as we do in math:
 
 \begin{verbatim}
 print 'first value in data:', data[0, 0]
@@ -5289,7 +5292,7 @@ print data[0:4, 0:10]
  [ 0.  0.  2.  0.  4.  2.  2.  1.  6.  7.]]
 \end{verbatim}
 
-The \gdef{g:slice}{slice} \texttt{0:4} means, ``Start at index 0 and
+The \glossdef{g:slice}{slice} \texttt{0:4} means, ``Start at index 0 and
 go up to, but not including, index 4.'' Again, the
 up-to-but-not-including takes a bit of getting used to, but the rule is
 that the difference between the upper and lower bounds is the number of
@@ -5310,7 +5313,7 @@ print data[5:10, 0:10]
 \end{verbatim}
 
 and we don't have to take all the values in the slice---if we provide a
-\gdef{g:stride}{stride}, Python takes values spaced that far apart:
+\glossdef{g:stride}{stride}, Python takes values spaced that far apart:
 
 \begin{verbatim}
 print data[0:10:3, 0:10:2]
@@ -5358,7 +5361,7 @@ print data.mean()
 6.14875
 \end{verbatim}
 
-\texttt{mean} is a \gdef{g:method}{method} of the array, i.e., a
+\texttt{mean} is a \glossdef{g:method}{method} of the array, i.e., a
 function that belongs to it in the same way that the member
 \texttt{shape} does. If variables are nouns, methods are verbs: they are
 what the thing in question knows how to do. This is why
@@ -5462,7 +5465,7 @@ which is the average inflammation per patient across all days.
 
 \mbox{}\paragraph{Challenges}
 
-A subsection of an array is called a \gdef{g:slice}{slice}. We can
+A subsection of an array is called a \glossdef{g:slice}{slice}. We can
 take slices of character strings as well:
 
 \begin{verbatim}
@@ -5485,7 +5488,7 @@ last three characters: gen
   Given those answers, explain what \texttt{element{[}1:-1{]}} does.
 \item
   The expression \texttt{element{[}3:3{]}} produces an
-  \gdef{g:empty-string}{empty string}, i.e., a string that contains
+  \glossdef{g:empty-string}{empty string}, i.e., a string that contains
   no characters. If \texttt{data} holds our array of patient data, what
   does \texttt{data{[}3:3, 4:4{]}} produce? What about
   \texttt{data{[}3:3, :{]}}?
@@ -5576,7 +5579,7 @@ with our data.
 
 \subsection{Wrapping Up}
 
-It's very common to create an \gdef{g:alias-library}{alias} for a
+It's very common to create an \glossdef{g:alias-library}{alias} for a
 library when importing it in order to reduce the amount of typing we
 have to do. Here are our three plots side by side using aliases for
 \texttt{numpy} and \texttt{pyplot}:
@@ -5714,13 +5717,13 @@ def fahr_to_kelvin(temp):
 
 The definition opens with the word \texttt{def}, which is followed by
 the name of the function and a parenthesized list of parameter names.
-The \gdef{g:function-body}{body} of the function---the statements
+The \glossdef{g:function-body}{body} of the function---the statements
 that are executed when it runs---is indented below the definition line,
 typically by four spaces.
 
 When we call the function, the values we pass to it are assigned to
 those variables so that we can use them inside the function. Inside the
-function, we use a \gdef{g:return-statement}{return statement} to
+function, we use a \glossdef{g:return-statement}{return statement} to
 send a result back to whoever asked for it.
 
 Let's try running our function. Calling our own function is no different
@@ -5782,7 +5785,7 @@ Aha! The problem comes when we multiply by \texttt{5/9}. This is because
 \end{verbatim}
 
 Computers store numbers in one of two ways: as
-\gdef{g:integer}{integers} or as \gdef{g:float}{floating-point
+\glossdef{g:integer}{integers} or as \glossdef{g:float}{floating-point
 numbers} (or floats). The first are the numbers we usually count with;
 the second have fractional parts. Addition, subtraction and
 multiplication work on both as we'd expect, but division works
@@ -5852,7 +5855,7 @@ absolute zero in Celsius: -273.15
 
 What about converting Fahrenheit to Celsius? We could write out the
 formula, but we don't need to. Instead, we can
-\gdef{g:function-composition}{compose} the two functions we have
+\glossdef{g:function-composition}{compose} the two functions we have
 already created:
 
 \begin{verbatim}
@@ -5920,7 +5923,7 @@ been executed:
 
 When we call \texttt{fahr\_to\_celsius}, Python \emph{doesn't} create
 the variable \texttt{temp} right away. Instead, it creates something
-called a \gdef{g:stack-frame}{stack frame} to keep track of the
+called a \glossdef{g:stack-frame}{stack frame} to keep track of the
 variables defined by \texttt{fahr\_to\_kelvin}. Initially, this stack
 frame only holds the value of \texttt{temp}:
 
@@ -6023,7 +6026,7 @@ program in this case, but we don't want to have to read every line of
 NumPy to see what variable names its functions use before calling any of
 those functions, just in case they change the values of our variables.
 
-The big idea here is \gdef{g:encapsulation}{encapsulation}, and it's
+The big idea here is \glossdef{g:encapsulation}{encapsulation}, and it's
 the key to writing correct, comprehensible programs. A function's job is
 to turn several operations into one so that we can think about a single
 function call instead of a dozen or a hundred statements each time we
@@ -6037,8 +6040,10 @@ again, which quickly overloads our short-term memory.
 \item
   We previously wrote functions called \texttt{fence} and
   \texttt{outer}. Draw a diagram showing how the call stack changes when
-  we run the following: \textsubscript{\textasciitilde{}}python print
-  outer(fence('carbon', `+')) \textsubscript{\textasciitilde{}}
+  we run the following:
+\begin{verbatim}
+print outer(fence('carbon', `+'))
+\end{verbatim}
 \end{enumerate}
 
 \subsection{Testing and Documenting}
@@ -6127,11 +6132,11 @@ difference in standard deviations before and after: -3.5527136788e-15
 Again, the difference is very small. It's still possible that our
 function is wrong, but it seems unlikely enough that we should probably
 get back to doing our analysis. We have one more task first, though: we
-should write some \gdef{g:documentation}{documentation} for our
+should write some \glossdef{g:documentation}{documentation} for our
 function to remind ourselves later what it's for and how to use it.
 
 The usual way to put documentation in software is to add
-\gdef{g:comment}{comments} like this:
+\glossdef{g:comment}{comments} like this:
 
 \begin{verbatim}
 # center(data, desired): return a new array containing the original data centered around the desired value.
@@ -6163,7 +6168,7 @@ center(data, desired)
     Return a new array containing the original data centered around the desired value.
 \end{verbatim}
 
-A string like this is called a \gdef{g:docstring}{docstring}. We
+A string like this is called a \glossdef{g:docstring}{docstring}. We
 don't need to use triple quotes when we write one, but if we do, we can
 break the string across multiple lines:
 
@@ -6280,7 +6285,7 @@ print center(test_data, 3)
 
 But we can also now call it with just one parameter, in which case
 \texttt{desired} is automatically assigned the
-\gdef{g:default-parameter-value}{default value} of 0.0:
+\glossdef{g:default-parameter-value}{default value} of 0.0:
 
 \begin{verbatim}
 more_data = 5 + numpy.zeros((2, 2))
@@ -6478,7 +6483,7 @@ parameter in the list. That's why we don't have to provide
   fractional part).
 \item
   Each time a function is called, a new stack frame is created on the
-  \gdef{g:call-stack}{call stack} to hold its parameters and local
+  \glossdef{g:call-stack}{call stack} to hold its parameters and local
   variables.
 \item
   Python looks for variables in the current stack frame before looking
@@ -6661,7 +6666,7 @@ print_characters('oxygen')
 \end{verbatim}
 
 The improved version of \texttt{print\_characters} uses a
-\gdef{g:for-loop}{for loop} to repeat an operation---in this case,
+\glossdef{g:for-loop}{for loop} to repeat an operation---in this case,
 printing---once for each thing in a collection. The general form of a
 loop is:
 
@@ -6670,7 +6675,7 @@ for variable in collection:
     do things with variable
 \end{verbatim}
 
-We can call the \gdef{g:loop-variable}{loop variable} anything we
+We can call the \glossdef{g:loop-variable}{loop variable} anything we
 like, but there must be a colon at the end of the line starting the
 loop, and we must indent the body of the loop.
 
@@ -6729,21 +6734,32 @@ use it when we can.
   \texttt{range(2, 10, 3)} produces \texttt{{[}2, 5, 8{]}}. Using
   \texttt{range}, write a function that prints the
   \textbackslash{}(N\textbackslash{}) natural numbers:
-  \textsubscript{\textasciitilde{}}python print\_N(3) 1 2 3
-  \textsubscript{\textasciitilde{}}
+\begin{verbatim}
+print_N(3)
+1 2 3
+\end{verbatim}
 \item
   Exponentiation is built into Python:
-  \textsubscript{\textasciitilde{}}python print 2**4 16
-  \textsubscript{\textasciitilde{}} It also has a function called
+\begin{verbatim}
+print 2**4
+16
+\end{verbatim}
+  It also has a function called
   \texttt{pow} that calculates the same value. Write a function called
   \texttt{expo} that uses a loop to calculate the same result.
 \item
   Python's strings have methods, just like NumPy's arrays. One of these
-  is called \texttt{reverse}: \textsubscript{\textasciitilde{}}python
-  print `Newton'.reverse() notweN \textsubscript{\textasciitilde{}}
+  is called \texttt{reverse}:
+\begin{verbatim}
+  print `Newton'.reverse()
+notweN
+\end{verbatim}
   Write a function called \texttt{rev} that does the same thing:
-  \textsubscript{\textasciitilde{}}python print rev('Newton') notweN
-  \textsubscript{\textasciitilde{}} As always, be sure to include a
+\begin{verbatim}
+print rev('Newton')
+notweN
+\end{verbatim}
+  As always, be sure to include a
   docstring.
 \end{enumerate}
 
@@ -6795,8 +6811,8 @@ does not.
 \begin{quote}
 \mbox{}\paragraph{Ch-Ch-Ch-Changes}
 
-Data that can be changed is called \gdef{g:mutable}{mutable}, while
-data that cannot be is called \gdef{g:immutable}{immutable}. Like
+Data that can be changed is called \glossdef{g:mutable}{mutable}, while
+data that cannot be is called \glossdef{g:immutable}{immutable}. Like
 strings, numbers are immutable: there's no way to make the number 0 have
 the value 1 or vice versa (at least, not in Python---there actually
 \emph{are} languages that will let people do this, with predictably
@@ -7030,8 +7046,8 @@ grid lines on: True
 
 The obvious thing to do with a grid like this is color in its cells, but
 in order to do that, we need to know how computers represent color. The
-most common schemes are \gdef{g:rgb}{RGB}, which is short for ``red,
-green, blue''. RGB is an \gdef{g:additive-color-model}{additive
+most common schemes are \glossdef{g:rgb}{RGB}, which is short for ``red,
+green, blue''. RGB is an \glossdef{g:additive-color-model}{additive
 color model}: every shade is some combination of red, green, and blue
 intensities. We can think of these three values as being the axes in a
 cube:
@@ -7040,7 +7056,7 @@ cube:
 
 An RGB color is an example of a multi-part value: like a Cartesian
 coordinate, it is one thing with several parts. We can represent such a
-value in Python using a \gdef{g:tuple}{tuple}, which we write using
+value in Python using a \glossdef{g:tuple}{tuple}, which we write using
 parentheses instead of the square brackets used for a list:
 
 \begin{verbatim}
@@ -7068,7 +7084,7 @@ first element of color is: 10
 
 Unlike lists and arrays, though, tuples cannot be changed after they are
 created---in technical terms, they are
-\gdef{g:immutable}{immutable}:
+\glossdef{g:immutable}{immutable}:
 
 \begin{verbatim}
 color[0] = 40
@@ -7163,7 +7179,7 @@ bar.show()
 
 The other thing we need in order to create a heat map of our own is a
 way to pick a color based on a data value. The tool Python gives us for
-doing this is called a \gdef{g:conditional-statement}{conditional
+doing this is called a \glossdef{g:conditional-statement}{conditional
 statement}, and looks like this:
 
 \begin{verbatim}
@@ -7340,8 +7356,8 @@ da
 de
 \end{verbatim}
 
-As the diagram below shows, the \gdef{g:inner-loop}{inner loop} runs
-from start to finish each time the \gdef{g:outer-loop}{outer loop}
+As the diagram below shows, the \glossdef{g:inner-loop}{inner loop} runs
+from start to finish each time the \glossdef{g:outer-loop}{outer loop}
 runs once:
 
 \includegraphics{novice/python/img/python-flowchart-nested-loops.png}
@@ -7377,7 +7393,7 @@ This is our first hand-made data visualization: the colors show where
   image? Why or why not?
 \item
   Python (and most other languages in the C family) provides
-  \gdef{g:in-place-operator}{in-place operators} that work like
+  \glossdef{g:in-place-operator}{in-place operators} that work like
   this:
 
 \begin{verbatim}
@@ -7621,10 +7637,16 @@ can concentrate on our science and not on our programming.
   it immediately? Do you think this is a good or bad design choice?
 \item
   Explain what the overall effect of this code is:
-  \textsubscript{\textasciitilde{}} temp = left left = right right =
-  temp \textsubscript{\textasciitilde{}} Compare it to:
-  \textsubscript{\textasciitilde{}} left, right = right, left
-  \textsubscript{\textasciitilde{}} Do they always do the same thing?
+\begin{verbatim}
+temp = left
+left = right
+right = temp
+\end{verbatim}
+Compare it to:
+\begin{verbatim}
+left, right = right, left
+\end{verbatim}
+  Do they always do the same thing?
   Which do you find easier to read?
 \end{enumerate}
 
@@ -7714,9 +7736,9 @@ greater than the time that measuring takes.
 
 The first step toward getting the right answers from our programs is to
 assume that mistakes \emph{will} happen and to guard against them. This
-is called \gdef{g:defensive-programming}{defensive programming}, and
+is called \glossdef{g:defensive-programming}{defensive programming}, and
 the most common way to do it is to add
-\gdef{g:assertion}{assertions} to our code so that it checks itself
+\glossdef{g:assertion}{assertions} to our code so that it checks itself
 as it runs. An assertion is simply a statement that something must be
 true at a certain point in a program. When Python sees one, it checks
 that the assertion's condition. If it's true, Python does nothing, but
@@ -7752,13 +7774,13 @@ correctly. Broadly speaking, assertions fall into three categories:
 
 \begin{itemize}
 \item
-  A \gdef{g:precondition}{precondition} is something that must be
+  A \glossdef{g:precondition}{precondition} is something that must be
   true at the start of a function in order for it to work correctly.
 \item
-  A \gdef{g:postcondition}{postcondition} is something that the
+  A \glossdef{g:postcondition}{postcondition} is something that the
   function guarantees is true when it finishes.
 \item
-  An \gdef{g:invariant}{invariant} is something that is always true
+  An \glossdef{g:invariant}{invariant} is something that is always true
   at a particular point inside a piece of code.
 \end{itemize}
 
@@ -7883,17 +7905,17 @@ a chance to check (consciously or otherwise) that their understanding
 matches what the code is doing.
 
 Most good programmers follow two rules when adding assertions to their
-code. The first is, "\urlfoot{../../rules.html\#fail-early-fail-often}{fail
-early, fail often}". The greater the distance between when and where an
+code. The first is, ``\urlfoot{../../rules.html\#fail-early-fail-often}{fail
+early, fail often}''. The greater the distance between when and where an
 error occurs and when it's noticed, the harder the error will be to
 debug, so good code catches mistakes as early as possible.
 
 The second rule is,
-"\urlfoot{../../rules.html\#turn-bugs-into-assertions-or-tests}{turn bugs
-into assertions or tests}". If you made a mistake in a piece of code,
+``\urlfoot{../../rules.html\#turn-bugs-into-assertions-or-tests}{turn bugs
+into assertions or tests}''. If you made a mistake in a piece of code,
 the odds are good that you have made other mistakes nearby, or will make
 the same mistake (or a related one) the next time you change it. Writing
-assertions to check that you haven't \gdef{g:regression}{regressed}
+assertions to check that you haven't \glossdef{g:regression}{regressed}
 (i.e., haven't re-introduced an old problem) can save a lot of time in
 the long run, and helps to warn people who are reading the code
 (including your future self) that this bit is tricky.
@@ -7962,7 +7984,7 @@ right now---but there's a better way:
 \end{enumerate}
 
 Writing the tests \emph{before} writing the function they exercise is
-called \gdef{g:test-driven-development}{test-driven development}
+called \glossdef{g:test-driven-development}{test-driven development}
 (TDD). Its advocates believe it produces better code faster because:
 
 \begin{enumerate}
@@ -8109,8 +8131,8 @@ trace the behavior of the function with that input, we realize that
 we're initializing \texttt{lowest} and \texttt{highest} to 0.0 and 1.0
 respectively, regardless of the input values. This violates another
 important rule of programming:
-"\urlfoot{../../rules.html\#always-initialize-from-data}{always initialize
-from data}". We'll leave it as an exercise to fix
+``\urlfoot{../../rules.html\#always-initialize-from-data}{always initialize
+from data}''. We'll leave it as an exercise to fix
 \texttt{range\_overlap}.
 
 \mbox{}\paragraph{Challenges}
@@ -8164,7 +8186,7 @@ the next program. In practice, scientists tend to do the following:
   first test should hold temperature, precipitation, and other factors
   constant.
 \item
-  \emph{Compare to an oracle.} A \gdef{g:test-oracle}{test oracle}
+  \emph{Compare to an oracle.} A \glossdef{g:test-oracle}{test oracle}
   is something---experimental data, an older program whose results are
   trusted, or even a human expert---against which we can compare the
   results of our new program. If we have a test oracle, we should store
@@ -8251,7 +8273,7 @@ to know what's responsible for what (those N\textsuperscript{2}
 interactions again). And we should re-run \emph{all} of our tests: more
 than half of fixes made to code introduce (or re-introduce) bugs, so
 re-running all of our tests tells us whether we have
-\gdef{g:regression}{regressed}.
+\glossdef{g:regression}{regressed}.
 
 \mbox{}\paragraph{Keep Track of What You've Done}
 
@@ -8303,8 +8325,8 @@ occurred and checking for it next time quickly turns into not making the
 mistake at all.
 
 And that is what makes us most productive in the long run. As the saying
-goes, "\urlfoot{../../rules.html\#week-hard-work-hour-thought}{A week of
-hard work can sometimes save you an hour of thought}." If we train
+goes, ``\urlfoot{../../rules.html\#week-hard-work-hour-thought}{A week of
+hard work can sometimes save you an hour of thought}.'' If we train
 ourselves to avoid making some kinds of mistakes, to break our code into
 modular, testable chunks, and to turn every assumption (or mistake) into
 an assertion, it will actually take us \emph{less} time to produce
@@ -8388,7 +8410,7 @@ Our overall requirements are:
 \begin{enumerate}
 \item
   If no filename is given on the command line, read data from
-  \gdef{g:standard-input}{standard input}.
+  \glossdef{g:standard-input}{standard input}.
 \item
   If one or more filenames are given, read data from them and report
   statistics for each file separately.
@@ -8631,17 +8653,22 @@ messages for our users.
 \begin{enumerate}
 \item
   Write a command-line program that does addition and subtraction:
-  \textsubscript{\textasciitilde{}} python arith.py 1 + 2 3 python
-  arith.py 3 - 4 -1 \textsubscript{\textasciitilde{}}
-
+\begin{verbatim}
+python arith.py 1 + 2
+3
+python arith.py 3 - 4
+-1
+\end{verbatim}
   What goes wrong if you try to add multiplication using `*' to the
   program?
 \item
   Using the \texttt{glob} module introduced
   \urlfoot{earlier}{03-loop.ipynb}, write a simple version of \texttt{ls}
   that shows files in the current directory with a particular suffix:
-  \textsubscript{\textasciitilde{}} python my\_ls.py py left.py right.py
-  zero.py \textsubscript{\textasciitilde{}}
+\begin{verbatim}
+python my_ls.py py
+left.py right.py zero.py
+\end{verbatim}
 \end{enumerate}
 
 \subsection{Handling Multiple Files}
@@ -8681,8 +8708,8 @@ Using small data files as input also allows us to check our results more
 easily: here, for example, we can see that our program is calculating
 the mean correctly for each line, whereas we were really taking it on
 faith before. This is yet another rule of programming:
-"\urlfoot{../../rules.html\#test-simple-first}{test the simple things
-first}".
+``\urlfoot{../../rules.html\#test-simple-first}{test the simple things
+first}.''
 
 We want our program to process each file separately, so we need a looop
 that executes once for each filename. If we specify the files on the
@@ -8800,7 +8827,7 @@ but there are seveal things wrong with it:
 \item
   If \texttt{action} isn't one of the three recognized flags, the
   program loads each file but does nothing with it (because none of the
-  branches in the conditional match). \gdef{g:silent-failure}{Silent
+  branches in the conditional match). \glossdef{g:silent-failure}{Silent
   failures} like this are always hard to debug.
 \end{enumerate}
 
@@ -9046,7 +9073,7 @@ certain ways.
 
 In the late 1920s and early 1930s, William Dyer, Frank Pabodie, and
 Valentina Roerich led expeditions to the
-\urlfoot{http://en.wikipedia.org/wiki/Pole_of_inaccessibility}{Pole of
+\urlfoot{http://en.wikipedia.org/wiki/Pole\_of\_inaccessibility}{Pole of
 Inaccessibility} in the South Pacific, and then onward to Antarctica.
 Two years ago, their expeditions were found in a storage locker at
 Miskatonic University. We have scanned and OCR'd the data they contain,
@@ -9074,17 +9101,17 @@ put this data in a database, and these lessons will show how to do that.
 
 \subsection{A Few Definitions}
 
-A \gdef{g:relational-database}{relational database} is a way to
+A \glossdef{g:relational-database}{relational database} is a way to
 store and manipulate information that is arranged as
-\gdef{g:table-database}{tables}. Each table has columns (also known
-as \gdef{g:field-database}{fields}) which describe the data, and
-rows (also known as \gdef{g:record-database}{records}) which contain
+\glossdef{g:table-database}{tables}. Each table has columns (also known
+as \glossdef{g:field-database}{fields}) which describe the data, and
+rows (also known as \glossdef{g:record-database}{records}) which contain
 the data.
 
 When we are using a spreadsheet, we put formulas into cells to calculate
 new values based on old ones. When we are using a database, we send
-commands (usually called \gdef{g:query}{queries}) to a
-\gdef{g:database-manager}{database manager}: a program that
+commands (usually called \glossdef{g:query}{queries}) to a
+\glossdef{g:database-manager}{database manager}: a program that
 manipulates the database for us. The database manager does whatever
 lookups and calculations the query specifies, returning the results in a
 tabular form that we can then use as a starting point for further
@@ -9098,7 +9125,7 @@ database manager can import and export data in a variety of formats, so
 it \emph{is} possible to move information from one to another.
 \end{quote}
 
-Queries are written in a language called \gdef{g:sql}{SQL}, which
+Queries are written in a language called \glossdef{g:sql}{SQL}, which
 stands for ``Structured Query Language''. SQL provides hundreds of
 different ways to analyze and recombine data; we will only look at a
 handful, but that handful accounts for most of what scientists do.
@@ -9107,7 +9134,7 @@ The tables below show the database we will use in our examples:
 
 \textbf{Person}: people who took readings.
 
-\begin{longtable}[c]{@{}lll@{}}
+\begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
 ident & personal & family
 \\\noalign{\medskip}
@@ -9123,11 +9150,11 @@ roe & Valentina & Roerich
 danforth & Frank & Danforth
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \textbf{Site}: locations where readings were taken.
 
-\begin{longtable}[c]{@{}lll@{}}
+\begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
 name & lat & long
 \\\noalign{\medskip}
@@ -9139,11 +9166,11 @@ DR-3 & -47.15 & -126.72
 MSK-4 & -48.87 & -123.4
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \textbf{Visited}: when readings were taken at specific sites.
 
-\begin{longtable}[c]{@{}lll@{}}
+\begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
 ident & site & dated
 \\\noalign{\medskip}
@@ -9165,11 +9192,11 @@ ident & site & dated
 844 & DR-1 & 1932-03-22
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \textbf{Survey}: the actual readings.
 
-\begin{longtable}[c]{@{}llll@{}}
+\begin{tabular}{@{}llll@{}}
 \hline\noalign{\medskip}
 taken & person & quant & reading
 \\\noalign{\medskip}
@@ -9217,12 +9244,12 @@ taken & person & quant & reading
 844 & roe & rad & 11.25
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 Notice that three entries---one in the \texttt{Visited} table, and two
 in the \texttt{Survey} table---are shown in red because they don't
 contain any actual data: we'll return to these missing values
-\gdef{s:null}{later}. For now, let's write an SQL query that
+\glossdef{s:null}{later}. For now, let's write an SQL query that
 displays scientists' names. We do this using the SQL command
 \texttt{select}, giving it the names of the columns we want and the
 table we want them from. Our query and its output look like this:
@@ -9248,7 +9275,7 @@ The semi-colon at the end of the query tells the database manager that
 the query is complete and ready to run. We have written our commands and
 column names in lower case, and the table name in Title Case, but we
 don't have to: as the example below shows, SQL is
-\gdef{g:case-insensitive}{case insensitive}.
+\glossdef{g:case-insensitive}{case insensitive}.
 
 \begin{verbatim}
 %%sqlite survey.db
@@ -9592,7 +9619,7 @@ select distinct taken, person from Survey order by taken asc, person desc;
 \end{itemize}
 
 One of the most powerful features of a database is the ability to
-\gdef{g:filter}{filter} data, i.e., to select only those records
+\glossdef{g:filter}{filter} data, i.e., to select only those records
 that match certain criteria. For example, suppose we want to see when a
 particular site was visited. We can select these records from the
 \texttt{Visited} table by using a \texttt{where} clause in our query:
@@ -9657,7 +9684,7 @@ HH:MM:SS.SSSS''), real numbers (the number of days since November 24,
 4714 BCE), or integers (the number of seconds since midnight, January 1,
 1970). If this sounds complicated, it is, but not nearly as complicated
 as figuring out
-\urlfoot{http://en.wikipedia.org/wiki/Swedish_calendar}{historical dates in
+\urlfoot{http://en.wikipedia.org/wiki/Swedish\_calendar}{historical dates in
 Sweden}.
 \end{quote}
 
@@ -9798,7 +9825,7 @@ select * from Site where (lat > -60) or (lat < 60);
   `\%' can be used any number of times in the pattern to mean ``match
   zero or more characters''.
 
-  \begin{longtable}[c]{@{}ll@{}}
+  \begin{tabular}{@{}ll@{}}
   \hline\noalign{\medskip}
   Expression & Value
   \\\noalign{\medskip}
@@ -9814,7 +9841,7 @@ select * from Site where (lat > -60) or (lat < 60);
   \texttt{'alpha' like 'a\%p\%'} & True
   \\\noalign{\medskip}
   \hline
-  \end{longtable}
+  \end{tabular}
 
   The expression \texttt{*column-name* not like *pattern*} inverts the
   test. Using \texttt{like}, write a query that finds all the records in
@@ -9908,7 +9935,7 @@ necessary first step toward handling cultural differences. For example,
 consider the following rules:
 \end{quote}
 
-\begin{longtable}[c]{@{}lll@{}}
+\begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
 Full Name & Alphabetized Under & Reason
 \\\noalign{\medskip}
@@ -9937,7 +9964,7 @@ Thomas a Beckett & Thomas & and saints according to the names by which
 they were canonized
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \begin{quote}
 Clearly, even a two-part division into ``personal'' and ``family'' isn't
@@ -9971,7 +9998,7 @@ measurements in which Roerich's, and only Roerich's, have been corrected
 as described in the previous challenge. The output should be something
 like:
 
-\begin{longtable}[c]{@{}ll@{}}
+\begin{tabular}{@{}ll@{}}
 \hline\noalign{\medskip}
 619 & 0.13
 \\\noalign{\medskip}
@@ -9990,7 +10017,7 @@ like:
 837 & 0.225
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 \begin{enumerate}
 \setcounter{enumi}{2}
@@ -10216,7 +10243,7 @@ select * from Visited where dated in ('1927-02-08', null);
   to produce? What does it actually produce?
 \item
   Some database designers prefer to use a
-  \gdef{g:sentinel-value}{sentinel value} to mark missing data
+  \glossdef{g:sentinel-value}{sentinel value} to mark missing data
   rather than \texttt{null}. For example, they will use the date
   ``0000-00-00'' to mark a missing date, or -1.0 to mark a missing
   salinity or radiation reading (since actual readings cannot be
@@ -10276,7 +10303,7 @@ None
 \end{verbatim}
 
 but to combine them, wee must use an
-\gdef{g:aggregation-function}{aggregation function} such as
+\glossdef{g:aggregation-function}{aggregation function} such as
 \texttt{min} or \texttt{max}. Each of these functions takes a set of
 records as input, and produces a single record as output:
 
@@ -10649,7 +10676,7 @@ MSK-4-48.87-123.4837MSK-41932-01-14
 MSK-4-48.87-123.4844DR-11932-03-22
 \end{verbatim}
 
-\texttt{join} creates the \gdef{g:cross-product}{cross product} of
+\texttt{join} creates the \glossdef{g:cross-product}{cross product} of
 two tables, i.e., it joins each record of one with each record of the
 other to give all possible combinations. Since there are three records
 in \texttt{Site} and eight in \texttt{Visited}, the join's output has 24
@@ -10750,8 +10777,8 @@ and    Visited.dated is not null;
 
 We can tell which records from \texttt{Site}, \texttt{Visited}, and
 \texttt{Survey} correspond with each other because those tables contain
-\gdef{g:primary-key}{primary keys} and
-\gdef{g:foreign-key}{foreign keys}. A primary key is a value, or
+\glossdef{g:primary-key}{primary keys} and
+\glossdef{g:foreign-key}{foreign keys}. A primary key is a value, or
 combination of values, that uniquely identifies each record in a table.
 A foreign key is a value (or combination of values) from one table that
 identifies a unique record in another table. Another way of saying this
@@ -10790,7 +10817,7 @@ select rowid, * from Person;
 
 Now that we have seen how joins work, we can see why the relational
 model is so useful and how best to use it. The first rule is that every
-value should be \gdef{g:atomic-value}{atomic}, i.e., not contain
+value should be \glossdef{g:atomic-value}{atomic}, i.e., not contain
 parts that we might want to work with separately. We store personal and
 family names in separate columns instead of putting the entire name in
 one column so that we don't have to use substring operations to get the
@@ -10809,7 +10836,7 @@ The third rule is that there should be no redundant information. For
 example, we could get rid of the \texttt{Site} table and rewrite the
 \texttt{Visited} table like this:
 
-\begin{longtable}[c]{@{}llll@{}}
+\begin{tabular}{@{}llll@{}}
 \hline\noalign{\medskip}
 619 & -49.85 & -128.57 & 1927-02-08
 \\\noalign{\medskip}
@@ -10828,7 +10855,7 @@ example, we could get rid of the \texttt{Site} table and rewrite the
 844 & -49.85 & -128.57 & 1932-03-22
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 In fact, we could use a single table that recorded all the information
 about each reading in each row, just as a spreadsheet would. The problem
@@ -10931,7 +10958,7 @@ undoing changes, but it's better not to have to rely on it.
 Different database systems support different data types for table
 columns, but most provide the following:
 
-\begin{longtable}[c]{@{}ll@{}}
+\begin{tabular}{@{}ll@{}}
 \hline\noalign{\medskip}
 integer & a signed integer
 \\\noalign{\medskip}
@@ -10942,11 +10969,11 @@ text & a character string
 blob & a ``binary large object'', such as an image
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 Most databases also support Booleans and date/time values; SQLite uses
 the integers 0 and 1 for the former, and represents the latter as
-discussed \gdef{a:dates}{earlier}. An increasing number of databases
+discussed \glossdef{a:dates}{earlier}. An increasing number of databases
 also support geographic data types, such as latitude and longitude.
 Keeping track of what particular systems do or do not offer, and what
 names they give different data types, is an unending portability
@@ -11006,12 +11033,12 @@ never supposed to happen: \texttt{Survey.person} is a foreign key into
 the \texttt{Person} table, and all our queries assume there will be a
 row in the latter matching every value in the former.
 
-This problem is called \gdef{g:referential-integrity}{referential
+This problem is called \glossdef{g:referential-integrity}{referential
 integrity}: we need to ensure that all references between tables can
 always be resolved correctly. One way to do this is to delete all the
 records that use \texttt{'lake'} as a foreign key before deleting the
 record that uses it as a primary key. If our database manager supports
-it, we can automate this using \gdef{g:cascading-delete}{cascading
+it, we can automate this using \glossdef{g:cascading-delete}{cascading
 delete}. However, this technique is outside the scope of this chapter.
 
 \begin{quote}
@@ -11031,7 +11058,7 @@ the MP3 files, but the files themselves live on disk.
   Write an SQL statement to replace all uses of \texttt{null} in
   \texttt{Survey.person} with the string \texttt{'unknown'}.
 \item
-  One of our colleagues has sent us a \gdef{g:csv}{CSV} file
+  One of our colleagues has sent us a \glossdef{g:csv}{CSV} file
   containing temperature readings by Robert Olmstead, which is formatted
   like this:
 
@@ -11119,7 +11146,7 @@ we switch from one database to another.
 Line 2 establishes a connection to the database. Since we're using
 SQLite, all we need to specify is the name of the database file. Other
 systems may require us to provide a username and password as well. Line
-3 then uses this connection to create a \gdef{g:cursor}{cursor};
+3 then uses this connection to create a \glossdef{g:cursor}{cursor};
 just like the cursor in an editor, its role is to keep track of where we
 are in the database.
 
@@ -11186,7 +11213,7 @@ select personal || ' ' || family from Person where ident='dyer'; drop tale Surve
 
 If we execute this, it will erase one of the tables in our database.
 
-This is called an \gdef{g:sql-injection-attack}{SQL injection
+This is called an \glossdef{g:sql-injection-attack}{SQL injection
 attack}, and it has been used to attack thousands of programs over the
 years. In particular, many web sites that take data from users insert
 values directly into queries without checking them carefully first.
@@ -11195,7 +11222,7 @@ Since a villain might try to smuggle commands into our queries in many
 different ways, the safest way to deal with this threat is to replace
 characters like quotes with their escaped equivalents, so that we can
 safely put whatever the user gives us inside a string. We can do this by
-using a \gdef{g:prepared-statement}{prepared statement} instead of
+using a \glossdef{g:prepared-statement}{prepared statement} instead of
 formatting our statements as strings. Here's what our example program
 looks like if we do this:
 
@@ -11311,7 +11338,7 @@ $ git branch moons
 \end{verbatim}
 
 It appears to do nothing, but behind the scenes it has created a new
-\gdef{g:branch}{branch} called \texttt{moons}:
+\glossdef{g:branch}{branch} called \texttt{moons}:
 
 \begin{verbatim}
 $ git branch
@@ -11499,7 +11526,7 @@ Our repository is now in this state:
 \texttt{master} and \texttt{moons} have both moved on from their
 original common state, but in different ways. They could continue
 independent existence indefinitely, but at some point we'll probably
-want to \gdef{g:merge}{merge} our changes. Let's do that now:
+want to \glossdef{g:merge}{merge} our changes. Let's do that now:
 
 \begin{verbatim}
 $ git branch
@@ -11631,7 +11658,7 @@ changes parked in that branch until we were ready to merge them.
 The model shown in the \urlfoot{../git/02-collab.html}{main lesson} in
 which everyone pushes and pulls from a single repository, is perfectly
 usable, but there's one thing it \emph{doesn't} let us do:
-\gdef{g:code-review}{code review}. Suppose Dracula wants to be able
+\glossdef{g:code-review}{code review}. Suppose Dracula wants to be able
 to look at Wolfman's changes before merging them into the master copy on
 GitHub, just as he would review Wolfman's paper before publishing it (or
 perhaps even before submitting it for publication). We need to arrange
@@ -11644,7 +11671,7 @@ To allow code review, most programmers take a slightly more roundabout
 route to merging. When the project starts, Dracula creates a repository
 on GitHub in exactly the same way as \urlfoot{../git/02-collab.html}{we
 created the \texttt{planets} repository} and then
-\gdef{g:repository-clone}{clones} it to his desktop:
+\glossdef{g:repository-clone}{clones} it to his desktop:
 
 \begin{verbatim}
 $ git clone https://github.com/vlad/undersea.git
@@ -11672,7 +11699,7 @@ origin https://github.com/vlad/undersea.git (push)
 Dracula can now push and pull changes just as before.
 
 Wolfman doesn't clone Dracula's GitHub repository directly. Instead, he
-\gdef{g:repository-fork}{forks} it, i.e., clones it on GitHub. He
+\glossdef{g:repository-fork}{forks} it, i.e., clones it on GitHub. He
 does this using the GitHub web interface:
 
 \includegraphics{novice/extras/img/git-fork-ui.png}
@@ -11689,7 +11716,7 @@ the project. He commits it to his local repository, then uses
 
 \includegraphics{novice/extras/img/git-forking-02.png}
 
-He then creates a \gdef{g:pull-request}{pull request}, which
+He then creates a \glossdef{g:pull-request}{pull request}, which
 notifies Dracula that Wolfman wants to merge some changes into Dracula's
 repository:
 
@@ -11806,7 +11833,7 @@ cp [OPTION]... [-T] SOURCE DEST
 \end{verbatim}
 
 \texttt{{[}OPTION{]}} means the \texttt{cp} command can be followed by
-one or more optional \gdef{g:command-line-flag}{flags}. We can tell
+one or more optional \glossdef{g:command-line-flag}{flags}. We can tell
 they're optional because of the square brackets, and we can tell that
 one or more are welcome because of the ellipsis (\ldots{}). For example,
 the fact that \texttt{{[}-T{]}} is in square brackets, but after the
@@ -11885,8 +11912,8 @@ Unix controls who can read, modify, and run files using
 end of the section: the concepts are similar, but the rules are
 different.
 
-Let's start with Nelle. She has a unique \gdef{g:user-name}{user
-name}, \texttt{nnemo}, and a \gdef{g:user-id}{user ID}, 1404.
+Let's start with Nelle. She has a unique \glossdef{g:user-name}{user
+name}, \texttt{nnemo}, and a \glossdef{g:user-id}{user ID}, 1404.
 
 \begin{quote}
 \mbox{}\paragraph{Why Integer IDs?}
@@ -11905,9 +11932,9 @@ working in a lab might talk about Experiment 28 instead of ``the
 chronotypical alpha-response trials on anacondas''.
 \end{quote}
 
-Users can belong to any number of \gdef{g:user-group}{groups}, each
-of which has a unique \gdef{g:user-group-name}{group name} and
-numeric \gdef{g:user-group-id}{group ID}. The list of who's in what
+Users can belong to any number of \glossdef{g:user-group}{groups}, each
+of which has a unique \glossdef{g:user-group-name}{group name} and
+numeric \glossdef{g:user-group-id}{group ID}. The list of who's in what
 group is usually stored in the file \texttt{/etc/group}. (If you're in
 front of a Unix machine right now, try running \texttt{cat /etc/group}
 to look at that file.)
@@ -12159,7 +12186,7 @@ without opening up everything else.
 
 Those are the basics of permissions on Unix. As we said at the outset,
 though, things work differently on Windows. There, permissions are
-defined by \gdef{g:access-control-list}{access control lists}, or
+defined by \glossdef{g:access-control-list}{access control lists}, or
 ACLs. An ACL is a list of pairs, each of which combines a ``who'' with a
 ``what''. For example, you could give the Mummy permission to append
 data to a file without giving him permission to read or delete it, and
@@ -12221,7 +12248,7 @@ responsibility to split the variable's string value into pieces.
 \mbox{}\paragraph{The \texttt{PATH} Variable}
 
 Let's have a closer look at that \texttt{PATH} variable. Its value
-defines the shell's \gdef{g:search-path}{search path}, i.e., the
+defines the shell's \glossdef{g:search-path}{search path}, i.e., the
 list of directories that the shell looks in for runnable programs when
 you type in a program name without specifying what directory it is in.
 
@@ -12365,7 +12392,7 @@ any).
 What if we want to run some commands on another machine, such as the
 server in the basement that manages our database of experimental
 results? To do this, we have to first log in to that machine. We call
-this a \gdef{g:remote-login}{remote login}, and the other computer a
+this a \glossdef{g:remote-login}{remote login}, and the other computer a
 remote computer. Once we do this, everything we type is passed to a
 shell running on the remote computer. That shell runs those commands on
 our behalf, just as a local shell would, then sends back output for our
@@ -12506,7 +12533,7 @@ output back to our local shell for display.
 
 Typing our password over and over again is annoying, especially if the
 commands we want to run remotely are in a loop. To remove the need to do
-this, we can create an \gdef{g:authentication-key}{authentication
+this, we can create an \glossdef{g:authentication-key}{authentication
 key} to tell the remote machine that it should always trust us. We
 discuss authentication keys in our intermediate lessons.
 \end{quote}
@@ -12516,7 +12543,7 @@ discuss authentication keys in our intermediate lessons.
 Assertions help us catch errors in our code, but things can go wrong for
 other reasons, like missing or badly-formatted files. Most modern
 programming languages allow programmers to use
-\gdef{g:exception}{exceptions} to separate what the program should
+\glossdef{g:exception}{exceptions} to separate what the program should
 do if everything goes right from what it should do if something goes
 wrong. Doing this makes both cases easier to read and understand.
 
@@ -12749,17 +12776,17 @@ objects, which is outside the scope of these lessons.
 
 Let's start by looking at how numbers are stored. If we only have the
 two digits 0 and 1, the natural way to store a positive integer is to
-use base 2, so 1001\textsubscript{2} is
-(1×2\textsuperscript{3})+(0×2\textsuperscript{2})+(0×2\textsuperscript{1})+(1×2\textsuperscript{0})
-= 9\textsubscript{10}. It's equally natural to extend this scheme to
+use base 2, so $1001_{2}$ is
+$(1×2^{3})+(0×2^{2})+(0×2^{1})+(1×2^{0}) = 9_{10}$.
+It's equally natural to extend this scheme to
 negative numbers by reserving one bit for the sign. If, for example, we
 use 0 for positive numbers and 1 for those that are negative,
-+9\textsubscript{10} would be 01001\textsubscript{2} and
--9\textsubscript{10} would be 11001\textsubscript{10}.
+$+9^{10}$ would be $01001^{2}$ and
+$-9^{10}$ would be $11001^{10}$.
 
 There are two problems with this. The first is that this scheme gives us
-two representations for zero (00000\textsubscript{2} and
-10000\textsubscript{2}). This isn't necessarily fatal, but any claims
+two representations for zero ($00000_{2}$ and
+$10000_{2}$). This isn't necessarily fatal, but any claims
 this scheme has to being ``natural'' disappear when we have to write
 code like:
 
@@ -12769,17 +12796,17 @@ if (length != +0) and (length != -0)
 
 As for the other problem, it turns out that the circuits needed to do
 addition and other arithmetic on this
-\gdef{g:sign-and-magnitude}{sign and magnitude representation} are
+\glossdef{g:sign-and-magnitude}{sign and magnitude representation} are
 more complicated than the hardware needed for another called
-\gdef{g:twos-complement}{two's complement}. Instead of mirroring
+\glossdef{g:twos-complement}{two's complement}. Instead of mirroring
 positive values, two's complement rolls over when going below zero, just
 like a car's odometer. If we're using four bits per number, so that
-0\textsubscript{10} is 0000\textsubscript{2}, then -1\textsubscript{10}
-is 1111\textsubscript{2}. -2\textsubscript{10} is 1110\textsubscript{2},
--3\textsubscript{10} is 1101\textsubscript{2}, and so on until we reach
-the most negative number we can represent, 1000\textsubscript{2}, which
+$0_{10}$ is $0000_{2}$, then $-1_{10}$
+is $1111_{2}$. $-2_{10}$ is $1110_{2}$,
+$-3_{10}$ is $1101_{2}$, and so on until we reach
+the most negative number we can represent, $1000_{2}$, which
 is -8. Our representation then wraps around again, so that
-0111\textsubscript{2} is 7\textsubscript{10}.
+$0111_{2}$ is $7_{10}$.
 
 This scheme isn't intuitive, but it solves sign and magnitude's ``double
 zero'' problem, and the hardware to handle it is faster and cheaper. As
@@ -12790,7 +12817,7 @@ number, numbers go from -8 to 7, or -16 to 15, and so on. As a result,
 even if \texttt{x} is a valid number, \texttt{-x} may not be.
 
 Finding a good representation for real numbers (called
-\gdef{g:floating-point}{floating point numbers}, since the decimal
+\glossdef{g:floating-point}{floating point numbers}, since the decimal
 point can move around) is a much harder problem. The root of the problem
 is that we cannot represent an infinite number of real values with a
 finite set of bit patterns. And unlike integers, no matter what values
@@ -12934,9 +12961,9 @@ happens because we're multiplying the same fixed set of mantissas by
 ever-larger exponents, and it points us at a couple of useful
 definitions.
 
-The \gdef{g:absolute-error}{absolute error} in some approximation is
+The \glossdef{g:absolute-error}{absolute error} in some approximation is
 simply the absolute value of the difference between the actual value and
-the approximation. The \gdef{g:relative-error}{relative error}, on
+the approximation. The \glossdef{g:relative-error}{relative error}, on
 the other hand, is the ratio of the absolute error to the value we're
 approximating. For example, if we're off by 1 in approximating 8+1 and
 56+1, the absolute error is the same in both cases, but the relative
@@ -12967,7 +12994,7 @@ values, we create the numbers 0.9, 0.09, 0.009, and so on, and put them
 in the list \texttt{vals}. We then calculate the sum of those numbers.
 Clearly, this should be 0.9, 0.99, 0.999, and so on. But is it?
 
-\begin{longtable}[c]{@{}lll@{}}
+\begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
 1 & 0.900000000000000022 & 0.900000000000000022
 \\\noalign{\medskip}
@@ -12988,7 +13015,7 @@ Clearly, this should be 0.9, 0.99, 0.999, and so on. But is it?
 9 & 0.000000009000000000 & 0.999999999000000028
 \\\noalign{\medskip}
 \hline
-\end{longtable}
+\end{tabular}
 
 Here are our answers. The first column is the loop index; the second,
 what we actually got when we tried to calculate 0.9, 0.09, and so on,
@@ -13677,7 +13704,7 @@ the ``other 90\%'' of the language as well.
 
 The secondary goal of this lesson is to give them a usable mental model
 of how programs run (what computer science educators call a
-\gdef{g:notional-machine}{notional machine} so that they can debug
+\glossdef{g:notional-machine}{notional machine} so that they can debug
 things when they go wrong. In particular, they must understand how
 function call stacks work.
 
@@ -14421,30 +14448,30 @@ connection.close()
 
 \chapter{Glossary}\label{glossary}
 
-\textbf{absolute path}: A \gdef{g:path}{path} that refers to a
+\textbf{absolute path}: A \glossdef{g:path}{path} that refers to a
 particular location in a file system. Absolute paths are usually written
-with respect to the file system's \gdef{g:root-directory}{root
+with respect to the file system's \glossdef{g:root-directory}{root
 directory}, and begin with either ``/'' (on Unix) or
 ``\textbackslash{}'' (on Microsoft Windows). See also:
-\gdef{g:relative-path}{relative path}.
+\glossdef{g:relative-path}{relative path}.
 
 \textbf{additive color model}: A way to represent colors as the sum of
-contributions from primary colors such as \gdef{g:rgb}{red, green,
+contributions from primary colors such as \glossdef{g:rgb}{red, green,
 and blue}.
 
 \textbf{aggregation function}: A function such as \texttt{sum} or
 \texttt{max} that combines many values to produce a single result.
 
-\textbf{alias} (a library): To give a \gdef{g:library}{library} a
+\textbf{alias} (a library): To give a \glossdef{g:library}{library} a
 nickname while importing it.
 
 \textbf{assertion}: An expression which is supposed to be true at a
 particular point in a program. Programmers typically put assertions in
 their code to check for errors; if the assertion fails (i.e., if the
 expression evaluates as false), the program halts and produces an error
-message. See also: \gdef{g:invariant}{invariant},
-\gdef{g:precondition}{precondition},
-\gdef{g:postcondition}{postcondition}.
+message. See also: \glossdef{g:invariant}{invariant},
+\glossdef{g:precondition}{precondition},
+\glossdef{g:postcondition}{postcondition}.
 
 \textbf{assignment}: To give a value a name by associating a variable
 with it.
@@ -14456,30 +14483,30 @@ decompose it into tens and ones).
 
 \textbf{call stack}: A data structure inside a running program that
 keeps track of active function calls. Each call's variables are stored
-in a \gdef{g:stack-frame}{stack frame}; a new stack frame is put on
+in a \glossdef{g:stack-frame}{stack frame}; a new stack frame is put on
 top of the stack for each call, and discarded when the call is finished.
 
 \textbf{cascading delete}: The practice of automatically deleting things
 in a database that depend on a record when that record is deleted. See
-also: \gdef{g:referential-integrity}{referential integrity}.
+also: \glossdef{g:referential-integrity}{referential integrity}.
 
 \textbf{case insensitive}: Treating text as if upper and lower case
-characters were the same. See also: \gdef{g:case-sensitive}{case
+characters were the same. See also: \glossdef{g:case-sensitive}{case
 sensitive}.
 
 \textbf{change set}: A group of changes to one or more files that are
-\gdef{g:commit}{committed} to a \gdef{g:version-control}{version
-control} \gdef{g:repository}{repository} in a single operation.
+\glossdef{g:commit}{committed} to a \glossdef{g:version-control}{version
+control} \glossdef{g:repository}{repository} in a single operation.
 
 \textbf{clone} (a repository): To make a copy of a
-\gdef{g:repository}{version control repository}.
+\glossdef{g:repository}{version control repository}.
 
 \textbf{comma-separated values} (CSV): A common textual representation
 for tables in which the values in each row are separated by commas.
 
 \textbf{command-line interface} (CLI): An interface based on typing
-commands, usually at a \gdef{g:repl}{REPL}. See also:
-\gdef{g:gui}{graphical user interface}.
+commands, usually at a \glossdef{g:repl}{REPL}. See also:
+\glossdef{g:gui}{graphical user interface}.
 
 \textbf{comment}: A remark in a program that is intended to help human
 readers understand what is going on, but is ignored by the computer.
@@ -14491,18 +14518,18 @@ character and run to the end of the line; comments in SQL start with
 might not be executed depending on whether a test is true or false.
 
 \textbf{conflict}: A change made by one user of a
-\gdef{g:version-control}{version control system} that is
+\glossdef{g:version-control}{version control system} that is
 incompatible with changes made by other users. Helping users
-\gdef{g:resolve}{resolve} conflicts is one of version control's
+\glossdef{g:resolve}{resolve} conflicts is one of version control's
 major tasks.
 
 \textbf{cross product}: A pairing of all elements of one set with all
 elements of another.
 
 \textbf{current working directory}: The directory that
-\gdef{g:relative-path}{relative paths} are calculated from;
+\glossdef{g:relative-path}{relative paths} are calculated from;
 equivalently, the place where files referenced by name only are searched
-for. Every \gdef{g:process}{process} has a current working
+for. Every \glossdef{g:process}{process} has a current working
 directory. The current working directory is usually referred to using
 the shorthand notation \texttt{.} (pronounced ``dot'').
 
@@ -14510,10 +14537,10 @@ the shorthand notation \texttt{.} (pronounced ``dot'').
 outstanding operations.
 
 \textbf{data type}: A kind of data value, such as
-\gdef{g:integer}{integer} or \gdef{g:string}{character string}.
+\glossdef{g:integer}{integer} or \glossdef{g:string}{character string}.
 
 \textbf{database manager}: A program that manages a
-\gdef{g:relational-database}{relational database}.
+\glossdef{g:relational-database}{relational database}.
 
 \textbf{default parameter value}: A value to use for a parameter if
 nothing is specified explicitly.
@@ -14523,7 +14550,7 @@ check their own operation to catch errors as early as possible.
 
 \textbf{delimiter}: A character or characters used to separate
 individual values, such as the commas between columns in a
-\gdef{g:csv}{CSV} file.
+\glossdef{g:csv}{CSV} file.
 
 \textbf{disk block}: The smallest unit of storage that can be allocated
 on a computer disk. Disk blocks are typically 512 bytes in size.
@@ -14548,8 +14575,8 @@ implementation details so that the rest of a program can worry about
 \emph{what} it does rather than \emph{how} it does it.
 
 \textbf{field} (of a database): A set of data values of a particular
-type, one for each \gdef{g:record-database}{record} in a
-\gdef{g:table-database}{table}.
+type, one for each \glossdef{g:record-database}{record} in a
+\glossdef{g:table-database}{table}.
 
 \textbf{filename extension}: The portion of a file's name that comes
 after the final ``.'' character. By convention this identifies the
@@ -14557,19 +14584,19 @@ file's type: \texttt{.txt} means ``text file'', \texttt{.png} means
 ``Portable Network Graphics file'', and so on. These conventions are not
 enforced by most operating systems: it is perfectly possible to name an
 MP3 sound file \texttt{homepage.html}. Since many applications use
-filename extensions to identify the \gdef{g:mime-type}{MIME type} of
+filename extensions to identify the \glossdef{g:mime-type}{MIME type} of
 the file, misnaming files may cause those applications to fail.
 
 \textbf{filesystem}: A set of files, directories, and I/O devices (such
 as keyboards and screens). A filesystem may be spread across many
 physical devices, or many filesystems may be stored on a single physical
-device; the \gdef{g:operating-system}{operating system} manages
+device; the \glossdef{g:operating-system}{operating system} manages
 access.
 
 \textbf{filter}: A program that transforms a stream of data. Many Unix
 command-line tools are written as filters: they read data from
-\gdef{g:standard-input}{standard input}, process it, and write the
-result to \gdef{g:standard-output}{standard output}.
+\glossdef{g:standard-input}{standard input}, process it, and write the
+result to \glossdef{g:standard-output}{standard output}.
 
 \textbf{flag}: A terse way to specify an option or setting to a
 command-line program. By convention Unix applications use a dash
@@ -14579,15 +14606,15 @@ slash, such as \texttt{/V}. Depending on the application, a flag may be
 followed by a single argument, as in \texttt{-o /tmp/output.txt}.
 
 \textbf{floating point number} (float): A number containing a fractional
-part and an exponent. See also: \gdef{g:integer}{integer}.
+part and an exponent. See also: \glossdef{g:integer}{integer}.
 
 \textbf{for loop}: A loop that is executed once for each value in some
-kind of set, list, or range. See also: \gdef{g:while-loop}{while
+kind of set, list, or range. See also: \glossdef{g:while-loop}{while
 loop}.
 
 \textbf{foreign key}: One or more values in a
-\gdef{g:table-database}{database table} that identify a
-\gdef{g:record-database}{records} in another table.
+\glossdef{g:table-database}{database table} that identify a
+\glossdef{g:record-database}{records} in another table.
 
 \textbf{function call}: A use of a function in another piece of
 software.
@@ -14600,7 +14627,7 @@ to the result of another, such as \texttt{f(g(x))}.
 
 \textbf{graphical user interface} (GUI): A graphical user interface,
 usually controlled by using a mouse. See also:
-\gdef{g:cli}{command-line interface}.
+\glossdef{g:cli}{command-line interface}.
 
 \textbf{home directory}: The default directory associated with an
 account on a computer system. By convention, all of a user's files are
@@ -14608,9 +14635,9 @@ stored in or below her home directory.
 
 \textbf{immutable}: Unchangeable. The value of immutable data cannot be
 altered after it has been created. See also:
-\gdef{g:mutable}{mutable}.
+\glossdef{g:mutable}{mutable}.
 
-\textbf{import}: To load a \gdef{g:library}{library} into a program.
+\textbf{import}: To load a \glossdef{g:library}{library} into a program.
 
 \textbf{in-place operator}: An operator such as \texttt{+=} that
 provides a shorthand notation for the common case in which the variable
@@ -14627,16 +14654,16 @@ who incorporate material into their own work to place similar sharing
 requirements on it.
 
 \textbf{inner loop}: A loop that is inside another loop. See also:
-\gdef{g:outer-loop}{outer loop}.
+\glossdef{g:outer-loop}{outer loop}.
 
 \textbf{integer}: A whole number, such as -12343. See also:
-\gdef{g:float}{floating-point number}.
+\glossdef{g:float}{floating-point number}.
 
 \textbf{invariant}: An expression whose value doesn't change during the
 execution of a program, typically used in an
-\gdef{g:assertion}{assertion}. See also:
-\gdef{g:precondition}{precondition},
-\gdef{g:postcondition}{postcondition}.
+\glossdef{g:assertion}{assertion}. See also:
+\glossdef{g:precondition}{precondition},
+\glossdef{g:postcondition}{postcondition}.
 
 \textbf{library}: A family of code units (functions, classes, variables)
 that implement a set of related tasks.
@@ -14645,38 +14672,38 @@ that implement a set of related tasks.
 the loop.
 
 \textbf{member}: A variable contained within an
-\gdef{g:object}{object}.
+\glossdef{g:object}{object}.
 
 \textbf{merge} (a repository): To reconcile two sets of change to a
-\gdef{g:repository}{repository}.
+\glossdef{g:repository}{repository}.
 
 \textbf{method}: A function which is tied to a particular
-\gdef{g:object}{object}. Each of an object's methods typically
+\glossdef{g:object}{object}. Each of an object's methods typically
 implements one of the things it can do, or one of the questions it can
 answer.
 
 \textbf{mutable}: Changeable. The value of mutable data can be updated
-in place. See also: \gdef{g:immutable}{immutable}.
+in place. See also: \glossdef{g:immutable}{immutable}.
 
 \textbf{notional machine}: An abstraction of a computer used to think
 about what it can and will do.
 
 \textbf{object}: A particular ``chunk'' of data associated with specific
-operations called \gdef{g:method}{methods}.
+operations called \glossdef{g:method}{methods}.
 
 \textbf{orthogonal}: To have meanings or behaviors that are independent
 of each other. If a set of concepts or tools are orthogonal, they can be
 combined in any way.
 
 \textbf{outer loop}: A loop that contains another loop. See also:
-\gdef{g:inner-loop}{inner loop}.
+\glossdef{g:inner-loop}{inner loop}.
 
 \textbf{parameter}: A value passed into a function, or a variable named
 in the function's declaration that is used to hold such a value.
 
 \textbf{parent directory}: The directory that ``contains'' the one in
 question. Every directory in a file system except the
-\gdef{g:root-directory}{root directory} has a parent. A directory's
+\glossdef{g:root-directory}{root directory} has a parent. A directory's
 parent is usually referred to using the shorthand notation \texttt{..}
 (pronounced ``dot dot'').
 
@@ -14685,38 +14712,38 @@ of another. When two or more programs are connected in this way, they
 are called a ``pipeline''.
 
 \textbf{pipe and filter}: A model of programming in which
-\gdef{g:filter}{filters} that process \gdef{g:stream}{streams}
+\glossdef{g:filter}{filters} that process \glossdef{g:stream}{streams}
 of data are connected end-to-end. The pipe and filter model is used
-extensively in the Unix \gdef{g:shell}{shell}.
+extensively in the Unix \glossdef{g:shell}{shell}.
 
 \textbf{postcondition}: A condition that a function (or other block of
 code) guarantees is true once it has finished running. Postconditions
-are often represented using \gdef{g:assertion}{assertions}.
+are often represented using \glossdef{g:assertion}{assertions}.
 
 \textbf{precondition}: A condition that must be true in order for a
 function (or other block of code) to run correctly.
 
-\textbf{prepared statement}: A template for an \gdef{g:sql}{SQL}
+\textbf{prepared statement}: A template for an \glossdef{g:sql}{SQL}
 query in which some values can be filled in.
 
-\textbf{primary key}: One or more \gdef{g:field-database}{fields} in
-a \gdef{g:table-database}{database table} whose values are
-guaranteed to be unique for each \gdef{g:record-database}{record},
+\textbf{primary key}: One or more \glossdef{g:field-database}{fields} in
+a \glossdef{g:table-database}{database table} whose values are
+guaranteed to be unique for each \glossdef{g:record-database}{record},
 i.e., whose values uniquely identify the entry.
 
 \textbf{process}: A running instance of a program, containing code,
 variable values, open files and network connections, and so on.
 Processes are the ``actors'' that the
-\gdef{g:operating-system}{operating system} manages; it typically
+\glossdef{g:operating-system}{operating system} manages; it typically
 runs each process for a few milliseconds at a time to give the
 impression that they are executing simultaneously.
 
 \textbf{prompt}: A character or characters display by a
-\gdef{g:repl}{REPL} to show that it is waiting for its next command.
+\glossdef{g:repl}{REPL} to show that it is waiting for its next command.
 
 \textbf{query}: A database operation that reads values but does not
 modify anything. Queries are expressed in a special-purpose language
-called \gdef{g:sql}{SQL}.
+called \glossdef{g:sql}{SQL}.
 
 \textbf{quoting} (in the shell): Using quotation marks of various kinds
 to prevent the shell from interpreting special characters. For example,
@@ -14724,13 +14751,13 @@ to pass the string \texttt{*.txt} to a program, it is usually necessary
 to write it as \texttt{'*.txt'} (with single quotes) so that the shell
 will not try to expand the \texttt{*} wildcard.
 
-\textbf{read-eval-print loop} (REPL): a \gdef{g:cli}{command-line
+\textbf{read-eval-print loop} (REPL): a \glossdef{g:cli}{command-line
 interface} that reads a command from the user, executes it, prints the
 result, and waits for another command.
 
 \textbf{record} (in a database): A set of related values making up a
-single entry in a \gdef{g:table-database}{database table}, typically
-shown as a row. See also: \gdef{g:field-database}{field}.
+single entry in a \glossdef{g:table-database}{database table}, typically
+shown as a row. See also: \glossdef{g:field-database}{field}.
 
 \textbf{redirect}: To send a command's output to a file rather than to
 the screen or another command, or equivalently to read a command's input
@@ -14738,8 +14765,8 @@ from a file.
 
 \textbf{referential integrity}: The internal consistency of values in a
 database. If an entry in one table contains a
-\gdef{g:foreign-key}{foreign key}, but the corresponding
-\gdef{g:record-database}{records} don't exist, referential integrity
+\glossdef{g:foreign-key}{foreign key}, but the corresponding
+\glossdef{g:record-database}{records} don't exist, referential integrity
 has been violated.
 
 \textbf{regression}: To re-introduce a bug that was once fixed.
@@ -14749,42 +14776,42 @@ character strings. REs are most often used to find sequences of
 characters in strings.
 
 \textbf{relational database}: A collection of data organized into
-\gdef{g:table-database}{tables}.
+\glossdef{g:table-database}{tables}.
 
-\textbf{relative path}: A \gdef{g:path}{path} that specifies the
+\textbf{relative path}: A \glossdef{g:path}{path} that specifies the
 location of a file or directory with respect to the
-\gdef{g:current-working-directory}{current working directory}. Any
+\glossdef{g:current-working-directory}{current working directory}. Any
 path that does not begin with a separator character (``/'' or
 ``\textbackslash{}'') is a relative path. See also:
-\gdef{g:absolute-path}{absolute path}.
+\glossdef{g:absolute-path}{absolute path}.
 
 \textbf{remote repository}: A version control
-\gdef{g:repository}{repository} other than the current one that the
+\glossdef{g:repository}{repository} other than the current one that the
 current one is somehow connected to or mirroring.
 
 \textbf{repository}: A storage area where a
-\gdef{g:version-control}{version control} system stores old
-\gdef{g:revision}{revisions} of files and information about who
+\glossdef{g:version-control}{version control} system stores old
+\glossdef{g:revision}{revisions} of files and information about who
 changed what, when.
 
-\textbf{resolve}: To eliminate the \gdef{g:conflict}{conflicts}
+\textbf{resolve}: To eliminate the \glossdef{g:conflict}{conflicts}
 between two or more incompatible changes to a file or set of files being
-managed by a \gdef{g:version-control}{version control} system.
+managed by a \glossdef{g:version-control}{version control} system.
 
 \textbf{return statement}: A statement that causes a function to stop
 executing and return a value to its caller immediately.
 
 \textbf{revision}: A recorded state of a
-\gdef{g:version-control}{version control}
-\gdef{g:repository}{repository}.
+\glossdef{g:version-control}{version control}
+\glossdef{g:repository}{repository}.
 
 \textbf{RGB} (red-green-blue): An
-\gdef{g:additive-color-model}{additive model} that represents colors
+\glossdef{g:additive-color-model}{additive model} that represents colors
 as combinations of red, green, and blue. Each color's value is typically
 in the range 0..255 (i.e., a one-byte integer).
 
 \textbf{root directory}: The top-most directory in a
-\gdef{g:filesystem}{filesystem}. Its name is ``/'' on Unix
+\glossdef{g:filesystem}{filesystem}. Its name is ``/'' on Unix
 (including Linux and Mac OS X) and ``\textbackslash{}'' on Microsoft
 Windows.
 
@@ -14797,12 +14824,12 @@ specified with a single integer index, such as a vector.
 \textbf{shape} (of an array): An array's dimensions, represented as a
 vector. For example, a 5×3 array's shape is \texttt{(5,3)}.
 
-\textbf{shell}: A \gdef{g:cli}{command-line interface} such as Bash
+\textbf{shell}: A \glossdef{g:cli}{command-line interface} such as Bash
 (the Bourne-Again Shell) or the Microsoft Windows DOS shell that allows
-a user to interact with the \gdef{g:operating-system}{operating
+a user to interact with the \glossdef{g:operating-system}{operating
 system}.
 
-\textbf{shell script}: A set of \gdef{g:shell}{shell} commands
+\textbf{shell script}: A set of \glossdef{g:shell}{shell} commands
 stored in a file for re-use. A shell script is a program executed by the
 shell; the name ``script'' is used for historical reasons.
 
@@ -14813,7 +14840,7 @@ Silent failures are hard to detect and debug.
 first five elements or every second element.
 
 \textbf{SQL} (Structured Query Language): A special-purpose language for
-describing operations on \gdef{g:relational-database}{relational
+describing operations on \glossdef{g:relational-database}{relational
 databases}.
 
 \textbf{SQL injection attack}: An attack on a program in which the
@@ -14822,24 +14849,24 @@ directly into an SQL statement, it will be executed in the database.
 
 \textbf{stack frame}: A data structure that provides storage for a
 function's local variables. Each time a function is called, a new stack
-frame is created and put on the top of the \gdef{g:call-stack}{call
+frame is created and put on the top of the \glossdef{g:call-stack}{call
 stack}. When the function returns, the stack frame is discarded.
 
 \textbf{standard input} (stdin): A process's default input stream. In
 interactive command-line applications, it is typically connected to the
-keyboard;; in a \gdef{g:pipe}{pipe}, it receives data from the
-\gdef{g:standard-output}{standard output} of the preceding process.
+keyboard;; in a \glossdef{g:pipe}{pipe}, it receives data from the
+\glossdef{g:standard-output}{standard output} of the preceding process.
 
 \textbf{standard output} (stdout): A process's default output stream. In
 interactive command-line applications, data sent to standard output is
-displayed on the screen; in a \gdef{g:pipe}{pipe}, it is passed to
-the \gdef{g:standard-input}{standard input} of the next process.
+displayed on the screen; in a \glossdef{g:pipe}{pipe}, it is passed to
+the \glossdef{g:standard-input}{standard input} of the next process.
 
 \textbf{stride}: The offset between successive elements of a
-\gdef{g:slice}{slice}.
+\glossdef{g:slice}{slice}.
 
 \textbf{string}: Short for ``character string'', a
-\gdef{g:sequence}{sequence} of zero or more characters.
+\glossdef{g:sequence}{sequence} of zero or more characters.
 
 \textbf{sub-directory}: A directory contained within another directory.
 
@@ -14848,9 +14875,9 @@ in which pressing the Tab key triggers automatic completion of the
 current word or command.
 
 \textbf{table} (in a database): A set of data in a
-\gdef{g:relational-database}{relational database} organized into a
-set of \gdef{g:record-database}{records}, each having the same named
-\gdef{g:field-database}{fields}.
+\glossdef{g:relational-database}{relational database} organized into a
+set of \glossdef{g:record-database}{records}, each having the same named
+\glossdef{g:field-database}{fields}.
 
 \textbf{test oracle}: A program, device, data set, or human being
 against which the results of a test can be compared.
@@ -14858,14 +14885,14 @@ against which the results of a test can be compared.
 \textbf{test-driven development} (TDD): The practice of writing unit
 tests \emph{before} writing the code they test.
 
-\textbf{tuple}: An \gdef{g:immutable}{immutable}
-\gdef{g:sequence}{sequence} of values.
+\textbf{tuple}: An \glossdef{g:immutable}{immutable}
+\glossdef{g:sequence}{sequence} of values.
 
 \textbf{variable}: A name in a program that is associated with a value
 or a collection of values.
 
 \textbf{version control}: A tool for managing changes to a set of files.
-Each set of changes creates a new \gdef{g:revision}{revision} of the
+Each set of changes creates a new \glossdef{g:revision}{revision} of the
 files; the version control system allows users to recover old revisions
 reliably, and helps manage conflicting changes made by different users.
 
