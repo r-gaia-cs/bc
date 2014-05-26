@@ -1,3 +1,12 @@
+% define page size and margins etc
+\geometry{
+  paperwidth=18.91cm,paperheight=24.589cm,
+  vmargin=1.9cm, % top and bottom margins
+  inner=1.9cm, % inside margin
+  outer=2.29cm, % outside margin
+  bindingoffset=0.89cm % gutter
+} 
+
 % define headers (empty) and footers
 % fiddle with chaptermark so we can make it not all caps
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -67,6 +76,10 @@
 \newenvironment{swcitemize2}
 {\begin{itemize}[itemsep=-0.5ex,topsep=-1ex,leftmargin=9mm]}
 {\end{itemize}}
+
+% new environments for objectives and keypoints
+\newenvironment{objectives}{\noindent\textbf{Objectives}}{\vspace{\baselineskip}}
+\newenvironment{keypoints}{\noindent\textbf{Key Points}}{\vspace{\baselineskip}}
 
 %% Make the space above and below captions smaller
 \setlength{\abovecaptionskip}{1.2ex}

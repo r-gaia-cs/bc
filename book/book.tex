@@ -1,23 +1,6 @@
 \documentclass{book}
-
 \input{packages}
-
-% define page size and margins etc
-\geometry{
-  paperwidth=18.91cm,paperheight=24.589cm,
-  vmargin=1.9cm, % top and bottom margins
-  inner=1.9cm, % inside margin
-  outer=2.29cm, % outside margin
-  bindingoffset=0.89cm % gutter
-} 
-
 \input{commands}
-
-\title{Software Carpentry}
-% FIXME \subtitle{Volume 1: Basics}
-% FIXME \editor{Greg Wilson}
-\author{Greg Wilson}
-\date{2014}
 
 \begin{document}
 
@@ -166,8 +149,7 @@ Software Carpentry has been made possible by the generous support of:
 \item
   \urlfoot{http://www.ualberta.ca}{The University of Alberta}
 \item
-  \urlfoot{http://www.ucar.edu}{The University Consortium for Atmospheric
-  Research}
+  \urlfoot{http://www.ucar.edu}{The University Consortium for Atmospheric Research}
 \item
   \urlfoot{http://www.utoronto.ca}{The University of Toronto}
 \end{swcitemize}
@@ -183,8 +165,7 @@ things over and over again.
 
 \section{Introducing the Shell}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain how the shell relates to the keyboard, the screen, the
@@ -193,6 +174,7 @@ things over and over again.
   Explain when and why command-line interfaces should be used instead of
   graphical interfaces.
 \end{swcitemize}
+\end{objectives}
 
 Nelle Nemo, a marine biologist, has just returned from a six-month
 survey of the
@@ -303,8 +285,7 @@ the easiest way to interact with remote machines. As clusters and cloud
 computing become more popular for scientific data crunching, being able
 to drive them is becoming a necessary skill.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   A shell is a program whose primary purpose is to read commands and run
@@ -317,11 +298,11 @@ to drive them is becoming a necessary skill.
   The shell's main disadvantages are its primarily textual nature and
   how cryptic its commands and operation can be.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Files and Directories}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain the similarities and differences between a file and a
@@ -339,6 +320,7 @@ to drive them is becoming a necessary skill.
 \item
   Demonstrate the use of tab completion, and explain its advantages.
 \end{swcitemize}
+\end{objectives}
 
 The part of the operating system responsible for managing files and
 directories is called the \glossdef{g:filesystem}{file system}. It
@@ -736,8 +718,7 @@ brings up a list of all the files, and so on. This is called
 \glossdef{g:tab-completion}{tab completion}, and we will see it in many
 other tools as we go on.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   The file system is responsible for managing information on the disk.
@@ -767,6 +748,7 @@ other tools as we go on.
 \item
   Most commands take options (flags) which begin with a `-'.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -826,8 +808,7 @@ pnas-sub/ pnas-final/ original/
 
 \section{Creating Things}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Create a directory hierarchy that matches a given diagram.
@@ -839,6 +820,7 @@ pnas-sub/ pnas-final/ original/
 \item
   Delete specified files and/or directories.
 \end{swcitemize}
+\end{objectives}
 
 We now know how to explore files and directories, but how do we create
 them in the first place? Let's go back to Vlad's home directory,
@@ -1166,8 +1148,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \emph{not} \texttt{/home/vlad/elsewhere}.
 \end{quote}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Unix documentation uses `\^{}A' to mean ``control-A''.
@@ -1178,6 +1159,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
   Nano is a very simple text editor---please use something else for real
   work.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -1240,8 +1222,7 @@ $ cp intro.txt methods.txt survey.txt
 
 \section{Pipes and Filters}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Redirect a command's output to a file.
@@ -1255,6 +1236,7 @@ $ cp intro.txt methods.txt survey.txt
 \item
   Explain Unix's ``small pieces, loosely joined'' philosophy.
 \end{swcitemize}
+\end{objectives}
 
 Now that we know a few basic commands, we can finally look at the
 shell's most powerful feature: the ease with which it lets us combine
@@ -1610,8 +1592,7 @@ any number of characters; the expression \texttt{{[}AB{]}} matches
 either an `A' or a `B', so this matches all the valid data files she
 has.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   \texttt{command \textgreater{} file} redirects a command's output to a
@@ -1623,6 +1604,7 @@ has.
   The best way to use the shell is to use pipes to combine simple
   single-purpose programs (filters).
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -1743,8 +1725,7 @@ bear
 
 \section{Loops}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write a loop that applies one or more commands separately to each file
@@ -1762,6 +1743,7 @@ bear
 \item
   Re-run recently executed commands without retyping them.
 \end{swcitemize}
+\end{objectives}
 
 Wildcards and tab completion are two ways to reduce typing (and typing
 mistakes). Another is to tell the shell to do something over and over
@@ -2125,8 +2107,7 @@ then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
 by typing \texttt{!458}.
 \end{quote}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   A \texttt{for} loop repeats commands once for every thing in a list.
@@ -2148,6 +2129,7 @@ by typing \texttt{!458}.
   Use \texttt{history} to display recent commands, and \texttt{!number}
   to repeat a command by number.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -2229,8 +2211,7 @@ done
 
 \section{Shell Scripts}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write a shell script that runs a command or series of commands for a
@@ -2243,6 +2224,7 @@ done
 \item
   Create pipelines that include user-written shell scripts.
 \end{swcitemize}
+\end{objectives}
 
 We are finally ready to see what makes the shell such a powerful
 programming environment. We are going to take the commands we repeat
@@ -2581,8 +2563,7 @@ command-line parameters, and use \texttt{*{[}AB{]}.txt} if none were
 provided. Of course, this introduces another tradeoff between
 flexibility and complexity.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Save commands in files (usually called shell scripts) for re-use.
@@ -2598,6 +2579,7 @@ flexibility and complexity.
   Letting users decide what files to process is more flexible and more
   consistent with built-in Unix commands.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -2674,8 +2656,7 @@ echo $*.dat
 
 \section{Finding Things}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Use \texttt{grep} to select lines from text files that match simple
@@ -2689,6 +2670,7 @@ echo $*.dat
   Explain what is meant by ``text'' and ``binary'' files, and why many
   common tools don't handle the latter well.
 \end{swcitemize}
+\end{objectives}
 
 You can guess someone's age by how they talk about search: young people
 use ``Google'' as a verb, while crusty old Unix programmers use
@@ -3094,8 +3076,7 @@ North Whitehead wrote in 1911, ``Civilization advances by extending the
 number of important operations which we can perform without thinking
 about them.''
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Use \texttt{find} to find files and directories, and \texttt{grep} to
@@ -3105,6 +3086,7 @@ about them.''
 \item
   \texttt{man command} displays the manual page for a given command.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -3187,8 +3169,7 @@ encourage.
 
 \section{A Better Kind of Backup}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain which initialization and configuration steps are required once
@@ -3206,6 +3187,7 @@ encourage.
   Configure Git to ignore specific files, and explain why it is
   sometimes useful to do so.
 \end{swcitemize}
+\end{objectives}
 
 We'll start by exploring how version control can be used to keep track
 of what one person did and when. Even if you aren't collaborating with
@@ -3968,8 +3950,7 @@ $ git status --ignored
 nothing to commit, working directory clean
 \end{verbatim}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Use \texttt{git config} to configure a user name, email address,
@@ -3996,6 +3977,7 @@ nothing to commit, working directory clean
 \item
   The \texttt{.gitignore} file tells Git what files to ignore.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -4025,8 +4007,7 @@ git init     # make the beta sub-directory a Git repository
 
 \section{Collaborating}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain what remote repositories are and why they are useful.
@@ -4036,6 +4017,7 @@ git init     # make the beta sub-directory a Git repository
   Explain what happens when changes are pushed to or pulled from a
   remote repository.
 \end{swcitemize}
+\end{objectives}
 
 Version control really comes into its own when we begin to collaborate
 with other people. We already have most of the machinery we need to do
@@ -4263,8 +4245,7 @@ on our laptop, and the other on a lab machine, or on someone else's
 computer. Pushing and pulling changes gives us a reliable way to share
 work between different people and machines.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   A local Git repository can be connected to one or more remote
@@ -4282,6 +4263,7 @@ work between different people and machines.
   \texttt{git clone} copies a remote repository to create a local
   repository with a remote called \texttt{origin} automatically set up.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -4295,14 +4277,14 @@ work between different people and machines.
 
 \section{Conflicts}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain what conflicts are and when they can occur.
 \item
   Resolve conflicts resulting from a merge.
 \end{swcitemize}
+\end{objectives}
 
 As soon as people can work in parallel, someone's going to step on
 someone else's toes. This will even happen with a single person: if we
@@ -4577,8 +4559,7 @@ version control system is essentially trying to tell its users that they
 ought to clarify who's responsible for what, or find a way to divide the
 work up differently.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Conflicts occur when two or more people change the same file(s) at the
@@ -4588,6 +4569,7 @@ work up differently.
   each other's changes. Instead, it highlights conflicts so that they
   can be resolved.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -4604,8 +4586,7 @@ work up differently.
 
 \section{Open Science}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain how the GNU Public License (GPL) differs from most other open
@@ -4620,6 +4601,7 @@ work up differently.
   Outline options for hosting code and data and the pros and cons of
   each.
 \end{swcitemize}
+\end{objectives}
 
 \begin{quote}
 The opposite of ``open'' isn't ``closed''. The opposite of ``open'' is
@@ -4850,8 +4832,7 @@ choice for science, but many institutions may not allow researchers to
 do this, either because they want to protect future patent applications
 or simply because what's new is often also frightening.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Open scientific work is more useful and more highly cited than closed.
@@ -4872,6 +4853,7 @@ or simply because what's new is often also frightening.
   Rules regarding intellectual property and storage of sensitive
   information apply no matter where code and data are hosted.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Challenges}
 
@@ -4942,8 +4924,7 @@ We want to:
 
 To do all that, we'll have to learn a little bit about programming.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain what a library is, and what libraries are used for.
@@ -4960,6 +4941,7 @@ To do all that, we'll have to learn a little bit about programming.
 \item
   Display simple graphs.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{Loading Data}
 
@@ -5567,8 +5549,7 @@ together more closely.)
   instead of side by side.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Import a library into a program using \texttt{import libraryname}.
@@ -5606,6 +5587,7 @@ together more closely.)
   Use the \texttt{pyplot} library from \texttt{matplotlib} for creating
   simple visualizations.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -5625,8 +5607,7 @@ statistics. But we have twelve files to check, and may have more in
 future. In this lesson, we'll learn how to write a function so that we
 can repeat several operations with a single command.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Define a function that takes parameters.
@@ -5643,6 +5624,7 @@ can repeat several operations with a single command.
   Explain why we should divide programs into small, single-purpose
   functions.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{Defining a Function}
 
@@ -6406,8 +6388,7 @@ parameter in the list. That's why we don't have to provide
   your neighbor's: do the two functions always behave the same way?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Define a function using \texttt{def name(...params...)}.
@@ -6438,6 +6419,7 @@ parameter in the list. That's why we don't have to provide
   Parameters can be passed by matching based on name, by position, or by
   omitting them (in which case the default value is used).
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -6508,8 +6490,7 @@ but we have a dozen data sets right now and more on the way. We want to
 create plots for all our data sets with a single statement. To do that,
 we'll have to teach the computer how to repeat things.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain what a for loop does.
@@ -6529,6 +6510,7 @@ we'll have to teach the computer how to repeat things.
 \item
   Use a for loop to process multiple files.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{For Loops}
 
@@ -6863,8 +6845,7 @@ the first, and their minima show the same staircase structure.
   whose name matches the pattern.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Use \texttt{for variable in collection} to process the elements of a
@@ -6890,6 +6871,7 @@ the first, and their minima show the same staircase structure.
   Use \texttt{*} in a pattern to match zero or more characters, and
   \texttt{?} to match any single character.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -6918,8 +6900,7 @@ We want programs to make choices based on the values they are
 manipulating. To help us see what decisions they're making, we'll start
 by looking at how computers manipulate images.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Create a simple ``image'' made out of colored blocks.
@@ -6940,6 +6921,7 @@ by looking at how computers manipulate images.
   Explain the advantages of putting frequently-modified code in a
   function.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{Image Grids}
 
@@ -7589,8 +7571,7 @@ left, right = right, left
   Which do you find easier to read?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Use the \texttt{ImageGrid} class from the \texttt{ipythonblocks}
@@ -7619,6 +7600,7 @@ left, right = right, left
   Put code whose parameters change frequently in a function, then call
   it with different parameter values to customize its behavior.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -7652,8 +7634,7 @@ slow it down. As in real carpentry---the kind done with lumber---the
 time saved by measuring carefully before cutting a piece of wood is much
 greater than the time that measuring takes.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain what an assertion is.
@@ -7670,6 +7651,7 @@ greater than the time that measuring takes.
 \item
   Debug code containing an error systematically.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{Assertions}
 
@@ -8271,8 +8253,7 @@ modular, testable chunks, and to turn every assumption (or mistake) into
 an assertion, it will actually take us \emph{less} time to produce
 working programs, not more.
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Program defensively, i.e., assume that errors are going to arise, and
@@ -8302,6 +8283,7 @@ working programs, not more.
 \item
   Be humble.
 \end{swcitemize}
+\end{keypoints}
 
 \mbox{}\paragraph{Next Steps}
 
@@ -8362,8 +8344,7 @@ To make this work, we need to know how to handle command-line arguments
 in a program, and how to get at standard input. We'll tackle these
 questions in turn below.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Use the values of command-line arguments in a program.
@@ -8373,6 +8354,7 @@ questions in turn below.
   Read data from standard input in a program so that it can be used in a
   pipeline.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{Command-Line Arguments}
 
@@ -8974,8 +8956,7 @@ set out to do.
    \end{swcitemize2}
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   The \texttt{sys} library connects a Python program to the system it is
@@ -8992,6 +8973,7 @@ set out to do.
   The ``file'' \texttt{sys.stdout} connects to a program's standard
   output.
 \end{swcitemize}
+\end{keypoints}
 
 \chapter{Using Databases and SQL}\label{s:sql}
 
@@ -9026,8 +9008,7 @@ ourselves. Spreadsheets are good for doing simple analysis, they don't
 handle large or complex data sets very well. We would therefore like to
 put this data in a database, and these lessons will show how to do that.
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain the difference between a table, a record, and a field.
@@ -9037,6 +9018,7 @@ put this data in a database, and these lessons will show how to do that.
   Write a query to select all values for specific fields from a single
   table.
 \end{swcitemize}
+\end{objectives}
 
 \subsection{A Few Definitions}
 
@@ -9305,8 +9287,7 @@ select Personal, Family from PERSON;
   What style do you find easiest to read, and why?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   A relational database stores information in tables, each of which has
@@ -9320,17 +9301,18 @@ select Personal, Family from PERSON;
 \item
   SQL is case-insensitive.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Sorting and Removing Duplicates}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write queries that display results in a particular order.
 \item
   Write queries that eliminate duplicate values from data.
 \end{swcitemize}
+\end{objectives}
 
 Data is often redundant, so queries often return redundant information.
 For example, if we select the quantitites that have been measured from
@@ -9534,8 +9516,7 @@ select distinct taken, person from Survey order by taken asc, person desc;
   \texttt{Person} table, ordered by family name.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   The records in a database table are not intrinsically ordered: if we
@@ -9544,11 +9525,11 @@ select distinct taken, person from Survey order by taken asc, person desc;
   The values in a database are not guaranteed to be unique: if we want
   to eliminate duplicates, we must specify that explicitly as well.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Filtering}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write queries that select records that satisfy user-specified
@@ -9556,6 +9537,7 @@ select distinct taken, person from Survey order by taken asc, person desc;
 \item
   Explain the order in which the clauses in a query are executed.
 \end{swcitemize}
+\end{objectives}
 
 One of the most powerful features of a database is the ability to
 \glossdef{g:filter}{filter} data, i.e., to select only those records
@@ -9788,8 +9770,7 @@ select * from Site where (lat > -60) or (lat < 60);
   `DR-something'.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Use \texttt{where} to filter records according to Boolean conditions.
@@ -9797,15 +9778,16 @@ select * from Site where (lat > -60) or (lat < 60);
   Filtering is done on whole records, so conditions can use fields that
   are not actually displayed.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Calculating New Values}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write queries that calculate new values for each selected record.
 \end{swcitemize}
+\end{objectives}
 
 After carefully re-reading the expedition logs, we realize that the
 radiation measurements they report may need to be corrected upward by
@@ -9984,18 +9966,17 @@ of X starting at index I. Use these two functions to produce a list of
 unique major site identifiers. (For this data, the list should contain
 only ``DR'' and ``MSK'').
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   SQL can perform calculations using the values in a record as part of a
   query.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Missing Data}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain how databases represent missing information.
@@ -10005,6 +9986,7 @@ only ``DR'' and ``MSK'').
 \item
   Write queries that handle missing information correctly.
 \end{swcitemize}
+\end{objectives}
 
 Real-world data is never complete---there are always holes. Databases
 represent these holes using special value called \texttt{null}.
@@ -10190,8 +10172,7 @@ select * from Visited where dated in ('1927-02-08', null);
   introduce?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Databases use \texttt{null} to represent missing information.
@@ -10202,11 +10183,11 @@ select * from Visited where dated in ('1927-02-08', null);
   The only operators that can safely be used with \texttt{null} are
   \texttt{is null} and \texttt{is not null}.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Aggregation}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Define ``aggregation'' and give examples of its use.
@@ -10217,6 +10198,7 @@ select * from Visited where dated in ('1927-02-08', null);
 \item
   Explain how missing data is handled during aggregation.
 \end{swcitemize}
+\end{objectives}
 
 We now want to calculate ranges and averages for our data. We know how
 to select all of the dates from the \texttt{Visited} table:
@@ -10538,8 +10520,7 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
   Can you find a way to order the list by surname?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   An aggregation function combines many values to produce a single new
@@ -10549,11 +10530,11 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 \item
   Aggregation happens after filtering.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Combining Data}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Explain the operation of a query that joins two tables.
@@ -10568,6 +10549,7 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
   Explain what atomic values are, and why database fields should only
   contain atomic values.
 \end{swcitemize}
+\end{objectives}
 
 In order to submit her data to a web site that aggregates historical
 meteorological data, Gina needs to format it as latitude, longitude,
@@ -10834,8 +10816,7 @@ on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
 \end{verbatim}
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Every fact should be represented in a database exactly once.
@@ -10854,17 +10835,18 @@ on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
 \item
   Keys should be atomic values to make joins simpler and more efficient.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Creating and Modifying Data}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write queries that creates tables.
 \item
   Write queries to insert, modify, and delete records.
 \end{swcitemize}
+\end{objectives}
 
 So far we have only looked at how to get information out of a database,
 both because that is more frequent than adding information, and because
@@ -11023,8 +11005,7 @@ Taken,Temp
   aren't stored in any particular order.)
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   Database tables are created using queries that specify their names and
@@ -11035,11 +11016,11 @@ Taken,Temp
   It is simpler and safer to modify data when every record has a unique
   primary key.
 \end{swcitemize}
+\end{keypoints}
 
 \section{Programming with Databases}
 
-\mbox{}\paragraph{Objectives}
-
+\begin{objectives}
 \begin{swcitemize}
 \item
   Write short programs that execute SQL queries.
@@ -11049,6 +11030,7 @@ Taken,Temp
   Explain why most database applications are written in a
   general-purpose language rather than in SQL.
 \end{swcitemize}
+\end{objectives}
 
 To close, let's have a look at how to access a database from a
 general-purpose programming language like Python. Other languages use
@@ -11211,8 +11193,7 @@ values into their escaped equivalents so that they are safe to use.
   reading everything into memory and filtering in Python?
 \end{swcenumerate}
 
-\mbox{}\paragraph{Key Points}
-
+\begin{keypoints}
 \begin{swcitemize}
 \item
   We usually write database applications in a general-purpose language,
@@ -11226,6 +11207,7 @@ values into their escaped equivalents so that they are safe to use.
 \item
   Programs can read query results in batches or all at once.
 \end{swcitemize}
+\end{keypoints}
 
 \chapter{A Few Extras}\label{s:extras}
 
