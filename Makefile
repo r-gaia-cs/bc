@@ -48,7 +48,7 @@ all : commands
 # only does batch mode), and erases the SITE directory first, so
 # having the output index.html file depend on all the page source
 # Markdown files triggers the desired build once and only once.
-$(INDEX) : $(ALL_SRC) $(CONFIG) $(EXTRAS)
+$(INDEX) : ./index.html $(ALL_SRC) $(CONFIG) $(EXTRAS)
 	 jekyll -t build -d $(SITE)
 
 #----------------------------------------------------------------------
