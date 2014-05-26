@@ -750,26 +750,23 @@ other tools as we go on.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
+Please refer to the diagram below for the following challenges:
 
 \includegraphics{novice/shell/img/filesystem-challenge.png}
 
-\begin{swcenumerate}
-\item
-  If \texttt{pwd} displays \texttt{/users/thing}, what will
-  \texttt{ls ../backup} display?
+\begin{challenge}
 
-  \begin{swcenumerate2}
-  \item
-    \texttt{../backup: No such file or directory}
-  \item
-    \texttt{2012-12-01 2013-01-08 2013-01-27}
-  \item
-    \texttt{2012-12-01/ 2013-01-08/ 2013-01-27/}
-  \item
-    \texttt{original pnas\_final pnas\_sub}
-  \end{swcenumerate2}
-\item
+  If \texttt{pwd} displays \texttt{/users/thing}, what will
+  \texttt{ls ../backup} display? 1.
+  \texttt{../backup: No such file or directory} 2.
+  \texttt{2012-12-01 2013-01-08 2013-01-27} 3.
+  \texttt{2012-12-01/ 2013-01-08/ 2013-01-27/} 4.
+  \texttt{original pnas\_final pnas\_sub}
+
+\end{challenge}
+
+\begin{challenge}
+
   If \texttt{pwd} displays \texttt{/users/backup}, and \texttt{-r} tells
   \texttt{ls} to display things in reverse order, what command will
   display:
@@ -778,35 +775,34 @@ other tools as we go on.
 pnas-sub/ pnas-final/ original/
 \end{verbatim}
 
-  \begin{swcenumerate2}
-  \item
-    \texttt{ls pwd}
-  \item
-    \texttt{ls -r -F}
-  \item
-    \texttt{ls -r -F /users/backup}
-  \item
-    Either \#2 or \#3 above, but not \#1.
-  \end{swcenumerate2}
+\begin{swcenumerate}
 \item
-  What does the command \texttt{cd} without a directory name do?
-
-  \begin{swcenumerate2}
-  \item
-    It has no effect.
-  \item
-    It changes the working directory to \texttt{/}.
-  \item
-    It changes the working directory to the user's home directory.
-  \item
-    It produces an error message.
-  \end{swcenumerate2}
+  \texttt{ls pwd}
 \item
-  What does the command \texttt{ls} do when used with the -s and -h
-  arguments?
+  \texttt{ls -r -F}
+\item
+  \texttt{ls -r -F /users/backup}
+\item
+  Either \#2 or \#3 above, but not \#1.
 \end{swcenumerate}
 
-\end{challenges}
+\end{challenge}
+
+\begin{challenge}
+
+  What does the command \texttt{cd} without a directory name do? 1. It has
+  no effect. 2. It changes the working directory to \texttt{/}. 3. It
+  changes the working directory to the user's home directory. 4. It
+  produces an error message.
+
+\end{challenge}
+
+\begin{challenge}
+
+  What does the command \texttt{ls} do when used with the -s and -h
+  arguments?
+
+\end{challenge}
 
 \section{Creating Things}
 
@@ -1163,10 +1159,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   What is the output of the closing \texttt{ls} command in the sequence
   shown below?
 
@@ -1180,7 +1173,9 @@ $ mv proteins.dat recombine
 $ cp recombine/proteins.dat ../proteins-saved.dat
 $ ls
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   Suppose that:
 
 \begin{verbatim}
@@ -1197,7 +1192,9 @@ analyzed   raw
 $ ls analyzed
 fructose.dat    sucrose.dat
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   What does \texttt{cp} do when given several filenames and a directory
   name, as in:
 
@@ -1213,16 +1210,16 @@ $ ls -F
 intro.txt    methods.txt    survey.txt
 $ cp intro.txt methods.txt survey.txt
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   The command \texttt{ls -R} lists the contents of directories
   recursively, i.e., lists their sub-directories, sub-sub-directories,
   and so on in alphabetical order at each level. The command
   \texttt{ls -t} lists things by time of last change, with most recently
   changed files or directories first. In what order does
   \texttt{ls -R -t} display things?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Pipes and Filters}
 
@@ -1610,10 +1607,7 @@ has.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   If we run \texttt{sort} on this file:
 
 \begin{verbatim}
@@ -1645,7 +1639,9 @@ has.
 \end{verbatim}
 
   Explain why \texttt{-n} has this effect.
-\item
+\end{challenge}
+
+\begin{challenge}
   What is the difference between:
 
 \begin{verbatim}
@@ -1657,7 +1653,9 @@ wc -l < mydata.dat
 \begin{verbatim}
 wc -l mydata.dat
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   The command \texttt{uniq} removes adjacent duplicated lines from its
   input. For example, if a file \texttt{salmon.txt} contains:
 
@@ -1682,7 +1680,9 @@ steelhead
   Why do you think \texttt{uniq} only removes \emph{adjacent} duplicated
   lines? (Hint: think about very large data sets.) What other command
   could you combine with it in a pipe to remove all duplicated lines?
-\item
+\end{challenge}
+
+\begin{challenge}
   A file called \texttt{animals.txt} contains the following data:
 
 \begin{verbatim}
@@ -1702,7 +1702,9 @@ steelhead
 \begin{verbatim}
 cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   The command:
 
 \begin{verbatim}
@@ -1725,9 +1727,7 @@ bear
   What other command(s) could be added to this in a pipeline to find out
   what animals the file contains (without any duplicates in their
   names)?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Loops}
 
@@ -2137,10 +2137,7 @@ by typing \texttt{!458}.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Suppose that \texttt{ls} initially displays:
 
 \begin{verbatim}
@@ -2155,7 +2152,9 @@ do
     ls *.dat
 done
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   In the same directory, what is the effect of this loop?
 
 \begin{verbatim}
@@ -2166,7 +2165,7 @@ do
 done
 \end{verbatim}
 
-  \begin{swcenumerate2}
+  \begin{swcenumerate}
   \item
     Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
     \texttt{sucrose.dat}, and copies \texttt{sucrose.dat} to create
@@ -2181,8 +2180,10 @@ done
     \texttt{sucrose.dat} to create \texttt{xylose.dat}.
   \item
     None of the above.
-  \end{swcenumerate2}
-\item
+  \end{swcenumerate}
+\end{challenge}
+
+\begin{challenge}
   The \texttt{expr} does simple arithmetic using command-line
   parameters:
 
@@ -2204,7 +2205,9 @@ do
     done
 done
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   Describe in words what the following loop does.
 
 \begin{verbatim}
@@ -2213,9 +2216,7 @@ do
     $how -limit 0.01 NENE01729B.txt
 done
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Shell Scripts}
 
@@ -2589,10 +2590,7 @@ flexibility and complexity.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Leah has several hundred data files, each of which is formatted like
   this:
 
@@ -2611,7 +2609,9 @@ flexibility and complexity.
   of filenames as command-line parameters, and uses \texttt{cut},
   \texttt{sort}, and \texttt{uniq} to print a list of the unique species
   appearing in each of those files separately.
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a shell script called \texttt{longest.sh} that takes the name of
   a directory and a filename extension as its parameters, and prints out
   the name of the file with the most lines in that directory with that
@@ -2623,7 +2623,9 @@ $ bash longest.sh /tmp/data pdb
 
   would print the name of the \texttt{.pdb} file in \texttt{/tmp/data}
   that has the most lines.
-\item
+\end{challenge}
+
+\begin{challenge}
   If you run the command:
 
 \begin{verbatim}
@@ -2634,35 +2636,33 @@ history | tail -5 > recent.sh
   i.e., the shell has added \texttt{history} to the command log before
   actually running it. In fact, the shell \emph{always} adds commands to
   the log before running them. Why do you think it does this?
-\item
+\end{challenge}
+
+\begin{challenge}
   Joel's \texttt{data} directory contains three files:
   \texttt{fructose.dat}, \texttt{glucose.dat}, and \texttt{sucrose.dat}.
   Explain what a script called \texttt{example.sh} would do when run as
   \texttt{bash example.sh *.dat} if it contained the following lines:
-\end{swcenumerate}
-
-1.
 
 \begin{verbatim}
+# Script 1
 echo *.*
 \end{verbatim}
 
-2.
-
 \begin{verbatim}
+# Script 2
 for filename in $1 $2 $3
 do
     cat $filename
 done
 \end{verbatim}
 
-3.
-
 \begin{verbatim}
+# Script 3
 echo $*.dat
 \end{verbatim}
 
-\end{challenges}
+\end{challenge}
 
 \section{Finding Things}
 
@@ -3098,16 +3098,15 @@ about them.''
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a short explanatory comment for the following shell script:
 
 \begin{verbatim}
 find . -name '*.dat' -print | wc -l | sort -n
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   The \texttt{-v} flag to \texttt{grep} inverts pattern matching, so
   that only lines which do \emph{not} match the pattern are printed.
   Given that, which of the following commands will find all files in
@@ -3115,7 +3114,7 @@ find . -name '*.dat' -print | wc -l | sort -n
   \texttt{sucrose.dat} or \texttt{maltose.dat}), but do \emph{not}
   contain the word \texttt{temp}?
 
-  \begin{swcenumerate2}
+  \begin{swcenumerate}
   \item
     \texttt{find /data -name '*.dat' -print \textbar{} grep ose \textbar{} grep -v temp}
   \item
@@ -3124,10 +3123,8 @@ find . -name '*.dat' -print | wc -l | sort -n
     \texttt{grep -v temp \$(find /data -name '*ose.dat' -print)}
   \item
     None of the above.
-  \end{swcenumerate2}
-\end{swcenumerate}
-
-\end{challenges}
+  \end{swcenumerate}
+\end{challenge}
 
 \chapter{Version Control with Git}\label{s:git}
 
@@ -3991,16 +3988,15 @@ nothing to commit, working directory clean
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Create a new Git repository on your computer called \texttt{bio}.
   Write a three-line biography for yourself in a file called
   \texttt{me.txt}, commit your changes, then modify one line and add a
   fourth and display the differences between its updated state and its
   original state.
-\item
+\end{challenge}
+
+\begin{challenge}
   The following sequence of commands creates one Git repository inside
   another:
 
@@ -4015,9 +4011,7 @@ git init     # make the beta sub-directory a Git repository
 \end{verbatim}
 
   Why is it a bad idea to do this?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Collaborating}
 
@@ -4279,17 +4273,12 @@ work between different people and machines.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Create a repository on GitHub, clone it, add a file, push those
   changes to GitHub, and then look at the
   \glossdef{g:timestamp}{timestamp} of the change on GitHub. How does
   GitHub record times, and why?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Conflicts}
 
@@ -4587,20 +4576,17 @@ work up differently.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Clone the repository created by your instructor. Add a new file to it,
   and modify an existing file (your instructor will tell you which one).
   When asked by your instructor, pull her changes from the repository to
   create a conflict, then resolve it.
-\item
+\end{challenge}
+
+\begin{challenge}
   What does Git do when there is a conflict in an image or some other
   non-textual file that is stored in version control?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \section{Open Science}
 
@@ -4873,20 +4859,17 @@ or simply because what's new is often also frightening.
 \end{swcitemize}
 \end{keypoints}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Find out whether you are allowed to apply an open license to your
   software. Can you do this unilaterally, or do you need permission from
   someone in your institution? If so, who?
-\item
+\end{challenge}
+
+\begin{challenge}
   Find out whether you are allowed to host your work openly on a public
   forge. Can you do this unilaterally, or do you need permission from
   someone in your institution? If so, who?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \chapter{Programming with Python}\label{s:python}
 
@@ -5123,10 +5106,7 @@ print data
  [ 0.  0.  1. ...,  1.  1.  0.]]
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Draw diagrams showing what variables refer to what values after each
   statement in the following program:
 
@@ -5136,16 +5116,16 @@ age = 122
 mass = mass * 2.0
 age = age - 20
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   What does the following program print out?
 \begin{verbatim}
 first, second = `Grace', `Hopper'
 third, fourth = second, first
 print third, fourth
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Manipulating Data}
 
@@ -5406,8 +5386,7 @@ print data.mean(axis=1)
 
 which is the average inflammation per patient across all days.
 
-\begin{challenges}
-
+\begin{swcbox}{Slicing}
 A subsection of an array is called a \glossdef{g:slice}{slice}. We can
 take slices of character strings as well:
 
@@ -5421,23 +5400,25 @@ print 'last three characters:', element[3:6]
 first three characters: oxy
 last three characters: gen
 \end{verbatim}
+\end{swcbox}
 
-\begin{swcenumerate}
-\item
+\begin{challenge}
   What is the value of \texttt{element{[}:4{]}}? What about
   \texttt{element{[}4:{]}}? Or \texttt{element{[}:{]}}?
-\item
+\end{challenge}
+
+\begin{challenge}
   What is \texttt{element{[}-1{]}}? What is \texttt{element{[}-2{]}}?
   Given those answers, explain what \texttt{element{[}1:-1{]}} does.
-\item
+\end{challenge}
+
+\begin{challenge}
   The expression \texttt{element{[}3:3{]}} produces an
   \glossdef{g:empty-string}{empty string}, i.e., a string that contains
   no characters. If \texttt{data} holds our array of patient data, what
   does \texttt{data{[}3:3, 4:4{]}} produce? What about
   \texttt{data{[}3:3, :{]}}?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Plotting}
 
@@ -5510,19 +5491,16 @@ seems to be a step function. Neither result seems particularly likely,
 so either there's a mistake in our calculations or something is wrong
 with our data.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Why do all of our plots stop just short of the upper end of our graph?
   Why are the vertical lines in our plot of the minimum inflammation per
   day not vertical?
-\item
+\end{challenge}
+
+\begin{challenge}
   Create a plot showing the standard deviation of the inflammation data
   for each day across all patients.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Wrapping Up}
 
@@ -5567,15 +5545,10 @@ want a tight layout. (Perversely, if we leave out that call to
 \texttt{plt.tight\_layout()}, the graphs will actually be squeezed
 together more closely.)
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Modify the program to display the three plots on top of one another
   instead of side by side.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -5827,10 +5800,7 @@ shown here---typically half a dozen to a few dozen lines---but they
 shouldn't ever be much longer than that, or the next person who reads it
 won't be able to understand what's going on.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   ``Adding'' two strings produces their concatention: \texttt{'a' + 'b'}
   is \texttt{'ab'}. Write a function called \texttt{fence} that takes
   two parameters called \texttt{original} and \texttt{wrapper} and
@@ -5841,7 +5811,9 @@ won't be able to understand what's going on.
 print fence('name', '*')
 *name*
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   If the variable \texttt{s} refers to a string, then \texttt{s{[}0{]}}
   is the string's first character and \texttt{s{[}-1{]}} is its last.
   Write a function called \texttt{outer} that returns a string made up
@@ -5851,9 +5823,7 @@ print fence('name', '*')
 print outer('helium')
 hm
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{The Call Stack}
 
@@ -5985,19 +5955,14 @@ want to do something. That only works if functions don't interfere with
 each other; if they do, we have to pay attention to the details once
 again, which quickly overloads our short-term memory.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   We previously wrote functions called \texttt{fence} and
   \texttt{outer}. Draw a diagram showing how the call stack changes when
   we run the following:
 \begin{verbatim}
 print outer(fence('carbon', `+'))
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Testing and Documenting}
 
@@ -6142,10 +6107,7 @@ center(data, desired)
     Example: center([1, 2, 3], 0) => [-1, 0, 1]
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a function called \texttt{analyze} that takes a filename as a
   parameter and displays the three graphs produced in the
   \urlfoot{01-numpy.ipynb}{previous lesson}, i.e.,
@@ -6153,7 +6115,9 @@ center(data, desired)
   already shown, while \texttt{analyze('inflammation-02.csv')} should
   produce corresponding graphs for the second data set. Be sure to give
   your function a docstring.
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a function \texttt{rescale} that takes an array as input and
   returns a corresponding array of values scaled to lie in the range 0.0
   to 1.0. (If \textbackslash{}(L\textbackslash{}) and
@@ -6161,14 +6125,14 @@ center(data, desired)
   in the original array, then the replacement for a value
   \textbackslash{}(v\textbackslash{}) should be \textbackslash{}((v-L) /
   (H-L)\textbackslash{}).) Be sure to give the function a docstring.
-\item
+\end{challenge}
+
+\begin{challenge}
   Run the commands \texttt{help(numpy.arange)} and
   \texttt{help(numpy.linspace)} to see how to use these functions to
   generate regularly-spaced values, then use those values to test your
   \texttt{rescale} function.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Defining Defaults}
 
@@ -6412,17 +6376,12 @@ parameter in the list. That's why we don't have to provide
 \texttt{fname=} for the filename, but \emph{do} have to provide
 \texttt{delimiter=} for the second parameter.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Rewrite the \texttt{center} function so that it scales data to lie
   between 0.0 and 1.0 by default, but will allow the caller to specify
   lower and upper bounds if they want. Compare your implementation to
   your neighbor's: do the two functions always behave the same way?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -6681,10 +6640,7 @@ and much easier to read than a two-line loop; it will also give us the
 length of many other things that we haven't met yet, so we should always
 use it when we can.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Python has a built-in function called \texttt{range} that creates a
   list of numbers: \texttt{range(3)} produces \texttt{{[}0, 1, 2{]}},
   \texttt{range(2, 5)} produces \texttt{{[}2, 3, 4{]}}, and
@@ -6695,7 +6651,9 @@ use it when we can.
 print_N(3)
 1 2 3
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   Exponentiation is built into Python:
 \begin{verbatim}
 print 2**4
@@ -6704,7 +6662,9 @@ print 2**4
   It also has a function called
   \texttt{pow} that calculates the same value. Write a function called
   \texttt{expo} that uses a loop to calculate the same result.
-\item
+\end{challenge}
+
+\begin{challenge}
   Python's strings have methods, just like NumPy's arrays. One of these
   is called \texttt{reverse}:
 \begin{verbatim}
@@ -6718,9 +6678,7 @@ notweN
 \end{verbatim}
   As always, be sure to include a
   docstring.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Lists}
 
@@ -6804,16 +6762,11 @@ odds.reverse()
 print 'odds after reversing:', odds
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a function called \texttt{total} that calculates the sum of the
   values in a list. (Python has a built-in function called \texttt{sum}
   that does this for you. Please don't use it for this exercise.)
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Processing Multiple Files}
 
@@ -6876,16 +6829,11 @@ inflammation-03.csv
 Sure enough, the maxima of these data sets show exactly the same ramp as
 the first, and their minima show the same staircase structure.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a function called \texttt{analyze\_all} that takes a filename
   pattern as its sole argument and runs \texttt{analyze} for each file
   whose name matches the pattern.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -7121,10 +7069,7 @@ c.show()
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksb8c954b3-f908-4ab1-8013-65bf49ec1b2f td {border: 1px solid white;}
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Fill in the \texttt{\_\_\_\_} in the code below to create a bar that
   changes color from dark blue to black.
 
@@ -7134,11 +7079,11 @@ for x in range(10):
     bar[x, 0] = (0, 0, ____)
 bar.show()
 \end{verbatim}
-\item
-  Why do computers use red, green, and blue as their primary colors?
-\end{swcenumerate}
+\end{challenge}
 
-\end{challenges}
+\begin{challenge}
+  Why do computers use red, green, and blue as their primary colors?
+\end{challenge}
 
 \subsection{Conditionals}
 
@@ -7239,10 +7184,7 @@ at least one test is true
 In this case, ``either'' means ``either or both'', not ``either one or
 the other but not both''.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   \texttt{True} and \texttt{False} aren't the only values in Python that
   are true and false. In fact, \emph{any} value can be used in an
   \texttt{if} or \texttt{elif}. After reading and running the code
@@ -7259,14 +7201,14 @@ if [1, 2, 3]: print 'non-empty list is true'
 if 0: print 'zero is true'
 if 1: print 'one is true'
 \end{verbatim}
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a function called \texttt{near} that returns \texttt{True} if
   its first parameter is within 10\% of its second and \texttt{False}
   otherwise. Compare your implementation with your partner's: do you
   return the same answer for all possible pairs of numbers?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Nesting}
 
@@ -7351,14 +7293,13 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 This is our first hand-made data visualization: the colors show where
 \texttt{x} is less than, equal to, or greater than \texttt{y}.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Will changing the nesting of the loops in the code above---i.e.,
   wrapping the Y-axis loop around the X-axis loop---change the final
   image? Why or why not?
-\item
+\end{challenge}
+
+\begin{challenge}
   Python (and most other languages in the C family) provides
   \glossdef{g:in-place-operator}{in-place operators} that work like
   this:
@@ -7374,9 +7315,7 @@ print x
   Rewrite the code that sums the positive and negative numbers in a list
   using in-place operators. Do you think the result is more or less
   readable than the original?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Creating a Heat Map}
 
@@ -7595,16 +7534,17 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 We can now explore our data with just a few keystrokes, which means we
 can concentrate on our science and not on our programming.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Why did we transpose our data outside our heat map function? Why not
   have the function perform the transpose?
-\item
+\end{challenge}
+
+\begin{challenge}
   Why does the heat map function return the grid rather than displaying
   it immediately? Do you think this is a good or bad design choice?
-\item
+\end{challenge}
+
+\begin{challenge}
   Explain what the overall effect of this code is:
 \begin{verbatim}
 temp = left
@@ -7617,9 +7557,7 @@ left, right = right, left
 \end{verbatim}
   Do they always do the same thing?
   Which do you find easier to read?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -7891,16 +7829,15 @@ assertions to check that you haven't \glossdef{g:regression}{regressed}
 the long run, and helps to warn people who are reading the code
 (including your future self) that this bit is tricky.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Suppose you are writing a function called \texttt{average} that
   calculates the average of the numbers in a list. What pre-conditions
   and post-conditions would you write for it? Compare your answer to
   your neighbor's: can you think of a function that will past your tests
   but not hers or vice versa?
-\item
+\end{challenge}
+
+\begin{challenge}
   Explain in words what the assertions in this code check, and for each
   one, give an example of input that will make that assertion fail.
 
@@ -7914,9 +7851,7 @@ def running(values):
     assert result[-1] >= result[0]
     return result
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Test-Driven Development}
 
@@ -8108,15 +8043,10 @@ important rule of programming:
 from data}''. We'll leave it as an exercise to fix
 \texttt{range\_overlap}.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Fix \texttt{range\_overlap}. Re-run \texttt{test\_range\_overlap}
   after each change you make.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Debugging}
 
@@ -8623,10 +8553,7 @@ messages for our users.
 
 \end{swcbox}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a command-line program that does addition and subtraction:
 \begin{verbatim}
 python arith.py 1 + 2
@@ -8636,7 +8563,9 @@ python arith.py 3 - 4
 \end{verbatim}
   What goes wrong if you try to add multiplication using `*' to the
   program?
-\item
+\end{challenge}
+
+\begin{challenge}
   Using the \texttt{glob} module introduced
   \urlfoot{earlier}{03-loop.ipynb}, write a simple version of \texttt{ls}
   that shows files in the current directory with a particular suffix:
@@ -8644,9 +8573,7 @@ python arith.py 3 - 4
 python my_ls.py py
 left.py right.py zero.py
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Handling Multiple Files}
 
@@ -8740,17 +8667,12 @@ would have one file called \texttt{readings.py} that we committed to
 version control every time we got an enhancement working. For teaching,
 though, we need all the successive versions side by side.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a program called \texttt{check.py} that takes the names of one
   or more inflammation data files as arguments and checks that all the
   files have the same number of rows and columns. What is the best way
   to test your program?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Handling Command-Line Flags}
 
@@ -8858,24 +8780,23 @@ in this lesson but you can go to Tshepang Lekhonkhobe's
 \urlfoot{http://docs.python.org/dev/howto/argparse.html}{Argparse tutorial}
 that is part of Python's Official Documentation.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Rewrite this program so that it uses \texttt{-n}, \texttt{-m}, and
   \texttt{-x} instead of \texttt{-{}-min}, \texttt{-{}-mean}, and
   \texttt{-{}-max} respectively. Is the code easier to read? Is the
   program easier to understand?
-\item
+\end{challenge}
+
+\begin{challenge}
   Separately, modify the program so that if no parameters are given
   (i.e., no action is specified and no filenames are given), it prints a
   message explaining how it should be used.
-\item
+\end{challenge}
+
+\begin{challenge}
   Separately, modify the program so that if no action is given it
   displays the means of the data.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \subsection{Handling Standard Input}
 
@@ -8999,24 +8920,19 @@ the program it's running. To make our meaning clear, we have to use
 That's better. In fact, that's done: the program now does everything we
 set out to do.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a program called \texttt{line-count.py} that works like the Unix
   \texttt{wc} command:
 
-  \begin{swcitemize2}
+  \begin{swcitemize}
   \item
     If no filenames are given, it reports the number of lines in
     standard input.
   \item
     If one or more filenames are given, it reports the number of lines
     in each, followed by the total number of lines.
-   \end{swcitemize2}
-\end{swcenumerate}
-
-\end{challenges}
+   \end{swcitemize}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9329,13 +9245,12 @@ roeValentinaRoerich
 danforthFrankDanforth
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a query that selects only site names from the \texttt{Site}
   table.
-\item
+\end{challenge}
+
+\begin{challenge}
   Many people format queries as:
 
 \begin{verbatim}
@@ -9349,9 +9264,7 @@ select Personal, Family from PERSON;
 \end{verbatim}
 
   What style do you find easiest to read, and why?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9466,15 +9379,10 @@ Notice in both cases that duplicates are removed even if they didn't
 appear to be adjacent in the database. Again, it's important to remember
 that rows aren't actually ordered: they're just displayed that way.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a query that selects distinct dates from the \texttt{Site}
   table.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 As we mentioned earlier, database records are not stored in any
 particular order. This means that query results aren't necessarily
@@ -9573,18 +9481,15 @@ select distinct taken, person from Survey order by taken asc, person desc;
 844roe
 \end{verbatim}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a query that returns the distinct dates in the \texttt{Visited}
   table.
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a query that displays the full names of the scientists in the
   \texttt{Person} table, ordered by family name.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9797,10 +9702,7 @@ that.
 
 \end{swcbox}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Suppose we want to select all sites that lie more than 30° from the
   poles. Our first query is:
 
@@ -9810,11 +9712,15 @@ select * from Site where (lat > -60) or (lat < 60);
 
   Explain why this is wrong, and rewrite the query so that it is
   correct.
-\item
+\end{challenge}
+
+\begin{challenge}
   Normalized salinity readings are supposed to be between 0.0 and 1.0.
   Write a query that selects all records from \texttt{Survey} with
   salinity values outside this range.
-\item
+\end{challenge}
+
+\begin{challenge}
   The SQL test \texttt{*column-name* like *pattern*} is true if the
   value in the named column matches the pattern given; the character
   `\%' can be used any number of times in the pattern to mean ``match
@@ -9842,9 +9748,7 @@ select * from Site where (lat > -60) or (lat < 60);
   test. Using \texttt{like}, write a query that finds all the records in
   \texttt{Visited} that \emph{aren't} from sites labelled
   `DR-something'.
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9968,20 +9872,15 @@ enough\ldots{}
 
 \end{swcbox}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   After further reading, we realize that Valentina Roerich was reporting
   salinity as percentages. Write a query that returns all of her
   salinity measurements from the \texttt{Survey} table with the values
   divided by 100.
-\item
+\end{challenge}
+
+\begin{challenge}
   The \texttt{union} operator combines the results of two queries:
-\end{swcenumerate}
-
-\end{challenges}
-
 \begin{verbatim}
 %%sqlite survey.db
 select * from Person where ident='dyer' union select * from Person where ident='roe';
@@ -10017,13 +9916,11 @@ like:
 \\\noalign{\medskip}
 \hline
 \end{tabular}
+\end{challenge}
 
-\begin{swcenumerate}
-\setcounter{enumi}{2}
-\item
+\begin{challenge}
   The site identifiers in the \texttt{Visited} table have two parts
   separated by a `-':
-\end{swcenumerate}
 
 \begin{verbatim}
 %%sqlite survey.db
@@ -10043,6 +9940,7 @@ in X. The substring function \texttt{substr(X, I)} returns the substring
 of X starting at index I. Use these two functions to produce a list of
 unique major site identifiers. (For this data, the list should contain
 only ``DR'' and ``MSK'').
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10226,13 +10124,12 @@ we want to be absolutely sure that we aren't including any measurements
 by Lake in our results, we need to exclude all the records for which we
 don't know who did the work.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a query that sorts the records in \texttt{Visited} by date,
   omitting entries for which the date is not known (i.e., is null).
-\item
+\end{challenge}
+
+\begin{challenge}
   What do you expect the query:
 
 \begin{verbatim}
@@ -10240,7 +10137,9 @@ select * from Visited where dated in ('1927-02-08', null);
 \end{verbatim}
 
   to produce? What does it actually produce?
-\item
+\end{challenge}
+
+\begin{challenge}
   Some database designers prefer to use a
   \glossdef{g:sentinel-value}{sentinel value} to mark missing data
   rather than \texttt{null}. For example, they will use the date
@@ -10248,9 +10147,7 @@ select * from Visited where dated in ('1927-02-08', null);
   salinity or radiation reading (since actual readings cannot be
   negative). What does this simplify? What burdens or risks does it
   introduce?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10567,17 +10464,18 @@ Looking more closely, this query:
   they're all equal).
 \end{swcenumerate}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   How many temperature readings did Frank Pabodie record, and what was
   their average value?
-\item
+\end{challenge}
+
+\begin{challenge}
   The average of a set of values is the sum of the values divided by the
   number of values. Does this mean that the \texttt{avg} function
   returns 2.0 or 3.0 when given the values 1.0, \texttt{null}, and 5.0?
-\item
+\end{challenge}
+
+\begin{challenge}
   We want to calculate the difference between each individual radiation
   reading and the average of all the radiation readings. We write the
   query:
@@ -10587,7 +10485,9 @@ select reading - avg(reading) from Survey where quant='rad';
 \end{verbatim}
 
   What does this actually produce, and why?
-\item
+\end{challenge}
+
+\begin{challenge}
   The function \texttt{group\_concat(field, separator)} concatenates all
   the values in a field using the specified separator character (or `,'
   if the separator isn't specified). Use this to produce a one-line list
@@ -10598,9 +10498,7 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 \end{verbatim}
 
   Can you find a way to order the list by surname?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10882,23 +10780,22 @@ because we have tools to manipulate it efficiently if it's in a certain
 form. As anthropologists say, the tool shapes the hand that shapes the
 tool.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a query that lists all radiation readings from the DR-1 site.
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a query that lists all sites visited by people named ``Frank''.
-\item
+\end{challenge}
+
+\begin{challenge}
   Describe in your own words what the following query produces:
 
 \begin{verbatim}
 select Site.name from Site join Visited
 on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
 \end{verbatim}
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -11058,13 +10955,12 @@ the MP3 files, but the files themselves live on disk.
 
 \end{swcbox}
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write an SQL statement to replace all uses of \texttt{null} in
   \texttt{Survey.person} with the string \texttt{'unknown'}.
-\item
+\end{challenge}
+
+\begin{challenge}
   One of our colleagues has sent us a \glossdef{g:csv}{CSV} file
   containing temperature readings by Robert Olmstead, which is formatted
   like this:
@@ -11080,7 +10976,9 @@ Taken,Temp
   survey database. Note: you will need to add an entry for Olmstead to
   the \texttt{Person} table. If you are testing your program repeatedly,
   you may want to investigate SQL's \texttt{insert or replace} command.
-\item
+\end{challenge}
+
+\begin{challenge}
   SQLite has several administrative commands that aren't part of the SQL
   standard. One of them is \texttt{.dump}, which prints the SQL commands
   needed to re-create the database. Another is \texttt{.load}, which
@@ -11089,9 +10987,7 @@ Taken,Temp
   version control is a good way to track and manage changes to the
   database. What are the pros and cons of this approach? (Hint: records
   aren't stored in any particular order.)
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -11263,25 +11159,22 @@ there are question marks in the query. The library matches values to
 question marks in order, and translates any special characters in the
 values into their escaped equivalents so that they are safe to use.
 
-\begin{challenges}
-
-\begin{swcenumerate}
-\item
+\begin{challenge}
   Write a Python program that creates a new database in a file called
   \texttt{original.db} containing a single table called
   \texttt{Pressure}, with a single field called \texttt{reading}, and
   inserts 100,000 random numbers between 10.0 and 25.0. How long does it
   take this program to run? How long does it take to run a program that
   simply writes those random numbers to a file?
-\item
+\end{challenge}
+
+\begin{challenge}
   Write a Python program that creates a new database called
   \texttt{backup.db} with the same structure as \texttt{original.db} and
   copies all the values greater than 20.0 from \texttt{original.db} to
   \texttt{backup.db}. Which is faster: filtering values in the query, or
   reading everything into memory and filtering in Python?
-\end{swcenumerate}
-
-\end{challenges}
+\end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
