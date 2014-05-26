@@ -750,7 +750,7 @@ other tools as we go on.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \includegraphics{novice/shell/img/filesystem-challenge.png}
 
@@ -805,6 +805,8 @@ pnas-sub/ pnas-final/ original/
   What does the command \texttt{ls} do when used with the -s and -h
   arguments?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Creating Things}
 
@@ -1161,7 +1163,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -1219,6 +1221,8 @@ $ cp intro.txt methods.txt survey.txt
   changed files or directories first. In what order does
   \texttt{ls -R -t} display things?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Pipes and Filters}
 
@@ -1606,7 +1610,7 @@ has.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -1722,6 +1726,8 @@ bear
   what animals the file contains (without any duplicates in their
   names)?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Loops}
 
@@ -2131,7 +2137,7 @@ by typing \texttt{!458}.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -2208,6 +2214,8 @@ do
 done
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Shell Scripts}
 
@@ -2581,7 +2589,7 @@ flexibility and complexity.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -2653,6 +2661,8 @@ done
 \begin{verbatim}
 echo $*.dat
 \end{verbatim}
+
+\end{challenges}
 
 \section{Finding Things}
 
@@ -3088,7 +3098,7 @@ about them.''
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -3116,6 +3126,8 @@ find . -name '*.dat' -print | wc -l | sort -n
     None of the above.
   \end{swcenumerate2}
 \end{swcenumerate}
+
+\end{challenges}
 
 \chapter{Version Control with Git}\label{s:git}
 
@@ -3979,7 +3991,7 @@ nothing to commit, working directory clean
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -4004,6 +4016,8 @@ git init     # make the beta sub-directory a Git repository
 
   Why is it a bad idea to do this?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Collaborating}
 
@@ -4265,7 +4279,7 @@ work between different people and machines.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -4274,6 +4288,8 @@ work between different people and machines.
   \glossdef{g:timestamp}{timestamp} of the change on GitHub. How does
   GitHub record times, and why?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Conflicts}
 
@@ -4571,7 +4587,7 @@ work up differently.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -4583,6 +4599,8 @@ work up differently.
   What does Git do when there is a conflict in an image or some other
   non-textual file that is stored in version control?
 \end{swcenumerate}
+
+\end{challenges}
 
 \section{Open Science}
 
@@ -4855,7 +4873,7 @@ or simply because what's new is often also frightening.
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -4867,6 +4885,8 @@ or simply because what's new is often also frightening.
   forge. Can you do this unilaterally, or do you need permission from
   someone in your institution? If so, who?
 \end{swcenumerate}
+
+\end{challenges}
 
 \chapter{Programming with Python}\label{s:python}
 
@@ -5103,7 +5123,7 @@ print data
  [ 0.  0.  1. ...,  1.  1.  0.]]
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -5124,6 +5144,8 @@ third, fourth = second, first
 print third, fourth
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Manipulating Data}
 
@@ -5384,7 +5406,7 @@ print data.mean(axis=1)
 
 which is the average inflammation per patient across all days.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 A subsection of an array is called a \glossdef{g:slice}{slice}. We can
 take slices of character strings as well:
@@ -5414,6 +5436,8 @@ last three characters: gen
   does \texttt{data{[}3:3, 4:4{]}} produce? What about
   \texttt{data{[}3:3, :{]}}?
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Plotting}
 
@@ -5486,7 +5510,7 @@ seems to be a step function. Neither result seems particularly likely,
 so either there's a mistake in our calculations or something is wrong
 with our data.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -5497,6 +5521,8 @@ with our data.
   Create a plot showing the standard deviation of the inflammation data
   for each day across all patients.
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Wrapping Up}
 
@@ -5541,13 +5567,15 @@ want a tight layout. (Perversely, if we leave out that call to
 \texttt{plt.tight\_layout()}, the graphs will actually be squeezed
 together more closely.)
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
   Modify the program to display the three plots on top of one another
   instead of side by side.
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -5799,7 +5827,7 @@ shown here---typically half a dozen to a few dozen lines---but they
 shouldn't ever be much longer than that, or the next person who reads it
 won't be able to understand what's going on.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -5824,6 +5852,8 @@ print outer('helium')
 hm
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{The Call Stack}
 
@@ -5955,7 +5985,7 @@ want to do something. That only works if functions don't interfere with
 each other; if they do, we have to pay attention to the details once
 again, which quickly overloads our short-term memory.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -5966,6 +5996,8 @@ again, which quickly overloads our short-term memory.
 print outer(fence('carbon', `+'))
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Testing and Documenting}
 
@@ -6110,7 +6142,7 @@ center(data, desired)
     Example: center([1, 2, 3], 0) => [-1, 0, 1]
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -6135,6 +6167,8 @@ center(data, desired)
   generate regularly-spaced values, then use those values to test your
   \texttt{rescale} function.
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Defining Defaults}
 
@@ -6378,7 +6412,7 @@ parameter in the list. That's why we don't have to provide
 \texttt{fname=} for the filename, but \emph{do} have to provide
 \texttt{delimiter=} for the second parameter.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -6387,6 +6421,8 @@ parameter in the list. That's why we don't have to provide
   lower and upper bounds if they want. Compare your implementation to
   your neighbor's: do the two functions always behave the same way?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -6645,7 +6681,7 @@ and much easier to read than a two-line loop; it will also give us the
 length of many other things that we haven't met yet, so we should always
 use it when we can.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -6683,6 +6719,8 @@ notweN
   As always, be sure to include a
   docstring.
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Lists}
 
@@ -6766,7 +6804,7 @@ odds.reverse()
 print 'odds after reversing:', odds
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -6774,6 +6812,8 @@ print 'odds after reversing:', odds
   values in a list. (Python has a built-in function called \texttt{sum}
   that does this for you. Please don't use it for this exercise.)
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Processing Multiple Files}
 
@@ -6836,7 +6876,7 @@ inflammation-03.csv
 Sure enough, the maxima of these data sets show exactly the same ramp as
 the first, and their minima show the same staircase structure.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -6844,6 +6884,8 @@ the first, and their minima show the same staircase structure.
   pattern as its sole argument and runs \texttt{analyze} for each file
   whose name matches the pattern.
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -7079,7 +7121,7 @@ c.show()
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksb8c954b3-f908-4ab1-8013-65bf49ec1b2f td {border: 1px solid white;}
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -7095,6 +7137,8 @@ bar.show()
 \item
   Why do computers use red, green, and blue as their primary colors?
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Conditionals}
 
@@ -7195,7 +7239,7 @@ at least one test is true
 In this case, ``either'' means ``either or both'', not ``either one or
 the other but not both''.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -7221,6 +7265,8 @@ if 1: print 'one is true'
   otherwise. Compare your implementation with your partner's: do you
   return the same answer for all possible pairs of numbers?
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Nesting}
 
@@ -7305,7 +7351,7 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 This is our first hand-made data visualization: the colors show where
 \texttt{x} is less than, equal to, or greater than \texttt{y}.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -7329,6 +7375,8 @@ print x
   using in-place operators. Do you think the result is more or less
   readable than the original?
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Creating a Heat Map}
 
@@ -7547,7 +7595,7 @@ table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {pad
 We can now explore our data with just a few keystrokes, which means we
 can concentrate on our science and not on our programming.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -7570,6 +7618,8 @@ left, right = right, left
   Do they always do the same thing?
   Which do you find easier to read?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -7841,7 +7891,7 @@ assertions to check that you haven't \glossdef{g:regression}{regressed}
 the long run, and helps to warn people who are reading the code
 (including your future self) that this bit is tricky.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -7865,6 +7915,8 @@ def running(values):
     return result
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Test-Driven Development}
 
@@ -8056,13 +8108,15 @@ important rule of programming:
 from data}''. We'll leave it as an exercise to fix
 \texttt{range\_overlap}.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
   Fix \texttt{range\_overlap}. Re-run \texttt{test\_range\_overlap}
   after each change you make.
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Debugging}
 
@@ -8569,7 +8623,7 @@ messages for our users.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -8591,6 +8645,8 @@ python my_ls.py py
 left.py right.py zero.py
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Handling Multiple Files}
 
@@ -8684,7 +8740,7 @@ would have one file called \texttt{readings.py} that we committed to
 version control every time we got an enhancement working. For teaching,
 though, we need all the successive versions side by side.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -8693,6 +8749,8 @@ though, we need all the successive versions side by side.
   files have the same number of rows and columns. What is the best way
   to test your program?
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Handling Command-Line Flags}
 
@@ -8800,7 +8858,7 @@ in this lesson but you can go to Tshepang Lekhonkhobe's
 \urlfoot{http://docs.python.org/dev/howto/argparse.html}{Argparse tutorial}
 that is part of Python's Official Documentation.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -8816,6 +8874,8 @@ that is part of Python's Official Documentation.
   Separately, modify the program so that if no action is given it
   displays the means of the data.
 \end{swcenumerate}
+
+\end{challenges}
 
 \subsection{Handling Standard Input}
 
@@ -8939,7 +8999,7 @@ the program it's running. To make our meaning clear, we have to use
 That's better. In fact, that's done: the program now does everything we
 set out to do.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -8955,6 +9015,8 @@ set out to do.
     in each, followed by the total number of lines.
    \end{swcitemize2}
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9267,7 +9329,7 @@ roeValentinaRoerich
 danforthFrankDanforth
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -9288,6 +9350,8 @@ select Personal, Family from PERSON;
 
   What style do you find easiest to read, and why?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9402,13 +9466,15 @@ Notice in both cases that duplicates are removed even if they didn't
 appear to be adjacent in the database. Again, it's important to remember
 that rows aren't actually ordered: they're just displayed that way.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
   Write a query that selects distinct dates from the \texttt{Site}
   table.
 \end{swcenumerate}
+
+\end{challenges}
 
 As we mentioned earlier, database records are not stored in any
 particular order. This means that query results aren't necessarily
@@ -9507,7 +9573,7 @@ select distinct taken, person from Survey order by taken asc, person desc;
 844roe
 \end{verbatim}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -9517,6 +9583,8 @@ select distinct taken, person from Survey order by taken asc, person desc;
   Write a query that displays the full names of the scientists in the
   \texttt{Person} table, ordered by family name.
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9729,7 +9797,7 @@ that.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -9775,6 +9843,8 @@ select * from Site where (lat > -60) or (lat < 60);
   \texttt{Visited} that \emph{aren't} from sites labelled
   `DR-something'.
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -9898,7 +9968,7 @@ enough\ldots{}
 
 \end{swcbox}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -9909,6 +9979,8 @@ enough\ldots{}
 \item
   The \texttt{union} operator combines the results of two queries:
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{verbatim}
 %%sqlite survey.db
@@ -10154,7 +10226,7 @@ we want to be absolutely sure that we aren't including any measurements
 by Lake in our results, we need to exclude all the records for which we
 don't know who did the work.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -10177,6 +10249,8 @@ select * from Visited where dated in ('1927-02-08', null);
   negative). What does this simplify? What burdens or risks does it
   introduce?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10493,7 +10567,7 @@ Looking more closely, this query:
   they're all equal).
 \end{swcenumerate}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -10525,6 +10599,8 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 
   Can you find a way to order the list by surname?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10806,7 +10882,7 @@ because we have tools to manipulate it efficiently if it's in a certain
 form. As anthropologists say, the tool shapes the hand that shapes the
 tool.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -10821,6 +10897,8 @@ select Site.name from Site join Visited
 on Site.lat<-49.0 and Site.name=Visited.site and Visited.dated>='1932-00-00';
 \end{verbatim}
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -10980,7 +11058,7 @@ the MP3 files, but the files themselves live on disk.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -11012,6 +11090,8 @@ Taken,Temp
   database. What are the pros and cons of this approach? (Hint: records
   aren't stored in any particular order.)
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -11183,7 +11263,7 @@ there are question marks in the query. The library matches values to
 question marks in order, and translates any special characters in the
 values into their escaped equivalents so that they are safe to use.
 
-\mbox{}\paragraph{Challenges}
+\begin{challenges}
 
 \begin{swcenumerate}
 \item
@@ -11200,6 +11280,8 @@ values into their escaped equivalents so that they are safe to use.
   \texttt{backup.db}. Which is faster: filtering values in the query, or
   reading everything into memory and filtering in Python?
 \end{swcenumerate}
+
+\end{challenges}
 
 \begin{keypoints}
 \begin{swcitemize}
