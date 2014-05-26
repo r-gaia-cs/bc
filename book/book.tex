@@ -382,8 +382,7 @@ $ pwd
 /users/vlad
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Alphabet Soup}
+\begin{swcbox}{Alphabet Soup}
 
 If the command to find out who we are is \texttt{whoami}, the command to
 find out where we are ought to be called \texttt{whereami}, so why is it
@@ -395,7 +394,8 @@ mistakes was actually a win for usability. The reality is that commands
 were added to Unix one by one, without any master plan, by people who
 were immersed in its jargon. The result is as inconsistent as the roolz
 uv Inglish speling, but we're stuck with it now.
-\end{quote}
+
+\end{swcbox}
 
 To understand what a ``home directory'' is, let's have a look at how the
 file system as a whole is organized. At the top is the
@@ -468,8 +468,7 @@ trailing slashes, like \texttt{notes.txt}, \texttt{pizza.cfg}, and
 between \texttt{ls} and \texttt{-F}: without it, the shell thinks we're
 trying to run a command called \texttt{ls-F}, which doesn't exist.
 
-\begin{quote}
-\mbox{}\paragraph{What's In A Name?}
+\begin{swcbox}{What's In A Name?}
 
 You may have noticed that all of Vlad's files' names are ``something dot
 something''. This is just a convention: we can call a file
@@ -490,7 +489,8 @@ Naming a PNG image of a whale as \texttt{whale.mp3} doesn't somehow
 magically turn it into a recording of whalesong, though it \emph{might}
 cause the operating system to try to open it with a music player when
 someone double-clicks it.
-\end{quote}
+
+\end{swcbox}
 
 Now let's take a look at what's in Vlad's \texttt{data} directory by
 running \texttt{ls -F data}, i.e., the command \texttt{ls} with the
@@ -648,8 +648,7 @@ that's just called \texttt{.}, which means ``the current working
 directory''. It may seem redundant to have a name for it, but we'll see
 some uses for it soon.
 
-\begin{quote}
-\mbox{}\paragraph{Orthogonality}
+\begin{swcbox}{Orthogonality}
 
 The special names \texttt{.} and \texttt{..} don't belong to
 \texttt{ls}; they are interpreted the same way by every program. For
@@ -659,7 +658,8 @@ meanings of the parts are the same no matter how they're combined,
 programmers say they are \glossdef{g:orthogonal}{orthogonal}: Orthogonal
 systems tend to be easier for people to learn because there are fewer
 special cases and exceptions to keep track of.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Nelle's Pipeline: Organizing Files}
 
@@ -881,8 +881,7 @@ $ cd thesis
 $ nano draft.txt
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Which Editor?}
+\begin{swcbox}{Which Editor?}
 
 When we say, ``\texttt{nano} is a text editor'' we really do mean
 ``text'': it can only work with plain character data, not tables,
@@ -902,7 +901,8 @@ use your current working directory as its default location. If you use
 your computer's start menu, it may want to save files in your desktop or
 documents directory instead. You can change this by navigating to
 another directory the first time you ``Save As\ldots{}''
-\end{quote}
+
+\end{swcbox}
 
 Let's type in a few lines of text, then use Control-O to write our data
 to disk:
@@ -937,15 +937,15 @@ our file is gone:
 $ ls
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Deleting Is Forever}
+\begin{swcbox}{Deleting Is Forever}
 
 Unix doesn't have a trash bin: when we delete files, they are unhooked
 from the file system so that their storage space on disk can be
 recycled. Tools for finding and recovering deleted files do exist, but
 there's no guarantee they'll work in any particular situation, since the
 computer may recycle the file's disk space right away.
-\end{quote}
+
+\end{swcbox}
 
 Let's re-create that file and then move up one directory to
 \texttt{/users/vlad} using \texttt{cd ..}:
@@ -1009,8 +1009,7 @@ The directory is now empty, so \texttt{rmdir} can delete it:
 $ rmdir thesis
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{With Great Power Comes Great Responsibility}
+\begin{swcbox}{With Great Power Comes Great Responsibility}
 
 Removing the files in a directory just so that we can remove the
 directory quickly becomes tedious. Instead, we can use \texttt{rm} with
@@ -1024,7 +1023,8 @@ This removes everything in the directory, then the directory itself. If
 the directory contains sub-directories, \texttt{rm -r} does the same
 thing to them, and so on. It's very handy, but can do a lot of damage if
 used without care.
-\end{quote}
+
+\end{swcbox}
 
 Let's create that directory and file one more time. (Note that this time
 we're running \texttt{nano} with the path \texttt{thesis/draft.txt},
@@ -1136,8 +1136,7 @@ ls: cannot access quotes.txt: No such file or directory
 thesis/quotations.txt
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Another Useful Abbreviation}
+\begin{swcbox}{Another Useful Abbreviation}
 
 The shell interprets the character \texttt{\textasciitilde{}} (tilde) at
 the start of a path to mean ``the current user's home directory''. For
@@ -1146,7 +1145,8 @@ example, if Vlad's home directory is \texttt{/home/vlad}, then
 \texttt{/home/vlad/data}. This only works if it is the first character
 in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \emph{not} \texttt{/home/vlad/elsewhere}.
-\end{quote}
+
+\end{swcbox}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -1276,8 +1276,7 @@ $ wc *.pdb
  107  819 6081 total
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Wildcards}
+\begin{swcbox}{Wildcards}
 
 \texttt{*} is a \glossdef{g:wildcard}{wildcard}. It matches zero or more
 characters, so \texttt{*.pdb} matches \texttt{ethane.pdb},
@@ -1302,7 +1301,8 @@ of matching filenames \emph{before} running the command that was asked
 for. This means that commands like \texttt{wc} and \texttt{ls} never see
 the wildcard characters, just what those wildcards matched. This is
 another example of orthogonal design.
-\end{quote}
+
+\end{swcbox}
 
 If we run \texttt{wc -l} instead of just \texttt{wc}, the output shows
 only the number of lines per file:
@@ -1499,8 +1499,7 @@ other program that behaves this way as well. You can \emph{and should}
 write your programs this way so that you and other people can put those
 programs into pipes to multiply their power.
 
-\begin{quote}
-\mbox{}\paragraph{Redirecting Input}
+\begin{swcbox}{Redirecting Input}
 
 As well as using \texttt{\textgreater{}} to redirect a program's output,
 we can use \texttt{\textless{}} to redirect its input, i.e., to read
@@ -1511,7 +1510,8 @@ a command line parameter telling it what file to open. In the second,
 \texttt{wc} doesn't have any command line parameters, so it reads from
 standard input, but we have told the shell to send the contents of
 \texttt{ammonia.pdb} to \texttt{wc}'s standard input.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Nelle's Pipeline: Checking Files}
 
@@ -1797,14 +1797,14 @@ loop, \texttt{unicorn.dat} the second, and so on. Finally, the command
 that's actually being run is our old friend \texttt{head}, so this loop
 prints out the first three lines of each data file in turn.
 
-\begin{quote}
-\mbox{}\paragraph{Follow the Prompt}
+\begin{swcbox}{Follow the Prompt}
 
 The shell prompt changes from \texttt{\$} to \texttt{\textgreater{}} and
 back again as we were typing in our loop. The second prompt,
 \texttt{\textgreater{}}, is different to remind us that we haven't
 finished typing a complete command yet.
-\end{quote}
+
+\end{swcbox}
 
 We have called the variable in this loop \texttt{filename} in order to
 make its purpose clearer to human readers. The shell itself doesn't care
@@ -1874,8 +1874,7 @@ expanded to \texttt{basilisk.dat}, the shell would try to run
 \texttt{tail} combination selects lines 81-100 from whatever file is
 being processed.
 
-\begin{quote}
-\mbox{}\paragraph{Spaces in Names}
+\begin{swcbox}{Spaces in Names}
 
 Filename expansion in loops is another reason you should not use spaces
 in filenames. Suppose our data files are named:
@@ -1927,7 +1926,8 @@ done
 
 but it's simpler just to avoid using spaces (or other special
 characters) in filenames.
-\end{quote}
+
+\end{swcbox}
 
 Going back to our original file renaming problem, we can solve it using
 this loop:
@@ -1953,8 +1953,7 @@ The second time, the command is:
 mv unicorn.dat original-unicorn.dat
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Measure Twice, Run Once}
+\begin{swcbox}{Measure Twice, Run Once}
 
 A loop is a way to do many things at once---or to make many mistakes at
 once if it does the wrong thing. One way to check what a loop
@@ -1982,7 +1981,8 @@ to redisplay the loop, back-arrow to get to the word \texttt{echo},
 delete it, and then press ``enter'' to run the loop with the actual
 \texttt{mv} commands. This isn't foolproof, but it's a handy way to see
 what's going to happen when you're still learning how loops work.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Nelle's Pipeline: Processing Files}
 
@@ -2060,13 +2060,13 @@ command, and edits it to read:
 $ for datafile in *[AB].txt; do echo $datafile; bash goostats $datafile stats-$datafile; done
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Beginning and End}
+\begin{swcbox}{Beginning and End}
 
 We can move to the beginning of a line in the shell by typing
 \texttt{\^{}A} (which means Control-A) and to the end using
 \texttt{\^{}E}.
-\end{quote}
+
+\end{swcbox}
 
 When she runs her program now, it produces one line of output every five
 seconds or so:
@@ -2085,8 +2085,7 @@ window, goes into \texttt{north-pacific-gyre/2012-07-03}, and uses
 looks good, so she decides to get some coffee and catch up on her
 reading.
 
-\begin{quote}
-\mbox{}\paragraph{Those Who Know History Can Choose to Repeat It}
+\begin{swcbox}{Those Who Know History Can Choose to Repeat It}
 
 Another way to repeat previous work is to use the \texttt{history}
 command to get a list of the last few hundred commands that have been
@@ -2105,7 +2104,8 @@ $ history | tail -5
 
 then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
 by typing \texttt{!458}.
-\end{quote}
+
+\end{swcbox}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -2264,8 +2264,7 @@ ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
 Sure enough, our script's output is exactly what we would get if we ran
 that pipeline directly.
 
-\begin{quote}
-\mbox{}\paragraph{Text vs. Whatever}
+\begin{swcbox}{Text vs. Whatever}
 
 We usually call programs like Microsoft Word or LibreOffice Writer
 ``text editors'', but we need to be a bit more careful when it comes to
@@ -2277,7 +2276,8 @@ files to contain nothing but the letters, digits, and punctuation on a
 standard computer keyboard. When editing programs, therefore, you must
 either use a plain text editor, or be careful to save files as plain
 text.
-\end{quote}
+
+\end{swcbox}
 
 What if we want to select lines from an arbitrary file? We could edit
 \texttt{middle.sh} each time to change the filename, but that would
@@ -2402,8 +2402,7 @@ $ bash sorted.sh *.dat backup/*.dat
      182 girmanis.dat
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Why Isn't It Doing Anything?}
+\begin{swcbox}{Why Isn't It Doing Anything?}
 
 What happens if a script is supposed to process a bunch of files, but we
 don't give it any filenames? For example, what if we type:
@@ -2424,7 +2423,8 @@ Since it doesn't have any filenames, \texttt{wc} assumes it is supposed
 to process standard input, so it just sits there and waits for us to
 give it some data interactively. From the outside, though, all we see is
 it sitting there: the script doesn't appear to do anything.
-\end{quote}
+
+\end{swcbox}
 
 We have two more things to do before we're finished with our simple
 shell scripts. If you look at a script like:
@@ -2471,8 +2471,7 @@ After a moment's work in an editor to remove the serial numbers on the
 commands, we have a completely accurate record of how we created that
 figure.
 
-\begin{quote}
-\mbox{}\paragraph{Unnumbering}
+\begin{swcbox}{Unnumbering}
 
 Nelle could also use \texttt{colrm} (short for ``column removal'') to
 remove the serial numbers on her previous commands. Its parameters are
@@ -2493,7 +2492,8 @@ mv bakup backup
 history | tail -5
 history | tail -5 | colrm 1 7
 \end{verbatim}
-\end{quote}
+
+\end{swcbox}
 
 In practice, most people develop shell scripts by running commands at
 the shell prompt a few times to make sure they're doing the right thing,
@@ -2700,15 +2700,15 @@ Today it is not working
 Software is like that.
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Forever, or Five Years}
+\begin{swcbox}{Forever, or Five Years}
 
 We haven't linked to the original haikus because they don't appear to be
 on \emph{Salon}'s site any longer. As
 \urlfoot{http://www.clir.org/pubs/archives/ensuring.pdf}{Jeff Rothenberg
 said}, ``Digital information lasts forever---or five years, whichever
 comes first.''
-\end{quote}
+
+\end{swcbox}
 
 Let's find lines that contain the word ``not'':
 
@@ -2828,8 +2828,7 @@ matched.  (-F is specified by POSIX.)
 ...        ...        ...
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Wildcards}
+\begin{swcbox}{Wildcards}
 
 \texttt{grep}'s real power doesn't come from its options, though; it
 comes from the fact that patterns can include wildcards. (The technical
@@ -2853,7 +2852,8 @@ example, the shell would try to expand it before running \texttt{grep}.)
 The `\textbackslash{}\^{}' in the pattern anchors the match to the start
 of the line. The `.' matches a single character (just like `?' in the
 shell), while the `o' matches an actual `o'.
-\end{quote}
+
+\end{swcbox}
 
 While \texttt{grep} finds lines in files, the \texttt{find} command
 finds files themselves. Again, it has a lot of options; to show how the
@@ -2980,14 +2980,14 @@ $ find . -name '*.txt' -print
 ./notes.txt
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Listing vs. Finding}
+\begin{swcbox}{Listing vs. Finding}
 
 \texttt{ls} and \texttt{find} can be made to do similar things given the
 right options, but under normal circumstances, \texttt{ls} lists
 everything it can, while \texttt{find} searches for things with certain
 properties and shows them.
-\end{quote}
+
+\end{swcbox}
 
 As we said earlier, the command line's power lies in combining tools.
 We've seen how to do that with pipes; let's look at another technique.
@@ -3037,8 +3037,7 @@ $ grep FE $(find . -name '*.pdb' -print)
 ./human/heme.pdb:ATOM  25  FE  1  -0.924  0.535  -0.518
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Binary Files}
+\begin{swcbox}{Binary Files}
 
 We have focused exclusively on finding things in text files. What if
 your data is stored as images, in databases, or in some other format?
@@ -3061,7 +3060,8 @@ their limits, and to use a programming language such as Python instead.
 When the time comes to do this, don't be too hard on the shell: many
 modern programming languages, Python included, have borrowed a lot of
 ideas from it, and imitation is also the sincerest form of praise.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Conclusion}
 
@@ -3424,15 +3424,15 @@ short identifier printed by the \texttt{git commit} command earlier),
 the revision's author, when it was created, and the log message Git was
 given when the revision was created.
 
-\begin{quote}
-\mbox{}\paragraph{Where Are My Changes?}
+\begin{swcbox}{Where Are My Changes?}
 
 If we run \texttt{ls} at this point, we will still see just one file
 called \texttt{mars.txt}. That's because Git saves information about
 files' history in the special \texttt{.git} directory mentioned earlier
 so that our filesystem doesn't become cluttered (and so that we can't
 accidentally edit or delete an old version).
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Changing a File}
 
@@ -3808,8 +3808,7 @@ commit in which we made the change we're trying to get rid of:
 
 \includegraphics{novice/git/img/git-when-revisions-updated.png}
 
-\begin{quote}
-\mbox{}\paragraph{Simplifying the Common Case}
+\begin{swcbox}{Simplifying the Common Case}
 
 If you read the output of \texttt{git status} carefully, you'll see that
 it includes this hint:
@@ -3823,7 +3822,8 @@ files to the state saved in \texttt{HEAD}. The double dash \texttt{-{}-}
 is needed to separate the names of the files being recovered from the
 command itself: without it, Git would try to use the name of the file as
 the revision identifier.
-\end{quote}
+
+\end{swcbox}
 
 The fact that files can be reverted one by one tends to change the way
 people organize their work. If everything is in one large document, it's
@@ -4122,13 +4122,13 @@ Our local and remote repositories are now in this state:
 
 \includegraphics{novice/git/img/github-repo-after-first-push.png}
 
-\begin{quote}
-\mbox{}\paragraph{The `-u' Flag}
+\begin{swcbox}{The `-u' Flag}
 
 You may see a \texttt{-u} option used with \texttt{git push} in some
 documentation. It is related to concepts we cover in our intermediate
 lesson, and can safely be ignored for now.
-\end{quote}
+
+\end{swcbox}
 
 We can pull changes from the remote repository to the local one as well:
 
@@ -5186,8 +5186,7 @@ do. As a result, if we have an M×N array in Python, its indices go from
 getting used to, but one way to remember the rule is that the index is
 how many steps we have to take from the start to get the item we want.
 
-\begin{quote}
-\mbox{}\paragraph{In the Corner}
+\begin{swcbox}{In the Corner}
 
 What may also surprise you is that when Python displays an array, it
 shows the element with index \texttt{{[}0, 0{]}} in the upper left
@@ -5195,7 +5194,8 @@ corner rather than the lower left. This is consistent with the way
 mathematicians draw matrices, but different from the Cartesian
 coordinates. The indices are (row, column) instead of (column, row) for
 the same reason.
-\end{quote}
+
+\end{swcbox}
 
 An index like \texttt{{[}30, 20{]}} selects a single element of an
 array, but we can select whole sections as well. For example, we can
@@ -6729,8 +6729,7 @@ name[0] = 'b'
 
 does not.
 
-\begin{quote}
-\mbox{}\paragraph{Ch-Ch-Ch-Changes}
+\begin{swcbox}{Ch-Ch-Ch-Changes}
 
 Data that can be changed is called \glossdef{g:mutable}{mutable}, while
 data that cannot be is called \glossdef{g:immutable}{immutable}. Like
@@ -6746,7 +6745,8 @@ code in order to figure out what the value of something actually is. On
 the other hand, programs that modify data in place instead of creating
 copies that are almost identical to the original every time they want to
 make a small change are much more efficient.
-\end{quote}
+
+\end{swcbox}
 
 There are many ways to change the contents of in lists besides assigning
 to elements:
@@ -8214,15 +8214,15 @@ People are more likely to listen to us when we can explain clearly what
 we did, and we're better able to give them the information they need to
 be useful.
 
-\begin{quote}
-\mbox{}\paragraph{Version Control Revisited}
+\begin{swcbox}{Version Control Revisited}
 
 Version control is often used to reset software to a known state during
 debugging, and to explore recent changes to code that might be
 responsible for bugs. In particular, most version control systems have a
 \texttt{blame} command that will show who last changed particular lines
 of code\ldots{}
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Be Humble}
 
@@ -8559,15 +8559,15 @@ and run that:
 5.9
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{The Right Way to Do It}
+\begin{swcbox}{The Right Way to Do It}
 
 If our programs can take complex parameters or multiple filenames, we
 shouldn't handle \texttt{sys.argv} directly. Instead, we should use
 Python's \texttt{argparse} library, which handles common cases in a
 systematic way, and also makes it easy for us to provide sensible error
 messages for our users.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Challenges}
 
@@ -9038,13 +9038,15 @@ lookups and calculations the query specifies, returning the results in a
 tabular form that we can then use as a starting point for further
 queries.
 
-\begin{quote}
+\begin{swcbox}{Compatibility}
+
 Every database manager---Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft
 Access, and SQLite---stores data in a different way, so a database
 created with one cannot be used directly by another. However, every
 database manager can import and export data in a variety of formats, so
 it \emph{is} possible to move information from one to another.
-\end{quote}
+
+\end{swcbox}
 
 Queries are written in a language called \glossdef{g:sql}{SQL}, which
 stands for ``Structured Query Language''. SQL provides hundreds of
@@ -9596,7 +9598,8 @@ select * from Visited where (site='DR-1') and (dated>='1930-00-00');
 (The parentheses around the individual tests aren't strictly required,
 but they help make the query easier to read.)
 
-\begin{quote}
+\begin{swcbox}{Handling Dates}
+
 Most database managers have a special data type for dates. In fact, many
 have two: one for dates, such as ``May 31, 1971'', and one for
 durations, such as ``31 days''. SQLite doesn't: instead, it stores dates
@@ -9607,7 +9610,8 @@ HH:MM:SS.SSSS''), real numbers (the number of days since November 24,
 as figuring out
 \urlfoot{http://en.wikipedia.org/wiki/Swedish\_calendar}{historical dates in
 Sweden}.
-\end{quote}
+
+\end{swcbox}
 
 If we want to find out what measurements were taken by either Lake or
 Roerich, we can combine the tests on their names using \texttt{or}:
@@ -9706,7 +9710,8 @@ roerad
 But remember: \texttt{distinct} is applied to the values displayed in
 the chosen columns, not to the entire rows as they are being processed.
 
-\begin{quote}
+\begin{swcbox}{Growing Queries}
+
 What we have just done is how most people ``grow'' their SQL queries. We
 started with something simple that did part of what we wanted, then
 added more clauses one by one, testing their effects as we went. This is
@@ -9721,7 +9726,8 @@ trying our queries against an actual database of 20 million Australians,
 we could run it against a sample of ten thousand, or write a small
 program to generate ten thousand random (but plausible) records and use
 that.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Challenges}
 
@@ -9849,12 +9855,12 @@ Valentina Roerich
 Frank Danforth
 \end{verbatim}
 
-\begin{quote}
+\begin{swcbox}{What's in a Name?}
+
 It may seem strange to use \texttt{personal} and \texttt{family} as
 field names instead of \texttt{first} and \texttt{last}, but it's a
 necessary first step toward handling cultural differences. For example,
 consider the following rules:
-\end{quote}
 
 \begin{tabular}{@{}lll@{}}
 \hline\noalign{\medskip}
@@ -9887,10 +9893,10 @@ they were canonized
 \hline
 \end{tabular}
 
-\begin{quote}
 Clearly, even a two-part division into ``personal'' and ``family'' isn't
 enough\ldots{}
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Challenges}
 
@@ -10962,7 +10968,8 @@ record that uses it as a primary key. If our database manager supports
 it, we can automate this using \glossdef{g:cascading-delete}{cascading
 delete}. However, this technique is outside the scope of this chapter.
 
-\begin{quote}
+\begin{swcbox}{Mix and Match}
+
 Many applications use a hybrid storage model instead of putting
 everything into a database: the actual data (such as astronomical
 images) is stored in files, while the database stores the files' names,
@@ -10970,7 +10977,8 @@ their modification dates, the region of the sky they cover, their
 spectral characteristics, and so on. This is also how most music player
 software is built: the database inside the application keeps track of
 the MP3 files, but the files themselves live on disk.
-\end{quote}
+
+\end{swcbox}
 
 \mbox{}\paragraph{Challenges}
 
@@ -11818,13 +11826,13 @@ what you need in the man page---or you can't understand what you've
 found---try entering ``unix command copy file'' into your favorite
 search engine: it will often produce more helpful results.
 
-\begin{quote}
-\mbox{}\paragraph{You May Also Enjoy\ldots{}}
+\begin{swcbox}{You May Also Enjoy\ldots{}}
 
 The \urlfoot{http://explainshell.com/}{explainshell.com} site does a great
 job of breaking complex Unix commands into parts and explaining what
 each does. Sadly, it doesn't work in reverse\ldots{}
-\end{quote}
+
+\end{swcbox}
 
 \section{Permissions}
 
@@ -11836,8 +11844,7 @@ different.
 Let's start with Nelle. She has a unique \glossdef{g:user-name}{user
 name}, \texttt{nnemo}, and a \glossdef{g:user-id}{user ID}, 1404.
 
-\begin{quote}
-\mbox{}\paragraph{Why Integer IDs?}
+\begin{swcbox}{Why Integer IDs?}
 
 Why integers for IDs? Again, the answer goes back to the early 1970s.
 Character strings like \texttt{alan.turing} are of varying length, and
@@ -11851,7 +11858,8 @@ programmers being programmers, they will often skip the user-friendly
 string part and just use the integers, in the same way that someone
 working in a lab might talk about Experiment 28 instead of ``the
 chronotypical alpha-response trials on anacondas''.
-\end{quote}
+
+\end{swcbox}
 
 Users can belong to any number of \glossdef{g:user-group}{groups}, each
 of which has a unique \glossdef{g:user-group-name}{group name} and
@@ -11932,8 +11940,7 @@ $ ls -F
 safety.txt    setup*     waiver.txt
 \end{verbatim}
 
-\begin{quote}
-\mbox{}\paragraph{Necessary But Not Sufficient}
+\begin{swcbox}{Necessary But Not Sufficient}
 
 The fact that something is marked as executable doesn't actually mean it
 contains a program of some kind. We could easily mark this HTML file as
@@ -11942,7 +11949,8 @@ the operating system we're using, trying to ``run'' it will either fail
 (because it doesn't contain instructions the computer recognizes) or
 cause the operating system to open the file with whatever application
 usually handles it (such as a web browser).
-\end{quote}
+
+\end{swcbox}
 
 Now let's run the command \texttt{ls -l}:
 
@@ -12449,15 +12457,15 @@ it look like a single argument.) Since those arguments are a legal
 command, the remote shell runs \texttt{ls results} for us and sends the
 output back to our local shell for display.
 
-\begin{quote}
-\mbox{}\paragraph{All Those Passwords}
+\begin{swcbox}{All Those Passwords}
 
 Typing our password over and over again is annoying, especially if the
 commands we want to run remotely are in a loop. To remove the need to do
 this, we can create an \glossdef{g:authentication-key}{authentication
 key} to tell the remote machine that it should always trust us. We
 discuss authentication keys in our intermediate lessons.
-\end{quote}
+
+\end{swcbox}
 
 \section{Exceptions}
 
@@ -13016,36 +13024,6 @@ Thank you for your time: may you always see the world through the eyes
 of a child.
 
 \chapter{Instructor's Guide}\label{s:instructors}
-
-\begin{quote}
-\emph{1997}
-
-P: Hi, I'm a programmer. I'm starting an online retail company. What do
-you do?
-
-G: Hi, I'm a graphic designer. I know how to select and arrange text and
-images in ways that are appealing, informative, and usable.
-
-P: Huh. That seems much simpler to me than programming. I don't think I
-need to hire you.
-
-\emph{2003}
-
-G: So, how did your startup do?
-
-P: It tanked. People kept saying the site was ugly and confusing. I
-guess I should have hired you back in '97 after all.
-
-\emph{2014}
-
-P: Hi, I'm a programmer. I'm starting an online education company. What
-do you do?
-
-T: Hi, I'm a teacher. I know how to create and deliver learning
-materials in ways that are appealing, informative, and usable.
-
-P: Huh. That seems much simpler to me than programming\ldots{}
-\end{quote}
 
 As a species, we know a lot about how brains learn, how effective
 various teaching practices are, and how society's needs and expectations
@@ -14281,7 +14259,7 @@ connection.close()
 
 \chapter{Recommended Reading}\label{s:bib}
 
-\section{Papers}
+\section{Books}
 
 \begin{swcitemize}
 \item
@@ -14291,6 +14269,38 @@ connection.close()
   Learning Works: Seven Research-Based Principles for Smart Teaching}}.
   Jossey-Bass, 2010, 978-0470484104. \\ The best single-volume guide to
   evidence-based practices in education around.
+\item
+  Chris Fehily: \emph{SQL: Visual QuickStart Guide} (3rd ed). Peachpit
+  Press, 0321553578, 2002. \\ Describes the 5\% of SQL that covers 95\%
+  of real-world needs.
+\item
+  Karl Fogel: \emph{Producing Open Source Software: How to Run a
+  Successful Free Software Project}. O'Reilly Media, 0596007590, 2005.
+  \\ An excellent guide to how open source projects actually work. Every
+  page offers practical advice on how to earn commit privileges on a
+  project, get it more attention, or fork it in case of irreconcilable
+  differences.
+\item
+  Steve Haddock and Casey Dunn: \emph{Practical Computing for
+  Biologists}. Sinauer, 0878933913, 2010. \\ The best general
+  introduction to ``the other 90\%'' of scientific computing on the
+  market today.
+\item
+  Andy Oram and Greg Wilson (eds): \emph{Making Software: What Really
+  Works, and Why We Believe It}. O'Reilly, 0596808321, 2010. \\ Leading
+  software engineering researchers take a chapter each to describe key
+  empirical results and the evidence behind them. Topics range from the
+  impact of programming languages on programmers' productivity to
+  whether we can predict software faults using statistical techniques.
+\item
+  Deborah S. Ray and Eric J. Ray: \emph{Unix and Linux: Visual
+  QuickStart Guide}. Peachpit Press, 0321636783, 2009. \\ A gentle
+  introduction to Unix, with many examples.
+\end{swcitemize}
+
+\section{Papers}
+
+\begin{swcitemize}
 \item
   Paul F. Dubois: ``Maintaining Correctness in Scientific Programs''.
   \emph{Computing in Science \& Engineering}, May--June 2005. \\ Shows
@@ -14333,38 +14343,6 @@ connection.close()
   Greg Wilson: ``Software Carpentry: Lessons Learned''. arXiv pre-print,
   submitted July 20, 2013. \\ Describes what we've learned about how to
   teach programming to scientists over the last 15 years.
-\end{swcitemize}
-
-\section{Books}
-
-\begin{swcitemize}
-\item
-  Chris Fehily: \emph{SQL: Visual QuickStart Guide} (3rd ed). Peachpit
-  Press, 0321553578, 2002. \\ Describes the 5\% of SQL that covers 95\%
-  of real-world needs.
-\item
-  Karl Fogel: \emph{Producing Open Source Software: How to Run a
-  Successful Free Software Project}. O'Reilly Media, 0596007590, 2005.
-  \\ An excellent guide to how open source projects actually work. Every
-  page offers practical advice on how to earn commit privileges on a
-  project, get it more attention, or fork it in case of irreconcilable
-  differences.
-\item
-  Steve Haddock and Casey Dunn: \emph{Practical Computing for
-  Biologists}. Sinauer, 0878933913, 2010. \\ The best general
-  introduction to ``the other 90\%'' of scientific computing on the
-  market today.
-\item
-  Andy Oram and Greg Wilson (eds): \emph{Making Software: What Really
-  Works, and Why We Believe It}. O'Reilly, 0596808321, 2010. \\ Leading
-  software engineering researchers take a chapter each to describe key
-  empirical results and the evidence behind them. Topics range from the
-  impact of programming languages on programmers' productivity to
-  whether we can predict software faults using statistical techniques.
-\item
-  Deborah S. Ray and Eric J. Ray: \emph{Unix and Linux: Visual
-  QuickStart Guide}. Peachpit Press, 0321636783, 2009. \\ A gentle
-  introduction to Unix, with many examples.
 \end{swcitemize}
 
 \chapter{Glossary}\label{s:gloss}
