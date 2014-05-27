@@ -407,9 +407,9 @@ Inside that directory are several other directories: \texttt{bin} (which
 is where some built-in programs are stored), \texttt{data} (for
 miscellaneous data files), \texttt{users} (where users' personal
 directories are located), \texttt{tmp} (for temporary files that don't
-need to be stored long-term), and so on:
+need to be stored long-term), and so on (\figref{f:filesystem}).
 
-\includegraphics{novice/shell/img/filesystem.png}
+\swcgraphics{f:filesystem}{A Typical Filesystem}{novice/shell/img/filesystem.png}
 
 We know that our current working directory \texttt{/users/vlad} is
 stored inside \texttt{/users} because \texttt{/users} is the first part
@@ -417,21 +417,21 @@ of its name. Similarly, we know that \texttt{/users} is stored inside
 the root directory \texttt{/} because its name begins with \texttt{/}.
 
 Underneath \texttt{/users}, we find one directory for each user with an
-account on this machine. The Mummy's files are stored in
+account on this machine (\figref{f:homedir}). The Mummy's files are stored in
 \texttt{/users/imhotep}, Wolfman's in \texttt{/users/larry}, and ours in
 \texttt{/users/vlad}, which is why \texttt{vlad} is the last part of the
 directory's name.
 
-\includegraphics{novice/shell/img/home-directories.png}
+\swcgraphics{f:homedir}{Home Directories}{novice/shell/img/home-directories.png}
 
-\begin{quote}
+\begin{quote} % FIXME
 Notice that there are two meanings for the \texttt{/} character. When it
 appears at the front of a file or directory name, it refers to the root
 directory. When it appears \emph{inside} a name, it's just a separator.
 \end{quote}
 
 Let's see what's in Vlad's home directory by running \texttt{ls}, which
-stands for ``listing'':
+stands for ``listing'' (\figref{f:listing}):
 
 \begin{verbatim}
 $ ls
@@ -443,7 +443,7 @@ notes.txt    papers    pizza.cfg  solar
 solar.pdf    swc
 \end{verbatim}
 
-\includegraphics{novice/shell/img/vlad-homedir.png}
+\swcgraphics{f:listing}{Vlad's Home Directory}{novice/shell/img/vlad-homedir.png}
 
 \texttt{ls} prints the names of the files and directories in the current
 directory in alphabetical order, arranged neatly into columns. We can
@@ -750,9 +750,9 @@ other tools as we go on.
 \end{swcitemize}
 \end{keypoints}
 
-Please refer to the diagram below for the following challenges:
+Please refer to \figref{f:filesys-challenge} for the following challenges.
 
-\includegraphics{novice/shell/img/filesystem-challenge.png}
+\swcgraphics{f:filesys-challenge}{File System for Challenge Questions}{novice/shell/img/filesystem-challenge.png}
 
 \begin{challenge}
 
@@ -872,12 +872,14 @@ $ ls -F thesis
 
 Let's change our working directory to \texttt{thesis} using \texttt{cd},
 then run a text editor called Nano to create a file called
-\texttt{draft.txt}:
+\texttt{draft.txt} (\figref{f:nano}).
 
 \begin{verbatim}
 $ cd thesis
 $ nano draft.txt
 \end{verbatim}
+
+\swcgraphics{f:nano}{The Nano Editor}{novice/shell/img/nano-screenshot.png}
 
 \begin{swcbox}{Which Editor?}
 
@@ -904,8 +906,6 @@ another directory the first time you ``Save As\ldots{}''
 
 Let's type in a few lines of text, then use Control-O to write our data
 to disk:
-
-\includegraphics{novice/shell/img/nano-screenshot.png}
 
 Once our file is saved, we can use Control-X to quit the editor and
 return to the shell. (Unix documentation often uses the shorthand
@@ -2867,9 +2867,9 @@ shell), while the `o' matches an actual `o'.
 
 While \texttt{grep} finds lines in files, the \texttt{find} command
 finds files themselves. Again, it has a lot of options; to show how the
-simplest ones work, we'll use the directory tree shown below.
+simplest ones work, we'll use the directory tree shown in \figref{f:find-tree}.
 
-\includegraphics{novice/shell/img/find-file-tree.png}
+\swcgraphics{f:find-tree}{Directory Tree for \texttt{find} Examples}{novice/shell/img/find-file-tree.png}
 
 Vlad's home directory contains one file called \texttt{notes.txt} and
 four subdirectories: \texttt{thesis} (which is sadly empty),
@@ -3200,9 +3200,10 @@ encourage.
 
 We'll start by exploring how version control can be used to keep track
 of what one person did and when. Even if you aren't collaborating with
-other people, version control is much better for this than this:
+other people, version control is much better for this than the common
+alternative (\figref{f:phdcomics-version}).
 
-\urlfoot{http://www.phdcomics.com}{\includegraphics{novice/git/img/phd101212s.png}}
+\swcgraphics{f:phdcomics-version}{How Most Scientists Manage Files}{novice/git/img/phd101212s.png}
 
 ``Piled Higher and Deeper'' by Jorge Cham, http://www.phdcomics.com
 
@@ -3557,11 +3558,11 @@ haven't finished yet).
 
 To allow for this, Git has a special staging area where it keeps track
 of things that have been added to the current
-\gl{change set}{g:change-set} but not yet committed.
+\gl{change set}{g:change-set} but not yet committed (\figref{f:staging-area}).
 \texttt{git add} puts things in this area, and \texttt{git commit} then
-copies them to long-term storage (as a commit):
+copies them to long-term storage (as a commit).
 
-\includegraphics{novice/git/img/git-staging-area.png}
+\swcgraphics{f:staging-area}{Git's Staging Area}{novice/git/img/git-staging-area.png}
 
 Let's watch as our changes to a file move from our editor to the staging
 area and into long-term storage. First, we'll add another line to the
@@ -3813,9 +3814,9 @@ $ git checkout f22b25e mars.txt
 It's important to remember that we must use the revision number that
 identifies the state of the repository \emph{before} the change we're
 trying to undo. A common mistake is to use the revision number of the
-commit in which we made the change we're trying to get rid of:
+commit in which we made the change we're trying to get rid of (\figref{f:when-updated}).
 
-\includegraphics{novice/git/img/git-when-revisions-updated.png}
+\swcgraphics{f:when-updated}{When Revisions Are Updated}{novice/git/img/git-when-revisions-updated.png}
 
 \begin{swcbox}{Simplifying the Common Case}
 
@@ -4042,18 +4043,18 @@ lesson.
 
 Let's start by sharing the changes we've made to our current project
 with the world. Log in to GitHub, then click on the icon in the top
-right corner to create a new repository called \texttt{planets}:
+right corner to create a new repository called \texttt{planets}
+(\figref{f:create-repo-01}).
 
-\includegraphics{novice/git/img/github-create-repo-01.png}
+\swcgraphics{f:create-repo-01}{First Step in Creating a Repository}{novice/git/img/github-create-repo-01.png}
 
-Name your repository ``planets'' and then click ``Create Repository'':
+\swcgraphics{f:create-repo-02}{Second Step in Creating a Repository}{novice/git/img/github-create-repo-02.png}
 
-\includegraphics{novice/git/img/github-create-repo-02.png}
-
+Name your repository ``planets'' and then click ``Create Repository'' (\figref{f:create-repo-02}).
 As soon as the repository is created, GitHub displays a page with a URL
-and some information on how to configure your local repository:
+and some information on how to configure your local repository (\figref{f:create-repo-03}).
 
-\includegraphics{novice/git/img/github-create-repo-03.png}
+\swcgraphics{f:create-repo-03}{Third Step in Creating a Repository}{novice/git/img/github-create-repo-03.png}
 
 This effectively does the following on GitHub's servers:
 
@@ -4065,22 +4066,22 @@ $ git init
 
 Our local repository still contains our earlier work on
 \texttt{mars.txt}, but the remote repository on GitHub doesn't contain
-any files yet:
+any files yet (\figref{f:create-repo-04}).
 
-\includegraphics{novice/git/img/git-freshly-made-github-repo.png}
+\swcgraphics{f:create-repo-04}{Fourth Step in Creating a Repository}{novice/git/img/git-freshly-made-github-repo.png}
 
 The next step is to connect the two repositories. We do this by making
 the GitHub repository a \gl{remote}{g:repository-remote} for the
 local repository. The home page of the repository on GitHub includes the
-string we need to identify it:
+string we need to identify it (\figref{f:create-repo-05}).
 
-\includegraphics{novice/git/img/github-find-repo-string.png}
+\swcgraphics{f:create-repo-05}{Fifth Step in Creating a Repository}{novice/git/img/github-find-repo-string.png}
 
 Click on the `HTTPS' link to change the \gl{protocol}{g:protocol}
 from SSH to HTTPS. It's slightly less convenient for day-to-day use, but
-much less work for beginners to set up:
+much less work for beginners to set up (\figref{f:create-repo-06}).
 
-\includegraphics{novice/git/img/github-change-repo-string.png}
+\swcgraphics{f:create-repo-06}{Sixth Step in Creating a Repository}{novice/git/img/github-change-repo-string.png}
 
 Copy that URL from the browser, go into the local \texttt{planets}
 repository, and run this command:
@@ -4126,9 +4127,9 @@ To https://github.com/vlad/planets
 Branch master set up to track remote branch master from origin.
 \end{verbatim}
 
-Our local and remote repositories are now in this state:
+Our local and remote repositories are now in the state show in \figref{f:after-first-push}.
 
-\includegraphics{novice/git/img/github-repo-after-first-push.png}
+\swcgraphics{f:after-first-push}{Repositories After First Push}{novice/git/img/github-repo-after-first-push.png}
 
 \begin{swcbox}{The `-u' Flag}
 
@@ -4171,9 +4172,9 @@ $ git clone https://github.com/vlad/planets.git
 \texttt{git clone} creates a fresh local copy of a remote repository.
 (We did it in \texttt{/tmp} or some other directory so that we don't
 overwrite our existing \texttt{planets} directory.) Our computer now has
-two copies of the repository:
+two copies of the repository (\figref{f:after-duplicate-clone}).
 
-\includegraphics{novice/git/img/git-after-duplicate-clone.png}
+\swcgraphics{f:after-duplicate-clone}{After Cloning}{novice/git/img/git-after-duplicate-clone.png}
 
 Let's make a change in the copy in \texttt{/tmp/planets}:
 
@@ -4218,9 +4219,9 @@ does this automatically, using that name, when we clone a repository.
 (This is why \texttt{origin} was a sensible choice earlier when we were
 setting up remotes by hand.)
 
-Our three repositories now look like this:
+Our three repositories are now as shown in \figref{f:after-change-to-duplicate}.
 
-\includegraphics{novice/git/img/git-after-change-to-duplicate-repo.png}
+\swcgraphics{f:after-change-to-duplicate}{Repositories After Change to Duplicate}{novice/git/img/git-after-change-to-duplicate-repo.png}
 
 We can now download changes into the original repository on our machine:
 
@@ -4243,9 +4244,9 @@ Fast-forward
  create mode 100644 pluto.txt
 \end{verbatim}
 
-which gives us this:
+which puts us in the state shown in \figref{f:after-pulling-to-local}.
 
-\includegraphics{novice/git/img/git-after-pulling-to-local-repo.png}
+\swcgraphics{f:after-pulling-to-local}{Repositories After Pulling}{novice/git/img/git-after-pulling-to-local-repo.png}
 
 In practice, we would probably never have two copies of the same remote
 repository on our laptop at once. Instead, one of those copies would be
@@ -4353,9 +4354,9 @@ To https://github.com/vlad/planets
    29aba7c..dabb4c8  master -> master
 \end{verbatim}
 
-Our repositories are now in this state:
+Our repositories are now as shown in \figref{f:after-first-conflict}.
 
-\includegraphics{novice/git/img/git-after-first-conflicting-change.png}
+\swcgraphics{f:after-first-conflict}{Repositories After First Conflict}{novice/git/img/git-after-first-conflicting-change.png}
 
 Now let's switch to the copy under \texttt{/tmp} and make a different
 change there \emph{without} updating from GitHub:
@@ -4494,9 +4495,9 @@ $ git commit -m "Merging changes from GitHub"
 [master 2abf2b1] Merging changes from GitHub
 \end{verbatim}
 
-Our repositories now look like this:
+Our repositories are now as shown in \figref{f:after-second-conflict}.
 
-\includegraphics{novice/git/img/git-after-second-conflicting-change.png}
+\swcgraphics{f:after-second-conflict}{Repositories After Second Conflict}{novice/git/img/git-after-second-conflicting-change.png}
 
 so we push our changes to GitHub:
 
@@ -4514,9 +4515,9 @@ To https://github.com/vlad/planets.git
    dabb4c8..2abf2b1  master -> master
 \end{verbatim}
 
-to get this:
+to get the state shown in \figref{f:after-merging}.
 
-\includegraphics{novice/git/img/git-after-merging.png}
+\swcgraphics{f:after-merging}{Repositories After Merging}{novice/git/img/git-after-merging.png}
 
 Git keeps track of what we've merged with what, so we don't have to fix
 things by hand again if we switch back to the repository in our home
@@ -5045,13 +5046,13 @@ As the example above shows, we can print several things at once by
 separating them with commas.
 
 If we imagine the variable as a sticky note with a name written on it,
-assignment is like putting the sticky note on a particular value:
+assignment is like putting the sticky note on a particular value (\figref{f:assignment}).
 
-\includegraphics{novice/python/img/python-sticky-note-variables-01.png}
+\swcgraphics{f:assignment}{Assignment}{novice/python/img/python-sticky-note-variables-01.png}
 
 This means that assigning a value to one variable does \emph{not} change
 the values of other variables. For example, let's store the subject's
-weight in pounds in a variable:
+weight in pounds in a variable (\figref{f:before-changing-weight}):
 
 \begin{verbatim}
 weight_lb = 2.2 * weight_kg
@@ -5062,9 +5063,9 @@ print 'weight in kilograms:', weight_kg, 'and in pounds:', weight_lb
 weight in kilograms: 57.5 and in pounds: 126.5
 \end{verbatim}
 
-\includegraphics{novice/python/img/python-sticky-note-variables-02.png}
+\swcgraphics{f:before-changing-weight}{Before Changing Weight}{novice/python/img/python-sticky-note-variables-02.png}
 
-and then change \texttt{weight\_kg}:
+and then change \texttt{weight\_kg} (\figref{f:after-changing-weight}):
 
 \begin{verbatim}
 weight_kg = 100.0
@@ -5075,7 +5076,7 @@ print 'weight in kilograms is now:', weight_kg, 'and weight in pounds is still:'
 weight in kilograms is now: 100.0 and weight in pounds is still: 126.5
 \end{verbatim}
 
-\includegraphics{novice/python/img/python-sticky-note-variables-03.png}
+\swcgraphics{f:after-changing-weight}{After Changing Weight}{novice/python/img/python-sticky-note-variables-03.png}
 
 Since \texttt{weight\_lb} doesn't ``remember'' where its value came
 from, it isn't automatically updated when \texttt{weight\_kg} changes.
@@ -5333,12 +5334,11 @@ print 'maximum inflammation for patient 2:', data[2, :].max()
 maximum inflammation for patient 2: 19.0
 \end{verbatim}
 
+\swcgraphics{f:across-axis}{Operating Across an Axis}{novice/python/img/python-operations-across-axes.png}
+
 What if we need the maximum inflammation for \emph{all} patients, or the
-average for each day? As the diagram below shows, we want to perform the
-operation across an axis:
-
-\includegraphics{novice/python/img/python-operations-across-axes.png}
-
+average for each day? As \figref{f:across-axis} shows, we want to perform the
+operation across an axis.
 To support this, most array methods allow us to specify the axis we want
 to work on. If we ask for the average across axis 0, we get:
 
@@ -5837,24 +5837,24 @@ original = 32.0
 final = fahr_to_celsius(original)
 \end{verbatim}
 
-The diagram below shows what memory looks like after the first line has
-been executed:
+\swcgraphics{f:call-stack-01}{Initial Call Stack}{novice/python/img/python-call-stack-01.png}
 
-\includegraphics{novice/python/img/python-call-stack-01.png}
+\figref{f:call-stack-01} shows what memory looks like after the first line has
+been executed.
 
 When we call \texttt{fahr\_to\_celsius}, Python \emph{doesn't} create
 the variable \texttt{temp} right away. Instead, it creates something
 called a \gl{stack frame}{g:stack-frame} to keep track of the
 variables defined by \texttt{fahr\_to\_kelvin}. Initially, this stack
-frame only holds the value of \texttt{temp}:
+frame only holds the value of \texttt{temp} (\figref{f:call-stack-02}).
 
-\includegraphics{novice/python/img/python-call-stack-02.png}
+\swcgraphics{f:call-stack-02}{Call Stack Immediately Upon Call}{novice/python/img/python-call-stack-02.png}
 
 When we call \texttt{fahr\_to\_kelvin} inside
 \texttt{fahr\_to\_celsius}, Python creates another stack frame to hold
-\texttt{fahr\_to\_kelvin}'s variables:
+\texttt{fahr\_to\_kelvin}'s variables (\figref{f:call-stack-03}).
 
-\includegraphics{novice/python/img/python-call-stack-03.png}
+\swcgraphics{f:call-stack-03}{Call Stack During Nested Function Call}{novice/python/img/python-call-stack-03.png}
 
 It does this because there are now two variables in play called
 \texttt{temp}: the parameter to \texttt{fahr\_to\_celsius}, and the
@@ -5867,26 +5867,26 @@ those defined by other functions.
 When the call to \texttt{fahr\_to\_kelvin} returns a value, Python
 throws away \texttt{fahr\_to\_kelvin}'s stack frame and creates a new
 variable in the stack frame for \texttt{fahr\_to\_celsius} to hold the
-temperature in Kelvin:
+temperature in Kelvin (\figref{f:call-stack-04}).
 
-\includegraphics{novice/python/img/python-call-stack-04.png}
+\swcgraphics{f:call-stack-04}{Call Stack Between Calls}{novice/python/img/python-call-stack-04.png}
+
+\swcgraphics{f:call-stack-05}{Call Stack During Second Call}{novice/python/img/python-call-stack-05.png}
 
 It then calls \texttt{kelvin\_to\_celsius}, which means it creates a
-stack frame to hold that function's variables:
-
-\includegraphics{novice/python/img/python-call-stack-05.png}
-
+stack frame to hold that function's variables (\figref{f:call-stack-05}).
 Once again, Python throws away that stack frame when
 \texttt{kelvin\_to\_celsius} is done and creates the variable
-\texttt{result} in the stack frame for \texttt{fahr\_to\_celsius}:
+\texttt{result} in the stack frame for \texttt{fahr\_to\_celsius}
+(\figref{f:call-stack-06}).
 
-\includegraphics{novice/python/img/python-call-stack-06.png}
+\swcgraphics{f:call-stack-06}{Call Stack Immediately Before Final Return}{novice/python/img/python-call-stack-06.png}
 
 Finally, when \texttt{fahr\_to\_celsius} is done, Python throws away
 \emph{its} stack frame and puts its result in a new variable called
-\texttt{final} that lives in the stack frame we started with:
+\texttt{final} that lives in the stack frame we started with (\figref{f:call-stack-07}).
 
-\includegraphics{novice/python/img/python-call-stack-07.png}
+\swcgraphics{f:call-stack-07}{Call Stack After Calls Are Finished}{novice/python/img/python-call-stack-07.png}
 
 This final stack frame is always there; it holds the variables we
 defined outside the functions in our code. What it \emph{doesn't} hold
@@ -6955,15 +6955,15 @@ grid height: 3
 grid lines on: True
 \end{verbatim}
 
-The obvious thing to do with a grid like this is color in its cells, but
-in order to do that, we need to know how computers represent color. The
-most common schemes are \gl{RGB}{g:rgb}, which is short for ``red,
-green, blue''. RGB is an \gl{additive
-color model}{g:additive-color-model}: every shade is some combination of red, green, and blue
+The obvious thing to do with a grid like this is color in its cells,
+but in order to do that, we need to know how computers represent
+color. The most common schemes are \gl{RGB}{g:rgb}, which is short for
+``red, green, blue''. RGB is an \gl{additive color model}{g:additive-color-model}:
+every shade is some combination of red, green, and blue
 intensities. We can think of these three values as being the axes in a
-cube:
+cube (\figref{f:color-cube}).
 
-\includegraphics{novice/python/img/color-cube.png}
+\swcgraphics{f:color-cube}{The RGB Color Cube}{novice/python/img/color-cube.png}
 
 An RGB color is an example of a multi-part value: like a Cartesian
 coordinate, it is one thing with several parts. We can represent such a
@@ -7110,9 +7110,9 @@ The second line of this code uses the keyword \texttt{if} to tell Python
 that we want to make a choice. If the test that follows it is true, the
 body of the \texttt{if} (i.e., the lines indented underneath it) are
 executed. If the test is false, the body of the \texttt{else} is
-executed instead. Only one or the other is ever executed:
+executed instead, so only one or the other is ever executed (\figref{f:conditional}).
 
-\includegraphics{novice/python/img/python-flowchart-conditional.png}
+\swcgraphics{f:conditional}{Flow of Control in a Conditional}{novice/python/img/python-flowchart-conditional.png}
 
 Conditional statements don't have to include an \texttt{else}. If there
 isn't one, Python simply does nothing if the test is false:
@@ -7265,11 +7265,11 @@ da
 de
 \end{verbatim}
 
-As the diagram below shows, the \gl{inner loop}{g:inner-loop} runs
+As \figref{f:nested-loop} shows, the \gl{inner loop}{g:inner-loop} runs
 from start to finish each time the \gl{outer loop}{g:outer-loop}
-runs once:
+runs once.
 
-\includegraphics{novice/python/img/python-flowchart-nested-loops.png}
+\swcgraphics{f:nested-loop}{Execution of Nested Loops}{novice/python/img/python-flowchart-nested-loops.png}
 
 We can combine nesting and conditionals to create patterns in an image:
 
@@ -7862,9 +7862,9 @@ given a particular input. For example, suppose we need to find where two
 or more time series overlap. The range of each time series is
 represented as a pair of numbers, which are the time the interval
 started and ended. The output is the largest range that they all
-include:
+include (\figref{f:overlapping-ranges}).
 
-\includegraphics{novice/python/img/python-overlapping-ranges.png}
+\swcgraphics{f:overlapping-ranges}{Overlapping Ranges}{novice/python/img/python-overlapping-ranges.png}
 
 Most novice programmers would solve this problem like this:
 
@@ -9528,7 +9528,8 @@ at each row in the \texttt{Visited} table to see which ones satisfy the
 \texttt{select} keyword to determine what columns to display.
 
 This processing order means that we can filter records using
-\texttt{where} based on values in columns that aren't then displayed:
+\texttt{where} based on values in columns that aren't then displayed
+(\figref{f:filter}):
 
 \begin{verbatim}
 select ident from Visited where site='DR-1';
@@ -9540,7 +9541,7 @@ select ident from Visited where site='DR-1';
 844 \\
 \end{tabular}
 
-\includegraphics{novice/sql/img/sql-filter.png}
+\swcgraphics{f:filter}{Filtering in SQL}{novice/sql/img/sql-filter.png}
 
 We can use many other Boolean operators to filter our data. For example,
 we can ask for all information from the DR-1 site collected since 1930:
@@ -10157,7 +10158,8 @@ None \\
 but to combine them, wee must use an
 \gl{aggregation function}{g:aggregation-function} such as
 \texttt{min} or \texttt{max}. Each of these functions takes a set of
-records as input, and produces a single record as output:
+records as input, and produces a single record as output
+(\figref{f:aggregate}):
 
 \begin{verbatim}
 select min(dated) from Visited;
@@ -10167,7 +10169,7 @@ select min(dated) from Visited;
 1927-02-08 \\
 \end{tabular}
 
-\includegraphics{novice/sql/img/sql-aggregation.png}
+\swcgraphics{f:aggregate}{Aggregation in SQL}{novice/sql/img/sql-aggregation.png}
 
 \begin{verbatim}
 select max(dated) from Visited;
@@ -11154,10 +11156,11 @@ The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 \end{verbatim}
 
-We can draw the history of the repository like this (we'll see in a
+We can draw the history of the repository as shown in \figref{f:branching-01}
+(we'll see in a
 second why there's a box called \texttt{master}):
 
-\includegraphics{novice/extras/img/git-branching-01.png}
+\swcgraphics{f:branching-01}{Initial History of Repository}{novice/extras/img/git-branching-01.png}
 
 Let's run this command:
 
@@ -11166,7 +11169,7 @@ $ git branch moons
 \end{verbatim}
 
 It appears to do nothing, but behind the scenes it has created a new
-\gl{branch}{g:branch} called \texttt{moons}:
+\gl{branch}{g:branch} called \texttt{moons} (\figref{f:branching-02}):
 
 \begin{verbatim}
 $ git branch
@@ -11177,13 +11180,13 @@ $ git branch
   moons
 \end{verbatim}
 
-\includegraphics{novice/extras/img/git-branching-02.png}
+\swcgraphics{f:branching-02}{Repository Immediately After Creating Branch}{novice/extras/img/git-branching-02.png}
 
 Git is now maintaining two named bookmarks in our history:
 \texttt{master}, which was created automatically when we set up the
 repository, and \texttt{moons}, which we just made. They both point to
 the same revision right now, but we can change that. Let's make
-\texttt{moons} the active branch:
+\texttt{moons} the active branch (\figref{f:branching-03}):
 
 \begin{verbatim}
 $ git checkout moons
@@ -11202,7 +11205,7 @@ $ git branch
 * moons
 \end{verbatim}
 
-\includegraphics{novice/extras/img/git-branching-03.png}
+\swcgraphics{f:branching-03}{Repository After Switching Branches}{novice/extras/img/git-branching-03.png}
 
 Our file looks the same:
 
@@ -11282,10 +11285,9 @@ $ git commit -m "Thinking about the moons"
  create mode 100644 moons.txt
 \end{verbatim}
 
-Our repository is now in the state shown below:
+\swcgraphics{f:branching-04}{Repository After Committing to Branch}{novice/extras/img/git-branching-04.png}
 
-\includegraphics{novice/extras/img/git-branching-04.png}
-
+Our repository is now in the state shown in \figref{f:branching-04}.
 The \texttt{moons} branch has advanced to record the changes we just
 made, but \texttt{master} is still where it was. If we switch back to
 \texttt{master}:
@@ -11347,10 +11349,9 @@ $ git commit -m "We will need a cool name for our secret base"
  create mode 100644 names.txt
 \end{verbatim}
 
-Our repository is now in this state:
+\swcgraphics{f:branching-05}{Repository After Branches Have Diverged}{novice/extras/img/git-branching-05.png}
 
-\includegraphics{novice/extras/img/git-branching-05.png}
-
+Our repository is now as shown in \figref{f:branching-05}.
 \texttt{master} and \texttt{moons} have both moved on from their
 original common state, but in different ways. They could continue
 independent existence indefinitely, but at some point we'll probably
@@ -11408,9 +11409,9 @@ $ ls
 mars.txt    moons.txt    names.txt
 \end{verbatim}
 
-and our repository looks like this:
+and our repository looks like \figref{f:branching-06}:
 
-\includegraphics{novice/extras/img/git-branching-06.png}
+\swcgraphics{f:branching-06}{Repository After Merging}{novice/extras/img/git-branching-06.png}
 
 We can ask Git to draw a diagram of the repository's history with this
 command:
@@ -11528,27 +11529,27 @@ Dracula can now push and pull changes just as before.
 
 Wolfman doesn't clone Dracula's GitHub repository directly. Instead, he
 \gl{forks}{g:repository-fork} it, i.e., clones it on GitHub. He
-does this using the GitHub web interface:
+does this using the GitHub web interface (\figref{f:git-fork-ui}).
 
-\includegraphics{novice/extras/img/git-fork-ui.png}
+\swcgraphics{f:git-fork-ui}{Forking a Repository on Git}{novice/extras/img/git-fork-ui.png}
 
 He then clones his own GitHub repository, not Dracula's, to give himself
-a desktop copy:
-
-\includegraphics{novice/extras/img/git-forking-01.png}
+a desktop copy (\figref{f:git-fork-01}.
 
 This may seem like unnecessary work, but it allows Wolfman and Dracula
 to collaborate much more effectively. Suppose Wolfman makes a change to
 the project. He commits it to his local repository, then uses
-\texttt{git push} to copy those changes to GitHub:
+\texttt{git push} to copy those changes to GitHub (\figref{f:git-forking-02}).
 
-\includegraphics{novice/extras/img/git-forking-02.png}
+\swcgraphics{f:git-fork-01}{Repositories After Cloning the Fork}{novice/extras/img/git-forking-01.png}
+
+\swcgraphics{f:git-forking-02}{Repositories After Pushing Changes to Personal Copy}{novice/extras/img/git-forking-02.png}
 
 He then creates a \gl{pull request}{g:pull-request}, which
 notifies Dracula that Wolfman wants to merge some changes into Dracula's
-repository:
+repository (\figref{f:git-forking-03}).
 
-\includegraphics{novice/extras/img/git-forking-03.png}
+\swcgraphics{f:git-forking-03}{Creating a Pull Request}{novice/extras/img/git-forking-03.png}
 
 A pull request is a merge waiting to happen. When Dracula views it
 online, he can see and comment on the changes Wolfman wants to make.
@@ -11991,9 +11992,9 @@ In fact, `x' means something different for directories. It gives someone
 the right to \emph{traverse} the directory, but not to look at its
 contents. The distinction is subtle, so let's have a look at an example.
 Vlad's home directory has three subdirectories called \texttt{venus},
-\texttt{mars}, and \texttt{pluto}:
+\texttt{mars}, and \texttt{pluto} (\figref{f:x-for-directories}).
 
-\includegraphics{novice/extras/img/x-for-directories.png}
+\swcgraphics{f:x-for-directories}{``Execute'' Permission for Directories}{novice/extras/img/x-for-directories.png}
 
 Each of these has a subdirectory in turn called \texttt{notes}, and
 those sub-subdirectories contain various files. If a user's permissions
@@ -12899,17 +12900,16 @@ results is useful).
 
 \section{Why I Teach}
 
-This is my daughter Madeline:
+\swcgraphics{f:madeleine}{Madeleine}{novice/extras/img/madeleine.jpg}
 
-\includegraphics{novice/extras/img/madeleine.jpg}
-
-Several independent studies have confirmed that she is the cutest child
-on the planet (plus or minus 5\%, 19 times out of 20). She means the
-world to me, but by the time she's grown, the world is going to be
-dealing with the consequences of our generation's short-sightedness.
-Climate change, resource shortages, drug-resistant diseases---the list
-is a long one, and the only things that will save us are more science
-and more courage.
+Several independent studies have confirmed that my daughter Madeline
+(\figref{f:madeleine}) is the cutest child on the planet (plus or
+minus 5\%, 19 times out of 20). She means the world to me, but by the
+time she's grown, the world is going to be dealing with the
+consequences of our generation's short-sightedness.  Climate change,
+resource shortages, drug-resistant diseases---the list is a long one,
+and the only things that will save us are more science and more
+courage.
 
 That's why I teach. I teach because I need your help to make this world
 fit for her to live in. I teach because I need you to discover more and
