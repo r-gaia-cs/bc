@@ -9035,7 +9035,7 @@ The tables below show the database we will use in our examples:
 
 \textbf{Person}: people who took readings.
 
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{lll}
 \hline\noalign{\medskip}
 ident & personal & family
 \\\noalign{\medskip}
@@ -9055,7 +9055,7 @@ danforth & Frank & Danforth
 
 \textbf{Site}: locations where readings were taken.
 
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{lll}
 \hline\noalign{\medskip}
 name & lat & long
 \\\noalign{\medskip}
@@ -9071,7 +9071,7 @@ MSK-4 & -48.87 & -123.4
 
 \textbf{Visited}: when readings were taken at specific sites.
 
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{lll}
 \hline\noalign{\medskip}
 ident & site & dated
 \\\noalign{\medskip}
@@ -9097,7 +9097,7 @@ ident & site & dated
 
 \textbf{Survey}: the actual readings.
 
-\begin{tabular}{@{}llll@{}}
+\begin{tabular}{llll}
 \hline\noalign{\medskip}
 taken & person & quant & reading
 \\\noalign{\medskip}
@@ -9160,17 +9160,16 @@ table we want them from. Our query and its output look like this:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select family, personal from Person;
 \end{verbatim}
 
-\begin{verbatim}
-DyerWilliam
-PabodieFrank
-LakeAnderson
-RoerichValentina
-DanforthFrank
-\end{verbatim}
+\begin{tabular}{ll}
+Dyer & William \\
+Pabodie & Frank \\
+Lake & Anderson \\
+Roerich & Valentina \\
+Danforth & Frank \\
+\end{tabular}
 
 The semi-colon at the end of the query tells the database manager that
 the query is complete and ready to run. We have written our commands and
@@ -9179,17 +9178,16 @@ don't have to: as the example below shows, SQL is
 \gl{case insensitive}{g:case-insensitive}.
 
 \begin{verbatim}
-%%sqlite survey.db
 SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;
 \end{verbatim}
 
-\begin{verbatim}
-DyerWilliam
-PabodieFrank
-LakeAnderson
-RoerichValentina
-DanforthFrank
-\end{verbatim}
+\begin{tabular}{ll}
+Dyer & William \\
+Pabodie & Frank \\
+Lake & Anderson \\
+Roerich & Valentina \\
+Danforth & Frank \\
+\end{tabular}
 
 Whatever casing convention you choose, please be consistent: complex
 queries are hard enough to read without the extra cognitive load of
@@ -9202,48 +9200,45 @@ control that in various ways. For example, we could swap the columns in
 the output by writing our query as:
 
 \begin{verbatim}
-%%sqlite survey.db
 select personal, family from Person;
 \end{verbatim}
 
-\begin{verbatim}
-WilliamDyer
-FrankPabodie
-AndersonLake
-ValentinaRoerich
-FrankDanforth
-\end{verbatim}
+\begin{tabular}{ll}
+William & Dyer \\
+Frank & Pabodie \\
+Anderson & Lake \\
+Valentina & Roerich \\
+Frank & Danforth \\
+\end{tabular}
 
 or even repeat columns:
 
 \begin{verbatim}
-%%sqlite survey.db
 select ident, ident, ident from Person;
 \end{verbatim}
 
-\begin{verbatim}
-dyerdyerdyer
-pbpbpb
-lakelakelake
-roeroeroe
-danforthdanforthdanforth
-\end{verbatim}
+\begin{tabular}{lll}
+dyer & dyer & dyer \\
+pb & pb & pb \\
+lake & lake & lake \\
+roe & roe & roe \\
+danforth & danforth & danforth \\
+\end{tabular}
 
 As a shortcut, we can select all of the columns in a table using
 \texttt{*}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Person;
 \end{verbatim}
 
-\begin{verbatim}
-dyerWilliamDyer
-pbFrankPabodie
-lakeAndersonLake
-roeValentinaRoerich
-danforthFrankDanforth
-\end{verbatim}
+\begin{tabular}{lll}
+dyer & William & Dyer \\
+pb & Frank & Pabodie \\
+lake & Anderson & Lake \\
+roe & Valentina & Roerich \\
+danforth & Frank & Danforth \\
+\end{tabular}
 
 \begin{challenge}
   Write a query that selects only site names from the \texttt{Site}
@@ -9302,78 +9297,75 @@ the \texttt{survey} table, we get this:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select quant from Survey;
 \end{verbatim}
 
-\begin{verbatim}
-rad
-sal
-rad
-sal
-rad
-sal
-temp
-rad
-sal
-temp
-rad
-temp
-sal
-rad
-sal
-temp
-sal
-rad
-sal
-sal
-rad
-\end{verbatim}
+\begin{tabular}{l}
+rad \\
+sal \\
+rad \\
+sal \\
+rad \\
+sal \\
+temp \\
+rad \\
+sal \\
+temp \\
+rad \\
+temp \\
+sal \\
+rad \\
+sal \\
+temp \\
+sal \\
+rad \\
+sal \\
+sal \\
+rad \\
+\end{tabular}
 
 We can eliminate the redundant output to make the result more readable
 by adding the \texttt{distinct} keyword to our query:
 
 \begin{verbatim}
-%%sqlite survey.db
 select distinct quant from Survey;
 \end{verbatim}
 
-\begin{verbatim}
-rad
-sal
-temp
-\end{verbatim}
+\begin{tabular}{l}
+rad \\
+sal \\
+temp \\
+\end{tabular}
 
 If we select more than one column---for example, both the survey site ID
 and the quantity measured---then the distinct pairs of values are
 returned:
 
 \begin{verbatim}
-%%sqlite survey.db
 select distinct taken, quant from Survey;
 \end{verbatim}
 
-\begin{verbatim}
-619rad
-619sal
-622rad
-622sal
-734rad
-734sal
-734temp
-735rad
-735sal
-735temp
-751rad
-751temp
-751sal
-752rad
-752sal
-752temp
-837rad
-837sal
-844rad
-\end{verbatim}
+\begin{tabular}{ll}
+619 & rad \\
+619 & sal \\
+622 & rad \\
+622 & sal \\
+734 & rad \\
+734 & sal \\
+734 & temp \\
+735 & rad \\
+735 & sal \\
+735 & temp \\
+751 & rad \\
+751 & temp \\
+751 & sal \\
+752 & rad \\
+752 & sal \\
+752 & temp \\
+837 & rad \\
+837 & sal \\
+844 & rad \\
+\end{tabular}
 
 Notice in both cases that duplicates are removed even if they didn't
 appear to be adjacent in the database. Again, it's important to remember
@@ -9392,34 +9384,32 @@ scientist. We can do this in SQL by adding an \texttt{order by} clause
 to our query:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Person order by ident;
 \end{verbatim}
 
-\begin{verbatim}
-danforthFrankDanforth
-dyerWilliamDyer
-lakeAndersonLake
-pbFrankPabodie
-roeValentinaRoerich
-\end{verbatim}
+\begin{tabular}{lll}
+danforth & Frank & Danforth \\
+dyer & William & Dyer \\
+lake & Anderson & Lake \\
+pb & Frank & Pabodie \\
+roe & Valentina & Roerich \\
+\end{tabular}
 
 By default, results are sorted in ascending order (i.e., from least to
 greatest). We can sort in the opposite order using \texttt{desc} (for
 ``descending''):
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from person order by ident desc;
 \end{verbatim}
 
-\begin{verbatim}
-roeValentinaRoerich
-pbFrankPabodie
-lakeAndersonLake
-dyerWilliamDyer
-danforthFrankDanforth
-\end{verbatim}
+\begin{tabular}{lll}
+roe & Valentina & Roerich \\
+pb & Frank & Pabodie \\
+lake & Anderson & Lake \\
+dyer & William & Dyer \\
+danforth & Frank & Danforth \\
+\end{tabular}
 
 (And if we want to make it clear that we're sorting in ascending order,
 we can use \texttt{asc} instead of \texttt{desc}.)
@@ -9430,56 +9420,54 @@ descending order by \texttt{person} within each group of equal
 \texttt{taken} values:
 
 \begin{verbatim}
-%%sqlite survey.db
 select taken, person from Survey order by taken asc, person desc;
 \end{verbatim}
 
-\begin{verbatim}
-619dyer
-619dyer
-622dyer
-622dyer
-734pb
-734pb
-734lake
-735pb
-735None
-735None
-751pb
-751pb
-751lake
-752roe
-752lake
-752lake
-752lake
-837roe
-837lake
-837lake
-844roe
-\end{verbatim}
+\begin{tabular}{ll}
+619 & dyer \\
+619 & dyer \\
+622 & dyer \\
+622 & dyer \\
+734 & pb \\
+734 & pb \\
+734 & lake \\
+735 & pb \\
+735 & None \\
+735 & None \\
+751 & pb \\
+751 & pb \\
+751 & lake \\
+752 & roe \\
+752 & lake \\
+752 & lake \\
+752 & lake \\
+837 & roe \\
+837 & lake \\
+837 & lake \\
+844 & roe \\
+\end{tabular}
 
 This is easier to understand if we also remove duplicates:
 
 \begin{verbatim}
-%%sqlite survey.db
 select distinct taken, person from Survey order by taken asc, person desc;
 \end{verbatim}
 
-\begin{verbatim}
-619dyer
-622dyer
-734pb
-734lake
-735pb
-735None
-751pb
-751lake
-752roe
-752lake
-837roe
-837lake
-844roe
-\end{verbatim}
+\begin{tabular}{ll}
+619 & dyer \\
+622 & dyer \\
+734 & pb \\
+734 & lake \\
+735 & pb \\
+735 & None \\
+751 & pb \\
+751 & lake \\
+752 & roe \\
+752 & lake \\
+837 & roe \\
+837 & lake \\
+844 & roe \\
+\end{tabular}
 
 \begin{challenge}
   Write a query that returns the distinct dates in the \texttt{Visited}
@@ -9525,15 +9513,14 @@ particular site was visited. We can select these records from the
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where site='DR-1';
 \end{verbatim}
 
-\begin{verbatim}
-619DR-11927-02-08
-622DR-11927-02-10
-844DR-11932-03-22
-\end{verbatim}
+\begin{tabular}{lll}
+619 & DR-1 & 1927-02-08 \\
+622 & DR-1 & 1927-02-10 \\
+844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 The database manager executes this query in two stages. First, it checks
 at each row in the \texttt{Visited} table to see which ones satisfy the
@@ -9544,15 +9531,14 @@ This processing order means that we can filter records using
 \texttt{where} based on values in columns that aren't then displayed:
 
 \begin{verbatim}
-%%sqlite survey.db
 select ident from Visited where site='DR-1';
 \end{verbatim}
 
-\begin{verbatim}
-619
-622
-844
-\end{verbatim}
+\begin{tabular}{l}
+619 \\
+622 \\
+844 \\
+\end{tabular}
 
 \includegraphics{novice/sql/img/sql-filter.png}
 
@@ -9560,13 +9546,12 @@ We can use many other Boolean operators to filter our data. For example,
 we can ask for all information from the DR-1 site collected since 1930:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where (site='DR-1') and (dated>='1930-00-00');
 \end{verbatim}
 
-\begin{verbatim}
-844DR-11932-03-22
-\end{verbatim}
+\begin{tabular}{lll}
+844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 (The parentheses around the individual tests aren't strictly required,
 but they help make the query easier to read.)
@@ -9590,95 +9575,90 @@ If we want to find out what measurements were taken by either Lake or
 Roerich, we can combine the tests on their names using \texttt{or}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where person='lake' or person='roe';
 \end{verbatim}
 
-\begin{verbatim}
-734lakesal0.05
-751lakesal0.1
-752lakerad2.19
-752lakesal0.09
-752laketemp-16.0
-752roesal41.6
-837lakerad1.46
-837lakesal0.21
-837roesal22.5
-844roerad11.25
-\end{verbatim}
+\begin{tabular}{llll}
+734 & lake & sal & 0.05 \\
+751 & lake & sal & 0.1 \\
+752 & lake & rad & 2.19 \\
+752 & lake & sal & 0.09 \\
+752 & lake & temp & -16.0 \\
+752 & roe & sal & 41.6 \\
+837 & lake & rad & 1.46 \\
+837 & lake & sal & 0.21 \\
+837 & roe & sal & 22.5 \\
+844 & roe & rad & 11.25 \\
+\end{tabular}
 
 Alternatively, we can use \texttt{in} to see if a value is in a specific
 set:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where person in ('lake', 'roe');
 \end{verbatim}
 
-\begin{verbatim}
-734lakesal0.05
-751lakesal0.1
-752lakerad2.19
-752lakesal0.09
-752laketemp-16.0
-752roesal41.6
-837lakerad1.46
-837lakesal0.21
-837roesal22.5
-844roerad11.25
-\end{verbatim}
+\begin{tabular}{llll}
+734 & lake & sal & 0.05 \\
+751 & lake & sal & 0.1 \\
+752 & lake & rad & 2.19 \\
+752 & lake & sal & 0.09 \\
+752 & lake & temp & -16.0 \\
+752 & roe & sal & 41.6 \\
+837 & lake & rad & 1.46 \\
+837 & lake & sal & 0.21 \\
+837 & roe & sal & 22.5 \\
+844 & roe & rad & 11.25 \\
+\end{tabular}
 
 We can combine \texttt{and} with \texttt{or}, but we need to be careful
 about which operator is executed first. If we \emph{don't} use
 parentheses, we get this:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where quant='sal' and person='lake' or person='roe';
 \end{verbatim}
 
-\begin{verbatim}
-734lakesal0.05
-751lakesal0.1
-752lakesal0.09
-752roesal41.6
-837lakesal0.21
-837roesal22.5
-844roerad11.25
-\end{verbatim}
+\begin{tabular}{llll}
+734 & lake & sal & 0.05 \\
+751 & lake & sal & 0.1 \\
+752 & lake & sal & 0.09 \\
+752 & roe & sal & 41.6 \\
+837 & lake & sal & 0.21 \\
+837 & roe & sal & 22.5 \\
+844 & roe & rad & 11.25 \\
+\end{tabular}
 
 which is salinity measurements by Lake, and \emph{any} measurement by
 Roerich. We probably want this instead:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where quant='sal' and (person='lake' or person='roe');
 \end{verbatim}
 
-\begin{verbatim}
-734lakesal0.05
-751lakesal0.1
-752lakesal0.09
-752roesal41.6
-837lakesal0.21
-837roesal22.5
-\end{verbatim}
+\begin{tabular}{llll}
+734 & lake & sal & 0.05 \\
+751 & lake & sal & 0.1 \\
+752 & lake & sal & 0.09 \\
+752 & roe & sal & 41.6 \\
+837 & lake & sal & 0.21 \\
+837 & roe & sal & 22.5 \\
+\end{tabular}
 
 Finally, we can use \texttt{distinct} with \texttt{where} to give a
 second level of filtering:
 
 \begin{verbatim}
-%%sqlite survey.db
 select distinct person, quant from Survey where person='lake' or person='roe';
 \end{verbatim}
 
-\begin{verbatim}
-lakesal
-lakerad
-laketemp
-roesal
-roerad
-\end{verbatim}
+\begin{tabular}{ll}
+lake & sal \\
+lake & rad \\
+lake & temp \\
+roe & sal \\
+roe & rad \\
+\end{tabular}
 
 But remember: \texttt{distinct} is applied to the values displayed in
 the chosen columns, not to the entire rows as they are being processed.
@@ -9726,7 +9706,7 @@ select * from Site where (lat > -60) or (lat < 60);
   `\%' can be used any number of times in the pattern to mean ``match
   zero or more characters''.
 
-  \begin{tabular}{@{}ll@{}}
+  \begin{tabular}{ll}
   \hline\noalign{\medskip}
   Expression & Value
   \\\noalign{\medskip}
@@ -9779,20 +9759,19 @@ on the fly as part of our query:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select 1.05 * reading from Survey where quant='rad';
 \end{verbatim}
 
-\begin{verbatim}
-10.311
-8.19
-8.8305
-7.581
-4.5675
-2.2995
-1.533
-11.8125
-\end{verbatim}
+\begin{tabular}{l}
+10.311 \\
+8.19 \\
+8.8305 \\
+7.581 \\
+4.5675 \\
+2.2995 \\
+1.533 \\
+11.8125 \\
+\end{tabular}
 
 When we run the query, the expression \texttt{1.05 * reading} is
 evaluated for each row. Expressions can use any of the fields, all of
@@ -9802,32 +9781,30 @@ example, we can convert temperature readings from Fahrenheit to Celsius
 and round to two decimal places:
 
 \begin{verbatim}
-%%sqlite survey.db
 select taken, round(5*(reading-32)/9, 2) from Survey where quant='temp';
 \end{verbatim}
 
-\begin{verbatim}
-734-29.72
-735-32.22
-751-28.06
-752-26.67
-\end{verbatim}
+\begin{tabular}{ll}
+734 & -29.72 \\
+735 & -32.22 \\
+751 & -28.06 \\
+752 & -26.67 \\
+\end{tabular}
 
 We can also combine values from different fields, for example by using
 the string concatenation operator \texttt{\textbar{}\textbar{}}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select personal || ' ' || family from Person;
 \end{verbatim}
 
-\begin{verbatim}
-William Dyer
-Frank Pabodie
-Anderson Lake
-Valentina Roerich
-Frank Danforth
-\end{verbatim}
+\begin{tabular}{l}
+William Dyer \\
+Frank Pabodie \\
+Anderson Lake \\
+Valentina Roerich \\
+Frank Danforth \\
+\end{tabular}
 
 \begin{swcbox}{What's in a Name?}
 
@@ -9836,7 +9813,7 @@ field names instead of \texttt{first} and \texttt{last}, but it's a
 necessary first step toward handling cultural differences. For example,
 consider the following rules:
 
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{lll}
 \hline\noalign{\medskip}
 Full Name & Alphabetized Under & Reason
 \\\noalign{\medskip}
@@ -9882,39 +9859,28 @@ enough\ldots{}
 \begin{challenge}
   The \texttt{union} operator combines the results of two queries:
 \begin{verbatim}
-%%sqlite survey.db
 select * from Person where ident='dyer' union select * from Person where ident='roe';
 \end{verbatim}
 
-\begin{verbatim}
-dyerWilliamDyer
-roeValentinaRoerich
-\end{verbatim}
+\begin{tabular}{lll}
+dyer & William & Dyer \\
+roe & Valentina & Roerich \\
+\end{tabular}
 
 Use \texttt{union} to create a consolidated list of salinity
 measurements in which Roerich's, and only Roerich's, have been corrected
 as described in the previous challenge. The output should be something
 like:
 
-\begin{tabular}{@{}ll@{}}
-\hline\noalign{\medskip}
-619 & 0.13
-\\\noalign{\medskip}
-622 & 0.09
-\\\noalign{\medskip}
-734 & 0.05
-\\\noalign{\medskip}
-751 & 0.1
-\\\noalign{\medskip}
-752 & 0.09
-\\\noalign{\medskip}
-752 & 0.416
-\\\noalign{\medskip}
-837 & 0.21
-\\\noalign{\medskip}
-837 & 0.225
-\\\noalign{\medskip}
-\hline
+\begin{tabular}{ll}
+619 & 0.13 \\
+622 & 0.09 \\
+734 & 0.05 \\
+751 & 0.1 \\
+752 & 0.09 \\
+752 & 0.416 \\
+837 & 0.21 \\
+837 & 0.225 \\
 \end{tabular}
 \end{challenge}
 
@@ -9923,15 +9889,14 @@ like:
   separated by a `-':
 
 \begin{verbatim}
-%%sqlite survey.db
 select distinct site from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-DR-1
-DR-3
-MSK-4
-\end{verbatim}
+\begin{tabular}{l}
+DR-1 \\
+DR-3 \\
+MSK-4 \\
+\end{tabular}
 
 Some major site identifiers are two letters long and some are three. The
 ``in string'' function \texttt{instr(X, Y)} returns the 1-based index of
@@ -9979,49 +9944,47 @@ null:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-619DR-11927-02-08
-622DR-11927-02-10
-734DR-31939-01-07
-735DR-31930-01-12
-751DR-31930-02-26
-752DR-3None
-837MSK-41932-01-14
-844DR-11932-03-22
-\end{verbatim}
+% FIXME: look for 'None' in tables
+\begin{tabular}{lll}
+619 & DR-1 & 1927-02-08 \\
+622 & DR-1 & 1927-02-10 \\
+734 & DR-3 & 1939-01-07 \\
+735 & DR-3 & 1930-01-12 \\
+751 & DR-3 & 1930-02-26 \\
+752 & DR-3 & None \\
+837 & MSK-4 & 1932-01-14 \\
+844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 Null doesn't behave like other values. If we select the records that
 come before 1930:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated<'1930-00-00';
 \end{verbatim}
 
-\begin{verbatim}
-619DR-11927-02-08
-622DR-11927-02-10
-\end{verbatim}
+\begin{tabular}{lll}
+619 & DR-1 & 1927-02-08 \\
+622 & DR-1 & 1927-02-10 \\
+\end{tabular}
 
 we get two results, and if we select the ones that come during or after
 1930:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated>='1930-00-00';
 \end{verbatim}
 
-\begin{verbatim}
-734DR-31939-01-07
-735DR-31930-01-12
-751DR-31930-02-26
-837MSK-41932-01-14
-844DR-11932-03-22
-\end{verbatim}
+\begin{tabular}{lll}
+734 & DR-3 & 1939-01-07 \\
+735 & DR-3 & 1930-01-12 \\
+751 & DR-3 & 1930-02-26 \\
+837 & MSK-4 & 1932-01-14 \\
+844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 we get five, but record \#752 isn't in either set of results. The reason
 is that \texttt{null\textless{}'1930-00-00'} is neither true nor false:
@@ -10040,65 +10003,58 @@ Comparisons aren't the only operations that behave this way with nulls.
 things to null with = and != produces null:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated=NULL;
 \end{verbatim}
 
-\begin{verbatim}
-\end{verbatim}
+% FIXME: empty table
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated!=NULL;
 \end{verbatim}
 
-\begin{verbatim}
-\end{verbatim}
+% FIXME: empty table
 
 To check whether a value is \texttt{null} or not, we must use a special
 test \texttt{is null}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated is NULL;
 \end{verbatim}
 
-\begin{verbatim}
-752DR-3None
-\end{verbatim}
+\begin{tabular}{lll}
+752 & DR-3 & None \\
+\end{tabular}
 
 or its inverse \texttt{is not null}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Visited where dated is not NULL;
 \end{verbatim}
 
-\begin{verbatim}
-619DR-11927-02-08
-622DR-11927-02-10
-734DR-31939-01-07
-735DR-31930-01-12
-751DR-31930-02-26
-837MSK-41932-01-14
-844DR-11932-03-22
-\end{verbatim}
+\begin{tabular}{lll}
+619 & DR-1 & 1927-02-08 \\
+622 & DR-1 & 1927-02-10 \\
+734 & DR-3 & 1939-01-07 \\
+735 & DR-3 & 1930-01-12 \\
+751 & DR-3 & 1930-02-26 \\
+837 & MSK-4 & 1932-01-14 \\
+844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 Null values cause headaches wherever they appear. For example, suppose
 we want to find all the salinity measurements that weren't taken by
 Dyer. It's natural to write the query like this:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where quant='sal' and person!='lake';
 \end{verbatim}
 
-\begin{verbatim}
-619dyersal0.13
-622dyersal0.09
-752roesal41.6
-837roesal22.5
-\end{verbatim}
+\begin{tabular}{llll}
+619 & dyer & sal & 0.13 \\
+622 & dyer & sal & 0.09 \\
+752 & roe & sal & 41.6 \\
+837 & roe & sal & 22.5 \\
+\end{tabular}
 
 but this query filters omits the records where we don't know who took
 the measurement. Once again, the reason is that when \texttt{person} is
@@ -10107,17 +10063,16 @@ record isn't kept in our results. If we want to keep these records we
 need to add an explicit check:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Survey where quant='sal' and (person!='lake' or person is null);
 \end{verbatim}
 
-\begin{verbatim}
-619dyersal0.13
-622dyersal0.09
-735Nonesal0.06
-752roesal41.6
-837roesal22.5
-\end{verbatim}
+\begin{tabular}{llll}
+619 & dyer & sal & 0.13 \\
+622 & dyer & sal & 0.09 \\
+735 & None & sal & 0.06 \\
+752 & roe & sal & 41.6 \\
+837 & roe & sal & 22.5 \\
+\end{tabular}
 
 We still have to decide whether this is the right thing to do or not. If
 we want to be absolutely sure that we aren't including any measurements
@@ -10185,20 +10140,19 @@ to select all of the dates from the \texttt{Visited} table:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select dated from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-1927-02-08
-1927-02-10
-1939-01-07
-1930-01-12
-1930-02-26
-None
-1932-01-14
-1932-03-22
-\end{verbatim}
+\begin{tabular}{l}
+1927-02-08 \\
+1927-02-10 \\
+1939-01-07 \\
+1930-01-12 \\
+1930-02-26 \\
+None \\
+1932-01-14 \\
+1932-03-22 \\
+\end{tabular}
 
 but to combine them, wee must use an
 \gl{aggregation function}{g:aggregation-function} such as
@@ -10206,55 +10160,50 @@ but to combine them, wee must use an
 records as input, and produces a single record as output:
 
 \begin{verbatim}
-%%sqlite survey.db
 select min(dated) from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-1927-02-08
-\end{verbatim}
+\begin{tabular}{l}
+1927-02-08 \\
+\end{tabular}
 
 \includegraphics{novice/sql/img/sql-aggregation.png}
 
 \begin{verbatim}
-%%sqlite survey.db
 select max(dated) from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-1939-01-07
-\end{verbatim}
+\begin{tabular}{l}
+1939-01-07 \\
+\end{tabular}
 
 \texttt{min} and \texttt{max} are just two of the aggregation functions
 built into SQL. Three others are \texttt{avg}, \texttt{count}, and
 \texttt{sum}:
 
 \begin{verbatim}
-%%sqlite survey.db
 select avg(reading) from Survey where quant='sal';
 \end{verbatim}
 
-\begin{verbatim}
-7.20333333333
-\end{verbatim}
+\begin{tabular}{l}
+7.20333333333 \\
+\end{tabular}
 
 \begin{verbatim}
-%%sqlite survey.db
 select count(reading) from Survey where quant='sal';
 \end{verbatim}
 
-\begin{verbatim}
-9
-\end{verbatim}
+\begin{tabular}{l}
+9 \\
+\end{tabular}
 
 \begin{verbatim}
-%%sqlite survey.db
 select sum(reading) from Survey where quant='sal';
 \end{verbatim}
 
-\begin{verbatim}
-64.83
-\end{verbatim}
+\begin{tabular}{l}
+64.83 \\
+\end{tabular}
 
 We used \texttt{count(reading)} here, but we could just as easily have
 counted \texttt{quant} or any other field in the table, or even used
@@ -10265,25 +10214,23 @@ SQL lets us do several aggregations at once. We can, for example, find
 the range of sensible salinity measurements:
 
 \begin{verbatim}
-%%sqlite survey.db
 select min(reading), max(reading) from Survey where quant='sal' and reading<=1.0;
 \end{verbatim}
 
-\begin{verbatim}
-0.050.21
-\end{verbatim}
+\begin{tabular}{ll}
+0.05 & 0.21 \\
+\end{tabular}
 
 We can also combine aggregated results with raw results, although the
 output might surprise you:
 
 \begin{verbatim}
-%%sqlite survey.db
 select person, count(*) from Survey where quant='sal' and reading<=1.0;
 \end{verbatim}
 
-\begin{verbatim}
-lake7
-\end{verbatim}
+\begin{tabular}{ll}
+lake & 7 \\
+\end{tabular}
 
 Why does Lake's name appear rather than Roerich's or Dyer's? The answer
 is that when it has to aggregate a field, but isn't told how to, the
@@ -10295,13 +10242,12 @@ aggregation's result is ``don't know'' rather than zero or some other
 arbitrary value:
 
 \begin{verbatim}
-%%sqlite survey.db
 select person, max(reading), sum(reading) from Survey where quant='missing';
 \end{verbatim}
 
-\begin{verbatim}
-NoneNoneNone
-\end{verbatim}
+\begin{tabular}{lll} % FIXME: nulls in table
+None & None & None \\
+\end{tabular}
 
 One final important feature of aggregation functions is that they are
 inconsistent with the rest of SQL in a very useful way. If we add two
@@ -10312,24 +10258,22 @@ for aggregation functions to ignore null values and only combine those
 that are non-null. This behavior lets us write our queries as:
 
 \begin{verbatim}
-%%sqlite survey.db
 select min(dated) from Visited;
 \end{verbatim}
 
-\begin{verbatim}
-1927-02-08
-\end{verbatim}
+\begin{tabular}{l}
+1927-02-08 \\
+\end{tabular}
 
 instead of always having to filter explicitly:
 
 \begin{verbatim}
-%%sqlite survey.db
 select min(dated) from Visited where dated is not null;
 \end{verbatim}
 
-\begin{verbatim}
-1927-02-08
-\end{verbatim}
+\begin{tabular}{l}
+1927-02-08 \\
+\end{tabular}
 
 Aggregating all records at once doesn't always make sense. For example,
 suppose Gina suspects that there is a systematic bias in her data, and
@@ -10337,31 +10281,29 @@ that some scientists' radiation readings are higher than others. We know
 that this doesn't work:
 
 \begin{verbatim}
-%%sqlite survey.db
 select person, count(reading), round(avg(reading), 2)
 from  Survey
 where quant='rad';
 \end{verbatim}
 
-\begin{verbatim}
-roe86.56
-\end{verbatim}
+\begin{tabular}{lll}
+roe & 8 & 6.56 \\
+\end{tabular}
 
 because the database manager selects a single arbitrary scientist's name
 rather than aggregating separately for each scientist. Since there are
 only five scientists, she could write five queries of the form:
 
 \begin{verbatim}
-%%sqlite survey.db
 select person, count(reading), round(avg(reading), 2)
 from  Survey
 where quant='rad'
 and   person='dyer';
 \end{verbatim}
 
-\begin{verbatim}
-dyer28.81
-\end{verbatim}
+\begin{tabular}{lll}
+dyer & 2 & 8.81 \\
+\end{tabular}
 
 but this would be tedious, and if she ever had a data set with fifty or
 five hundred scientists, the chances of her getting all of those queries
@@ -10371,19 +10313,18 @@ What we need to do is tell the database manager to aggregate the hours
 for each scientist separately using a \texttt{group by} clause:
 
 \begin{verbatim}
-%%sqlite survey.db
 select   person, count(reading), round(avg(reading), 2)
 from     Survey
 where    quant='rad'
 group by person;
 \end{verbatim}
 
-\begin{verbatim}
-dyer28.81
-lake21.82
-pb36.66
-roe111.25
-\end{verbatim}
+\begin{tabular}{lll}
+dyer & 2 & 8.81 \\
+lake & 2 & 1.82 \\
+pb & 3 & 6.66 \\
+roe & 1 & 11.25 \\
+\end{tabular}
 
 \texttt{group by} does exactly what its name implies: groups all the
 records with the same value for the specified field together so that
@@ -10398,25 +10339,24 @@ measured, for example, we just add another field to the
 \texttt{group by} clause:
 
 \begin{verbatim}
-%%sqlite survey.db
 select   person, quant, count(reading), round(avg(reading), 2)
 from     Survey
 group by person, quant;
 \end{verbatim}
 
-\begin{verbatim}
-Nonesal10.06
-Nonetemp1-26.0
-dyerrad28.81
-dyersal20.11
-lakerad21.82
-lakesal40.11
-laketemp1-16.0
-pbrad36.66
-pbtemp2-20.0
-roerad111.25
-roesal232.05
-\end{verbatim}
+\begin{tabular}{llll}
+None & sal & 1 & 0.06 \\
+None & temp & 1 & -26.0 \\
+dyer & rad & 2 & 8.81 \\
+dyer & sal & 2 & 0.11 \\
+lake & rad & 2 & 1.82 \\
+lake & sal & 4 & 0.11 \\
+lake & temp & 1 & -16.0 \\
+pb & rad & 3 & 6.66 \\
+pb & temp & 2 & -20.0 \\
+roe & rad & 1 & 11.25 \\
+roe & sal & 2 & 32.05 \\
+\end{tabular}
 
 Note that we have added \texttt{person} to the list of fields displayed,
 since the results wouldn't make much sense otherwise.
@@ -10425,7 +10365,6 @@ Let's go one step further and remove all the entries where we don't know
 who took the measurement:
 
 \begin{verbatim}
-%%sqlite survey.db
 select   person, quant, count(reading), round(avg(reading), 2)
 from     Survey
 where    person is not null
@@ -10433,17 +10372,17 @@ group by person, quant
 order by person, quant;
 \end{verbatim}
 
-\begin{verbatim}
-dyerrad28.81
-dyersal20.11
-lakerad21.82
-lakesal40.11
-laketemp1-16.0
-pbrad36.66
-pbtemp2-20.0
-roerad111.25
-roesal232.05
-\end{verbatim}
+\begin{tabular}{llll}
+dyer & rad & 2 & 8.81 \\
+dyer & sal & 2 & 0.11 \\
+lake & rad & 2 & 1.82 \\
+lake & sal & 4 & 0.11 \\
+lake & temp & 1 & -16.0 \\
+pb & rad & 3 & 6.66 \\
+pb & temp & 2 & -20.0 \\
+roe & rad & 1 & 11.25 \\
+roe & sal & 2 & 32.05 \\
+\end{tabular}
 
 Looking more closely, this query:
 
@@ -10546,36 +10485,35 @@ start by joining the \texttt{Site} and \texttt{Visited} tables:
 \end{verbatim}
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Site join Visited;
 \end{verbatim}
 
-\begin{verbatim}
-DR-1-49.85-128.57619DR-11927-02-08
-DR-1-49.85-128.57622DR-11927-02-10
-DR-1-49.85-128.57734DR-31939-01-07
-DR-1-49.85-128.57735DR-31930-01-12
-DR-1-49.85-128.57751DR-31930-02-26
-DR-1-49.85-128.57752DR-3None
-DR-1-49.85-128.57837MSK-41932-01-14
-DR-1-49.85-128.57844DR-11932-03-22
-DR-3-47.15-126.72619DR-11927-02-08
-DR-3-47.15-126.72622DR-11927-02-10
-DR-3-47.15-126.72734DR-31939-01-07
-DR-3-47.15-126.72735DR-31930-01-12
-DR-3-47.15-126.72751DR-31930-02-26
-DR-3-47.15-126.72752DR-3None
-DR-3-47.15-126.72837MSK-41932-01-14
-DR-3-47.15-126.72844DR-11932-03-22
-MSK-4-48.87-123.4619DR-11927-02-08
-MSK-4-48.87-123.4622DR-11927-02-10
-MSK-4-48.87-123.4734DR-31939-01-07
-MSK-4-48.87-123.4735DR-31930-01-12
-MSK-4-48.87-123.4751DR-31930-02-26
-MSK-4-48.87-123.4752DR-3None
-MSK-4-48.87-123.4837MSK-41932-01-14
-MSK-4-48.87-123.4844DR-11932-03-22
-\end{verbatim}
+\begin{tabular}{llllll}
+DR-1 & -49.85 & -128.57 & 619 & DR-1 & 1927-02-08 \\
+DR-1 & -49.85 & -128.57 & 622 & DR-1 & 1927-02-10 \\
+DR-1 & -49.85 & -128.57 & 734 & DR-3 & 1939-01-07 \\
+DR-1 & -49.85 & -128.57 & 735 & DR-3 & 1930-01-12 \\
+DR-1 & -49.85 & -128.57 & 751 & DR-3 & 1930-02-26 \\
+DR-1 & -49.85 & -128.57 & 752 & DR-3 & None \\
+DR-1 & -49.85 & -128.57 & 837 & MSK-4 & 1932-01-14 \\
+DR-1 & -49.85 & -128.57 & 844 & DR-1 & 1932-03-22 \\
+DR-3 & -47.15 & -126.72 & 619 & DR-1 & 1927-02-08 \\
+DR-3 & -47.15 & -126.72 & 622 & DR-1 & 1927-02-10 \\
+DR-3 & -47.15 & -126.72 & 734 & DR-3 & 1939-01-07 \\
+DR-3 & -47.15 & -126.72 & 735 & DR-3 & 1930-01-12 \\
+DR-3 & -47.15 & -126.72 & 751 & DR-3 & 1930-02-26 \\
+DR-3 & -47.15 & -126.72 & 752 & DR-3 & None \\
+DR-3 & -47.15 & -126.72 & 837 & MSK-4 & 1932-01-14 \\
+DR-3 & -47.15 & -126.72 & 844 & DR-1 & 1932-03-22 \\
+MSK-4 & -48.87 & -123.4 & 619 & DR-1 & 1927-02-08 \\
+MSK-4 & -48.87 & -123.4 & 622 & DR-1 & 1927-02-10 \\
+MSK-4 & -48.87 & -123.4 & 734 & DR-3 & 1939-01-07 \\
+MSK-4 & -48.87 & -123.4 & 735 & DR-3 & 1930-01-12 \\
+MSK-4 & -48.87 & -123.4 & 751 & DR-3 & 1930-02-26 \\
+MSK-4 & -48.87 & -123.4 & 752 & DR-3 & None \\
+MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
+MSK-4 & -48.87 & -123.4 & 844 & DR-1 & 1932-03-22 \\
+\end{tabular}
 
 \texttt{join} creates the \gl{cross product}{g:cross-product} of
 two tables, i.e., it joins each record of one with each record of the
@@ -10591,20 +10529,19 @@ specifying that we're only interested in combinations that have the same
 site name:
 
 \begin{verbatim}
-%%sqlite survey.db
 select * from Site join Visited on Site.name=Visited.site;
 \end{verbatim}
 
-\begin{verbatim}
-DR-1-49.85-128.57619DR-11927-02-08
-DR-1-49.85-128.57622DR-11927-02-10
-DR-1-49.85-128.57844DR-11932-03-22
-DR-3-47.15-126.72734DR-31939-01-07
-DR-3-47.15-126.72735DR-31930-01-12
-DR-3-47.15-126.72751DR-31930-02-26
-DR-3-47.15-126.72752DR-3None
-MSK-4-48.87-123.4837MSK-41932-01-14
-\end{verbatim}
+\begin{tabular}{llllll}
+DR-1 & -49.85 & -128.57 & 619 & DR-1 & 1927-02-08 \\
+DR-1 & -49.85 & -128.57 & 622 & DR-1 & 1927-02-10 \\
+DR-1 & -49.85 & -128.57 & 844 & DR-1 & 1932-03-22 \\
+DR-3 & -47.15 & -126.72 & 734 & DR-3 & 1939-01-07 \\
+DR-3 & -47.15 & -126.72 & 735 & DR-3 & 1930-01-12 \\
+DR-3 & -47.15 & -126.72 & 751 & DR-3 & 1930-02-26 \\
+DR-3 & -47.15 & -126.72 & 752 & DR-3 & None \\
+MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
+\end{tabular}
 
 \texttt{on} does the same job as \texttt{where}: it only keeps records
 that pass some test. (The difference between the two is that \texttt{on}
@@ -10625,22 +10562,21 @@ We can now use the same dotted notation to select the three columns we
 actually want out of our join:
 
 \begin{verbatim}
-%%sqlite survey.db
 select Site.lat, Site.long, Visited.dated
 from   Site join Visited
 on     Site.name=Visited.site;
 \end{verbatim}
 
-\begin{verbatim}
--49.85-128.571927-02-08
--49.85-128.571927-02-10
--49.85-128.571932-03-22
--47.15-126.72None
--47.15-126.721930-01-12
--47.15-126.721930-02-26
--47.15-126.721939-01-07
--48.87-123.41932-01-14
-\end{verbatim}
+\begin{tabular}{lll}
+-49.85 & -128.57 & 1927-02-08 \\
+-49.85 & -128.57 & 1927-02-10 \\
+-49.85 & -128.57 & 1932-03-22 \\
+-47.15 & -126.72 & None \\
+-47.15 & -126.72 & 1930-01-12 \\
+-47.15 & -126.72 & 1930-02-26 \\
+-47.15 & -126.72 & 1939-01-07 \\
+-48.87 & -123.4 & 1932-01-14 \\
+\end{tabular}
 
 If joining two tables is good, joining many tables must be better. In
 fact, we can join any number of tables simply by adding more
@@ -10648,7 +10584,6 @@ fact, we can join any number of tables simply by adding more
 out combinations of records that don't make sense:
 
 \begin{verbatim}
-%%sqlite survey.db
 select Site.lat, Site.long, Visited.dated, Survey.quant, Survey.reading
 from   Site join Visited join Survey
 on     Site.name=Visited.site
@@ -10656,25 +10591,25 @@ and    Visited.ident=Survey.taken
 and    Visited.dated is not null;
 \end{verbatim}
 
-\begin{verbatim}
--49.85-128.571927-02-08rad9.82
--49.85-128.571927-02-08sal0.13
--49.85-128.571927-02-10rad7.8
--49.85-128.571927-02-10sal0.09
--47.15-126.721939-01-07rad8.41
--47.15-126.721939-01-07sal0.05
--47.15-126.721939-01-07temp-21.5
--47.15-126.721930-01-12rad7.22
--47.15-126.721930-01-12sal0.06
--47.15-126.721930-01-12temp-26.0
--47.15-126.721930-02-26rad4.35
--47.15-126.721930-02-26sal0.1
--47.15-126.721930-02-26temp-18.5
--48.87-123.41932-01-14rad1.46
--48.87-123.41932-01-14sal0.21
--48.87-123.41932-01-14sal22.5
--49.85-128.571932-03-22rad11.25
-\end{verbatim}
+\begin{tabular}{lllll}
+-49.85 & -128.57 & 1927-02-08 & rad & 9.82 \\
+-49.85 & -128.57 & 1927-02-08 & sal & 0.13 \\
+-49.85 & -128.57 & 1927-02-10 & rad & 7.8 \\
+-49.85 & -128.57 & 1927-02-10 & sal & 0.09 \\
+-47.15 & -126.72 & 1939-01-07 & rad & 8.41 \\
+-47.15 & -126.72 & 1939-01-07 & sal & 0.05 \\
+-47.15 & -126.72 & 1939-01-07 & temp & -21.5 \\
+-47.15 & -126.72 & 1930-01-12 & rad & 7.22 \\
+-47.15 & -126.72 & 1930-01-12 & sal & 0.06 \\
+-47.15 & -126.72 & 1930-01-12 & temp & -26.0 \\
+-47.15 & -126.72 & 1930-02-26 & rad & 4.35 \\
+-47.15 & -126.72 & 1930-02-26 & sal & 0.1 \\
+-47.15 & -126.72 & 1930-02-26 & temp & -18.5 \\
+-48.87 & -123.4 & 1932-01-14 & rad & 1.46 \\
+-48.87 & -123.4 & 1932-01-14 & sal & 0.21 \\
+-48.87 & -123.4 & 1932-01-14 & sal & 22.5 \\
+-49.85 & -128.57 & 1932-03-22 & rad & 11.25 \\
+\end{tabular}
 
 We can tell which records from \texttt{Site}, \texttt{Visited}, and
 \texttt{Survey} correspond with each other because those tables contain
@@ -10702,17 +10637,16 @@ numbers records as they're added to tables, and we can use those record
 numbers in queries:
 
 \begin{verbatim}
-%%sqlite survey.db
 select rowid, * from Person;
 \end{verbatim}
 
-\begin{verbatim}
-1dyerWilliamDyer
-2pbFrankPabodie
-3lakeAndersonLake
-4roeValentinaRoerich
-5danforthFrankDanforth
-\end{verbatim}
+\begin{tabular}{llll}
+1 & dyer & William & Dyer \\
+2 & pb & Frank & Pabodie \\
+3 & lake & Anderson & Lake \\
+4 & roe & Valentina & Roerich \\
+5 & danforth & Frank & Danforth \\
+\end{tabular}
 
 \subsection{Data Hygiene}
 
@@ -10737,25 +10671,15 @@ The third rule is that there should be no redundant information. For
 example, we could get rid of the \texttt{Site} table and rewrite the
 \texttt{Visited} table like this:
 
-\begin{tabular}{@{}llll@{}}
-\hline\noalign{\medskip}
-619 & -49.85 & -128.57 & 1927-02-08
-\\\noalign{\medskip}
-622 & -49.85 & -128.57 & 1927-02-10
-\\\noalign{\medskip}
-734 & -47.15 & -126.72 & 1939-01-07
-\\\noalign{\medskip}
-735 & -47.15 & -126.72 & 1930-01-12
-\\\noalign{\medskip}
-751 & -47.15 & -126.72 & 1930-02-26
-\\\noalign{\medskip}
-752 & -47.15 & -126.72 & null
-\\\noalign{\medskip}
-837 & -48.87 & -123.40 & 1932-01-14
-\\\noalign{\medskip}
-844 & -49.85 & -128.57 & 1932-03-22
-\\\noalign{\medskip}
-\hline
+\begin{tabular}{llll}
+619 & -49.85 & -128.57 & 1927-02-08 \\
+622 & -49.85 & -128.57 & 1927-02-10 \\
+734 & -47.15 & -126.72 & 1939-01-07 \\
+735 & -47.15 & -126.72 & 1930-01-12 \\
+751 & -47.15 & -126.72 & 1930-02-26 \\
+752 & -47.15 & -126.72 & null \\
+837 & -48.87 & -123.40 & 1932-01-14 \\
+844 & -49.85 & -128.57 & 1932-03-22 \\
 \end{tabular}
 
 In fact, we could use a single table that recorded all the information
@@ -10860,7 +10784,7 @@ undoing changes, but it's better not to have to rely on it.
 Different database systems support different data types for table
 columns, but most provide the following:
 
-\begin{tabular}{@{}ll@{}}
+\begin{tabular}{ll}
 \hline\noalign{\medskip}
 integer & a signed integer
 \\\noalign{\medskip}
@@ -12898,7 +12822,7 @@ values, we create the numbers 0.9, 0.09, 0.009, and so on, and put them
 in the list \texttt{vals}. We then calculate the sum of those numbers.
 Clearly, this should be 0.9, 0.99, 0.999, and so on. But is it?
 
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{lll}
 \hline\noalign{\medskip}
 1 & 0.900000000000000022 & 0.900000000000000022
 \\\noalign{\medskip}
