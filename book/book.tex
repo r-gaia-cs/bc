@@ -348,9 +348,9 @@ are:
 $ whoami
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 vlad
-\end{Verbatim}
+\end{VerbOut}
 
 More specifically, when we type \texttt{whoami} the shell:
 
@@ -378,9 +378,9 @@ directory}{g:home-directory}:
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Alphabet Soup}
 
@@ -437,11 +437,11 @@ stands for ``listing'' (\figref{f:listing}):
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 bin          data      mail       music
 notes.txt    papers    pizza.cfg  solar
 solar.pdf    swc
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:listing}{Vlad's Home Directory}{novice/shell/img/vlad-homedir.png}
 
@@ -455,11 +455,11 @@ make its output more comprehensible by using the
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
-\end{Verbatim}
+\end{VerbOut}
 
 Here, we can see that \texttt{/users/vlad} contains seven
 \gl{sub-directories}{g:sub-directory}. The names that don't have
@@ -502,10 +502,10 @@ of something other than our current working directory:
 $ ls -F data
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 amino-acids.txt   elements/     morse.txt
 pdb/              planets.txt   sunspot.txt
-\end{Verbatim}
+\end{VerbOut}
 
 The output shows us that there are four text files and two
 sub-sub-directories. Organizing things hierarchically in this way helps
@@ -529,10 +529,10 @@ different answer, because \texttt{/data} is an
 $ ls -F /data
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 access.log    backup/    hardware.cfg
 network.cfg
-\end{Verbatim}
+\end{VerbOut}
 
 The leading \texttt{/} tells the computer to follow the path from the
 root of the filesystem, so it always refers to exactly one directory, no
@@ -546,19 +546,19 @@ this, \texttt{pwd} shows us that we're in \texttt{/users/vlad}, and
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
-\end{Verbatim}
+\end{VerbOut}
 
 We can use \texttt{cd} followed by a directory name to change our
 working directory. \texttt{cd} stands for ``change directory'', which is
@@ -578,18 +578,18 @@ we can see that we are now in \texttt{/users/vlad/data}. If we run
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad/data
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 amino-acids.txt   elements/     morse.txt
 pdb/              planets.txt   sunspot.txt
-\end{Verbatim}
+\end{VerbOut}
 
 We now know how to go down the directory tree: how do we go up? We could
 use an absolute path:
@@ -604,9 +604,9 @@ but it's almost always simpler to use \texttt{cd ..} to go up one level:
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad/data
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ cd ..
@@ -622,9 +622,9 @@ in \texttt{/users/vlad}:
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 The special directory \texttt{..} doesn't usually show up when we run
 \texttt{ls}. If we want to display it, we can give \texttt{ls} the
@@ -634,11 +634,11 @@ The special directory \texttt{..} doesn't usually show up when we run
 $ ls -F -a
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./           ../       bin/       data/
 mail/        music/    notes.txt  papers/
 pizza.cfg    solar/    solar.pdf    swc/
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{-a} stands for ``show all''; it forces \texttt{ls} to show us
 file and directory names that begin with \texttt{.}, such as \texttt{..}
@@ -771,9 +771,9 @@ Please refer to \figref{f:filesys-challenge} for the following challenges.
   \texttt{ls} to display things in reverse order, what command will
   display:
 
-\begin{Verbatim}
+\begin{VerbOut}
 pnas-sub/ pnas-final/ original/
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcenumerate}
 \item
@@ -828,19 +828,19 @@ them in the first place? Let's go back to Vlad's home directory,
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
-\end{Verbatim}
+\end{VerbOut}
 
 Let's create a new directory called \texttt{thesis} using the command
 \texttt{mkdir thesis} (which has no output):
@@ -858,11 +858,11 @@ current working directory:
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/      thesis/
-\end{Verbatim}
+\end{VerbOut}
 
 However, there's nothing in it yet:
 
@@ -917,9 +917,9 @@ have created a file called \texttt{draft.txt}:
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 draft.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Let's tidy up by running \texttt{rm draft.txt}:
 
@@ -952,18 +952,18 @@ Let's re-create that file and then move up one directory to
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad/thesis
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ nano draft.txt
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 draft.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ cd ..
@@ -1033,9 +1033,9 @@ rather than going into the \texttt{thesis} directory and running
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ mkdir thesis
@@ -1046,9 +1046,9 @@ $ nano thesis/draft.txt
 $ ls thesis
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 draft.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{draft.txt} isn't a particularly informative name, so let's
 change the file's name using \texttt{mv}, which is short for ``move'':
@@ -1067,9 +1067,9 @@ same effect as renaming the file. Sure enough, \texttt{ls} shows us that
 $ ls thesis
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 quotes.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Just for the sake of inconsistency, \texttt{mv} also works on
 directories---there is no separate \texttt{mvdir} command.
@@ -1101,9 +1101,9 @@ only lists that file or directory. We can use this to see that
 $ ls quotes.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 quotes.txt
-\end{Verbatim}
+\end{VerbOut}
 
 The \texttt{cp} command works very much like \texttt{mv}, except it
 copies a file instead of moving it. We can check that it did the right
@@ -1115,9 +1115,9 @@ $ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 quotes.txt   thesis/quotations.txt
-\end{Verbatim}
+\end{VerbOut}
 
 To prove that we made a copy, let's delete the \texttt{quotes.txt} file
 in the current directory and then run that same \texttt{ls} again. This
@@ -1131,8 +1131,10 @@ $ ls quotes.txt thesis/quotations.txt
 
 \begin{Verbatim}
 ls: cannot access quotes.txt: No such file or directory
-thesis/quotations.txt
 \end{Verbatim}
+\begin{VerbOut}
+thesis/quotations.txt
+\end{VerbOut}
 
 \begin{swcbox}{Another Useful Abbreviation}
 
@@ -1167,17 +1169,17 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /home/thing/data
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 proteins.dat
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ mkdir recombine
@@ -1194,9 +1196,9 @@ $ ls
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 analyzed/  fructose.dat    raw/   sucrose.dat
-\end{Verbatim}
+\end{VerbOut}
 
   What command(s) could you run so that the commands below will produce
   the output shown?
@@ -1205,17 +1207,17 @@ analyzed/  fructose.dat    raw/   sucrose.dat
 $ ls
 \begin{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 analyzed   raw
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ls analyzed
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 fructose.dat    sucrose.dat
-\end{Verbatim}
+\end{VerbOut}
 \end{challenge}
 
 \begin{challenge}
@@ -1227,16 +1229,19 @@ $ mkdir backup
 $ cp thesis/citations.txt thesis/quotations.txt backup
 \end{VerbIn}
 
-  What does \texttt{cp} do when given three or more filenames, as in:
+  What does it do when given three or more filenames, as in:
 
 \begin{VerbIn}
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 intro.txt    methods.txt    survey.txt
+\end{VerbOut}
+
+\begin{VerbIn}
 $ cp intro.txt methods.txt survey.txt
-\end{Verbatim}
+\end{VerbIn}
 \end{challenge}
 
 \begin{challenge}
@@ -1278,10 +1283,10 @@ specifies the type and position of each atom in the molecule.
 $ ls molecules
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 cubane.pdb    ethane.pdb    methane.pdb
 octane.pdb    pentane.pdb   propane.pdb
-\end{Verbatim}
+\end{VerbOut}
 
 Let's go into that directory with \texttt{cd} and run the command
 \texttt{wc *.pdb}. \texttt{wc} is the ``word count'' command: it counts
@@ -1294,7 +1299,7 @@ $ cd molecules
 $ wc *.pdb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   20  156 1158 cubane.pdb
   12   84  622 ethane.pdb
    9   57  422 methane.pdb
@@ -1302,7 +1307,7 @@ $ wc *.pdb
   21  165 1226 pentane.pdb
   15  111  825 propane.pdb
  107  819 6081 total
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Wildcards}
 
@@ -1339,7 +1344,7 @@ only the number of lines per file:
 $ wc -l *.pdb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   20  cubane.pdb
   12  ethane.pdb
    9  methane.pdb
@@ -1347,7 +1352,7 @@ $ wc -l *.pdb
   21  pentane.pdb
   15  propane.pdb
  107  total
-\end{Verbatim}
+\end{VerbOut}
 
 We can also use \texttt{-w} to get only the number of words, or
 \texttt{-c} to get only the number of characters.
@@ -1372,9 +1377,9 @@ printed has gone into the file \texttt{lengths} instead.)
 $ ls lengths
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 lengths
-\end{Verbatim}
+\end{VerbOut}
 
 We can now send the content of \texttt{lengths} to the screen using
 \texttt{cat lengths}. \texttt{cat} stands for ``concatenate'': it prints
@@ -1385,7 +1390,7 @@ case, so \texttt{cat} just shows us what it contains:
 $ cat lengths
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   20  cubane.pdb
   12  ethane.pdb
    9  methane.pdb
@@ -1393,7 +1398,7 @@ $ cat lengths
   21  pentane.pdb
   15  propane.pdb
  107  total
-\end{Verbatim}
+\end{VerbOut}
 
 Now let's use the \texttt{sort} command to sort its contents. This does
 \emph{not} change the file; instead, it sends the sorted result to the
@@ -1403,7 +1408,7 @@ screen:
 $ sort lengths
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   9  methane.pdb
  12  ethane.pdb
  15  propane.pdb
@@ -1411,7 +1416,7 @@ $ sort lengths
  21  pentane.pdb
  30  octane.pdb
 107  total
-\end{Verbatim}
+\end{VerbOut}
 
 We can put the sorted list of lines in another temporary file called
 \texttt{sorted-lengths} by putting
@@ -1426,9 +1431,9 @@ $ sort lengths > sorted-lengths
 $ head -1 sorted-lengths
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   9  methane.pdb
-\end{Verbatim}
+\end{VerbOut}
 
 Using the parameter \texttt{-1} with \texttt{head} tells it that we only
 want the first line of the file; \texttt{-20} would get the first 20,
@@ -1446,9 +1451,9 @@ together:
 $ sort lengths | head -1
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   9  methane.pdb
-\end{Verbatim}
+\end{VerbOut}
 
 The vertical bar between the two commands is called a
 \gl{pipe}{g:pipe}. It tells the shell that we want to use the
@@ -1464,9 +1469,9 @@ We can use another pipe to send the output of \texttt{wc} directly to
 $ wc -l *.pdb | sort | head -1
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   9  methane.pdb
-\end{Verbatim}
+\end{VerbOut}
 
 This is exactly like a mathematician nesting functions like
 \emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
@@ -1554,7 +1559,7 @@ $ wc -l *.txt
 
 The output is 1520 lines that look like this:
 
-\begin{Verbatim}
+\begin{VerbOut}
 300 NENE01729A.txt
 300 NENE01729B.txt
 300 NENE01736A.txt
@@ -1562,7 +1567,7 @@ The output is 1520 lines that look like this:
 300 NENE01751B.txt
 300 NENE01812A.txt
 ... ...
-\end{Verbatim}
+\end{VerbOut}
 
 Now she types this:
 
@@ -1570,13 +1575,13 @@ Now she types this:
 $ wc -l *.txt | sort | head -5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
  240 NENE02018B.txt
  300 NENE01729A.txt
  300 NENE01729B.txt
  300 NENE01736A.txt
  300 NENE01751A.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Whoops: one of the files is 60 lines shorter than the others. When she
 goes back and checks it, she sees that she did that assay at 8:00 on a
@@ -1588,13 +1593,13 @@ checks to see if any files have too much data:
 $ wc -l *.txt | sort | tail -5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
  300 NENE02040A.txt
  300 NENE02040B.txt
  300 NENE02040Z.txt
  300 NENE02043A.txt
  300 NENE02043B.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Those numbers look good---but what's that `Z' doing there in the
 third-to-last line? All of her samples should be marked `A' or `B'; by
@@ -1605,9 +1610,9 @@ information. To find others like it, she does this:
 $ ls *Z.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 NENE01971Z.txt    NENE02040Z.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Sure enough, when she checks the log on her laptop, there's no depth
 recorded for either of those samples. Since it's too late to get the
@@ -1637,33 +1642,33 @@ has.
 \begin{challenge}
   If we run \texttt{sort} on this file:
 
-\begin{Verbatim}
+\begin{VerbOut}
 10
 2
 19
 22
 6
-\end{Verbatim}
+\end{VerbOut}
 
   the output is:
 
-\begin{Verbatim}
+\begin{VerbOut}
 10
 19
 2
 22
 6
-\end{Verbatim}
+\end{VerbOut}
 
   If we run \texttt{sort -n} on the same input, we get this instead:
 
-\begin{Verbatim}
+\begin{VerbOut}
 2
 6
 10
 19
 22
-\end{Verbatim}
+\end{VerbOut}
 
   Explain why \texttt{-n} has this effect.
 \end{challenge}
@@ -1686,23 +1691,23 @@ $ wc -l mydata.dat
   The command \texttt{uniq} removes adjacent duplicated lines from its
   input. For example, if a file \texttt{salmon.txt} contains:
 
-\begin{Verbatim}
+\begin{VerbOut}
 coho
 coho
 steelhead
 coho
 steelhead
 steelhead
-\end{Verbatim}
+\end{VerbOut}
 
   then \texttt{uniq salmon.txt} produces:
 
-\begin{Verbatim}
+\begin{VerbOut}
 coho
 steelhead
 coho
 steelhead
-\end{Verbatim}
+\end{VerbOut}
 
   Why do you think \texttt{uniq} only removes \emph{adjacent} duplicated
   lines? (Hint: think about very large data sets.) What other command
@@ -1712,7 +1717,7 @@ steelhead
 \begin{challenge}
   A file called \texttt{animals.txt} contains the following data:
 
-\begin{Verbatim}
+\begin{VerbOut}
 2012-11-05,deer
 2012-11-05,rabbit
 2012-11-05,raccoon
@@ -1721,7 +1726,7 @@ steelhead
 2012-11-06,fox
 2012-11-07,rabbit
 2012-11-07,bear
-\end{Verbatim}
+\end{VerbOut}
 
   What text passes through each of the pipes and the final redirect in
   the pipeline below?
@@ -1740,7 +1745,7 @@ $ cut -d , -f 2 animals.txt
 
   produces the following output:
 
-\begin{Verbatim}
+\begin{VerbOut}
 deer
 rabbit
 raccoon
@@ -1749,7 +1754,7 @@ deer
 fox
 rabbit
 bear
-\end{Verbatim}
+\end{VerbOut}
 
   What other command(s) could be added to this in a pipeline to find out
   what animals the file contains (without any duplicates in their
@@ -1810,14 +1815,14 @@ $ for filename in basilisk.dat unicorn.dat
 > done
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 COMMON NAME: basilisk
 CLASSIFICATION: basiliscus vulgaris
 UPDATED: 1745-05-02
 COMMON NAME: unicorn
 CLASSIFICATION: equus monoceros
 UPDATED: 1738-11-24
-\end{Verbatim}
+\end{VerbOut}
 
 When the shell sees the keyword \texttt{for}, it knows it is supposed to
 repeat a command (or group of commands) once for each thing in a list.
@@ -1885,9 +1890,9 @@ $ echo hello there
 
 prints:
 
-\begin{Verbatim}
+\begin{VerbOut}
 hello there
-\end{Verbatim}
+\end{VerbOut}
 
 In this case, since the shell expands \texttt{\$filename} to be the name
 of a file, \texttt{echo \$filename} just prints the name of the file.
@@ -1929,9 +1934,9 @@ done
 
 then the shell will expand \texttt{*.dat} to create:
 
-\begin{Verbatim}
+\begin{VerbOut}
 basilisk.dat red dragon.dat unicorn.dat
-\end{Verbatim}
+\end{VerbOut}
 
 With older versions of Bash, or most other shells, \texttt{filename}
 will then be assigned the following values in turn:
@@ -2033,14 +2038,14 @@ $ for datafile in *[AB].txt
 > done
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 NENE01729A.txt
 NENE01729B.txt
 NENE01736A.txt
 ...
 NENE02043A.txt
 NENE02043B.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Her next step is to decide what to call the files that the
 \texttt{goostats} analysis program will create. Prefixing each input
@@ -2054,14 +2059,14 @@ $ for datafile in *[AB].txt
 > done
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 NENE01729A.txt stats-NENE01729A.txt
 NENE01729B.txt stats-NENE01729B.txt
 NENE01736A.txt stats-NENE01736A.txt
 ...
 NENE02043A.txt stats-NENE02043A.txt
 NENE02043B.txt stats-NENE02043B.txt
-\end{Verbatim}
+\end{VerbOut}
 
 She hasn't actually run \texttt{goostats} yet, but now she's sure she
 can select the right files and generate the right output filenames.
@@ -2104,12 +2109,12 @@ We can move to the beginning of a line in the shell by typing
 When she runs her program now, it produces one line of output every five
 seconds or so:
 
-\begin{Verbatim}
+\begin{VerbOut}
 NENE01729A.txt
 NENE01729B.txt
 NENE01736A.txt
 ...
-\end{Verbatim}
+\end{VerbOut}
 
 1518 times 5 seconds, divided by 60, tells her that her script will take
 about two hours to run. As a final check, she opens another terminal
@@ -2130,13 +2135,13 @@ Nelle types this:
 $ history | tail -5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   456  ls -l NENE0*.txt
   457  rm stats-NENE01729B.txt.txt
   458  bash goostats NENE01729B.txt stats-NENE01729B.txt
   459  ls -l NENE0*.txt
   460  history
-\end{Verbatim}
+\end{VerbOut}
 
 then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
 by typing \texttt{!458}.
@@ -2170,9 +2175,9 @@ by typing \texttt{!458}.
 \begin{challenge}
   Suppose that \texttt{ls} initially displays:
 
-\begin{Verbatim}
+\begin{VerbOut}
 fructose.dat    glucose.dat   sucrose.dat
-\end{Verbatim}
+\end{VerbOut}
 
   What is the output of:
 
@@ -2221,17 +2226,17 @@ done
 $ expr 3 + 5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 8
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ expr 30 / 5 - 2
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 4
-\end{Verbatim}
+\end{VerbOut}
 
   Given this, what is the output of:
 
@@ -2301,13 +2306,13 @@ following command:
 $ bash middle.sh
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
 ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
 ATOM     16  C           1       0.771  -0.937   1.840  1.00  0.00
 ATOM     17  C           1      -0.664  -0.610   2.293  1.00  0.00
 ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
-\end{Verbatim}
+\end{VerbOut}
 
 Sure enough, our script's output is exactly what we would get if we ran
 that pipeline directly.
@@ -2348,13 +2353,13 @@ parameter) on the command line''. We can now run our script like this:
 $ bash middle.sh cholesterol.pdb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
 ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
 ATOM     16  C           1       0.771  -0.937   1.840  1.00  0.00
 ATOM     17  C           1      -0.664  -0.610   2.293  1.00  0.00
 ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
-\end{Verbatim}
+\end{VerbOut}
 
 or on a different file like this:
 
@@ -2362,13 +2367,13 @@ or on a different file like this:
 $ bash middle.sh vitamin-a.pdb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ATOM     14  C           1       1.788  -0.987  -0.861
 ATOM     15  C           1       2.994  -0.265  -0.829
 ATOM     16  C           1       4.237  -0.901  -1.024
 ATOM     17  C           1       5.406  -0.117  -1.087
 ATOM     18  C           1      -0.696  -2.628  -0.641
-\end{Verbatim}
+\end{VerbOut}
 
 We still need to edit \texttt{middle.sh} each time we want to adjust the
 range of lines, though. Let's fix that by using the special variables
@@ -2386,13 +2391,13 @@ head $2 $1 | tail $3
 $ bash middle.sh vitamin-a.pdb -20 -5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ATOM     14  C           1       1.788  -0.987  -0.861
 ATOM     15  C           1       2.994  -0.265  -0.829
 ATOM     16  C           1       4.237  -0.901  -1.024
 ATOM     17  C           1       5.406  -0.117  -1.087
 ATOM     18  C           1      -0.696  -2.628  -0.641
-\end{Verbatim}
+\end{VerbOut}
 
 This works, but it may take the next person who reads \texttt{middle.sh}
 a moment to figure out what it does. We can improve our script by adding
@@ -2402,11 +2407,11 @@ some \gl{comments}{g:comment} at the top:
 $ cat middle.sh
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # Select lines from the middle of a file.
 # Usage: middle.sh filename -end_line -num_lines
 head $2 $1 | tail $3
-\end{Verbatim}
+\end{VerbOut}
 
 A comment starts with a \texttt{\#} character and runs to the end of the
 line. The computer ignores comments, but they're invaluable for helping
@@ -2433,22 +2438,22 @@ shell script.'' Here's an example:
 $ cat sorted.sh
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 wc -l $* | sort -n
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ bash sorted.sh *.dat backup/*.dat
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
       29 chloratin.dat
       89 backup/chloratin.dat
       91 sphagnoi.dat
      156 sphag2.dat
      172 backup/sphag-merged.dat
      182 girmanis.dat
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Why Isn't It Doing Anything?}
 
@@ -2529,26 +2534,26 @@ the range of characters to strip from its input:
 $ history | tail -5
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   173  cd /tmp
   174  ls
   175  mkdir bakup
   176  mv bakup backup
   177  history | tail -5
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ history | tail -5 | colrm 1 7
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 cd /tmp
 ls
 mkdir bakup
 mv bakup backup
 history | tail -5
 history | tail -5 | colrm 1 7
-\end{Verbatim}
+\end{VerbOut}
 
 \end{swcbox}
 
@@ -2744,7 +2749,7 @@ our examples, we will use a file that contains three haikus taken from a
 $ cat haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 The Tao that is seen
 Is not the true Tao, until
 You bring fresh toner.
@@ -2756,7 +2761,7 @@ and the presence of absence:
 Yesterday it worked
 Today it is not working
 Software is like that.
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Forever, or Five Years}
 
@@ -2774,11 +2779,11 @@ Let's find lines that contain the word ``not'':
 $ grep not haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Is not the true Tao, until
 "My Thesis" not found
 Today it is not working
-\end{Verbatim}
+\end{VerbOut}
 
 Here, \texttt{not} is the pattern we're searching for. It's pretty
 simple: every alphanumeric character matches against itself. After the
@@ -2791,10 +2796,10 @@ Let's try a different pattern: ``day''.
 $ grep day haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Yesterday it worked
 Today it is not working
-\end{Verbatim}
+\end{VerbOut}
 
 This time, the output is lines containing the words ``Yesterday'' and
 ``Today'', which both have the letters ``day''. If we give \texttt{grep}
@@ -2814,11 +2819,11 @@ match:
 $ grep -n it haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 5:With searching comes loss
 9:Yesterday it worked
 10:Today it is not working
-\end{Verbatim}
+\end{VerbOut}
 
 Here, we can see that lines 5, 9, and 10 contain the letters ``it''.
 
@@ -2831,7 +2836,7 @@ match the pattern in any mix of upper and lower case:
 $ grep -i -v the haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 You bring fresh toner.
 
 With searching comes loss
@@ -2839,7 +2844,7 @@ With searching comes loss
 Yesterday it worked
 Today it is not working
 Software is like that.
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{grep} has lots of other options. To find out what they are, we
 can type \texttt{man grep}. \texttt{man} is the Unix ``manual'' command:
@@ -2850,7 +2855,7 @@ lucky) provides a few examples of how to use it:
 $ man grep
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 GREP(1)                                                                                              GREP(1)
 
 NAME
@@ -2884,7 +2889,7 @@ POSIX.)
 Interpret PATTERN as a list of fixed strings, separated by newlines, any of  which  is  to  be
 matched.  (-F is specified by POSIX.)
 ...        ...        ...
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Wildcards}
 
@@ -2901,11 +2906,11 @@ position like this:
 $ grep -E '^.o' haiku.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 You bring fresh toner.
 Today it is not working
 Software is like that.
-\end{Verbatim}
+\end{VerbOut}
 
 We use the \texttt{-E} flag and put the pattern in quotes to prevent the
 shell from trying to interpret it. (If the pattern contained a `*', for
@@ -2940,13 +2945,13 @@ names of the five directories in our little tree (including \texttt{.}):
 $ find . -type d -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./
 ./data
 ./thesis
 ./tools
 ./tools/old
-\end{Verbatim}
+\end{VerbOut}
 
 If we change \texttt{-type d} to \texttt{-type f}, we get a listing of
 all the files instead:
@@ -2955,13 +2960,13 @@ all the files instead:
 $ find . -type f -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
 ./notes.txt
 ./tools/format
 ./tools/stats
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{find} automatically goes into subdirectories, their
 subdirectories, and so on to find everything that matches the pattern
@@ -2972,9 +2977,9 @@ restrict the depth of search:
 $ find . -maxdepth 1 -type f -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./notes.txt
-\end{Verbatim}
+\end{VerbOut}
 
 The opposite of \texttt{-maxdepth} is \texttt{-mindepth}, which tells
 \texttt{find} to only report things that are at or below a certain
@@ -2985,12 +2990,12 @@ or more levels below us:
 $ find . -mindepth 2 -type f -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
 ./tools/format
 ./tools/stats
-\end{Verbatim}
+\end{VerbOut}
 
 Another option is \texttt{-empty}, which restricts matches to empty
 files and directories:
@@ -2999,10 +3004,10 @@ files and directories:
 $ find . -empty -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./thesis
 ./tools/old
-\end{Verbatim}
+\end{VerbOut}
 
 Now let's try matching by name:
 
@@ -3010,9 +3015,9 @@ Now let's try matching by name:
 $ find . -name *.txt -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./notes.txt
-\end{Verbatim}
+\end{VerbOut}
 
 We expected it to find all the text files, but it only prints out
 \texttt{./notes.txt}. The problem is that the shell expands wildcard
@@ -3035,11 +3040,11 @@ To get what we want, let's do what we did with \texttt{grep}: put
 $ find . -name '*.txt' -print
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
 ./notes.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Listing vs. Finding}
 
@@ -3063,12 +3068,12 @@ The simplest way is to put the \texttt{find} command inside
 $ wc -l $(find . -name '*.txt' -print)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 70  ./data/one.txt
 420  ./data/two.txt
 30  ./notes.txt
 520  total
-\end{Verbatim}
+\end{VerbOut}
 
 When the shell executes this command, the first thing it does is run
 whatever is inside the \texttt{\$()}. It then replaces the \texttt{\$()}
@@ -3094,9 +3099,9 @@ in all the \texttt{.pdb} files below the current directory:
 $ grep FE $(find . -name '*.pdb' -print)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./human/heme.pdb:ATOM  25  FE  1  -0.924  0.535  -0.518
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Binary Files}
 
@@ -3323,9 +3328,9 @@ Git has created a hidden directory called \texttt{.git}:
 $ ls -a
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 .  ..  .git
-\end{Verbatim}
+\end{VerbOut}
 
 Git stores information about the project in this special sub-directory.
 If we ever delete it, we will lose the project's history.
@@ -3337,13 +3342,13 @@ us the status of our project:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 #
 # Initial commit
 #
 nothing to commit (create/copy files and use "git add" to track)
-\end{Verbatim}
+\end{VerbOut}
 
 \mbox{}\paragraph{Tracking Changes to Files}
 
@@ -3358,9 +3363,9 @@ $ nano mars.txt
 
 Type the text below into the \texttt{mars.txt} file:
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{mars.txt} now contains a single line:
 
@@ -3368,17 +3373,17 @@ Cold and dry, but everything is my favorite color
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 mars.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
-\end{Verbatim}
+\end{VerbOut}
 
 If we check the status of our project again, Git tells us that it's
 noticed the new file:
@@ -3387,7 +3392,7 @@ noticed the new file:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 #
 # Initial commit
@@ -3397,7 +3402,7 @@ $ git status
 #
 #   mars.txt
 nothing added to commit but untracked files present (use "git add" to track)
-\end{Verbatim}
+\end{VerbOut}
 
 The ``untracked files'' message means that there's a file in the
 directory that Git isn't keeping track of. We can tell Git that it
@@ -3413,7 +3418,7 @@ and then check that the right thing happened:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 #
 # Initial commit
@@ -3423,7 +3428,7 @@ $ git status
 #
 #   new file:   mars.txt
 #
-\end{Verbatim}
+\end{VerbOut}
 
 Git now knows that it's supposed to keep track of \texttt{mars.txt}, but
 it hasn't yet recorded any changes for posterity as a commit. To get it
@@ -3433,11 +3438,11 @@ to do that, we need to run one more command:
 $ git commit -m "Starting to think about Mars"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master (root-commit) f22b25e] Starting to think about Mars
  1 file changed, 1 insertion(+)
  create mode 100644 mars.txt
-\end{Verbatim}
+\end{VerbOut}
 
 When we run \texttt{git commit}, Git takes everything we have told it to
 save by using \texttt{git add} and stores a copy permanently inside the
@@ -3457,10 +3462,10 @@ If we run \texttt{git status} now:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 nothing to commit, working directory clean
-\end{Verbatim}
+\end{VerbOut}
 
 it tells us everything is up to date. If we want to know what we've done
 recently, we can ask Git to show us the project's history using
@@ -3470,13 +3475,13 @@ recently, we can ask Git to show us the project's history using
 $ git log
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
     Starting to think about Mars
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{git log} lists all revisions made to a repository in reverse
 chronological order. The listing for each revision includes the
@@ -3507,10 +3512,10 @@ $ nano mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
-\end{Verbatim}
+\end{VerbOut}
 
 When we run \texttt{git status} now, it tells us that a file it already
 knows about has been modified:
@@ -3519,7 +3524,7 @@ knows about has been modified:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
@@ -3528,7 +3533,7 @@ $ git status
 #   modified:   mars.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
-\end{Verbatim}
+\end{VerbOut}
 
 The last line is the key phrase: ``no changes added to commit''. We have
 changed this file, but we haven't told Git we will want to save those
@@ -3541,7 +3546,7 @@ recently saved version:
 $ git diff
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index df0654a..315bf3a 100644
 --- a/mars.txt
@@ -3549,7 +3554,7 @@ index df0654a..315bf3a 100644
 @@ -1 +1,2 @@
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
-\end{Verbatim}
+\end{VerbOut}
 
 The output is cryptic because it is actually a series of commands for
 tools like editors and \texttt{patch} telling them how to reconstruct
@@ -3575,7 +3580,7 @@ Let's commit our change:
 $ git commit -m "Concerns about Mars's moons on my furry friend"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
@@ -3584,7 +3589,7 @@ $ git commit -m "Concerns about Mars's moons on my furry friend"
 #   modified:   mars.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
-\end{Verbatim}
+\end{VerbOut}
 
 Whoops: Git won't commit because we didn't use \texttt{git add} first.
 Let's fix that:
@@ -3594,10 +3599,10 @@ $ git add mars.txt
 $ git commit -m "Concerns about Mars's moons on my furry friend"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master 34961b1] Concerns about Mars's moons on my furry friend
  1 file changed, 1 insertion(+)
-\end{Verbatim}
+\end{VerbOut}
 
 Git insists that we add files to the set we want to commit before
 actually committing anything because we may not want to commit
@@ -3624,17 +3629,17 @@ $ nano mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git diff
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index 315bf3a..b36abfd 100644
 --- a/mars.txt
@@ -3643,7 +3648,7 @@ index 315bf3a..b36abfd 100644
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 So far, so good: we've added one line to the end of the file (shown with
 a \texttt{+} in the first column). Now let's put that change in the
@@ -3662,7 +3667,7 @@ the directory. However, if we do this:
 $ git diff --staged
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index 315bf3a..b36abfd 100644
 --- a/mars.txt
@@ -3671,7 +3676,7 @@ index 315bf3a..b36abfd 100644
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 it shows us the difference between the last committed change and what's
 in the staging area. Let's save our changes:
@@ -3680,10 +3685,10 @@ in the staging area. Let's save our changes:
 $ git commit -m "Thoughts about the climate"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master 005937f] Thoughts about the climate
  1 file changed, 1 insertion(+)
-\end{Verbatim}
+\end{VerbOut}
 
 check our status:
 
@@ -3691,10 +3696,10 @@ check our status:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 nothing to commit, working directory clean
-\end{Verbatim}
+\end{VerbOut}
 
 and look at the history of what we've done so far:
 
@@ -3702,7 +3707,7 @@ and look at the history of what we've done so far:
 $ git log
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 10:14:07 2013 -0400
@@ -3720,7 +3725,7 @@ Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
     Starting to think about Mars
-\end{Verbatim}
+\end{VerbOut}
 
 \mbox{}\paragraph{Exploring History}
 
@@ -3733,7 +3738,7 @@ on:
 $ git diff HEAD~1 mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index 315bf3a..b36abfd 100644
 --- a/mars.txt
@@ -3742,13 +3747,13 @@ index 315bf3a..b36abfd 100644
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git diff HEAD~2 mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index df0654a..b36abfd 100644
 --- a/mars.txt
@@ -3757,7 +3762,7 @@ index df0654a..b36abfd 100644
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 In this way, we build up a chain of revisions. The most recent end of
 the chain is referred to as \texttt{HEAD}; we can refer to previous
@@ -3777,7 +3782,7 @@ let's try this:
 $ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index df0654a..b36abfd 100644
 --- a/mars.txt
@@ -3786,7 +3791,7 @@ index df0654a..b36abfd 100644
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 That's the right answer, but typing random 40-character strings is
 annoying, so Git lets us use just the first few:
@@ -3795,7 +3800,7 @@ annoying, so Git lets us use just the first few:
 $ git diff f22b25e mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 diff --git a/mars.txt b/mars.txt
 index df0654a..b36abfd 100644
 --- a/mars.txt
@@ -3804,7 +3809,7 @@ index df0654a..b36abfd 100644
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
 +But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 \mbox{}\paragraph{Recovering Old Versions}
 
@@ -3817,9 +3822,9 @@ $ nano mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 We will need to manufacture our own oxygen
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{git status} now tells us that the file has been changed, but
 those changes haven't been staged:
@@ -3828,7 +3833,7 @@ those changes haven't been staged:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
@@ -3837,7 +3842,7 @@ $ git status
 #   modified:   mars.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
-\end{Verbatim}
+\end{VerbOut}
 
 We can put things back the way they were by using \texttt{git checkout}:
 
@@ -3846,11 +3851,11 @@ $ git checkout HEAD mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 As you might guess from its name, \texttt{git checkout} checks out
 (i.e., restores) an old version of a file. In this case, we're telling
@@ -3874,9 +3879,9 @@ commit in which we made the change we're trying to get rid of (\figref{f:when-up
 If you read the output of \texttt{git status} carefully, you'll see that
 it includes this hint:
 
-\begin{Verbatim}
+\begin{VerbOut}
 (use "git checkout -- <file>..." to discard changes in working directory)
-\end{Verbatim}
+\end{VerbOut}
 
 As it says, \texttt{git checkout} without a version identifier restores
 files to the state saved in \texttt{HEAD}. The double dash \texttt{-{}-}
@@ -3910,7 +3915,7 @@ and see what Git says:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
@@ -3920,7 +3925,7 @@ $ git status
 #   c.dat
 #   results/
 nothing added to commit but untracked files present (use "git add" to track)
-\end{Verbatim}
+\end{VerbOut}
 
 Putting these files under version control would be a waste of disk
 space. What's worse, having them all listed could distract us from
@@ -3934,10 +3939,10 @@ $ nano .gitignore
 $ cat .gitignore
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 *.dat
 results/
-\end{Verbatim}
+\end{VerbOut}
 
 These patterns tell Git to ignore any file whose name ends in
 \texttt{.dat} and everything in the \texttt{results} directory. (If any
@@ -3951,14 +3956,14 @@ much cleaner:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
 #   .gitignore
 nothing added to commit but untracked files present (use "git add" to track)
-\end{Verbatim}
+\end{VerbOut}
 
 The only thing Git notices now is the newly-created \texttt{.gitignore}
 file. You might think we wouldn't want to track it, but everyone we're
@@ -3971,10 +3976,10 @@ $ git commit -m "Add the ignore file"
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 nothing to commit, working directory clean
-\end{Verbatim}
+\end{VerbOut}
 
 As a bonus, using \texttt{.gitignore} helps us avoid accidentally adding
 files to the repository that we don't want.
@@ -3983,12 +3988,12 @@ files to the repository that we don't want.
 $ git add a.dat
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 The following paths are ignored by one of your .gitignore files:
 a.dat
 Use -f if you really want to add them.
 fatal: no files added
-\end{Verbatim}
+\end{VerbOut}
 
 If we really want to override our ignore settings, we can use
 \texttt{git add -f} to force Git to add something. We can also always
@@ -3998,7 +4003,7 @@ see the status of ignored files if we want:
 $ git status --ignored
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Ignored files:
 #  (use "git add -f <file>..." to include in what will be committed)
@@ -4009,7 +4014,7 @@ $ git status --ignored
 #        results/
 
 nothing to commit, working directory clean
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{keypoints}
 \begin{swcitemize}
@@ -4151,10 +4156,10 @@ We can check that the command has worked by running
 $ git remote -v
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 origin   https://github.com/vlad/planets.git (push)
 origin   https://github.com/vlad/planets.git (fetch)
-\end{Verbatim}
+\end{VerbOut}
 
 The name \texttt{origin} is a local nickname for your remote repository:
 we could use something else if we wanted to, but \texttt{origin} is by
@@ -4167,7 +4172,7 @@ changes from our local repository to the repository on GitHub:
 $ git push origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Counting objects: 9, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
@@ -4176,7 +4181,7 @@ Total 9 (delta 2), reused 0 (delta 0)
 To https://github.com/vlad/planets
  * [new branch]      master -> master
 Branch master set up to track remote branch master from origin.
-\end{Verbatim}
+\end{VerbOut}
 
 Our local and remote repositories are now in the state show in \figref{f:after-first-push}.
 
@@ -4196,11 +4201,11 @@ We can pull changes from the remote repository to the local one as well:
 $ git pull origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 From https://github.com/vlad/planets
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
-\end{Verbatim}
+\end{VerbOut}
 
 Pulling has no effect in this case because the two repositories are
 already synchronized. If someone else had pushed some changes to the
@@ -4235,19 +4240,19 @@ $ nano pluto.txt
 $ cat pluto.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 It is so a planet!
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git add pluto.txt
 $ git commit -m "Some notes about Pluto"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
  1 file changed, 1 insertion(+)
  create mode 100644 pluto.txt
-\end{Verbatim}
+\end{VerbOut}
 
 then push the change to GitHub:
 
@@ -4255,7 +4260,7 @@ then push the change to GitHub:
 $ git push origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Counting objects: 4, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
@@ -4263,7 +4268,7 @@ Writing objects: 100% (3/3), 306 bytes, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/vlad/planets.git
    9272da5..29aba7c  master -> master
-\end{Verbatim}
+\end{VerbOut}
 
 Note that we didn't have to create a remote called \texttt{origin}: Git
 does this automatically, using that name, when we clone a repository.
@@ -4281,7 +4286,7 @@ $ cd ~/planets
 $ git pull origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 remote: Counting objects: 4, done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 3 (delta 0), reused 3 (delta 0)
@@ -4293,7 +4298,7 @@ Fast-forward
  pluto.txt | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 pluto.txt
-\end{Verbatim}
+\end{VerbOut}
 
 which puts us in the state shown in \figref{f:after-pulling-to-local}.
 
@@ -4359,11 +4364,11 @@ in \texttt{/tmp}):
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 Let's add a line to the copy under our home directory:
 
@@ -4372,12 +4377,12 @@ $ nano mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 This line added to our home copy
-\end{Verbatim}
+\end{VerbOut}
 
 and then push the change to GitHub:
 
@@ -4386,16 +4391,16 @@ $ git add mars.txt
 $ git commit -m "Adding a line in our home copy"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master 5ae9631] Adding a line in our home copy
  1 file changed, 1 insertion(+)
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git push origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Counting objects: 5, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
@@ -4403,7 +4408,7 @@ Writing objects: 100% (3/3), 352 bytes, done.
 Total 3 (delta 1), reused 0 (delta 0)
 To https://github.com/vlad/planets
    29aba7c..dabb4c8  master -> master
-\end{Verbatim}
+\end{VerbOut}
 
 Our repositories are now as shown in \figref{f:after-first-conflict}.
 
@@ -4418,12 +4423,12 @@ $ nano mars.txt
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 We added a different line in the temporary copy
-\end{Verbatim}
+\end{VerbOut}
 
 We can commit the change locally:
 
@@ -4432,10 +4437,10 @@ $ git add mars.txt
 $ git commit -m "Adding a line in the temporary copy"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master 07ebc69] Adding a line in the temporary copy
  1 file changed, 1 insertion(+)
-\end{Verbatim}
+\end{VerbOut}
 
 but Git won't let us push it to GitHub:
 
@@ -4443,7 +4448,7 @@ but Git won't let us push it to GitHub:
 $ git push origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 To https://github.com/vlad/planets.git
  ! [rejected]        master -> master (non-fast-forward)
 error: failed to push some refs to 'https://github.com/vlad/planets.git'
@@ -4451,7 +4456,7 @@ hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
 hint: before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-\end{Verbatim}
+\end{VerbOut}
 
 Git detects that the changes made in one copy overlap with those made in
 the other and stops us from trampling on our previous work. What we have
@@ -4463,7 +4468,7 @@ working in, and then push that. Let's start by pulling:
 $ git pull origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 remote: Counting objects: 5, done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 3 (delta 1), reused 3 (delta 1)
@@ -4473,7 +4478,7 @@ From https://github.com/vlad/planets
 Auto-merging mars.txt
 CONFLICT (content): Merge conflict in mars.txt
 Automatic merge failed; fix conflicts and then commit the result.
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{git pull} tells us there's a conflict, and marks that conflict
 in the affected file:
@@ -4482,7 +4487,7 @@ in the affected file:
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
@@ -4491,7 +4496,7 @@ We added a different line in the temporary copy
 =======
 This line added to our home copy
 >>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
-\end{Verbatim}
+\end{VerbOut}
 
 Our change---the one in \texttt{HEAD}---is preceded by
 \texttt{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}}.
@@ -4512,12 +4517,12 @@ that the file looks like this:
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 We removed the conflict on this line
-\end{Verbatim}
+\end{VerbOut}
 
 To finish merging, we add \texttt{mars.txt} to the changes being made by
 the merge and then commit:
@@ -4527,7 +4532,7 @@ $ git add mars.txt
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # All conflicts fixed but you are still merging.
 #   (use "git commit" to conclude merge)
@@ -4536,15 +4541,15 @@ $ git status
 #
 #   modified:   mars.txt
 #
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git commit -m "Merging changes from GitHub"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master 2abf2b1] Merging changes from GitHub
-\end{Verbatim}
+\end{VerbOut}
 
 Our repositories are now as shown in \figref{f:after-second-conflict}.
 
@@ -4556,7 +4561,7 @@ so we push our changes to GitHub:
 $ git push origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Counting objects: 10, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
@@ -4564,7 +4569,7 @@ Writing objects: 100% (6/6), 697 bytes, done.
 Total 6 (delta 2), reused 0 (delta 0)
 To https://github.com/vlad/planets.git
    dabb4c8..2abf2b1  master -> master
-\end{Verbatim}
+\end{VerbOut}
 
 to get the state shown in \figref{f:after-merging}.
 
@@ -4579,7 +4584,7 @@ $ cd ~/planets
 $ git pull origin master
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 remote: Counting objects: 10, done.
 remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 2), reused 6 (delta 2)
@@ -4590,7 +4595,7 @@ Updating dabb4c8..2abf2b1
 Fast-forward
  mars.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
-\end{Verbatim}
+\end{VerbOut}
 
 we get the merged file:
 
@@ -4598,12 +4603,12 @@ we get the merged file:
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 We removed the conflict on this line
-\end{Verbatim}
+\end{VerbOut}
 
 We don't need to merge again because GitHub knows someone has already
 done that.
