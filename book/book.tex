@@ -3263,12 +3263,12 @@ alternative (\figref{f:phdcomics-version}).
 The first time we use Git on a new machine, we need to configure a few
 things. Here's how Dracula sets up his new laptop:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git config --global user.name "Vlad Dracula"
 $ git config --global user.email "vlad@tran.sylvan.ia"
 $ git config --global color.ui "auto"
 $ git config --global core.editor "nano"
-\end{Verbatim}
+\end{VerbIn}
 
 (Please use your own name and email address instead of Dracula's, and
 please make sure you choose an editor that's actually on your system,
@@ -3297,31 +3297,31 @@ this machine.
 Once Git is configured, we can start using it. Let's create a directory
 for our work:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ mkdir planets
 $ cd planets
-\end{Verbatim}
+\end{VerbIn}
 
 and tell Git to make it a \gl{repository}{g:repository}---a place
 where Git can store old versions of our files:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git init
-\end{Verbatim}
+\end{VerbIn}
 
 If we use \texttt{ls} to show the directory's contents, it appears that
 nothing has changed:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ ls
-\end{Verbatim}
+\end{VerbIn}
 
 But if we add the \texttt{-a} flag to show everything, we can see that
 Git has created a hidden directory called \texttt{.git}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ ls -a
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 .  ..  .git
@@ -3333,9 +3333,9 @@ If we ever delete it, we will lose the project's history.
 We can check that everything is set up correctly by asking Git to tell
 us the status of our project:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3352,9 +3352,9 @@ about the Red Planet's suitability as a base. (We'll use \texttt{nano}
 to edit the file; you can use whatever editor you like. In particular,
 this does not have to be the core.editor you set globally earlier.)
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 Type the text below into the \texttt{mars.txt} file:
 
@@ -3364,17 +3364,17 @@ Cold and dry, but everything is my favorite color
 
 \texttt{mars.txt} now contains a single line:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ ls
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 mars.txt
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -3383,9 +3383,9 @@ Cold and dry, but everything is my favorite color
 If we check the status of our project again, Git tells us that it's
 noticed the new file:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3403,15 +3403,15 @@ The ``untracked files'' message means that there's a file in the
 directory that Git isn't keeping track of. We can tell Git that it
 should do so using \texttt{git add}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 and then check that the right thing happened:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3429,9 +3429,9 @@ Git now knows that it's supposed to keep track of \texttt{mars.txt}, but
 it hasn't yet recorded any changes for posterity as a commit. To get it
 to do that, we need to run one more command:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git commit -m "Starting to think about Mars"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master (root-commit) f22b25e] Starting to think about Mars
@@ -3453,9 +3453,9 @@ that we can write a longer message.
 
 If we run \texttt{git status} now:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3466,9 +3466,9 @@ it tells us everything is up to date. If we want to know what we've done
 recently, we can ask Git to show us the project's history using
 \texttt{git log}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git log
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
@@ -3502,10 +3502,10 @@ edit with \texttt{nano} and then \texttt{cat} the file to show its
 contents; you may use a different editor, and don't need to
 \texttt{cat}.)
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -3515,9 +3515,9 @@ The two moons may be a problem for Wolfman
 When we run \texttt{git status} now, it tells us that a file it already
 knows about has been modified:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3537,9 +3537,9 @@ them. Let's double-check our work using \texttt{git diff}, which shows
 us the differences between the current state of the file and the most
 recently saved version:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3571,9 +3571,9 @@ one file given the other. If we can break it down into pieces:
 
 Let's commit our change:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git commit -m "Concerns about Mars's moons on my furry friend"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3589,10 +3589,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Whoops: Git won't commit because we didn't use \texttt{git add} first.
 Let's fix that:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
 $ git commit -m "Concerns about Mars's moons on my furry friend"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master 34961b1] Concerns about Mars's moons on my furry friend
@@ -3619,10 +3619,10 @@ Let's watch as our changes to a file move from our editor to the staging
 area and into long-term storage. First, we'll add another line to the
 file:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -3630,9 +3630,9 @@ The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3649,18 +3649,18 @@ So far, so good: we've added one line to the end of the file (shown with
 a \texttt{+} in the first column). Now let's put that change in the
 staging area and see what \texttt{git diff} reports:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
 $ git diff
-\end{Verbatim}
+\end{VerbIn}
 
 There is no output: as far as Git can tell, there's no difference
 between what it's been asked to save permanently and what's currently in
 the directory. However, if we do this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff --staged
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3676,9 +3676,9 @@ index 315bf3a..b36abfd 100644
 it shows us the difference between the last committed change and what's
 in the staging area. Let's save our changes:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git commit -m "Thoughts about the climate"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master 005937f] Thoughts about the climate
@@ -3687,9 +3687,9 @@ $ git commit -m "Thoughts about the climate"
 
 check our status:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3698,9 +3698,9 @@ nothing to commit, working directory clean
 
 and look at the history of what we've done so far:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git log
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
@@ -3729,9 +3729,9 @@ but refer to old versions using the notation
 \texttt{HEAD\textasciitilde{}1}, \texttt{HEAD\textasciitilde{}2}, and so
 on:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff HEAD~1 mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3744,9 +3744,9 @@ index 315bf3a..b36abfd 100644
 +But the Mummy will appreciate the lack of humidity
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff HEAD~2 mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3773,9 +3773,9 @@ of files on any machine has a unique 40-character identifier. Our first
 commit was given the ID f22b25e3233b4645dabd0d81e651fe074bd8e73b, so
 let's try this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3791,9 +3791,9 @@ index df0654a..b36abfd 100644
 That's the right answer, but typing random 40-character strings is
 annoying, so Git lets us use just the first few:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git diff f22b25e mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 diff --git a/mars.txt b/mars.txt
@@ -3812,10 +3812,10 @@ All right: we can save changes to files and see what we've changed---how
 can we restore older versions of things? Let's suppose we accidentally
 overwrite our file:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 We will need to manufacture our own oxygen
@@ -3824,9 +3824,9 @@ We will need to manufacture our own oxygen
 \texttt{git status} now tells us that the file has been changed, but
 those changes haven't been staged:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3841,10 +3841,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 We can put things back the way they were by using \texttt{git checkout}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git checkout HEAD mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -3858,9 +3858,9 @@ Git that we want to recover the version of the file recorded in
 \texttt{HEAD}, which is the last saved revision. If we want to go back
 even further, we can use a revision identifier instead:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git checkout f22b25e mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 It's important to remember that we must use the revision number that
 identifies the state of the repository \emph{before} the change we're
@@ -3899,16 +3899,16 @@ What if we have files that we do not want Git to track for us, like
 backup files created by our editor or intermediate files created during
 data analysis. Let's create a few dummy files:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ mkdir results
 $ touch a.dat b.dat c.dat results/a.out results/b.out
-\end{Verbatim}
+\end{VerbIn}
 
 and see what Git says:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3929,10 +3929,10 @@ changes that actually matter, so let's tell Git to ignore them.
 We do this by creating a file in the root directory of our project
 called \texttt{.gitignore}.
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano .gitignore
 $ cat .gitignore
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 *.dat
@@ -3947,9 +3947,9 @@ them.)
 Once we have created this file, the output of \texttt{git status} is
 much cleaner:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3965,11 +3965,11 @@ file. You might think we wouldn't want to track it, but everyone we're
 sharing our repository with will probably want to ignore the same things
 that we're ignoring. Let's add and commit \texttt{.gitignore}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add .gitignore
 $ git commit -m "Add the ignore file"
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -3979,9 +3979,9 @@ nothing to commit, working directory clean
 As a bonus, using \texttt{.gitignore} helps us avoid accidentally adding
 files to the repository that we don't want.
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add a.dat
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 The following paths are ignored by one of your .gitignore files:
@@ -3994,9 +3994,9 @@ If we really want to override our ignore settings, we can use
 \texttt{git add -f} to force Git to add something. We can also always
 see the status of ignored files if we want:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git status --ignored
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -4109,11 +4109,11 @@ and some information on how to configure your local repository (\figref{f:create
 
 This effectively does the following on GitHub's servers:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ mkdir planets
 $ cd planets
 $ git init
-\end{Verbatim}
+\end{VerbIn}
 
 Our local repository still contains our earlier work on
 \texttt{mars.txt}, but the remote repository on GitHub doesn't contain
@@ -4137,9 +4137,9 @@ much less work for beginners to set up (\figref{f:create-repo-06}).
 Copy that URL from the browser, go into the local \texttt{planets}
 repository, and run this command:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git remote add origin https://github.com/vlad/planets
-\end{Verbatim}
+\end{VerbIn}
 
 Make sure to use the URL for your repository rather than Vlad's: the
 only difference should be your username instead of \texttt{vlad}.
@@ -4147,9 +4147,9 @@ only difference should be your username instead of \texttt{vlad}.
 We can check that the command has worked by running
 \texttt{git remote -v}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git remote -v
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 origin   https://github.com/vlad/planets.git (push)
@@ -4163,9 +4163,9 @@ far the most common choice.
 Once the nickname \texttt{origin} is set up, this command will push the
 changes from our local repository to the repository on GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git push origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Counting objects: 9, done.
@@ -4192,9 +4192,9 @@ lesson, and can safely be ignored for now.
 
 We can pull changes from the remote repository to the local one as well:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git pull origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 From https://github.com/vlad/planets
@@ -4215,10 +4215,10 @@ creating a new repository here with \texttt{git init}, we will
 \gl{clone}{g:repository-clone} the existing repository from
 GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cd /tmp
 $ git clone https://github.com/vlad/planets.git
-\end{Verbatim}
+\end{VerbIn}
 
 \texttt{git clone} creates a fresh local copy of a remote repository.
 (We did it in \texttt{/tmp} or some other directory so that we don't
@@ -4229,20 +4229,20 @@ two copies of the repository (\figref{f:after-duplicate-clone}).
 
 Let's make a change in the copy in \texttt{/tmp/planets}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cd /tmp/planets
 $ nano pluto.txt
 $ cat pluto.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 It is so a planet!
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add pluto.txt
 $ git commit -m "Some notes about Pluto"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
  1 file changed, 1 insertion(+)
@@ -4251,9 +4251,9 @@ $ git commit -m "Some notes about Pluto"
 
 then push the change to GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git push origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Counting objects: 4, done.
@@ -4276,10 +4276,10 @@ Our three repositories are now as shown in \figref{f:after-change-to-duplicate}.
 
 We can now download changes into the original repository on our machine:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cd ~/planets
 $ git pull origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 remote: Counting objects: 4, done.
@@ -4355,9 +4355,9 @@ To see how we can resolve conflicts, we must first create one. The file
 \texttt{planets} repository (the one in our home directory and the one
 in \texttt{/tmp}):
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -4367,10 +4367,10 @@ But the Mummy will appreciate the lack of humidity
 
 Let's add a line to the copy under our home directory:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ nano mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -4381,19 +4381,19 @@ This line added to our home copy
 
 and then push the change to GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
 $ git commit -m "Adding a line in our home copy"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master 5ae9631] Adding a line in our home copy
  1 file changed, 1 insertion(+)
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git push origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Counting objects: 5, done.
@@ -4412,11 +4412,11 @@ Our repositories are now as shown in \figref{f:after-first-conflict}.
 Now let's switch to the copy under \texttt{/tmp} and make a different
 change there \emph{without} updating from GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cd /tmp/planets
 $ nano mars.txt
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -4427,10 +4427,10 @@ We added a different line in the temporary copy
 
 We can commit the change locally:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
 $ git commit -m "Adding a line in the temporary copy"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master 07ebc69] Adding a line in the temporary copy
@@ -4439,9 +4439,9 @@ $ git commit -m "Adding a line in the temporary copy"
 
 but Git won't let us push it to GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git push origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 To https://github.com/vlad/planets.git
@@ -4459,9 +4459,9 @@ to do is pull the changes from GitHub,
 \gl{merge}{g:repository-merge} them into the copy we're currently
 working in, and then push that. Let's start by pulling:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git pull origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 remote: Counting objects: 5, done.
@@ -4478,9 +4478,9 @@ Automatic merge failed; fix conflicts and then commit the result.
 \texttt{git pull} tells us there's a conflict, and marks that conflict
 in the affected file:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -4508,9 +4508,9 @@ this branch, keep the change made in the other, write something new to
 replace both, or get rid of the change entirely. Let's replace both so
 that the file looks like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -4522,10 +4522,10 @@ We removed the conflict on this line
 To finish merging, we add \texttt{mars.txt} to the changes being made by
 the merge and then commit:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git add mars.txt
 $ git status
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 # On branch master
@@ -4538,9 +4538,9 @@ $ git status
 #
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git commit -m "Merging changes from GitHub"
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [master 2abf2b1] Merging changes from GitHub
@@ -4552,9 +4552,9 @@ Our repositories are now as shown in \figref{f:after-second-conflict}.
 
 so we push our changes to GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ git push origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Counting objects: 10, done.
@@ -4574,10 +4574,10 @@ Git keeps track of what we've merged with what, so we don't have to fix
 things by hand again if we switch back to the repository in our home
 directory and pull from GitHub:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cd ~/planets
 $ git pull origin master
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 remote: Counting objects: 10, done.
@@ -4594,9 +4594,9 @@ Fast-forward
 
 we get the merged file:
 
-\begin{Verbatim}
+\begin{VerbIn}
 $ cat mars.txt
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Cold and dry, but everything is my favorite color
@@ -5009,17 +5009,17 @@ In order to load our inflammation data, we need to
 \gl{import}{g:import} a library called NumPy that knows how to
 operate on matrices:
 
-\begin{Verbatim}
+\begin{VerbIn}
 import numpy
-\end{Verbatim}
+\end{VerbIn}
 
 Importing a library is like getting a piece of lab equipment out of a
 storage locker and setting it up on the bench. Once it's done, we can
 ask the library to read our data file for us:
 
-\begin{Verbatim}
+\begin{VerbIn}
 numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
@@ -5058,15 +5058,15 @@ name for a value, such as \texttt{x}, \texttt{current\_temperature}, or
 \texttt{subject\_id}. We can create a new variable simply by assigning a
 value to it using \texttt{=}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 weight_kg = 55
-\end{Verbatim}
+\end{VerbIn}
 
 Once a variable has a value, we can print it:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print weight_kg
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 55
@@ -5074,9 +5074,9 @@ print weight_kg
 
 and do arithmetic with it:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'weight in pounds:', 2.2 * weight_kg
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 weight in pounds: 121.0
@@ -5084,10 +5084,10 @@ weight in pounds: 121.0
 
 We can also change a variable's value by assigning it a new one:
 
-\begin{Verbatim}
+\begin{VerbIn}
 weight_kg = 57.5
 print 'weight in kilograms is now:', weight_kg
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 weight in kilograms is now: 57.5
@@ -5105,10 +5105,10 @@ This means that assigning a value to one variable does \emph{not} change
 the values of other variables. For example, let's store the subject's
 weight in pounds in a variable (\figref{f:before-changing-weight}):
 
-\begin{Verbatim}
+\begin{VerbIn}
 weight_lb = 2.2 * weight_kg
 print 'weight in kilograms:', weight_kg, 'and in pounds:', weight_lb
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 weight in kilograms: 57.5 and in pounds: 126.5
@@ -5118,10 +5118,10 @@ weight in kilograms: 57.5 and in pounds: 126.5
 
 and then change \texttt{weight\_kg} (\figref{f:after-changing-weight}):
 
-\begin{Verbatim}
+\begin{VerbIn}
 weight_kg = 100.0
 print 'weight in kilograms is now:', weight_kg, 'and weight in pounds is still:', weight_lb
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 weight in kilograms is now: 100.0 and weight in pounds is still: 126.5
@@ -5136,17 +5136,17 @@ This is different from the way spreadsheets work.
 Now that we know how to assign things to variables, let's re-run
 \texttt{numpy.loadtxt} and save its result:
 
-\begin{Verbatim}
+\begin{VerbIn}
 data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-\end{Verbatim}
+\end{VerbIn}
 
 This statement doesn't produce any output because assignment doesn't
 display anything. If we want to check that our data has been loaded, we
 can print the variable's value:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 0.  0.  1. ...,  3.  0.  0.]
@@ -5162,21 +5162,21 @@ print data
   Draw diagrams showing what variables refer to what values after each
   statement in the following program:
 
-\begin{Verbatim}
+\begin{VerbIn}
 mass = 47.5
 age = 122
 mass = mass * 2.0
 age = age - 20
-\end{Verbatim}
+\end{VerbIn}
 \end{challenge}
 
 \begin{challenge}
   What does the following program print out?
-\begin{Verbatim}
+\begin{VerbIn}
 first, second = `Grace', `Hopper'
 third, fourth = second, first
 print third, fourth
-\end{Verbatim}
+\end{VerbIn}
 \end{challenge}
 
 \subsection{Manipulating Data}
@@ -5185,9 +5185,9 @@ Now that our data is in memory, we can start doing things with it.
 First, let's ask what \gl{type}{g:data-type} of thing
 \texttt{data} refers to:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print type(data)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 <type 'numpy.ndarray'>
@@ -5197,9 +5197,9 @@ The output tells us that \texttt{data} currently refers to an
 N-dimensional array created by the NumPy library. We can see what its
 \gl{shape}{g:shape} is like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data.shape
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 (60, 40)
@@ -5214,17 +5214,17 @@ in libraries because they have the same part-and-whole relationship.
 If we want to get a single value from the matrix, we must provide an
 \gl{index}{g:index} in square brackets, just as we do in math:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'first value in data:', data[0, 0]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 first value in data: 0.0
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'middle value in data:', data[30, 20]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 middle value in data: 13.0
@@ -5256,9 +5256,9 @@ array, but we can select whole sections as well. For example, we can
 select the first ten days (columns) of values for the first four (rows)
 patients like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data[0:4, 0:10]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 0.  0.  1.  3.  1.  2.  4.  7.  8.  3.]
@@ -5275,9 +5275,9 @@ values in the slice.
 
 We don't have to start slices at 0:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data[5:10, 0:10]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 0.  0.  1.  2.  2.  4.  2.  1.  6.  4.]
@@ -5290,9 +5290,9 @@ print data[5:10, 0:10]
 and we don't have to take all the values in the slice---if we provide a
 \gl{stride}{g:stride}, Python takes values spaced that far apart:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data[0:10:3, 0:10:2]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 0.  1.  1.  4.  8.]
@@ -5311,11 +5311,11 @@ include the upper, the slice runs to the end of the axis, and if we
 don't include either (i.e., if we just use `:' on its own), the slice
 includes everything:
 
-\begin{Verbatim}
+\begin{VerbIn}
 small = data[:3, 36:]
 print 'small is:'
 print small
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 small is:
@@ -5328,9 +5328,9 @@ Arrays also know how to perform common mathematical operations on their
 values. If we want to find the average inflammation for all patients on
 all days, for example, we can just ask the array for its mean value
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data.mean()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 6.14875
@@ -5348,11 +5348,11 @@ for us.
 
 NumPy arrays have lots of useful methods:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'maximum inflammation:', data.max()
 print 'minimum inflammation:', data.min()
 print 'standard deviation:', data.std()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 maximum inflammation: 20.0
@@ -5365,10 +5365,10 @@ statistics, such as the maximum value per patient or the average value
 per day. One way to do this is to select the data we want to create a
 new temporary array, then ask it to do the calculation:
 
-\begin{Verbatim}
+\begin{VerbIn}
 patient_0 = data[0, :] # 0 on the first axis, everything on the second
 print 'maximum inflammation for patient 0:', patient_0.max()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 maximum inflammation for patient 0: 18.0
@@ -5377,9 +5377,9 @@ maximum inflammation for patient 0: 18.0
 We don't actually need to store the row in a variable of its own.
 Instead, we can combine the selection and the method call:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'maximum inflammation for patient 2:', data[2, :].max()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 maximum inflammation for patient 2: 19.0
@@ -5393,9 +5393,9 @@ operation across an axis.
 To support this, most array methods allow us to specify the axis we want
 to work on. If we ask for the average across axis 0, we get:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data.mean(axis=0)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [  0.           0.45         1.11666667   1.75         2.43333333   3.15
@@ -5410,9 +5410,9 @@ print data.mean(axis=0)
 
 As a quick check, we can ask this array what its shape is:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data.mean(axis=0).shape
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 (40,)
@@ -5422,9 +5422,9 @@ The expression \texttt{(40,)} tells us we have an N×1 vector, so this is
 the average inflammation per day for all patients. If we average across
 axis 1, we get:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print data.mean(axis=1)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [ 5.45   5.425  6.1    5.9    5.55   6.225  5.975  6.65   6.625  6.525
@@ -5441,11 +5441,11 @@ which is the average inflammation per patient across all days.
 A subsection of an array is called a \gl{slice}{g:slice}. We can
 take slices of character strings as well:
 
-\begin{Verbatim}
+\begin{VerbIn}
 element = 'oxygen'
 print 'first three characters:', element[0:3]
 print 'last three characters:', element[3:6]
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 first three characters: oxy
@@ -5481,20 +5481,20 @@ of its own, but we can explore a few features of Python's
 want our plots displayed inline, rather than in a separate viewing
 window:
 
-\begin{Verbatim}
+\begin{VerbIn}
 %matplotlib inline
-\end{Verbatim}
+\end{VerbIn}
 
 The \texttt{\%} at the start of the line signals that this is a command
 for the notebook, rather than a statement in Python. Next, we will
 import the \texttt{pyplot} module from \texttt{matplotlib} and use two
 of its functions to create and display a heat map of our data:
 
-\begin{Verbatim}
+\begin{VerbIn}
 from matplotlib import pyplot
 pyplot.imshow(data)
 pyplot.show()
-\end{Verbatim}
+\end{VerbIn}
 
 % FIXME: image
 
@@ -5502,11 +5502,11 @@ Blue regions in this heat map are low values, while red shows high
 values. As we can see, inflammation rises and falls over a 40-day
 period. Let's take a look at the average inflammation over time:
 
-\begin{Verbatim}
+\begin{VerbIn}
 ave_inflammation = data.mean(axis=0)
 pyplot.plot(ave_inflammation)
 pyplot.show()
-\end{Verbatim}
+\end{VerbIn}
 
 % FIXME: image
 
@@ -5517,7 +5517,7 @@ linear rise and fall, which is suspicious: based on other studies, we
 expect a sharper rise and slower fall. Let's have a look at two other
 statistics:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'maximum inflammation per day'
 pyplot.plot(data.max(axis=0))
 pyplot.show()
@@ -5525,7 +5525,7 @@ pyplot.show()
 print 'minimum inflammation per day'
 pyplot.plot(data.min(axis=0))
 pyplot.show()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 maximum inflammation per day
@@ -5558,7 +5558,7 @@ library when importing it in order to reduce the amount of typing we
 have to do. Here are our three plots side by side using aliases for
 \texttt{numpy} and \texttt{pyplot}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -5580,7 +5580,7 @@ plt.plot(data.min(0))
 
 plt.tight_layout()
 plt.show()
-\end{Verbatim}
+\end{VerbIn}
 
 % FIXME: image
 
@@ -5680,10 +5680,10 @@ can repeat several operations with a single command.
 Let's start by defining a function \texttt{fahr\_to\_kelvin} that
 converts temperatures from Fahrenheit to Kelvin:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def fahr_to_kelvin(temp):
     return ((temp - 32) * (5/9)) + 273.15
-\end{Verbatim}
+\end{VerbIn}
 
 The definition opens with the word \texttt{def}, which is followed by
 the name of the function and a parenthesized list of parameter names.
@@ -5699,10 +5699,10 @@ send a result back to whoever asked for it.
 Let's try running our function. Calling our own function is no different
 from calling any other function:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'freezing point of water:', fahr_to_kelvin(32)
 print 'boiling point of water:', fahr_to_kelvin(212)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 freezing point of water: 273.15
@@ -5726,18 +5726,18 @@ We just have a short function, so we'll debug by choosing some parameter
 value, breaking our function into small parts, and printing out the
 value of each part.
 
-\begin{Verbatim}
+\begin{VerbIn}
 # We'll use temp = 212, the boiling point of water, which was incorrect
 print "212 - 32:", 212 - 32
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 212 - 32: 180
 \end{Verbatim}
 
-\begin{Verbatim}
+\begin{VerbIn}
 print "(212 - 32) * (5/9):", (212 - 32) * (5/9)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 (212 - 32) * (5/9): 0
@@ -5746,9 +5746,9 @@ print "(212 - 32) * (5/9):", (212 - 32) * (5/9)
 Aha! The problem comes when we multiply by \texttt{5/9}. This is because
 \texttt{5/9} is actually 0.
 
-\begin{Verbatim}
+\begin{VerbIn}
 5/9
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 0
@@ -5762,9 +5762,9 @@ multiplication work on both as we'd expect, but division works
 differently. If we divide one integer by another, we get the quotient
 without the remainder:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print '10/3 is:', 10/3
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 10/3 is: 3
@@ -5773,9 +5773,9 @@ print '10/3 is:', 10/3
 If either part of the division is a float, on the other hand, the
 computer creates a floating-point answer:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print '10.0/3 is:', 10.0/3
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 10.0/3 is: 3.33333333333
@@ -5792,13 +5792,13 @@ give us the right answer, we have to write it as \texttt{5.0/9},
 Let's fix our \texttt{fahr\_to\_kelvin} function with this new
 knowledge.
 
-\begin{Verbatim}
+\begin{VerbIn}
 def fahr_to_kelvin(temp):
     return ((temp - 32) * (5.0/9.0)) + 273.15
 
 print 'freezing point of water:', fahr_to_kelvin(32)
 print 'boiling point of water:', fahr_to_kelvin(212)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 freezing point of water: 273.15
@@ -5812,12 +5812,12 @@ It works!
 Now that we've seen how to turn Fahrenheit into Kelvin, it's easy to
 turn Kelvin into Celsius:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def kelvin_to_celsius(temp):
     return temp - 273.15
 
 print 'absolute zero in Celsius:', kelvin_to_celsius(0.0)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 absolute zero in Celsius: -273.15
@@ -5828,14 +5828,14 @@ formula, but we don't need to. Instead, we can
 \gl{compose}{g:function-composition} the two functions we have
 already created:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def fahr_to_celsius(temp):
     temp_k = fahr_to_kelvin(temp)
     result = kelvin_to_celsius(temp_k)
     return result
 
 print 'freezing point of water in Celsius:', fahr_to_celsius(32.0)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 freezing point of water in Celsius: 0.0
@@ -5855,8 +5855,11 @@ won't be able to understand what's going on.
   returns a new string that has the wrapper character at the beginning
   and end of the original:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print fence('name', '*')
+\end{VerbIn}
+
+\begin{Verbatim}
 *name*
 \end{Verbatim}
 \end{challenge}
@@ -5867,8 +5870,11 @@ print fence('name', '*')
   Write a function called \texttt{outer} that returns a string made up
   of just the first and last characters of its input:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print outer('helium')
+\end{VerbIn}
+
+\begin{Verbatim}
 hm
 \end{Verbatim}
 \end{challenge}
@@ -5880,10 +5886,10 @@ Let's take a closer look at what happens when we call
 putting the initial value 32.0 in a variable and store the final result
 in one as well:
 
-\begin{Verbatim}
+\begin{VerbIn}
 original = 32.0
 final = fahr_to_celsius(original)
-\end{Verbatim}
+\end{VerbIn}
 
 \swcgraphics{f:call-stack-01}{Initial Call Stack}{novice/python/img/python-call-stack-01.png}
 
@@ -5942,9 +5948,9 @@ is the variables that were in the various stack frames. If we try to get
 the value of \texttt{temp} after our functions have finished running,
 Python tells us that there's no such thing:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'final value of temp after all function calls:', temp
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 ---------------------------------------------------------------------------
@@ -5959,7 +5965,7 @@ Why go to all this trouble? Well, here's a function called \texttt{span}
 that calculates the difference between the mininum and maximum values in
 an array:
 
-\begin{Verbatim}
+\begin{VerbIn}
 import numpy
 
 def span(a):
@@ -5968,7 +5974,7 @@ def span(a):
 
 data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'span of data', span(data)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
  span of data 20.0
@@ -5978,10 +5984,10 @@ Notice that \texttt{span} assigns a value to a variable called
 \texttt{diff}. We might very well use a variable with the same name to
 hold data:
 
-\begin{Verbatim}
+\begin{VerbIn}
 diff = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'span of data:', span(diff)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 span of data: 20.0
@@ -6007,9 +6013,9 @@ again, which quickly overloads our short-term memory.
   We previously wrote functions called \texttt{fence} and
   \texttt{outer}. Draw a diagram showing how the call stack changes when
   we run the following:
-\begin{Verbatim}
+\begin{VerbIn}
 print outer(fence('carbon', `+'))
-\end{Verbatim}
+\end{VerbIn}
 \end{challenge}
 
 \subsection{Testing and Documenting}
@@ -6019,20 +6025,20 @@ need to start testing that those functions are working correctly. To see
 how to do this, let's write a function to center a dataset around a
 particular value:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def center(data, desired):
     return (data - data.mean()) + desired
-\end{Verbatim}
+\end{VerbIn}
 
 We could test this on our actual data, but since we don't know what the
 values ought to be, it will be hard to tell if the result was correct.
 Instead, let's use NumPy to create a matrix of 0's and then center that
 around 3:
 
-\begin{Verbatim}
+\begin{VerbIn}
 z = numpy.zeros((2,2))
 print center(z, 3)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 3.  3.]
@@ -6041,10 +6047,10 @@ print center(z, 3)
 
 That looks right, so let's try \texttt{center} on our real data:
 
-\begin{Verbatim}
+\begin{VerbIn}
 data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print center(data, 0)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[-6.14875 -6.14875 -5.14875 ..., -3.14875 -6.14875 -6.14875]
@@ -6059,11 +6065,11 @@ print center(data, 0)
 It's hard to tell from the default output whether the result is correct,
 but there are a few simple tests that will reassure us:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'original min, mean, and max are:', data.min(), data.mean(), data.max()
 centered = center(data, 0)
 print 'min, mean, and and max of centered data are:', centered.min(), centered.mean(), centered.max()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 original min, mean, and max are: 0.0 6.14875 20.0
@@ -6076,9 +6082,9 @@ quite zero---we'll explore why not in the challenges---but it's pretty
 close. We can even go further and check that the standard deviation
 hasn't changed:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'std dev before and after:', data.std(), centered.std()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 std dev before and after: 4.61383319712 4.61383319712
@@ -6087,9 +6093,9 @@ std dev before and after: 4.61383319712 4.61383319712
 Those values look the same, but we probably wouldn't notice if they were
 different in the sixth decimal place. Let's do this instead:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'difference in standard deviations before and after:', data.std() - centered.std()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 difference in standard deviations before and after: -3.5527136788e-15
@@ -6104,28 +6110,28 @@ function to remind ourselves later what it's for and how to use it.
 The usual way to put documentation in software is to add
 \gl{comments}{g:comment} like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 # center(data, desired): return a new array containing the original data centered around the desired value.
 def center(data, desired):
     return (data - data.mean()) + desired
-\end{Verbatim}
+\end{VerbIn}
 
 There's a better way, though. If the first thing in a function is a
 string that isn't assigned to a variable, that string is attached to the
 function as its documentation:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def center(data, desired):
     '''Return a new array containing the original data centered around the desired value.'''
     return (data - data.mean()) + desired
-\end{Verbatim}
+\end{VerbIn}
 
 This is better because we can now ask Python's built-in help system to
 show us the documentation for the function:
 
-\begin{Verbatim}
+\begin{VerbIn}
 help(center)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Help on function center in module __main__:
@@ -6138,14 +6144,14 @@ A string like this is called a \gl{docstring}{g:docstring}. We
 don't need to use triple quotes when we write one, but if we do, we can
 break the string across multiple lines:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def center(data, desired):
     '''Return a new array containing the original data centered around the desired value.
     Example: center([1, 2, 3], 0) => [-1, 0, 1]'''
     return (data - data.mean()) + desired
 
 help(center)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Help on function center in module __main__:
@@ -6190,9 +6196,9 @@ We have passed parameters to functions in two ways: directly, as in
 we can pass the filename to \texttt{loadtxt} without the
 \texttt{fname=}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 numpy.loadtxt('inflammation-01.csv', delimiter=',')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
@@ -6206,9 +6212,9 @@ array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
 
 but we still need to say \texttt{delimiter=}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 numpy.loadtxt('inflammation-01.csv', ',')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 ---------------------------------------------------------------------------
@@ -6229,21 +6235,21 @@ TypeError: data type "," not understood
 To understand what's going on, and make our own functions easier to use,
 let's re-define our \texttt{center} function like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def center(data, desired=0.0):
     '''Return a new array containing the original data centered around the desired value (0 by default).
     Example: center([1, 2, 3], 0) => [-1, 0, 1]'''
     return (data - data.mean()) + desired
-\end{Verbatim}
+\end{VerbIn}
 
 The key change is that the second parameter is now written
 \texttt{desired=0.0} instead of just \texttt{desired}. If we call the
 function with two arguments, it works as it did before:
 
-\begin{Verbatim}
+\begin{VerbIn}
 test_data = numpy.zeros((2, 2))
 print center(test_data, 3)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 [[ 3.  3.]
@@ -6254,11 +6260,11 @@ But we can also now call it with just one parameter, in which case
 \texttt{desired} is automatically assigned the
 \gl{default value}{g:default-parameter-value} of 0.0:
 
-\begin{Verbatim}
+\begin{VerbIn}
 more_data = 5 + numpy.zeros((2, 2))
 print 'data before centering:', more_data
 print 'centered data:', center(more_data)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 data before centering: [[ 5.  5.]
@@ -6273,7 +6279,7 @@ parameter when they need to but provide a default to make the normal
 case easier. The example below shows how Python matches values to
 parameters:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def display(a=1, b=2, c=3):
     print 'a:', a, 'b:', b, 'c:', c
 
@@ -6283,7 +6289,7 @@ print 'one parameter:'
 display(55)
 print 'two parameters:'
 display(55, 66)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 no parameters:
@@ -6298,10 +6304,10 @@ As this example shows, parameters are matched up from left to right, and
 any that haven't been given a value explicitly get their default value.
 We can override this behavior by naming the value as we pass it in:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'only setting the value of c'
 display(c=77)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 only setting the value of c
@@ -6310,9 +6316,9 @@ a: 1 b: 2 c: 77
 
 With that in hand, let's look at the help for \texttt{numpy.loadtxt}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 help(numpy.loadtxt)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 Help on function loadtxt in module numpy.lib.npyio:
@@ -6413,9 +6419,9 @@ This tells us that \texttt{loadtxt} has one parameter called
 \texttt{fname} that doesn't have a default value, and eight others that
 do. If we call the function like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 numpy.loadtxt('inflammation-01.csv', ',')
-\end{Verbatim}
+\end{VerbIn}
 
 then the filename is assigned to \texttt{fname} (which is what we want),
 but the delimiter string \texttt{','} is assigned to \texttt{dtype}
@@ -6470,12 +6476,12 @@ We now have a function called \texttt{analyze} to visualize a single
 data set. We could use it to explore all 12 of our current data sets
 like this:
 
-\begin{Verbatim}
+\begin{VerbIn}
 analyze('inflammation-01.csv')
 analyze('inflammation-02.csv')
 ...
 analyze('inflammation-12.csv')
-\end{Verbatim}
+\end{VerbIn}
 
 but the chances of us typing all 12 filenames correctly aren't great,
 and we'll be even worse off if we get another hundred files. What we
@@ -6488,7 +6494,7 @@ We have created a function called \texttt{analyze} that creates graphs
 of the minimum, average, and maximum daily inflammation rates for a
 single data set:
 
-\begin{Verbatim}
+\begin{VerbIn}
 %matplotlib inline
 
 import numpy as np
@@ -6515,15 +6521,15 @@ def analyze(filename):
     plt.show()
 
 analyze('inflammation-01.csv')
-\end{Verbatim}
+\end{VerbIn}
 
 % FIXME: image
 
 We can use it to analyze other data sets one by one:
 
-\begin{Verbatim}
+\begin{VerbIn}
 analyze('inflammation-02.csv')
-\end{Verbatim}
+\end{VerbIn}
 
 % FIXME: image
 
@@ -6558,7 +6564,7 @@ we'll have to teach the computer how to repeat things.
 Suppose we want to print each character in the word ``lead'' on a line
 of its own. One way is to use four \texttt{print} statements:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def print_characters(element):
     print element[0]
     print element[1]
@@ -6566,7 +6572,7 @@ def print_characters(element):
     print element[3]
 
 print_characters('lead')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 l
@@ -6588,9 +6594,9 @@ but that's a bad approach for two reasons:
   because we're asking for characters that don't exist.
 \end{swcenumerate}
 
-\begin{Verbatim}
+\begin{VerbIn}
 print_characters('tin')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 ---------------------------------------------------------------------------
@@ -6612,30 +6618,30 @@ n
 
 Here's a better approach:
 
-\begin{Verbatim}
+\begin{VerbIn}
 def print_characters(element):
     for char in element:
         print char
 
 print_characters('lead')
-\end{Verbatim}
+\end{VerbIn}
 
 This is shorter---certainly shorter than something that prints every
 character in a hundred-letter string---and more robust as well:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print_characters('oxygen')
-\end{Verbatim}
+\end{VerbIn}
 
 The improved version of \texttt{print\_characters} uses a
 \gl{for loop}{g:for-loop} to repeat an operation---in this case,
 printing---once for each thing in a collection. The general form of a
 loop is:
 
-\begin{Verbatim}
+\begin{VerbIn}
 for variable in collection:
     do things with variable
-\end{Verbatim}
+\end{VerbIn}
 
 We can call the \gl{loop variable}{g:loop-variable} anything we
 like, but there must be a colon at the end of the line starting the
@@ -6643,12 +6649,12 @@ loop, and we must indent the body of the loop.
 
 Here's another loop that repeatedly updates a variable:
 
-\begin{Verbatim}
+\begin{VerbIn}
 length = 0
 for vowel in 'aeiou':
     length = length + 1
 print 'There are', length, 'vowels'
-\end{Verbatim}
+\end{VerbIn}
 
 It's worth tracing the execution of this little program step by step.
 Since there are five characters in \texttt{'aeiou'}, the statement on
@@ -6666,20 +6672,20 @@ Note that a loop variable is just a variable that's being used to record
 progress in a loop. It still exists after the loop is over, and we can
 re-use variables previously defined as loop variables as well:
 
-\begin{Verbatim}
+\begin{VerbIn}
 letter = 'z'
 for letter in 'abc':
     print letter
 print 'after the loop, letter is', letter
-\end{Verbatim}
+\end{VerbIn}
 
 Note also that finding the length of a string is such a common operation
 that Python actually has a built-in function to do it called
 \texttt{len}:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print len('aeiou')
-\end{Verbatim}
+\end{VerbIn}
 
 \texttt{len} is much faster than any function we could write ourselves,
 and much easier to read than a two-line loop; it will also give us the
@@ -6693,16 +6699,22 @@ use it when we can.
   \texttt{range(2, 10, 3)} produces \texttt{{[}2, 5, 8{]}}. Using
   \texttt{range}, write a function that prints the
   \textbackslash{}(N\textbackslash{}) natural numbers:
-\begin{Verbatim}
+\begin{VerbIn}
 print_N(3)
+\end{VerbIn}
+
+\begin{Verbatim}
 1 2 3
 \end{Verbatim}
 \end{challenge}
 
 \begin{challenge}
   Exponentiation is built into Python:
-\begin{Verbatim}
+\begin{VerbIn}
 print 2**4
+\end{VerbIn}
+
+\begin{Verbatim}
 16
 \end{Verbatim}
   It also has a function called
@@ -6713,13 +6725,19 @@ print 2**4
 \begin{challenge}
   Python's strings have methods, just like NumPy's arrays. One of these
   is called \texttt{reverse}:
-\begin{Verbatim}
+\begin{VerbIn}
   print `Newton'.reverse()
+\end{VerbIn}
+
+\begin{Verbatim}
 notweN
 \end{Verbatim}
   Write a function called \texttt{rev} that does the same thing:
-\begin{Verbatim}
+\begin{VerbIn}
 print rev('Newton')
+\end{VerbIn}
+
+\begin{Verbatim}
 notweN
 \end{Verbatim}
   As always, be sure to include a
@@ -6732,42 +6750,42 @@ Just as a \texttt{for} loop is a way to do operations many times, a list
 is a way to store many values. Unlike NumPy arrays, there are built into
 the language. We create a list by putting values inside square brackets:
 
-\begin{Verbatim}
+\begin{VerbIn}
 odds = [1, 3, 5, 7]
 print 'odds are:', odds
-\end{Verbatim}
+\end{VerbIn}
 
 We select individual elements from lists by indexing them:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print 'first and last:', odds[0], odds[-1]
-\end{Verbatim}
+\end{VerbIn}
 
 and if we loop over a list, the loop variable is assigned elements one
 at a time:
 
-\begin{Verbatim}
+\begin{VerbIn}
 for number in odds:
     print number
-\end{Verbatim}
+\end{VerbIn}
 
 There is one important difference between lists and strings: we can
 change the values in a list, but we cannot change the characters in a
 string. For example:
 
-\begin{Verbatim}
+\begin{VerbIn}
 names = ['Newton', 'Darwing', 'Turing'] # typo in Darwin's name
 print 'names is originally:', names
 names[1] = 'Darwin' # correct the name
 print 'final value of names:', names
-\end{Verbatim}
+\end{VerbIn}
 
 works, but:
 
-\begin{Verbatim}
+\begin{VerbIn}
 name = 'Bell'
 name[0] = 'b'
-\end{Verbatim}
+\end{VerbIn}
 
 does not.
 
@@ -6793,20 +6811,20 @@ make a small change are much more efficient.
 There are many ways to change the contents of in lists besides assigning
 to elements:
 
-\begin{Verbatim}
+\begin{VerbIn}
 odds.append(11)
 print 'odds after adding a value:', odds
-\end{Verbatim}
+\end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbIn}
 del odds[0]
 print 'odds after removing the first element:', odds
-\end{Verbatim}
+\end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbIn}
 odds.reverse()
 print 'odds after reversing:', odds
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{challenge}
   Write a function called \texttt{total} that calculates the sum of the
@@ -6819,9 +6837,9 @@ print 'odds after reversing:', odds
 We now have almost everything we need to process all our data files. The
 only thing that's missing is a library with a rather unpleasant name:
 
-\begin{Verbatim}
+\begin{VerbIn}
 import glob
-\end{Verbatim}
+\end{VerbIn}
 
 The \texttt{glob} library contains a single function, also called
 \texttt{glob}, that finds files whose names match a pattern. We provide
@@ -6829,9 +6847,9 @@ those patterns as strings: the character \texttt{*} matches zero or more
 characters, while \texttt{?} matches any one character. We can use this
 to get the names of all the IPython Notebooks we have created so far:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print glob.glob('*.ipynb')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 ['01-numpy.ipynb', '02-func.ipynb', '03-loop.ipynb', '04-cond.ipynb', '05-defensive.ipynb', '06-cmdline.ipynb', 'spatial-intro.ipynb']
@@ -6839,9 +6857,9 @@ print glob.glob('*.ipynb')
 
 or to get the names of all our CSV data files:
 
-\begin{Verbatim}
+\begin{VerbIn}
 print glob.glob('*.csv')
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 ['inflammation-01.csv', 'inflammation-02.csv', 'inflammation-03.csv', 'inflammation-04.csv', 'inflammation-05.csv', 'inflammation-06.csv', 'inflammation-07.csv', 'inflammation-08.csv', 'inflammation-09.csv', 'inflammation-10.csv', 'inflammation-11.csv', 'inflammation-12.csv', 'small-01.csv', 'small-02.csv', 'small-03.csv', 'swc_bc_coords.csv']
@@ -6853,13 +6871,13 @@ filename in turn. In our case, the ``something'' we want is our
 \texttt{analyze} function. Let's test it by analyzing the first three
 files in the list:
 
-\begin{Verbatim}
+\begin{VerbIn}
 filenames = glob.glob('*.csv')
 filenames = filenames[0:3]
 for f in filenames:
     print f
     analyze(f)
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 inflammation-01.csv
@@ -6965,9 +6983,9 @@ Let's start by creating some simple heat maps of our own using a library
 called \texttt{ipythonblocks}. The first step is to create our own
 ``image'':
 
-\begin{Verbatim}
+\begin{VerbIn}
 from ipythonblocks import ImageGrid
-\end{Verbatim}
+\end{VerbIn}
 
 Unlike the \texttt{import} statements we have seen earlier, this one
 doesn't load the entire \texttt{ipythonblocks} library. Instead, it just
@@ -6977,10 +6995,10 @@ we need (for now).
 Once we have \texttt{ImageGrid} loaded, we can use it to create a very
 simple grid of colored cells:
 
-\begin{Verbatim}
+\begin{VerbIn}
 grid = ImageGrid(5, 3)
 grid.show()
-\end{Verbatim}
+\end{VerbIn}
 
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks84e827e4-60f2-4e82-b41a-c95955a972aa td {border: 1px solid white;}
