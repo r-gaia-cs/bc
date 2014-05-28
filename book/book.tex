@@ -1917,11 +1917,11 @@ being processed.
 Filename expansion in loops is another reason you should not use spaces
 in filenames. Suppose our data files are named:
 
-\begin{Verbatim}
+\begin{VerbFile}
 basilisk.dat
 red dragon.dat
 unicorn.dat
-\end{Verbatim}
+\end{VerbFile}
 
 If we try to process them using:
 
@@ -1941,12 +1941,12 @@ basilisk.dat red dragon.dat unicorn.dat
 With older versions of Bash, or most other shells, \texttt{filename}
 will then be assigned the following values in turn:
 
-\begin{Verbatim}
+\begin{VerbFile}
 basilisk.dat
 red
 dragon.dat
 unicorn.dat
-\end{Verbatim}
+\end{VerbFile}
 
 That's a problem: \texttt{head} can't read files called \texttt{red} and
 \texttt{dragon.dat} because they don't exist, and won't be asked to read
@@ -2290,9 +2290,9 @@ actually small programs.
 Let's start by putting the following line in the file
 \texttt{middle.sh}:
 
-\begin{Verbatim}
+\begin{VerbFile}
 head -20 cholesterol.pdb | tail -5
-\end{Verbatim}
+\end{VerbFile}
 
 This is a variation on the pipe we constructed earlier: it selects lines
 16-20 of the file \texttt{cholesterol.pdb}. Remember, we are \emph{not}
@@ -2342,9 +2342,9 @@ variable called \texttt{\$1}:
 $ cat middle.sh
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbFile}
 head -20 $1 | tail -5
-\end{Verbatim}
+\end{VerbFile}
 
 Inside a shell script, \texttt{\$1} means ``the first filename (or other
 parameter) on the command line''. We can now run our script like this:
@@ -2383,9 +2383,9 @@ range of lines, though. Let's fix that by using the special variables
 $ cat middle.sh
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbFile}
 head $2 $1 | tail $3
-\end{Verbatim}
+\end{VerbFile}
 
 \begin{VerbIn}
 $ bash middle.sh vitamin-a.pdb -20 -5
@@ -2468,9 +2468,9 @@ but don't say \texttt{*.dat} (or anything else)? In this case,
 \texttt{\$*} expands to nothing at all, so the pipeline inside the
 script is effectively:
 
-\begin{Verbatim}
+\begin{VerbFile}
 wc -l | sort -n
-\end{Verbatim}
+\end{VerbFile}
 
 Since it doesn't have any filenames, \texttt{wc} assumes it is supposed
 to process standard input, so it just sits there and waits for us to
@@ -2482,17 +2482,17 @@ it sitting there: the script doesn't appear to do anything.
 We have two more things to do before we're finished with our simple
 shell scripts. If you look at a script like:
 
-\begin{Verbatim}
+\begin{VerbFile}
 wc -l $* | sort -n
-\end{Verbatim}
+\end{VerbFile}
 
 you can probably puzzle out what it does. On the other hand, if you look
 at this script:
 
-\begin{Verbatim}
+\begin{VerbFile}
 # List files sorted by number of lines.
 wc -l $* | sort -n
-\end{Verbatim}
+\end{VerbFile}
 
 you don't have to puzzle it out---the comment at the top tells you what
 it does. A line or two of documentation like this make it much easier
@@ -2513,12 +2513,12 @@ $ history | tail -4 > redo-figure-3.sh
 
 The file \texttt{redo-figure-3.sh} now contains:
 
-\begin{Verbatim}
+\begin{VerbFile}
 297 goostats -r NENE01729B.txt stats-NENE01729B.txt
 298 goodiff stats-NENE01729B.txt /data/validated/01729.txt > 01729-differences.txt
 299 cut -d ',' -f 2-3 01729-differences.txt > 01729-time-series.txt
 300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
-\end{Verbatim}
+\end{VerbFile}
 
 After a moment's work in an editor to remove the serial numbers on the
 commands, we have a completely accurate record of how we created that
@@ -2576,14 +2576,14 @@ But experience has taught her that if something needs to be done twice,
 it will probably need to be done a third or fourth time as well. She
 runs the editor and writes the following:
 
-\begin{Verbatim}
+\begin{VerbFile}
 # Calculate reduced stats for data files at J = 100 c/bp.
 for datafile in $*
 do
     echo $datafile
     goostats -J 100 -r $datafile stats-$datafile
 done
-\end{Verbatim}
+\end{VerbFile}
 
 (The parameters \texttt{-J 100} and \texttt{-r} are the ones her
 supervisor said she should have used.) She saves this in a file called
@@ -2606,14 +2606,14 @@ names of the files that were processed.
 One thing to note about Nelle's script is that it lets the person
 running it decide what files to process. She could have written it as:
 
-\begin{Verbatim}
+\begin{VerbFile}
 # Calculate reduced stats for  A and Site B data files at J = 100 c/bp.
 for datafile in *[AB].txt
 do
     echo $datafile
     goostats -J 100 -r $datafile stats-$datafile
 done
-\end{Verbatim}
+\end{VerbFile}
 
 The advantage is that this always selects the right files: she doesn't
 have to remember to exclude the `Z' files. The disadvantage is that it
@@ -2647,7 +2647,7 @@ flexibility and complexity.
   Leah has several hundred data files, each of which is formatted like
   this:
 
-\begin{Verbatim}
+\begin{VerbFile}
 2013-11-05,deer,5
 2013-11-05,rabbit,22
 2013-11-05,raccoon,7
@@ -2656,7 +2656,7 @@ flexibility and complexity.
 2013-11-06,fox,1
 2013-11-07,rabbit,18
 2013-11-07,bear,1
-\end{Verbatim}
+\end{VerbFile}
 
   Write a shell script called \texttt{species.sh} that takes any number
   of filenames as command-line parameters, and uses \texttt{cut},
@@ -2697,23 +2697,23 @@ $ history | tail -5 > recent.sh
   Explain what a script called \texttt{example.sh} would do when run as
   \texttt{bash example.sh *.dat} if it contained the following lines:
 
-\begin{Verbatim}
+\begin{VerbFile}
 # Script 1
 echo *.*
-\end{Verbatim}
+\end{VerbFile}
 
-\begin{Verbatim}
+\begin{VerbFile}
 # Script 2
 for filename in $1 $2 $3
 do
     cat $filename
 done
-\end{Verbatim}
+\end{VerbFile}
 
-\begin{Verbatim}
+\begin{VerbFile}
 # Script 3
 echo $*.dat
-\end{Verbatim}
+\end{VerbFile}
 
 \end{challenge}
 
@@ -4057,15 +4057,15 @@ nothing to commit, working directory clean
   The following sequence of commands creates one Git repository inside
   another:
 
-\begin{Verbatim}
-cd           # return to home directory
-mkdir alpha  # make a new directory alpha
-cd alpha     # go into alpha
-git init     # make the alpha directory a Git repository
-mkdir beta   # make a sub-directory alpha/beta
-cd beta      # go into alpha/beta
-git init     # make the beta sub-directory a Git repository
-\end{Verbatim}
+\begin{VerbIn}
+$ cd           # return to home directory
+$ mkdir alpha  # make a new directory alpha
+$ cd alpha     # go into alpha
+$ git init     # make the alpha directory a Git repository
+$ mkdir beta   # make a sub-directory alpha/beta
+$ cd beta      # go into alpha/beta
+$ git init     # make the beta sub-directory a Git repository
+\end{VerbIn}
 
   Why is it a bad idea to do this?
 \end{challenge}
@@ -4836,7 +4836,7 @@ state clearly what your license is. You may also want to include a file
 called \texttt{CITATION} or \texttt{CITATION.txt} that describes how to
 reference your project; the one for Software Carpentry states:
 
-\begin{Verbatim}
+\begin{VerbFile}
 To reference Software Carpentry in publications, please cite both of the following:
 
 Greg Wilson: "Software Carpentry: Lessons Learned". arXiv:1307.5448, July 2013.
@@ -4849,7 +4849,7 @@ Greg Wilson: "Software Carpentry: Lessons Learned". arXiv:1307.5448, July 2013.
   eprinttype  = {arxiv},
   eprint      = {1307.5448}
 }
-\end{Verbatim}
+\end{VerbFile}
 
 \mbox{}\paragraph{Hosting}
 
@@ -4963,13 +4963,13 @@ The data sets are stored in \gl{comma-separated values}{g:csv}
 columns represent successive days. The first few rows of our first file
 look like this:
 
-\begin{Verbatim}
+\begin{VerbFile}
 0,0,1,3,1,2,4,7,8,3,3,3,10,5,7,4,7,7,12,18,6,13,11,11,7,7,4,6,8,8,4,4,5,7,3,4,2,3,0,0
 0,1,2,1,2,1,3,2,2,6,10,11,5,9,4,4,7,16,8,6,18,4,12,5,12,7,11,5,11,3,3,5,4,4,5,5,1,1,0,1
 0,1,1,3,3,2,6,2,5,9,5,7,4,5,4,15,5,11,9,10,19,14,12,17,7,12,11,7,4,2,10,5,4,2,2,3,2,2,1,1
 0,0,2,0,4,2,2,1,6,7,10,7,9,13,8,8,15,10,10,7,17,4,4,7,6,15,6,4,9,11,3,5,6,3,3,4,2,3,2,1
 0,1,1,3,3,1,3,5,2,4,4,7,6,5,3,10,8,10,6,17,9,14,9,7,13,9,12,6,7,7,9,6,3,2,2,4,2,0,1,1
-\end{Verbatim}
+\end{VerbFile}
 
 We want to:
 
@@ -6501,8 +6501,6 @@ of the minimum, average, and maximum daily inflammation rates for a
 single data set:
 
 \begin{VerbIn}
-%matplotlib inline
-
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -7007,6 +7005,7 @@ grid = ImageGrid(5, 3)
 grid.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks84e827e4-60f2-4e82-b41a-c95955a972aa td {border: 1px solid white;}
 \end{Verbatim}
@@ -7105,6 +7104,7 @@ row[7, 0] = (0, 255, 255) # green and blue
 row.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks9d1f4bb1-553c-4074-aec0-dc48fde66e06 td {border: 1px solid white;}
 \end{Verbatim}
@@ -7135,6 +7135,7 @@ c[2, 1] = colors['HotPink']
 c.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksb8c954b3-f908-4ab1-8013-65bf49ec1b2f td {border: 1px solid white;}
 \end{Verbatim}
@@ -7356,6 +7357,7 @@ for x in range(square.width):
 square.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksa391625e-64d4-47e1-a54a-2953c1aea09c td {border: 1px solid white;}
 \end{Verbatim}
@@ -7430,6 +7432,7 @@ for x in range(width):
 heatmap.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks1cdd8344-bb95-4b16-bc13-b4fb6f13235a td {border: 1px solid white;}
 \end{Verbatim}
@@ -7492,6 +7495,7 @@ for x in range(width):
 heatmap.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksa46f17da-750a-4616-8173-7dfb16227fb8 td {border: 1px solid white;}
 \end{Verbatim}
@@ -7528,6 +7532,7 @@ h = make_heatmap(flipped, colors['Orchid'], colors['Fuchsia'], colors['HotPink']
 h.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks01f46f8f-ce3d-4e60-810e-14913fdd0249 td {border: 1px solid white;}
 \end{Verbatim}
@@ -7539,6 +7544,7 @@ h = make_heatmap(flipped, colors['Gray'], colors['YellowGreen'], colors['SpringG
 h.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks934bdfbe-fa39-46bc-951f-e504b83c5ed2 td {border: 1px solid white;}
 \end{Verbatim}
@@ -7584,6 +7590,7 @@ h = make_heatmap(flipped, 0.5, 1.5, colors['Gray'], colors['YellowGreen'], color
 h.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks68bc8298-2807-40bb-8077-cb6a6c133f91 td {border: 1px solid white;}
 \end{Verbatim}
@@ -7597,6 +7604,7 @@ h = make_heatmap(flipped, 0.4, 1.6)
 h.show()
 \end{VerbIn}
 
+% FIXME
 \begin{Verbatim}
 table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks3a6cb5f4-cba3-448a-b130-320fed0e64e4 td {border: 1px solid white;}
 \end{Verbatim}
@@ -8503,10 +8511,7 @@ this function is usually called \texttt{main}, though we can call it
 whatever we want:
 
 \begin{VerbIn}
-!cat readings-01.py
-\end{VerbIn}
-
-\begin{VerbIn}
+# readings-01.py
 import sys
 import numpy as np
 
@@ -8523,17 +8528,14 @@ because that's where it's always put, and the name of the file to
 process from \texttt{sys.argv{[}1{]}}. Here's a simple test:
 
 \begin{VerbIn}
-%run readings-01.py inflammation-01.csv
+$ python readings-01.py inflammation-01.csv
 \end{VerbIn}
 
 There is no output because we have defined a function, but haven't
 actually called it. Let's add a call to \texttt{main}:
 
 \begin{VerbIn}
-!cat readings-02.py
-\end{VerbIn}
-
-\begin{VerbOut}
+# readings-02.py
 import sys
 import numpy as np
 
@@ -8545,12 +8547,12 @@ def main():
         print m
 
 main()
-\end{VerbOut}
+\end{VerbIn}
 
 and run that:
 
 \begin{VerbIn}
-%run readings-02.py inflammation-01.csv
+$ python readings-02.py inflammation-01.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8664,7 +8666,7 @@ by creating three smaller files, each of which has three days of data
 for two patients:
 
 \begin{VerbIn}
-!ls small-*.csv
+$ ls small-*.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8672,7 +8674,7 @@ small-01.csv small-02.csv small-03.csv
 \end{VerbOut}
 
 \begin{VerbIn}
-!cat small-01.csv
+$ cat small-01.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8681,7 +8683,7 @@ small-01.csv small-02.csv small-03.csv
 \end{VerbOut}
 
 \begin{VerbIn}
-%run readings-02.py small-01.csv
+$ python readings-02.py small-01.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8711,10 +8713,7 @@ the upper bound, the slice runs to the end of the list, and includes all
 the filenames. Here's our changed program:
 
 \begin{VerbIn}
-!cat readings-03.py
-\end{VerbIn}
-
-\begin{Verbatim}
+# readings-03.py
 import sys
 import numpy as np
 
@@ -8726,12 +8725,12 @@ def main():
             print m
 
 main()
-\end{Verbatim}
+\end{VerbIn}
 
 and here it is in action:
 
 \begin{VerbIn}
-%run readings-03.py small-01.csv small-02.csv
+$ python readings-03.py small-01.csv small-02.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8762,10 +8761,7 @@ The next step is to teach our program to pay attention to the
 always appear before the names of the files, so we could just do this:
 
 \begin{VerbIn}
-!cat readings-04.py
-\end{VerbIn}
-
-\begin{Verbatim}
+# readings-04.py
 import sys
 import numpy as np
 
@@ -8788,12 +8784,12 @@ def main():
             print m
 
 main()
-\end{Verbatim}
+\end{VerbIn}
 
 This works:
 
 \begin{VerbIn}
-%run readings-04.py --max small-01.csv
+$ run readings-04.py --max small-01.csv
 \end{VerbIn}
 
 \begin{VerbOut}
@@ -8818,11 +8814,8 @@ function of its own. It also checks that \texttt{action} is one of the
 allowed flags before doing any processing, so that the program fails
 fast:
 
-\begin{VerbIn}
-!cat readings-05.py
-\end{VerbIn}
-
 \begin{Verbatim}
+# readings-05.py
 import sys
 import numpy as np
 
@@ -8885,11 +8878,8 @@ The next thing our program has to do is read data from standard input if
 no filenames are given so that we can put it in a pipeline, redirect
 input to it, and so on. Let's experiment in another script:
 
-\begin{VerbIn}
-!cat count-stdin.py
-\end{VerbIn}
-
 \begin{Verbatim}
+# count-stdin.py
 import sys
 
 count = 0
@@ -8904,7 +8894,7 @@ This little program reads lines from a special ``file'' called
 standard input. We don't have to open it---Python and the operating
 system take care of that when the program starts up--- but we can do
 almost anything with it that we could do to a regular file. Let's try
-running it as if it were a regular command-line program:
+running it from within the IPython notebook as if it were a regular command-line program:
 
 \begin{VerbIn}
 !ipython count-stdin.py < small-01.csv
@@ -8914,7 +8904,7 @@ running it as if it were a regular command-line program:
 2 lines in standard input
 \end{VerbOut}
 
-What if we run it using \texttt{\%run}?
+What if we run it using \texttt{\%run} (again, from within the notebook)?
 
 \begin{VerbIn}
 %run count-stdin.py < fractal_1.txt
@@ -8931,7 +8921,7 @@ A common mistake is to try to run something that reads from standard
 input like this:
 
 \begin{VerbIn}
-!ipython count_stdin.py fractal_1.txt
+$ python count_stdin.py fractal_1.txt
 \end{VerbIn}
 
 i.e., to forget the \texttt{\textless{}} character that redirect the
@@ -8947,7 +8937,8 @@ We now need to rewrite the program so that it loads data from
 its first parameter, so we don't actually need to change
 \texttt{process}. That leaves \texttt{main}:
 
-\begin{Verbatim}
+\begin{VerbIn}
+# readings-06.py
 def main():
     script = sys.argv[0]
     action = sys.argv[1]
@@ -8959,9 +8950,9 @@ def main():
     else:
         for f in filenames:
             process(f, action)
-\end{Verbatim}
+\end{VerbIn}
 
-Let's try it out (we'll see in a moment why we send the output through
+Let's try it out from inside the notebook (we'll see in a moment why we send the output through
 \texttt{head}):
 
 \begin{VerbIn}
@@ -10972,11 +10963,11 @@ the MP3 files, but the files themselves live on disk.
   containing temperature readings by Robert Olmstead, which is formatted
   like this:
 
-\begin{Verbatim}
+\begin{VerbFile}
 Taken,Temp
 619,-21.5
 622,-15.5
-\end{Verbatim}
+\end{VerbFile}
 
   Write a small Python program that reads this file in and prints out
   the SQL \texttt{insert} statements needed to add these records to the
