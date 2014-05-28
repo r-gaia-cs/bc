@@ -976,9 +976,9 @@ If we try to remove the entire \texttt{thesis} directory using
 $ rm thesis
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 rm: cannot remove `thesis': Is a directory
-\end{Verbatim}
+\end{VerbErr}
 
 This happens because \texttt{rm} only works on files, not directories.
 The right command is \texttt{rmdir}, which is short for ``remove
@@ -989,9 +989,9 @@ we're trying to remove isn't empty:
 $ rmdir thesis
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 rmdir: failed to remove `thesis': Directory not empty
-\end{Verbatim}
+\end{VerbErr}
 
 This little safety feature can save you a lot of grief, particularly if
 you are a bad typist. To really get rid of \texttt{thesis} we must first
@@ -1129,9 +1129,9 @@ delete:
 $ ls quotes.txt thesis/quotations.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ls: cannot access quotes.txt: No such file or directory
-\end{Verbatim}
+\end{VerbErr}
 \begin{VerbOut}
 thesis/quotations.txt
 \end{VerbOut}
@@ -5026,7 +5026,7 @@ ask the library to read our data file for us:
 numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  2., ...,  1.,  0.,  1.],
        [ 0.,  1.,  1., ...,  2.,  1.,  1.],
@@ -5034,7 +5034,7 @@ array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  1., ...,  1.,  1.,  1.],
        [ 0.,  0.,  0., ...,  0.,  2.,  0.],
        [ 0.,  0.,  1., ...,  1.,  1.,  0.]])
-\end{Verbatim}
+\end{VerbOut}
 
 The expression \texttt{numpy.loadtxt(...)} is a
 \gl{function call}{g:function-call} that asks Python to run the
@@ -5073,9 +5073,9 @@ Once a variable has a value, we can print it:
 print weight_kg
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 55
-\end{Verbatim}
+\end{VerbOut}
 
 and do arithmetic with it:
 
@@ -5083,9 +5083,9 @@ and do arithmetic with it:
 print 'weight in pounds:', 2.2 * weight_kg
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 weight in pounds: 121.0
-\end{Verbatim}
+\end{VerbOut}
 
 We can also change a variable's value by assigning it a new one:
 
@@ -5094,9 +5094,9 @@ weight_kg = 57.5
 print 'weight in kilograms is now:', weight_kg
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 weight in kilograms is now: 57.5
-\end{Verbatim}
+\end{VerbOut}
 
 As the example above shows, we can print several things at once by
 separating them with commas.
@@ -5115,9 +5115,9 @@ weight_lb = 2.2 * weight_kg
 print 'weight in kilograms:', weight_kg, 'and in pounds:', weight_lb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 weight in kilograms: 57.5 and in pounds: 126.5
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:before-changing-weight}{Before Changing Weight}{novice/python/img/python-sticky-note-variables-02.png}
 
@@ -5128,9 +5128,9 @@ weight_kg = 100.0
 print 'weight in kilograms is now:', weight_kg, 'and weight in pounds is still:', weight_lb
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 weight in kilograms is now: 100.0 and weight in pounds is still: 126.5
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:after-changing-weight}{After Changing Weight}{novice/python/img/python-sticky-note-variables-03.png}
 
@@ -5153,7 +5153,7 @@ can print the variable's value:
 print data
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 0.  0.  1. ...,  3.  0.  0.]
  [ 0.  1.  2. ...,  1.  0.  1.]
  [ 0.  1.  1. ...,  2.  1.  1.]
@@ -5161,7 +5161,7 @@ print data
  [ 0.  1.  1. ...,  1.  1.  1.]
  [ 0.  0.  0. ...,  0.  2.  0.]
  [ 0.  0.  1. ...,  1.  1.  0.]]
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{challenge}
   Draw diagrams showing what variables refer to what values after each
@@ -5194,9 +5194,9 @@ First, let's ask what \gl{type}{g:data-type} of thing
 print type(data)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 <type 'numpy.ndarray'>
-\end{Verbatim}
+\end{VerbOut}
 
 The output tells us that \texttt{data} currently refers to an
 N-dimensional array created by the NumPy library. We can see what its
@@ -5206,9 +5206,9 @@ N-dimensional array created by the NumPy library. We can see what its
 print data.shape
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 (60, 40)
-\end{Verbatim}
+\end{VerbOut}
 
 This tells us that \texttt{data} has 60 rows and 40 columns.
 \texttt{data.shape} is a \gl{member}{g:member} of \texttt{data},
@@ -5223,17 +5223,17 @@ If we want to get a single value from the matrix, we must provide an
 print 'first value in data:', data[0, 0]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 first value in data: 0.0
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 print 'middle value in data:', data[30, 20]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 middle value in data: 13.0
-\end{Verbatim}
+\end{VerbOut}
 
 The expression \texttt{data{[}30, 20{]}} may not surprise you, but
 \texttt{data{[}0, 0{]}} might. Programming languages like Fortran and
@@ -5265,12 +5265,12 @@ patients like this:
 print data[0:4, 0:10]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 0.  0.  1.  3.  1.  2.  4.  7.  8.  3.]
  [ 0.  1.  2.  1.  2.  1.  3.  2.  2.  6.]
  [ 0.  1.  1.  3.  3.  2.  6.  2.  5.  9.]
  [ 0.  0.  2.  0.  4.  2.  2.  1.  6.  7.]]
-\end{Verbatim}
+\end{VerbOut}
 
 The \gl{slice}{g:slice} \texttt{0:4} means, ``Start at index 0 and
 go up to, but not including, index 4.'' Again, the
@@ -5284,13 +5284,13 @@ We don't have to start slices at 0:
 print data[5:10, 0:10]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 0.  0.  1.  2.  2.  4.  2.  1.  6.  4.]
  [ 0.  0.  2.  2.  4.  2.  2.  5.  5.  8.]
  [ 0.  0.  1.  2.  3.  1.  2.  3.  5.  3.]
  [ 0.  0.  0.  3.  1.  5.  6.  5.  5.  8.]
  [ 0.  1.  1.  2.  1.  3.  5.  3.  5.  8.]]
-\end{Verbatim}
+\end{VerbOut}
 
 and we don't have to take all the values in the slice---if we provide a
 \gl{stride}{g:stride}, Python takes values spaced that far apart:
@@ -5299,12 +5299,12 @@ and we don't have to take all the values in the slice---if we provide a
 print data[0:10:3, 0:10:2]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 0.  1.  1.  4.  8.]
  [ 0.  2.  4.  2.  6.]
  [ 0.  2.  4.  2.  5.]
  [ 0.  1.  1.  5.  5.]]
-\end{Verbatim}
+\end{VerbOut}
 
 Here, we have taken rows 0, 3, 6, and 9, and columns 0, 2, 4, 6, and 8.
 (Again, we always include the lower bound, but stop when we reach or
@@ -5322,12 +5322,12 @@ print 'small is:'
 print small
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 small is:
 [[ 2.  3.  0.  0.]
  [ 1.  1.  0.  1.]
  [ 2.  2.  1.  1.]]
-\end{Verbatim}
+\end{VerbOut}
 
 Arrays also know how to perform common mathematical operations on their
 values. If we want to find the average inflammation for all patients on
@@ -5337,9 +5337,9 @@ all days, for example, we can just ask the array for its mean value
 print data.mean()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 6.14875
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{mean} is a \gl{method}{g:method} of the array, i.e., a
 function that belongs to it in the same way that the member
@@ -5359,11 +5359,11 @@ print 'minimum inflammation:', data.min()
 print 'standard deviation:', data.std()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 maximum inflammation: 20.0
 minimum inflammation: 0.0
 standard deviation: 4.61383319712
-\end{Verbatim}
+\end{VerbOut}
 
 When analyzing data, though, we often want to look at partial
 statistics, such as the maximum value per patient or the average value
@@ -5375,9 +5375,9 @@ patient_0 = data[0, :] # 0 on the first axis, everything on the second
 print 'maximum inflammation for patient 0:', patient_0.max()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 maximum inflammation for patient 0: 18.0
-\end{Verbatim}
+\end{VerbOut}
 
 We don't actually need to store the row in a variable of its own.
 Instead, we can combine the selection and the method call:
@@ -5386,9 +5386,9 @@ Instead, we can combine the selection and the method call:
 print 'maximum inflammation for patient 2:', data[2, :].max()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 maximum inflammation for patient 2: 19.0
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:across-axis}{Operating Across an Axis}{novice/python/img/python-operations-across-axes.png}
 
@@ -5402,7 +5402,7 @@ to work on. If we ask for the average across axis 0, we get:
 print data.mean(axis=0)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [  0.           0.45         1.11666667   1.75         2.43333333   3.15
    3.8          3.88333333   5.23333333   5.51666667   5.95         5.9
    8.35         7.73333333   8.36666667   9.5          9.58333333
@@ -5411,7 +5411,7 @@ print data.mean(axis=0)
    7.33333333   6.58333333   6.06666667   5.95         5.11666667   3.6
    3.3          3.56666667   2.48333333   1.5          1.13333333
    0.56666667]
-\end{Verbatim}
+\end{VerbOut}
 
 As a quick check, we can ask this array what its shape is:
 
@@ -5419,9 +5419,9 @@ As a quick check, we can ask this array what its shape is:
 print data.mean(axis=0).shape
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 (40,)
-\end{Verbatim}
+\end{VerbOut}
 
 The expression \texttt{(40,)} tells us we have an N×1 vector, so this is
 the average inflammation per day for all patients. If we average across
@@ -5431,14 +5431,14 @@ axis 1, we get:
 print data.mean(axis=1)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [ 5.45   5.425  6.1    5.9    5.55   6.225  5.975  6.65   6.625  6.525
   6.775  5.8    6.225  5.75   5.225  6.3    6.55   5.7    5.85   6.55
   5.775  5.825  6.175  6.1    5.8    6.425  6.05   6.025  6.175  6.55
   6.175  6.35   6.725  6.125  7.075  5.725  5.925  6.15   6.075  5.75
   5.975  5.725  6.3    5.9    6.75   5.925  7.225  6.15   5.95   6.275  5.7
   6.1    6.825  5.975  6.725  5.7    6.25   6.4    7.05   5.9  ]
-\end{Verbatim}
+\end{VerbOut}
 
 which is the average inflammation per patient across all days.
 
@@ -5452,10 +5452,10 @@ print 'first three characters:', element[0:3]
 print 'last three characters:', element[3:6]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 first three characters: oxy
 last three characters: gen
-\end{Verbatim}
+\end{VerbOut}
 \end{swcbox}
 
 \begin{challenge}
@@ -5532,13 +5532,14 @@ pyplot.plot(data.min(axis=0))
 pyplot.show()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 maximum inflammation per day
-
+% FIXME: image
 
 minimum inflammation per day
+% FIXME: image
 
-\end{Verbatim}
+\end{VerbOut}
 
 The maximum value rises and falls perfectly smoothly, while the minimum
 seems to be a step function. Neither result seems particularly likely,
@@ -5709,10 +5710,10 @@ print 'freezing point of water:', fahr_to_kelvin(32)
 print 'boiling point of water:', fahr_to_kelvin(212)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 freezing point of water: 273.15
 boiling point of water: 273.15
-\end{Verbatim}
+\end{VerbOut}
 
 We've successfully called the function that we defined, and we have
 access to the value that we returned. Unfortunately, the value returned
@@ -5736,17 +5737,17 @@ value of each part.
 print "212 - 32:", 212 - 32
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 212 - 32: 180
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 print "(212 - 32) * (5/9):", (212 - 32) * (5/9)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 (212 - 32) * (5/9): 0
-\end{Verbatim}
+\end{VerbOut}
 
 Aha! The problem comes when we multiply by \texttt{5/9}. This is because
 \texttt{5/9} is actually 0.
@@ -5755,9 +5756,9 @@ Aha! The problem comes when we multiply by \texttt{5/9}. This is because
 5/9
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0
-\end{Verbatim}
+\end{VerbOut}
 
 Computers store numbers in one of two ways: as
 \gl{integers}{g:integer} or as \gl{floating-point
@@ -5771,9 +5772,9 @@ without the remainder:
 print '10/3 is:', 10/3
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 10/3 is: 3
-\end{Verbatim}
+\end{VerbOut}
 
 If either part of the division is a float, on the other hand, the
 computer creates a floating-point answer:
@@ -5782,9 +5783,9 @@ computer creates a floating-point answer:
 print '10.0/3 is:', 10.0/3
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 10.0/3 is: 3.33333333333
-\end{Verbatim}
+\end{VerbOut}
 
 The computer does this for historical reasons: integer operations were
 much faster on early machines, and this behavior is actually useful in a
@@ -5805,10 +5806,10 @@ print 'freezing point of water:', fahr_to_kelvin(32)
 print 'boiling point of water:', fahr_to_kelvin(212)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 freezing point of water: 273.15
 boiling point of water: 373.15
-\end{Verbatim}
+\end{VerbOut}
 
 It works!
 
@@ -5824,9 +5825,9 @@ def kelvin_to_celsius(temp):
 print 'absolute zero in Celsius:', kelvin_to_celsius(0.0)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 absolute zero in Celsius: -273.15
-\end{Verbatim}
+\end{VerbOut}
 
 What about converting Fahrenheit to Celsius? We could write out the
 formula, but we don't need to. Instead, we can
@@ -5842,9 +5843,9 @@ def fahr_to_celsius(temp):
 print 'freezing point of water in Celsius:', fahr_to_celsius(32.0)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 freezing point of water in Celsius: 0.0
-\end{Verbatim}
+\end{VerbOut}
 
 This is our first taste of how larger programs are built: we define
 basic operations, then combine them in ever-large chunks to get the
@@ -5864,9 +5865,9 @@ won't be able to understand what's going on.
 print fence('name', '*')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 *name*
-\end{Verbatim}
+\end{VerbOut}
 \end{challenge}
 
 \begin{challenge}
@@ -5879,9 +5880,9 @@ print fence('name', '*')
 print outer('helium')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 hm
-\end{Verbatim}
+\end{VerbOut}
 \end{challenge}
 
 \subsection{The Call Stack}
@@ -5957,14 +5958,14 @@ Python tells us that there's no such thing:
 print 'final value of temp after all function calls:', temp
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 <ipython-input-12-ffd9b4dbd5f1> in <module>()
 ----> 1 print 'final value of temp after all function calls:', temp
 
 NameError: name 'temp' is not definedfinal value of temp after all function calls:
-\end{Verbatim}
+\end{VerbErr}
 
 Why go to all this trouble? Well, here's a function called \texttt{span}
 that calculates the difference between the mininum and maximum values in
@@ -5981,9 +5982,9 @@ data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'span of data', span(data)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
  span of data 20.0
-\end{Verbatim}
+\end{VerbOut}
 
 Notice that \texttt{span} assigns a value to a variable called
 \texttt{diff}. We might very well use a variable with the same name to
@@ -5994,9 +5995,9 @@ diff = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'span of data:', span(diff)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 span of data: 20.0
-\end{Verbatim}
+\end{VerbOut}
 
 We don't expect \texttt{diff} to have the value 20.0 after this function
 call, so the name \texttt{diff} cannot refer to the same thing inside
@@ -6045,10 +6046,10 @@ z = numpy.zeros((2,2))
 print center(z, 3)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 3.  3.]
  [ 3.  3.]]
-\end{Verbatim}
+\end{VerbOut}
 
 That looks right, so let's try \texttt{center} on our real data:
 
@@ -6057,7 +6058,7 @@ data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print center(data, 0)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[-6.14875 -6.14875 -5.14875 ..., -3.14875 -6.14875 -6.14875]
  [-6.14875 -5.14875 -4.14875 ..., -5.14875 -6.14875 -5.14875]
  [-6.14875 -5.14875 -5.14875 ..., -4.14875 -5.14875 -5.14875]
@@ -6065,7 +6066,7 @@ print center(data, 0)
  [-6.14875 -5.14875 -5.14875 ..., -5.14875 -5.14875 -5.14875]
  [-6.14875 -6.14875 -6.14875 ..., -6.14875 -4.14875 -6.14875]
  [-6.14875 -6.14875 -5.14875 ..., -5.14875 -5.14875 -6.14875]]
-\end{Verbatim}
+\end{VerbOut}
 
 It's hard to tell from the default output whether the result is correct,
 but there are a few simple tests that will reassure us:
@@ -6076,10 +6077,10 @@ centered = center(data, 0)
 print 'min, mean, and and max of centered data are:', centered.min(), centered.mean(), centered.max()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 original min, mean, and max are: 0.0 6.14875 20.0
 min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.85125
-\end{Verbatim}
+\end{VerbOut}
 
 That seems almost right: the original mean was about 6.1, so the lower
 bound from zero is how about -6.1. The mean of the centered data isn't
@@ -6091,9 +6092,9 @@ hasn't changed:
 print 'std dev before and after:', data.std(), centered.std()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 std dev before and after: 4.61383319712 4.61383319712
-\end{Verbatim}
+\end{VerbOut}
 
 Those values look the same, but we probably wouldn't notice if they were
 different in the sixth decimal place. Let's do this instead:
@@ -6102,9 +6103,9 @@ different in the sixth decimal place. Let's do this instead:
 print 'difference in standard deviations before and after:', data.std() - centered.std()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 difference in standard deviations before and after: -3.5527136788e-15
-\end{Verbatim}
+\end{VerbOut}
 
 Again, the difference is very small. It's still possible that our
 function is wrong, but it seems unlikely enough that we should probably
@@ -6138,12 +6139,12 @@ show us the documentation for the function:
 help(center)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Help on function center in module __main__:
 
 center(data, desired)
     Return a new array containing the original data centered around the desired value.
-\end{Verbatim}
+\end{VerbOut}
 
 A string like this is called a \gl{docstring}{g:docstring}. We
 don't need to use triple quotes when we write one, but if we do, we can
@@ -6158,13 +6159,13 @@ def center(data, desired):
 help(center)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Help on function center in module __main__:
 
 center(data, desired)
     Return a new array containing the original data centered around the desired value.
     Example: center([1, 2, 3], 0) => [-1, 0, 1]
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{challenge}
   Write a function called \texttt{analyze} that takes a filename as a
@@ -6205,7 +6206,7 @@ we can pass the filename to \texttt{loadtxt} without the
 numpy.loadtxt('inflammation-01.csv', delimiter=',')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  2., ...,  1.,  0.,  1.],
        [ 0.,  1.,  1., ...,  2.,  1.,  1.],
@@ -6213,7 +6214,7 @@ array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  1., ...,  1.,  1.,  1.],
        [ 0.,  0.,  0., ...,  0.,  2.,  0.],
        [ 0.,  0.,  1., ...,  1.,  1.,  0.]])
-\end{Verbatim}
+\end{VerbOut}
 
 but we still need to say \texttt{delimiter=}:
 
@@ -6221,7 +6222,7 @@ but we still need to say \texttt{delimiter=}:
 numpy.loadtxt('inflammation-01.csv', ',')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-26-e3bc6cf4fd6a> in <module>()
@@ -6235,7 +6236,7 @@ TypeError                                 Traceback (most recent call last)
     779
 
 TypeError: data type "," not understood
-\end{Verbatim}
+\end{VerbErr}
 
 To understand what's going on, and make our own functions easier to use,
 let's re-define our \texttt{center} function like this:
@@ -6256,10 +6257,10 @@ test_data = numpy.zeros((2, 2))
 print center(test_data, 3)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [[ 3.  3.]
  [ 3.  3.]]
-\end{Verbatim}
+\end{VerbOut}
 
 But we can also now call it with just one parameter, in which case
 \texttt{desired} is automatically assigned the
@@ -6271,12 +6272,12 @@ print 'data before centering:', more_data
 print 'centered data:', center(more_data)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 data before centering: [[ 5.  5.]
  [ 5.  5.]]
 centered data: [[ 0.  0.]
  [ 0.  0.]]
-\end{Verbatim}
+\end{VerbOut}
 
 This is handy: if we usually want a function to work one way, but
 occasionally need it to do something else, we can allow people to pass a
@@ -6296,14 +6297,14 @@ print 'two parameters:'
 display(55, 66)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 no parameters:
 a: 1 b: 2 c: 3
 one parameter:
 a: 55 b: 2 c: 3
 two parameters:
 a: 55 b: 66 c: 3
-\end{Verbatim}
+\end{VerbOut}
 
 As this example shows, parameters are matched up from left to right, and
 any that haven't been given a value explicitly get their default value.
@@ -6314,10 +6315,10 @@ print 'only setting the value of c'
 display(c=77)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 only setting the value of c
 a: 1 b: 2 c: 77
-\end{Verbatim}
+\end{VerbOut}
 
 With that in hand, let's look at the help for \texttt{numpy.loadtxt}:
 
@@ -6325,7 +6326,7 @@ With that in hand, let's look at the help for \texttt{numpy.loadtxt}:
 help(numpy.loadtxt)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Help on function loadtxt in module numpy.lib.npyio:
 
 loadtxt(fname, dtype=<type 'float'>, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)
@@ -6410,15 +6411,15 @@ loadtxt(fname, dtype=<type 'float'>, comments='#', delimiter=None, converters=No
     array([ 1.,  3.])
     >>> y
     array([ 2.,  4.])
-\end{Verbatim}
+\end{VerbOut}
 
 There's a lot of information here, but the most important part is the
 first couple of lines:
 
-\begin{Verbatim}
+\begin{VerbOut}
 loadtxt(fname, dtype=<type 'float'>, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None,
         unpack=False, ndmin=0)
-\end{Verbatim}
+\end{VerbOut}
 
 This tells us that \texttt{loadtxt} has one parameter called
 \texttt{fname} that doesn't have a default value, and eight others that
@@ -6579,12 +6580,12 @@ def print_characters(element):
 print_characters('lead')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 l
 e
 a
 d
-\end{Verbatim}
+\end{VerbOut}
 
 but that's a bad approach for two reasons:
 
@@ -6603,7 +6604,7 @@ but that's a bad approach for two reasons:
 print_characters('tin')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
 <ipython-input-13-5bc7311e0bf3> in <module>()
@@ -6619,7 +6620,7 @@ IndexError                                Traceback (most recent call last)
 IndexError: string index out of ranget
 i
 n
-\end{Verbatim}
+\end{VerbErr}
 
 Here's a better approach:
 
@@ -6708,9 +6709,9 @@ use it when we can.
 print_N(3)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 1 2 3
-\end{Verbatim}
+\end{VerbOut}
 \end{challenge}
 
 \begin{challenge}
@@ -6719,9 +6720,9 @@ print_N(3)
 print 2**4
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 16
-\end{Verbatim}
+\end{VerbOut}
   It also has a function called
   \texttt{pow} that calculates the same value. Write a function called
   \texttt{expo} that uses a loop to calculate the same result.
@@ -6734,17 +6735,17 @@ print 2**4
   print `Newton'.reverse()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 notweN
-\end{Verbatim}
+\end{VerbOut}
   Write a function called \texttt{rev} that does the same thing:
 \begin{VerbIn}
 print rev('Newton')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 notweN
-\end{Verbatim}
+\end{VerbOut}
   As always, be sure to include a
   docstring.
 \end{challenge}
@@ -6856,9 +6857,9 @@ to get the names of all the IPython Notebooks we have created so far:
 print glob.glob('*.ipynb')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ['01-numpy.ipynb', '02-func.ipynb', '03-loop.ipynb', '04-cond.ipynb', '05-defensive.ipynb', '06-cmdline.ipynb', 'spatial-intro.ipynb']
-\end{Verbatim}
+\end{VerbOut}
 
 or to get the names of all our CSV data files:
 
@@ -6866,9 +6867,9 @@ or to get the names of all our CSV data files:
 print glob.glob('*.csv')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ['inflammation-01.csv', 'inflammation-02.csv', 'inflammation-03.csv', 'inflammation-04.csv', 'inflammation-05.csv', 'inflammation-06.csv', 'inflammation-07.csv', 'inflammation-08.csv', 'inflammation-09.csv', 'inflammation-10.csv', 'inflammation-11.csv', 'inflammation-12.csv', 'small-01.csv', 'small-02.csv', 'small-03.csv', 'swc_bc_coords.csv']
-\end{Verbatim}
+\end{VerbOut}
 
 As these examples show, \texttt{glob.glob}'s result is a list of
 strings, which means we can loop over it to do something with each
@@ -6884,16 +6885,17 @@ for f in filenames:
     analyze(f)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 inflammation-01.csv
-
+% FIXME: image
 
 inflammation-02.csv
-
+% FIXME: image
 
 inflammation-03.csv
+% FIXME: image
 
-\end{Verbatim}
+\end{VerbOut}
 
 Sure enough, the maxima of these data sets show exactly the same ramp as
 the first, and their minima show the same staircase structure.
@@ -7018,11 +7020,11 @@ print 'grid height:', grid.height
 print 'grid lines on:', grid.lines_on
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 grid width: 5
 grid height: 3
 grid lines on: True
-\end{Verbatim}
+\end{VerbOut}
 
 The obvious thing to do with a grid like this is color in its cells,
 but in order to do that, we need to know how computers represent
@@ -7046,10 +7048,10 @@ color = (10, 20, 30)
 print 'color is:', color
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 position is: (12.3, 45.6)
 color is: (10, 20, 30)
-\end{Verbatim}
+\end{VerbOut}
 
 We can select elements from tuples using indexing, just as we do with
 lists and arrays:
@@ -7058,9 +7060,9 @@ lists and arrays:
 print 'first element of color is:', color[0]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 first element of color is: 10
-\end{Verbatim}
+\end{VerbOut}
 
 Unlike lists and arrays, though, tuples cannot be changed after they are
 created---in technical terms, they are
@@ -7071,7 +7073,7 @@ color[0] = 40
 print 'first element of color after change:', color[0]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-11-9c3dd30a4e52> in <module>()
@@ -7079,7 +7081,7 @@ TypeError                                 Traceback (most recent call last)
       2 print 'first element of color after change:', color[0]
 
 TypeError: 'tuple' object does not support item assignment
-\end{Verbatim}
+\end{VerbErr}
 
 If a tuple represents an RGB color, its red, green, and blue components
 can take on values between 0 and 255. The upper bound may seem odd, but
@@ -7169,10 +7171,10 @@ else:
 print 'done'
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 not greater
 done
-\end{Verbatim}
+\end{VerbOut}
 
 The second line of this code uses the keyword \texttt{if} to tell Python
 that we want to make a choice. If the test that follows it is true, the
@@ -7193,10 +7195,10 @@ if num > 100:
 print '...after conditional'
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 before conditional...
 ...after conditional
-\end{Verbatim}
+\end{VerbOut}
 
 We can also chain several tests together using \texttt{elif}, which is
 short for ``else if''. This makes it simple to write a function that
@@ -7214,9 +7216,9 @@ def sign(num):
 print 'sign of -3:', sign(-3)
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 sign of -3: -1
-\end{Verbatim}
+\end{VerbOut}
 
 One important thing to notice the code above is that we use a double
 equals sign \texttt{==} to test for equality rather than a single equals
@@ -7234,9 +7236,9 @@ else:
     print 'one part is not true'
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 one part is not true
-\end{Verbatim}
+\end{VerbOut}
 
 while \texttt{or} is true if either part is true:
 
@@ -7245,9 +7247,9 @@ if (1 < 0) or ('left' < 'right'):
     print 'at least one test is true'
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 at least one test is true
-\end{Verbatim}
+\end{VerbOut}
 
 In this case, ``either'' means ``either or both'', not ``either one or
 the other but not both''.
@@ -7294,9 +7296,9 @@ for n in numbers:
 print 'sum of positive values:', total
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 sum of positive values: 20
-\end{Verbatim}
+\end{VerbOut}
 
 We could equally well calculate the positive and negative sums in a
 single loop:
@@ -7312,9 +7314,9 @@ for n in numbers:
 print 'negative and positive sums are:', neg_total, pos_total
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 negative and positive sums are: -6 20
-\end{Verbatim}
+\end{VerbOut}
 
 We can even put one loop inside another:
 
@@ -7324,14 +7326,14 @@ for consonant in 'bcd':
         print consonant + vowel
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ba
 be
 ca
 ce
 da
 de
-\end{Verbatim}
+\end{VerbOut}
 
 As \figref{f:nested-loop} shows, the \gl{inner loop}{g:inner-loop} runs
 from start to finish each time the \gl{outer loop}{g:outer-loop}
@@ -7396,9 +7398,9 @@ data = np.loadtxt(fname='inflammation-01.csv', delimiter=',')
 print 'data shape:', data.shape
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 data shape: (60, 40)
-\end{Verbatim}
+\end{VerbOut}
 
 The second is to create an image grid that is the same size as the data:
 
@@ -7732,7 +7734,7 @@ for n in numbers:
 print 'total is:', total
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-3-33d87ea29ae4> in <module>()
@@ -7743,7 +7745,7 @@ AssertionError                            Traceback (most recent call last)
       6 print 'total is:', total
 
 AssertionError: Data should only contain positive values
-\end{Verbatim}
+\end{VerbErr}
 
 Programs like the Firefox browser are full of assertions: 10-20\% of the
 code they contain are there to check that the other 80-90\% are working
@@ -7797,7 +7799,7 @@ The preconditions on lines 2, 4, and 5 catch invalid inputs:
 print normalize_rectangle( (0.0, 1.0, 2.0) ) # missing the fourth coordinate
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-5-3a97b1dcab70> in <module>()
@@ -7811,13 +7813,13 @@ AssertionError                            Traceback (most recent call last)
       5     assert x0 < x1, 'Invalid X coordinates'
 
 AssertionError: Rectangles must contain 4 coordinates
-\end{Verbatim}
+\end{VerbErr}
 
 \begin{VerbIn}
 print normalize_rectangle( (4.0, 2.0, 1.0, 5.0) ) # X axis inverted
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-6-f05ae7878a45> in <module>()
@@ -7831,7 +7833,7 @@ AssertionError                            Traceback (most recent call last)
       7
 
 AssertionError: Invalid X coordinates
-\end{Verbatim}
+\end{VerbErr}
 
 The post-conditions help us catch bugs by telling us when our
 calculations cannot have been correct. For example, if we normalize a
@@ -7841,9 +7843,9 @@ rectangle that is taller than it is wide everything seems OK:
 print normalize_rectangle( (0.0, 0.0, 1.0, 5.0) )
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 (0, 0, 0.2, 1.0)
-\end{Verbatim}
+\end{VerbOut}
 
 but if we normalize one that's wider than it is tall, the assertion is
 triggered:
@@ -7852,7 +7854,7 @@ triggered:
 print normalize_rectangle( (0.0, 0.0, 5.0, 1.0) )
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-8-5f0ef7954aeb> in <module>()
@@ -7866,7 +7868,7 @@ AssertionError                            Traceback (most recent call last)
      20     return (0, 0, upper_x, upper_y)
 
 AssertionError: Calculated upper Y coordinate invalid
-\end{Verbatim}
+\end{VerbErr}
 
 Re-reading our function, we realize that line 10 should divide
 \texttt{dy} by \texttt{dx} rather than \texttt{dx} by \texttt{dy}. (You
@@ -8039,7 +8041,7 @@ assert range_overlap([ (0.0, 1.0), (5.0, 6.0) ]) == None
 assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-10-d877ef460ba2> in <module>()
@@ -8047,7 +8049,7 @@ AssertionError                            Traceback (most recent call last)
       2 assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
 
 AssertionError: 
-\end{Verbatim}
+\end{VerbErr}
 
 Again, we get an error because we haven't written our function, but
 we're now ready to do so:
@@ -8083,7 +8085,7 @@ We can now test \texttt{range\_overlap} with a single function call:
 test_range_overlap()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 AssertionError                            Traceback (most recent call last)
 <ipython-input-13-cf9215c96457> in <module>()
@@ -8096,7 +8098,7 @@ AssertionError                            Traceback (most recent call last)
       6     assert range_overlap([ (0.0, 1.0), (1.0, 2.0) ]) == None
 
 AssertionError: 
-\end{Verbatim}
+\end{VerbErr}
 
 The first of the tests that was supposed to produce \texttt{None} fails,
 so we know there's something wrong with our function. What we
@@ -8359,7 +8361,7 @@ per patient:
 $ python readings.py --mean inflammation-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 5.45
 5.425
 6.1
@@ -8367,7 +8369,7 @@ $ python readings.py --mean inflammation-01.csv
 6.4
 7.05
 5.9
-\end{Verbatim}
+\end{VerbOut}
 
 but we might also want to look at the minimum of the first four lines
 
@@ -8433,10 +8435,10 @@ from within the IPython Notebook like this:
 %run sys-version.py
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20)
 [GCC 4.0.1 (Apple Inc. build 5493)]
-\end{Verbatim}
+\end{VerbOut}
 
 or like this:
 
@@ -8444,10 +8446,10 @@ or like this:
 !ipython sys-version.py
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 version is 2.7.5 |Anaconda 1.8.0 (x86_64)| (default, Oct 24 2013, 07:02:20)
 [GCC 4.0.1 (Apple Inc. build 5493)]
-\end{Verbatim}
+\end{VerbOut}
 
 The first method, \texttt{\%run}, uses a special command in the IPython
 Notebook to run a program in a \texttt{.py} file. The second method is
@@ -8461,10 +8463,10 @@ Here's another script that does something more interesting:
 !cat argv-list.py
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 import sys
 print 'sys.argv is', sys.argv
-\end{Verbatim}
+\end{VerbOut}
 
 The strange name \texttt{argv} stands for ``argument values''. Whenever
 Python runs a program, it takes all of the values given on the command
@@ -8475,9 +8477,9 @@ determine what they were. If we run this program with no arguments:
 !ipython argv-list.py
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 sys.argv is ['/Users/gwilson/s/bc/python/novice/argv-list.py']
-\end{Verbatim}
+\end{VerbOut}
 
 the only thing in the list is the full path to our script, which is
 always \texttt{sys.argv{[}0{]}}. If we run it with a few arguments,
@@ -8487,9 +8489,9 @@ however:
 !ipython argv-list.py first second third
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 sys.argv is ['/Users/gwilson/s/bc/python/novice/argv-list.py', 'first', 'second', 'third']
-\end{Verbatim}
+\end{VerbOut}
 
 then Python adds each of those arguments to that magic list.
 
@@ -8531,7 +8533,7 @@ actually called it. Let's add a call to \texttt{main}:
 !cat readings-02.py
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 import sys
 import numpy as np
 
@@ -8543,7 +8545,7 @@ def main():
         print m
 
 main()
-\end{Verbatim}
+\end{VerbOut}
 
 and run that:
 
@@ -8551,7 +8553,7 @@ and run that:
 %run readings-02.py inflammation-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 5.45
 5.425
 6.1
@@ -8612,7 +8614,7 @@ and run that:
 6.4
 7.05
 5.9
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{The Right Way to Do It}
 
@@ -8629,15 +8631,15 @@ messages for our users.
 \begin{VerbIn}
 python arith.py 1 + 2
 \end{VerbIn}
-\begin{Verbatim}
+\begin{VerbOut}
 3
-\end{Verbatim}
+\end{VerbOut}
 \begin{VerbIn}
 python arith.py 3 - 4
 \end{VerbIn}
-\begin{Verbatim}
+\begin{VerbOut}
 -1
-\end{Verbatim}
+\end{VerbOut}
   What goes wrong if you try to add multiplication using `*' to the
   program?
 \end{challenge}
@@ -8649,9 +8651,9 @@ python arith.py 3 - 4
 \begin{VerbIn}
 $ python my_ls.py py
 \end{VerbIn}
-\begin{Verbatim}
+\begin{VerbOut}
 left.py right.py zero.py
-\end{Verbatim}
+\end{VerbOut}
 \end{challenge}
 
 \subsection{Handling Multiple Files}
@@ -8665,27 +8667,27 @@ for two patients:
 !ls small-*.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 small-01.csv small-02.csv small-03.csv
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 !cat small-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0,0,1
 0,1,2
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 %run readings-02.py small-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0.333333333333
 1.0
-\end{Verbatim}
+\end{VerbOut}
 
 Using small data files as input also allows us to check our results more
 easily: here, for example, we can see that our program is calculating
@@ -8732,12 +8734,12 @@ and here it is in action:
 %run readings-03.py small-01.csv small-02.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0.333333333333
 1.0
 13.6666666667
 11.0
-\end{Verbatim}
+\end{VerbOut}
 
 Note: at this point, we have created three versions of our script called
 \texttt{readings-01.py}, \texttt{readings-02.py}, and
@@ -8794,10 +8796,10 @@ This works:
 %run readings-04.py --max small-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 1.0
 2.0
-\end{Verbatim}
+\end{VerbOut}
 
 but there are seveal things wrong with it:
 
@@ -8908,9 +8910,9 @@ running it as if it were a regular command-line program:
 !ipython count-stdin.py < small-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 2 lines in standard input
-\end{Verbatim}
+\end{VerbOut}
 
 What if we run it using \texttt{\%run}?
 
@@ -8918,9 +8920,9 @@ What if we run it using \texttt{\%run}?
 %run count-stdin.py < fractal_1.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0 lines in standard input
-\end{Verbatim}
+\end{VerbOut}
 
 As you can see, \texttt{\%run} doesn't understand file redirection:
 that's a shell thing.
@@ -8966,7 +8968,7 @@ Let's try it out (we'll see in a moment why we send the output through
 !ipython readings-06.py --mean < small-01.csv | head -10
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [TerminalIPythonApp] CRITICAL | Bad config encountered during initialization:
 [TerminalIPythonApp] CRITICAL | Unrecognized flag: '--mean'
 =========
@@ -8979,7 +8981,7 @@ Tools for Interactive Computing in Python
     A Python shell with automatic history (input and output), dynamic object
     introspection, easier configuration, command completion, access to the
     system shell and more.  IPython can also be embedded in running programs.
-\end{Verbatim}
+\end{VerbOut}
 
 Whoops: why are we getting IPython's help rather than the line-by-line
 average of our data? The answer is that IPython has a hard time telling
@@ -8991,10 +8993,10 @@ the program it's running. To make our meaning clear, we have to use
 !ipython readings-06.py -- --mean < small-01.csv
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 0.333333333333
 1.0
-\end{Verbatim}
+\end{VerbOut}
 
 That's better. In fact, that's done: the program now does everything we
 set out to do.
@@ -11041,11 +11043,11 @@ cursor.close()
 connection.close()
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 (-49.85, -128.57)
 (-47.15, -126.72)
 (-48.87, -123.4)
-\end{Verbatim}
+\end{VerbOut}
 
 The program starts by importing the \texttt{sqlite3} library. If we were
 connecting to MySQL, DB2, or some other database, we would import a
@@ -11100,18 +11102,18 @@ def get_name(database_file, person_ident):
 print "full name for dyer:", get_name('survey.db', 'dyer')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 full name for dyer: William Dyer
-\end{Verbatim}
+\end{VerbOut}
 
 We use string concatenation on the first line of this function to
 construct a query containing the user ID we have been given. This seems
 simple enough, but what happens if someone gives us this string as
 input?
 
-\begin{Verbatim}
+\begin{VerbOut}
 dyer'; drop table Survey; select '
-\end{Verbatim}
+\end{VerbOut}
 
 It looks like there's garbage after the name of the project, but it is
 very carefully chosen garbage. If we insert this string into our query,
@@ -11152,9 +11154,9 @@ def get_name(database_file, person_ident):
 print "full name for dyer:", get_name('survey.db', 'dyer')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 full name for dyer: William Dyer
-\end{Verbatim}
+\end{VerbOut}
 
 The key changes are in the query string and the \texttt{execute} call.
 Instead of formatting the query ourselves, we put question marks in the
@@ -11210,7 +11212,7 @@ Here's where we are right now:
 $ git log
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 10:14:07 2013 -0400
@@ -11233,7 +11235,7 @@ $ cat mars.txt
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 We can draw the history of the repository as shown in \figref{f:branching-01}
 (we'll see in a
@@ -11254,10 +11256,10 @@ It appears to do nothing, but behind the scenes it has created a new
 $ git branch
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 * master
   moons
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:branching-02}{Repository Immediately After Creating Branch}{novice/extras/img/git-branching-02.png}
 
@@ -11271,18 +11273,18 @@ the same revision right now, but we can change that. Let's make
 $ git checkout moons
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Switched to branch 'moons'
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git branch
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
   master
 * moons
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:branching-03}{Repository After Switching Branches}{novice/extras/img/git-branching-03.png}
 
@@ -11292,11 +11294,11 @@ Our file looks the same:
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 because it \emph{is} the same: Let's add another line to it:
 
@@ -11311,9 +11313,9 @@ $ echo "Phobos is larger than Deimos" > moons.txt
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 mars.txt    moons.txt
-\end{Verbatim}
+\end{VerbOut}
 
 Git now tells us that we have one changed file and one new file:
 
@@ -11321,7 +11323,7 @@ Git now tells us that we have one changed file and one new file:
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch moons
 # Changes not staged for commit:
 #   (use "git add <file>..." to update what will be committed)
@@ -11334,7 +11336,7 @@ $ git status
 #
 #    moons.txt
 no changes added to commit (use "git add" and/or "git commit -a")
-\end{Verbatim}
+\end{VerbOut}
 
 Let's add and commit those changes (the \texttt{-A} flag to
 \texttt{git commit} means ``add everything''):
@@ -11344,7 +11346,7 @@ $ git add -A
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch moons
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)
@@ -11352,17 +11354,17 @@ $ git status
 #    modified:   mars.txt
 #    new file:   moons.txt
 #
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git commit -m "Thinking about the moons"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [moons 62e7791] Thinking about the moons
  2 files changed, 2 insertions(+)
  create mode 100644 moons.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:branching-04}{Repository After Committing to Branch}{novice/extras/img/git-branching-04.png}
 
@@ -11381,19 +11383,19 @@ our changes seem to disappear:
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 mars.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ cat mars.txt
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
-\end{Verbatim}
+\end{VerbOut}
 
 They're still in the repository---they're just not in the revision that
 \texttt{master} is currently pointing to. In essence, we've created a
@@ -11408,25 +11410,25 @@ $ echo "Should we go with a classical name like Ares Base?" > names.txt
 $ git status
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 # On branch master
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
 #    names.txt
 nothing added to commit but untracked files present (use "git add" to track)
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git add names.txt
 $ git commit -m "We will need a cool name for our secret base"
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 [master dfcf908] We will need a cool name for our secret base
  1 file changed, 1 insertion(+)
  create mode 100644 names.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \swcgraphics{f:branching-05}{Repository After Branches Have Diverged}{novice/extras/img/git-branching-05.png}
 
@@ -11440,10 +11442,10 @@ want to \gl{merge}{g:merge} our changes. Let's do that now:
 $ git branch
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 * master
   moons
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ git merge moons
@@ -11453,7 +11455,7 @@ When we run the \texttt{git merge} command, Git opens an editor to let
 us write a log entry about what we're doing. The editor session
 initially contains this:
 
-\begin{Verbatim}
+\begin{VerbOut}
 Merge branch 'moons'
 
 # Please enter a commit message to explain why this merge is necessary,
@@ -11461,7 +11463,7 @@ Merge branch 'moons'
 #
 # Lines starting with '#' will be ignored, and an empty message aborts
 # the commit.
-\end{Verbatim}
+\end{VerbOut}
 
 If we notice that something is wrong and decide not to complete the
 merge, we must delete everything in the file---Git interprets an empty
@@ -11470,13 +11472,13 @@ marked as a comment with \texttt{\#} will be saved to the log. In this
 case, we'll stick with the default log message. When we save the file
 and exit the editor, Git displays this:
 
-\begin{Verbatim}
+\begin{VerbOut}
 Merge made by the 'recursive' strategy.
  mars.txt  | 1 +
  moons.txt | 1 +
  2 files changed, 2 insertions(+)
  create mode 100644 moons.txt
-\end{Verbatim}
+\end{VerbOut}
 
 We now have all of our changes in one place:
 
@@ -11484,9 +11486,9 @@ We now have all of our changes in one place:
 $ ls
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 mars.txt    moons.txt    names.txt
-\end{Verbatim}
+\end{VerbOut}
 
 and our repository looks like \figref{f:branching-06}:
 
@@ -11499,7 +11501,7 @@ command:
 $ git log --oneline --topo-order --graph
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 *   e0cf8ab Merge branch 'moons'
 |\
 | * 62e7791 Thinking about the moons
@@ -11508,7 +11510,7 @@ $ git log --oneline --topo-order --graph
 * 005937f Thoughts about the climate
 * 34961b1 Concerns about Mars's moons on my furry friend
 * f22b25e Starting to think about Mars
-\end{Verbatim}
+\end{VerbOut}
 
 This ASCII art is fine for small sets of changes, but for anything
 significant, it's much better to use a GUI that can draw graphs using
@@ -11585,10 +11587,10 @@ created the \texttt{planets} repository} and then
 $ git clone https://github.com/vlad/undersea.git
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Cloning into 'undersea'...
 warning: You appear to have cloned an empty repository.
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{git clone} automatically adds the original repository on GitHub
 as a remote of the local repository called \texttt{origin}---this is why
@@ -11599,10 +11601,10 @@ $ cd undersea
 $ git remote -v
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 origin https://github.com/vlad/undersea.git (fetch)
 origin https://github.com/vlad/undersea.git (push)
-\end{Verbatim}
+\end{VerbOut}
 
 Dracula can now push and pull changes just as before.
 
@@ -11726,19 +11728,19 @@ HISTORY, (known) BUGS, and COMPATIBILITY.
 
 Here is the is synopsis for the \texttt{cp} command on Ubuntu Linux:
 
-\begin{Verbatim}
+\begin{VerbOut}
 SYNOPSIS
    cp [OPTION]... [-T] SOURCE DEST
    cp [OPTION]... SOURCE... DIRECTORY
    cp [OPTION]... -t DIRECTORY SOURCE...
-\end{Verbatim}
+\end{VerbOut}
 
 This tells the reader that there are three ways to use the command.
 Let's look at the first usage:
 
-\begin{Verbatim}
+\begin{VerbOut}
 cp [OPTION]... [-T] SOURCE DEST
-\end{Verbatim}
+\end{VerbOut}
 
 \texttt{{[}OPTION{]}} means the \texttt{cp} command can be followed by
 one or more optional \gl{flags}{g:command-line-flag}. We can tell
@@ -11760,7 +11762,7 @@ The \texttt{DESCRIPTION} section starts with a few paragraphs explaining
 the command and its use, then expands on the possible options one by
 one:
 
-\begin{Verbatim}
+\begin{VerbOut}
      The following options are available:
 
      -a    Same as -pPR options. Preserves structure and attributes of
@@ -11775,7 +11777,7 @@ one:
            existing access rights will be retained.
 
       ...  ...
-\end{Verbatim}
+\end{VerbOut}
 
 \mbox{}\paragraph{Finding Help on Specific Options}
 
@@ -11786,10 +11788,10 @@ find out about \texttt{-t}, we can type \texttt{/-t} and press return.
 After that, we can use the `n' key to navigate to the next match until
 we find the detailed information we need:
 
-\begin{Verbatim}
+\begin{VerbOut}
 -t, --target-directory=DIRECTORY
      copy all SOURCE arguments into DIRECTORY
-\end{Verbatim}
+\end{VerbOut}
 
 This means that this option has the short form \texttt{-t} and the long
 form \texttt{-{}-target-directory} and that it takes an argument. Its
@@ -11915,9 +11917,9 @@ $ cd labs
 $ ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 safety.txt    setup*     waiver.txt
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{swcbox}{Necessary But Not Sufficient}
 
@@ -11937,11 +11939,11 @@ Now let's run the command \texttt{ls -l}:
 $ ls -l
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 -rw-rw-r-- 1 vlad bio  1158  2010-07-11 08:22 safety.txt
 -rwxr-xr-x 1 vlad bio 31988  2010-07-23 20:04 setup
 -rw-rw-r-- 1 vlad bio  2312  2010-07-11 08:23 waiver.txt
-\end{Verbatim}
+\end{VerbOut}
 
 The \texttt{-l} flag tells \texttt{ls} to give us a long-form listing.
 It's a lot of information, so let's go through the columns in turn.
@@ -11981,9 +11983,9 @@ permissions on the final grades in the course Vlad is teaching:
 $ ls -l final.grd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 -rwxrwxrwx 1 vlad bio  4215  2010-08-29 22:30 final.grd
-\end{Verbatim}
+\end{VerbOut}
 
 Whoops: everyone in the world can read it---and what's worse, modify it!
 (They could also try to run the grades file as a program, which would
@@ -12004,9 +12006,9 @@ permissions are now set to read and write:
 $ ls -l final.grd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 -rw-rwxrwx 1 vlad bio  4215  2010-08-30 08:19 final.grd
-\end{Verbatim}
+\end{VerbOut}
 
 Let's run \texttt{chmod} again to give the group read-only permission:
 
@@ -12015,9 +12017,9 @@ $ chmod g=r final.grd
 $ ls -l final.grd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 -rw-r--rw- 1 vlad bio  4215  2010-08-30 08:19 final.grd
-\end{Verbatim}
+\end{VerbOut}
 
 And finally, let's give ``all'' (everyone on the system who isn't the
 file's owner or in its group) no permissions at all:
@@ -12027,9 +12029,9 @@ $ chmod a= final.grd
 $ ls -l final.grd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 -rw-r----- 1 vlad bio  4215  2010-08-30 08:20 final.grd
-\end{Verbatim}
+\end{VerbOut}
 
 Here, the `a' signals that we're changing permissions for ``all'', and
 since there's nothing on the right of the ``='', ``all'''s new
@@ -12042,10 +12044,10 @@ We can search by permissions, too. Here, for example, we can use
 $ find . -type f -perm -u=x
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 ./tools/format
 ./tools/stats
-\end{Verbatim}
+\end{VerbOut}
 
 Before we go any further, let's run \texttt{ls -a -l} to get a long-form
 listing that includes directory entries that are normally hidden:
@@ -12054,13 +12056,13 @@ listing that includes directory entries that are normally hidden:
 $ ls -a -l
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 drwxr-xr-x 1 vlad bio     0  2010-08-14 09:55 .
 drwxr-xr-x 1 vlad bio  8192  2010-08-27 23:11 ..
 -rw-rw-r-- 1 vlad bio  1158  2010-07-11 08:22 safety.txt
 -rwxr-xr-x 1 vlad bio 31988  2010-07-23 20:04 setup
 -rw-rw-r-- 1 vlad bio  2312  2010-07-11 08:23 waiver.txt
-\end{Verbatim}
+\end{VerbOut}
 
 The permissions for \texttt{.} and \texttt{..} (this directory and its
 parent) start with a `d'. But look at the rest of their permissions: the
@@ -12120,7 +12122,7 @@ the variables in a typical shell session:
 $ set
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 COMPUTERNAME=TURING
 HOME=/home/vlad
 HOMEDRIVE=C:
@@ -12133,7 +12135,7 @@ PWD=/home/vlad
 UID=1000
 USERNAME=vlad
 ...
-\end{Verbatim}
+\end{VerbOut}
 
 As you can see, there are quite a few---in fact, four or five times more
 than what's shown here. And yes, using \texttt{set} to \emph{show}
@@ -12170,7 +12172,7 @@ it stops searching and runs the program.
 To show how this works, here are the components of \texttt{PATH} listed
 one per line:
 
-\begin{Verbatim}
+\begin{VerbOut}
 /Users/vlad/bin
 /usr/local/git/bin
 /usr/bin
@@ -12178,7 +12180,7 @@ one per line:
 /usr/sbin
 /sbin
 /usr/local/bin
-\end{Verbatim}
+\end{VerbOut}
 
 On our computer, there are actually three programs called
 \texttt{analyze} in three different directories: \texttt{/bin/analyze},
@@ -12198,9 +12200,9 @@ Let's show the value of the variable \texttt{HOME}:
 $ echo HOME
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 HOME
-\end{Verbatim}
+\end{VerbOut}
 
 That just prints ``HOME'', which isn't what we wanted (though it is what
 we actually asked for). Let's try this instead:
@@ -12209,9 +12211,9 @@ we actually asked for). Let's try this instead:
 $ echo $HOME
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /home/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 The dollar sign tells the shell that we want the \emph{value} of the
 variable rather than its name. This works just like wildcards: the shell
@@ -12229,9 +12231,9 @@ $ SECRET_IDENTITY=Dracula
 $ echo $SECRET_IDENTITY
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Dracula
-\end{Verbatim}
+\end{VerbOut}
 
 To change the value, just assign a new one:
 
@@ -12240,9 +12242,9 @@ $ SECRET_IDENTITY=Camilla
 $ echo $SECRET_IDENTITY
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Camilla
-\end{Verbatim}
+\end{VerbOut}
 
 If we want to set some variables automatically every time we run a
 shell, we can put commands to do this in a file called \texttt{.bashrc}
@@ -12255,11 +12257,11 @@ follows without understanding why.)
 
 For example, here are two lines in \texttt{/home/vlad/.bashrc}:
 
-\begin{Verbatim}
+\begin{VerbOut}
 export SECRET_IDENTITY=Dracula
 export TEMP_DIR=/tmp
 export BACKUP_DIR=$TEMP_DIR/backup
-\end{Verbatim}
+\end{VerbOut}
 
 These three lines create the variables \texttt{SECRET\_IDENTITY},
 \texttt{TEMP\_DIR}, and \texttt{BACKUP\_DIR}, and export them so that
@@ -12273,9 +12275,9 @@ create shortcuts for things we frequently type. For example, we can
 define the alias \texttt{backup} to run \texttt{/bin/zback} with a
 specific set of arguments:
 
-\begin{Verbatim}
+\begin{VerbOut}
 alias backup=/bin/zback -v --nostir -R 20000 $HOME $BACKUP_DIR
-\end{Verbatim}
+\end{VerbOut}
 
 As you can see, aliases can save us a lot of typing, and hence a lot of
 typing mistakes. You can find interesting suggestions for other aliases
@@ -12323,9 +12325,9 @@ the remote machine and their output.
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
 $ ssh vlad@moon.euphoric.edu
@@ -12336,25 +12338,25 @@ Password: ********
     moon> hostname
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
     moon
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
     moon> pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
     /home/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
     moon> ls -F
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
     bin/     cheese.txt   dark_side/   rocks.cfg
-\end{Verbatim}
+\end{VerbOut}
 
 \begin{VerbIn}
     moon> exit
@@ -12364,9 +12366,9 @@ Password: ********
 $ pwd
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 /users/vlad
-\end{Verbatim}
+\end{VerbOut}
 
 The secure shell is called ``secure'' to contrast it with an older
 program called \texttt{rsh}, which stood for ``remote shell''. Back in
@@ -12395,9 +12397,9 @@ $ scp results.dat vlad@backupserver:backups/results-2011-11-11.dat
 Password: ********
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 results.dat              100%  9  1.0 MB/s 00:00
-\end{Verbatim}
+\end{VerbOut}
 
 Copying a whole directory is similar: we just use the \texttt{-r} option
 to signal that we want copying to be recursive. For example, this
@@ -12408,12 +12410,12 @@ $ scp -r vlad@backupserver:backups ./backups
 Password: ********
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 results-2011-09-18.dat              100%  7  1.0 MB/s 00:00
 results-2011-10-04.dat              100%  9  1.0 MB/s 00:00
 results-2011-10-28.dat              100%  8  1.0 MB/s 00:00
 results-2011-11-11.dat              100%  9  1.0 MB/s 00:00
-\end{Verbatim}
+\end{VerbOut}
 
 Here's one more thing SSH can do for us. Suppose we want to check
 whether we have already created the file
@@ -12425,10 +12427,10 @@ $ ssh vlad@backupserver "ls results"
 Password: ********
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 results-2011-09-18.dat  results-2011-10-28.dat
 results-2011-10-04.dat  results-2011-11-11.dat
-\end{Verbatim}
+\end{VerbOut}
 
 SSH takes the argument after our remote username and passes them to the
 shell on the remote computer. (We have to put quotes around it to make
@@ -12484,7 +12486,7 @@ element that doesn't exist causes an \texttt{IndexError}:
 open('nonexistent-file.txt', 'r')
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 IOError                                   Traceback (most recent call last)
 
@@ -12492,14 +12494,14 @@ IOError                                   Traceback (most recent call last)
 ----> 1 open('nonexistent-file.txt', 'r')
 
 IOError: [Errno 2] No such file or directory: 'nonexistent-file.txt'
-\end{Verbatim}
+\end{VerbErr}
 
 \begin{VerbIn}
 values = [0, 1, 2]
 print values[999]
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbErr}
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
 
@@ -12508,7 +12510,7 @@ IndexError                                Traceback (most recent call last)
 ----> 2 print values[999]
 
 IndexError: list index out of range
-\end{Verbatim}
+\end{VerbErr}
 
 We can use \texttt{try} and \texttt{except} to deal with these errors
 ourselves if we don't want the program simply to fall over:
@@ -12520,9 +12522,9 @@ except IOError:
     print 'Whoops!'
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Whoops!
-\end{Verbatim}
+\end{VerbOut}
 
 When Python executes this code, it runs the statement inside the
 \texttt{try}. If that works, it skips over the \texttt{except} block
@@ -13563,9 +13565,9 @@ open:
 $ git commit
 \end{VerbIn}
 
-\begin{Verbatim}
+\begin{VerbOut}
 Aborting commit due to empty commit message.
-\end{Verbatim}
+\end{VerbOut}
 
 \section{Programming with Python}
 
