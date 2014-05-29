@@ -4806,26 +4806,15 @@ original or restrict further re-use. The table below shows how the six
 Creative Commons licenses and PD relate to one another:
 
 \begin{tabular}{llllllll}
-\hline\noalign{\medskip}
-& Licenses that can be used for derivative work or adaptation
-\\\noalign{\medskip}
-Original work & by & by-nc & by-nc-nd & by-nc-sa & by-nd & by-sa & pd
-\\\noalign{\medskip}
-by & X & X & X & X & X & X &
-\\\noalign{\medskip}
-by-nc & & X & X & X & & &
-\\\noalign{\medskip}
-by-nc-nd & & & & & & &
-\\\noalign{\medskip}
-by-nc-sa & & & & X & & &
-\\\noalign{\medskip}
-by-nd & & & & & & &
-\\\noalign{\medskip}
-by-sa & & & & & & X &
-\\\noalign{\medskip}
-pd & X & X & X & X & X & X & X
-\\\noalign{\medskip}
-\hline
+& Licenses that can be used for derivative work or adaptation \\
+Original work & by & by-nc & by-nc-nd & by-nc-sa & by-nd & by-sa & pd \\
+by & X & X & X & X & X & X & \\
+by-nc & & X & X & X & & & \\
+by-nc-nd & & & & & & & \\
+by-nc-sa & & & & X & & & \\
+by-nd & & & & & & & \\
+by-sa & & & & & & X & \\
+pd & X & X & X & X & X & X & X \\
 \end{tabular}
 
 \urlfoot{http://software-carpentry.org/license.html}{Software Carpentry}
@@ -9108,115 +9097,66 @@ The tables below show the database we will use in our examples:
 \textbf{Person}: people who took readings.
 
 \begin{tabular}{lll}
-\hline\noalign{\medskip}
-ident & personal & family
-\\\noalign{\medskip}
-\hline\noalign{\medskip}
-dyer & William & Dyer
-\\\noalign{\medskip}
-pb & Frank & Pabodie
-\\\noalign{\medskip}
-lake & Anderson & Lake
-\\\noalign{\medskip}
-roe & Valentina & Roerich
-\\\noalign{\medskip}
-danforth & Frank & Danforth
-\\\noalign{\medskip}
+ident & personal & family \\
 \hline
+dyer & William & Dyer \\
+pb & Frank & Pabodie \\
+lake & Anderson & Lake \\
+roe & Valentina & Roerich \\
+danforth & Frank & Danforth \\
 \end{tabular}
 
 \textbf{Site}: locations where readings were taken.
 
 \begin{tabular}{lll}
-\hline\noalign{\medskip}
-name & lat & long
-\\\noalign{\medskip}
-\hline\noalign{\medskip}
-DR-1 & -49.85 & -128.57
-\\\noalign{\medskip}
-DR-3 & -47.15 & -126.72
-\\\noalign{\medskip}
-MSK-4 & -48.87 & -123.4
-\\\noalign{\medskip}
+name & lat & long \\
 \hline
+DR-1 & -49.85 & -128.57 \\
+DR-3 & -47.15 & -126.72 \\
+MSK-4 & -48.87 & -123.4 \\
 \end{tabular}
 
 \textbf{Visited}: when readings were taken at specific sites.
 
 \begin{tabular}{lll}
-\hline\noalign{\medskip}
-ident & site & dated
-\\\noalign{\medskip}
-\hline\noalign{\medskip}
-619 & DR-1 & 1927-02-08
-\\\noalign{\medskip}
-622 & DR-1 & 1927-02-10
-\\\noalign{\medskip}
-734 & DR-3 & 1939-01-07
-\\\noalign{\medskip}
-735 & DR-3 & 1930-01-12
-\\\noalign{\medskip}
-751 & DR-3 & 1930-02-26
-\\\noalign{\medskip}
-752 & DR-3 & ~
-\\\noalign{\medskip}
-837 & MSK-4 & 1932-01-14
-\\\noalign{\medskip}
-844 & DR-1 & 1932-03-22
-\\\noalign{\medskip}
+ident & site & dated \\
 \hline
+619 & DR-1 & 1927-02-08 \\
+622 & DR-1 & 1927-02-10 \\
+734 & DR-3 & 1939-01-07 \\
+735 & DR-3 & 1930-01-12 \\
+751 & DR-3 & 1930-02-26 \\
+752 & DR-3 & ~ \\
+837 & MSK-4 & 1932-01-14 \\
+844 & DR-1 & 1932-03-22 \\
 \end{tabular}
 
 \textbf{Survey}: the actual readings.
 
 \begin{tabular}{llll}
-\hline\noalign{\medskip}
-taken & person & quant & reading
-\\\noalign{\medskip}
-\hline\noalign{\medskip}
-619 & dyer & rad & 9.82
-\\\noalign{\medskip}
-619 & dyer & sal & 0.13
-\\\noalign{\medskip}
-622 & dyer & rad & 7.8
-\\\noalign{\medskip}
-622 & dyer & sal & 0.09
-\\\noalign{\medskip}
-734 & pb & rad & 8.41
-\\\noalign{\medskip}
-734 & lake & sal & 0.05
-\\\noalign{\medskip}
-734 & pb & temp & -21.5
-\\\noalign{\medskip}
-735 & pb & rad & 7.22
-\\\noalign{\medskip}
-735 & ~ & sal & 0.06
-\\\noalign{\medskip}
-735 & ~ & temp & -26.0
-\\\noalign{\medskip}
-751 & pb & rad & 4.35
-\\\noalign{\medskip}
-751 & pb & temp & -18.5
-\\\noalign{\medskip}
-751 & lake & sal & 0.1
-\\\noalign{\medskip}
-752 & lake & rad & 2.19
-\\\noalign{\medskip}
-752 & lake & sal & 0.09
-\\\noalign{\medskip}
-752 & lake & temp & -16.0
-\\\noalign{\medskip}
-752 & roe & sal & 41.6
-\\\noalign{\medskip}
-837 & lake & rad & 1.46
-\\\noalign{\medskip}
-837 & lake & sal & 0.21
-\\\noalign{\medskip}
-837 & roe & sal & 22.5
-\\\noalign{\medskip}
-844 & roe & rad & 11.25
-\\\noalign{\medskip}
+taken & person & quant & reading \\
 \hline
+619 & dyer & rad & 9.82 \\
+619 & dyer & sal & 0.13 \\
+622 & dyer & rad & 7.8 \\
+622 & dyer & sal & 0.09 \\
+734 & pb & rad & 8.41 \\
+734 & lake & sal & 0.05 \\
+734 & pb & temp & -21.5 \\
+735 & pb & rad & 7.22 \\
+735 & ~ & sal & 0.06 \\
+735 & ~ & temp & -26.0 \\
+751 & pb & rad & 4.35 \\
+751 & pb & temp & -18.5 \\
+751 & lake & sal & 0.1 \\
+752 & lake & rad & 2.19 \\
+752 & lake & sal & 0.09 \\
+752 & lake & temp & -16.0 \\
+752 & roe & sal & 41.6 \\
+837 & lake & rad & 1.46 \\
+837 & lake & sal & 0.21 \\
+837 & roe & sal & 22.5 \\
+844 & roe & rad & 11.25 \\
 \end{tabular}
 
 Notice that three entries---one in the \texttt{Visited} table, and two
@@ -9780,22 +9720,20 @@ select * from Site where (lat > -60) or (lat < 60);
   zero or more characters''.
 
   \begin{tabular}{ll}
-  \hline\noalign{\medskip}
-  Expression & Value
-  \\\noalign{\medskip}
-  \hline\noalign{\medskip}
-  \texttt{'a' like 'a'} & True
-  \\\noalign{\medskip}
-  \texttt{'a' like '\%a'} & True
-  \\\noalign{\medskip}
-  \texttt{'b' like '\%a'} & False
-  \\\noalign{\medskip}
-  \texttt{'alpha' like 'a\%'} & True
-  \\\noalign{\medskip}
-  \texttt{'alpha' like 'a\%p\%'} & True
-  \\\noalign{\medskip}
+    Expression & Value
+  \\
   \hline
-  \end{tabular}
+  \texttt{'a' like 'a'} & True
+  \\
+  \texttt{'a' like '\%a'} & True
+  \\
+  \texttt{'b' like '\%a'} & False
+  \\
+  \texttt{'alpha' like 'a\%'} & True
+  \\
+  \texttt{'alpha' like 'a\%p\%'} & True
+  \\
+    \end{tabular}
 
   The expression \texttt{*column-name* not like *pattern*} inverts the
   test. Using \texttt{like}, write a query that finds all the records in
@@ -9878,49 +9816,6 @@ Anderson Lake \\
 Valentina Roerich \\
 Frank Danforth \\
 \end{tabular}
-
-\begin{swcbox}{What's in a Name?}
-
-It may seem strange to use \texttt{personal} and \texttt{family} as
-field names instead of \texttt{first} and \texttt{last}, but it's a
-necessary first step toward handling cultural differences. For example,
-consider the following rules:
-
-\begin{tabular}{lll}
-\hline\noalign{\medskip}
-Full Name & Alphabetized Under & Reason
-\\\noalign{\medskip}
-\hline\noalign{\medskip}
-Liu Xiaobo & Liu & Chinese family names come first
-\\\noalign{\medskip}
-Leonardo da Vinci & Leonardo & ``da Vinci'' just means ``from Vinci''
-\\\noalign{\medskip}
-Catherine de Medici & Medici & family name
-\\\noalign{\medskip}
-Jean de La Fontaine & La Fontaine & family name is ``La Fontaine''
-\\\noalign{\medskip}
-Juan Ponce de Leon & Ponce de Leon & full family name is ``Ponce de
-Leon''
-\\\noalign{\medskip}
-Gabriel Garcia Marquez & Garcia Marquez & double-barrelled Spanish
-surnames
-\\\noalign{\medskip}
-Wernher von Braun & von \emph{or} Braun & depending on whether he was in
-Germany or the US
-\\\noalign{\medskip}
-Elizabeth Alexandra May Windsor & Elizabeth & monarchs alphabetize by
-the name under which they reigned
-\\\noalign{\medskip}
-Thomas a Beckett & Thomas & and saints according to the names by which
-they were canonized
-\\\noalign{\medskip}
-\hline
-\end{tabular}
-
-Clearly, even a two-part division into ``personal'' and ``family'' isn't
-enough\ldots{}
-
-\end{swcbox}
 
 \begin{challenge}
   After further reading, we realize that Valentina Roerich was reporting
@@ -10859,16 +10754,10 @@ Different database systems support different data types for table
 columns, but most provide the following:
 
 \begin{tabular}{ll}
-\hline\noalign{\medskip}
-integer & a signed integer
-\\\noalign{\medskip}
-real & a floating point number
-\\\noalign{\medskip}
-text & a character string
-\\\noalign{\medskip}
-blob & a ``binary large object'', such as an image
-\\\noalign{\medskip}
-\hline
+integer & a signed integer \\
+real & a floating point number \\
+text & a character string \\
+blob & a ``binary large object'', such as an image \\
 \end{tabular}
 
 Most databases also support Booleans and date/time values; SQLite uses
@@ -12896,26 +12785,15 @@ in the list \texttt{vals}. We then calculate the sum of those numbers.
 Clearly, this should be 0.9, 0.99, 0.999, and so on. But is it?
 
 \begin{tabular}{lll}
-\hline\noalign{\medskip}
-1 & 0.900000000000000022 & 0.900000000000000022
-\\\noalign{\medskip}
-2 & 0.089999999999999997 & 0.989999999999999991
-\\\noalign{\medskip}
-3 & 0.008999999999999999 & 0.998999999999999999
-\\\noalign{\medskip}
-4 & 0.000900000000000000 & 0.999900000000000011
-\\\noalign{\medskip}
-5 & 0.000090000000000000 & 0.999990000000000046
-\\\noalign{\medskip}
-6 & 0.000009000000000000 & 0.999999000000000082
-\\\noalign{\medskip}
-7 & 0.000000900000000000 & 0.999999900000000053
-\\\noalign{\medskip}
-8 & 0.000000090000000000 & 0.999999990000000061
-\\\noalign{\medskip}
-9 & 0.000000009000000000 & 0.999999999000000028
-\\\noalign{\medskip}
-\hline
+1 & 0.900000000000000022 & 0.900000000000000022 \\
+2 & 0.089999999999999997 & 0.989999999999999991 \\
+3 & 0.008999999999999999 & 0.998999999999999999 \\
+4 & 0.000900000000000000 & 0.999900000000000011 \\
+5 & 0.000090000000000000 & 0.999990000000000046 \\
+6 & 0.000009000000000000 & 0.999999000000000082 \\
+7 & 0.000000900000000000 & 0.999999900000000053 \\
+8 & 0.000000090000000000 & 0.999999990000000061 \\
+9 & 0.000000009000000000 & 0.999999999000000028 \\
 \end{tabular}
 
 Here are our answers. The first column is the loop index; the second,
