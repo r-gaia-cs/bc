@@ -9171,13 +9171,13 @@ table we want them from. Our query and its output look like this:
 select family, personal from Person;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 Dyer & William \\
 Pabodie & Frank \\
 Lake & Anderson \\
 Roerich & Valentina \\
 Danforth & Frank \\
-\end{tabular}
+\end{sqltable}
 
 The semi-colon at the end of the query tells the database manager that
 the query is complete and ready to run. We have written our commands and
@@ -9189,13 +9189,13 @@ don't have to: as the example below shows, SQL is
 SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 Dyer & William \\
 Pabodie & Frank \\
 Lake & Anderson \\
 Roerich & Valentina \\
 Danforth & Frank \\
-\end{tabular}
+\end{sqltable}
 
 Whatever casing convention you choose, please be consistent: complex
 queries are hard enough to read without the extra cognitive load of
@@ -9211,13 +9211,13 @@ the output by writing our query as:
 select personal, family from Person;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 William & Dyer \\
 Frank & Pabodie \\
 Anderson & Lake \\
 Valentina & Roerich \\
 Frank & Danforth \\
-\end{tabular}
+\end{sqltable}
 
 or even repeat columns:
 
@@ -9225,13 +9225,13 @@ or even repeat columns:
 select ident, ident, ident from Person;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 dyer & dyer & dyer \\
 pb & pb & pb \\
 lake & lake & lake \\
 roe & roe & roe \\
 danforth & danforth & danforth \\
-\end{tabular}
+\end{sqltable}
 
 As a shortcut, we can select all of the columns in a table using
 \texttt{*}:
@@ -9240,13 +9240,13 @@ As a shortcut, we can select all of the columns in a table using
 select * from Person;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 dyer & William & Dyer \\
 pb & Frank & Pabodie \\
 lake & Anderson & Lake \\
 roe & Valentina & Roerich \\
 danforth & Frank & Danforth \\
-\end{tabular}
+\end{sqltable}
 
 \begin{challenge}
   Write a query that selects only site names from the \texttt{Site}
@@ -9304,7 +9304,7 @@ the \texttt{survey} table, we get this:
 select quant from Survey;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 rad \\
 sal \\
 rad \\
@@ -9326,7 +9326,7 @@ rad \\
 sal \\
 sal \\
 rad \\
-\end{tabular}
+\end{sqltable}
 
 We can eliminate the redundant output to make the result more readable
 by adding the \texttt{distinct} keyword to our query:
@@ -9335,11 +9335,11 @@ by adding the \texttt{distinct} keyword to our query:
 select distinct quant from Survey;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 rad \\
 sal \\
 temp \\
-\end{tabular}
+\end{sqltable}
 
 If we select more than one column---for example, both the survey site ID
 and the quantity measured---then the distinct pairs of values are
@@ -9349,7 +9349,7 @@ returned:
 select distinct taken, quant from Survey;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 619 & rad \\
 619 & sal \\
 622 & rad \\
@@ -9369,7 +9369,7 @@ select distinct taken, quant from Survey;
 837 & rad \\
 837 & sal \\
 844 & rad \\
-\end{tabular}
+\end{sqltable}
 
 Notice in both cases that duplicates are removed even if they didn't
 appear to be adjacent in the database. Again, it's important to remember
@@ -9391,13 +9391,13 @@ to our query:
 select * from Person order by ident;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 danforth & Frank & Danforth \\
 dyer & William & Dyer \\
 lake & Anderson & Lake \\
 pb & Frank & Pabodie \\
 roe & Valentina & Roerich \\
-\end{tabular}
+\end{sqltable}
 
 By default, results are sorted in ascending order (i.e., from least to
 greatest). We can sort in the opposite order using \texttt{desc} (for
@@ -9407,13 +9407,13 @@ greatest). We can sort in the opposite order using \texttt{desc} (for
 select * from person order by ident desc;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 roe & Valentina & Roerich \\
 pb & Frank & Pabodie \\
 lake & Anderson & Lake \\
 dyer & William & Dyer \\
 danforth & Frank & Danforth \\
-\end{tabular}
+\end{sqltable}
 
 (And if we want to make it clear that we're sorting in ascending order,
 we can use \texttt{asc} instead of \texttt{desc}.)
@@ -9427,7 +9427,7 @@ descending order by \texttt{person} within each group of equal
 select taken, person from Survey order by taken asc, person desc;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 619 & dyer \\
 619 & dyer \\
 622 & dyer \\
@@ -9449,7 +9449,7 @@ select taken, person from Survey order by taken asc, person desc;
 837 & lake \\
 837 & lake \\
 844 & roe \\
-\end{tabular}
+\end{sqltable}
 
 This is easier to understand if we also remove duplicates:
 
@@ -9457,7 +9457,7 @@ This is easier to understand if we also remove duplicates:
 select distinct taken, person from Survey order by taken asc, person desc;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 619 & dyer \\
 622 & dyer \\
 734 & pb \\
@@ -9471,7 +9471,7 @@ select distinct taken, person from Survey order by taken asc, person desc;
 837 & roe \\
 837 & lake \\
 844 & roe \\
-\end{tabular}
+\end{sqltable}
 
 \begin{challenge}
   Write a query that returns the distinct dates in the \texttt{Visited}
@@ -9516,11 +9516,11 @@ particular site was visited. We can select these records from the
 select * from Visited where site='DR-1';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 619 & DR-1 & 1927-02-08 \\
 622 & DR-1 & 1927-02-10 \\
 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 The database manager executes this query in two stages. First, it checks
 at each row in the \texttt{Visited} table to see which ones satisfy the
@@ -9535,11 +9535,11 @@ This processing order means that we can filter records using
 select ident from Visited where site='DR-1';
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 619 \\
 622 \\
 844 \\
-\end{tabular}
+\end{sqltable}
 
 \swcgraphics{f:filter}{Filtering in SQL}{novice/sql/img/sql-filter.png}
 
@@ -9550,9 +9550,9 @@ we can ask for all information from the DR-1 site collected since 1930:
 select * from Visited where (site='DR-1') and (dated>='1930-00-00');
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 (The parentheses around the individual tests aren't strictly required,
 but they help make the query easier to read.)
@@ -9579,7 +9579,7 @@ Roerich, we can combine the tests on their names using \texttt{or}:
 select * from Survey where person='lake' or person='roe';
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 734 & lake & sal & 0.05 \\
 751 & lake & sal & 0.1 \\
 752 & lake & rad & 2.19 \\
@@ -9590,7 +9590,7 @@ select * from Survey where person='lake' or person='roe';
 837 & lake & sal & 0.21 \\
 837 & roe & sal & 22.5 \\
 844 & roe & rad & 11.25 \\
-\end{tabular}
+\end{sqltable}
 
 Alternatively, we can use \texttt{in} to see if a value is in a specific
 set:
@@ -9599,7 +9599,7 @@ set:
 select * from Survey where person in ('lake', 'roe');
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 734 & lake & sal & 0.05 \\
 751 & lake & sal & 0.1 \\
 752 & lake & rad & 2.19 \\
@@ -9610,7 +9610,7 @@ select * from Survey where person in ('lake', 'roe');
 837 & lake & sal & 0.21 \\
 837 & roe & sal & 22.5 \\
 844 & roe & rad & 11.25 \\
-\end{tabular}
+\end{sqltable}
 
 We can combine \texttt{and} with \texttt{or}, but we need to be careful
 about which operator is executed first. If we \emph{don't} use
@@ -9620,7 +9620,7 @@ parentheses, we get this:
 select * from Survey where quant='sal' and person='lake' or person='roe';
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 734 & lake & sal & 0.05 \\
 751 & lake & sal & 0.1 \\
 752 & lake & sal & 0.09 \\
@@ -9628,7 +9628,7 @@ select * from Survey where quant='sal' and person='lake' or person='roe';
 837 & lake & sal & 0.21 \\
 837 & roe & sal & 22.5 \\
 844 & roe & rad & 11.25 \\
-\end{tabular}
+\end{sqltable}
 
 which is salinity measurements by Lake, and \emph{any} measurement by
 Roerich. We probably want this instead:
@@ -9637,14 +9637,14 @@ Roerich. We probably want this instead:
 select * from Survey where quant='sal' and (person='lake' or person='roe');
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 734 & lake & sal & 0.05 \\
 751 & lake & sal & 0.1 \\
 752 & lake & sal & 0.09 \\
 752 & roe & sal & 41.6 \\
 837 & lake & sal & 0.21 \\
 837 & roe & sal & 22.5 \\
-\end{tabular}
+\end{sqltable}
 
 Finally, we can use \texttt{distinct} with \texttt{where} to give a
 second level of filtering:
@@ -9653,13 +9653,13 @@ second level of filtering:
 select distinct person, quant from Survey where person='lake' or person='roe';
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 lake & sal \\
 lake & rad \\
 lake & temp \\
 roe & sal \\
 roe & rad \\
-\end{tabular}
+\end{sqltable}
 
 But remember: \texttt{distinct} is applied to the values displayed in
 the chosen columns, not to the entire rows as they are being processed.
@@ -9750,7 +9750,7 @@ on the fly as part of our query:
 select 1.05 * reading from Survey where quant='rad';
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 10.311 \\
 8.19 \\
 8.8305 \\
@@ -9759,7 +9759,7 @@ select 1.05 * reading from Survey where quant='rad';
 2.2995 \\
 1.533 \\
 11.8125 \\
-\end{tabular}
+\end{sqltable}
 
 When we run the query, the expression \texttt{1.05 * reading} is
 evaluated for each row. Expressions can use any of the fields, all of
@@ -9772,12 +9772,12 @@ and round to two decimal places:
 select taken, round(5*(reading-32)/9, 2) from Survey where quant='temp';
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 734 & -29.72 \\
 735 & -32.22 \\
 751 & -28.06 \\
 752 & -26.67 \\
-\end{tabular}
+\end{sqltable}
 
 We can also combine values from different fields, for example by using
 the string concatenation operator \texttt{\textbar{}\textbar{}}:
@@ -9786,13 +9786,13 @@ the string concatenation operator \texttt{\textbar{}\textbar{}}:
 select personal || ' ' || family from Person;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 William Dyer \\
 Frank Pabodie \\
 Anderson Lake \\
 Valentina Roerich \\
 Frank Danforth \\
-\end{tabular}
+\end{sqltable}
 
 \begin{challenge}
   After further reading, we realize that Valentina Roerich was reporting
@@ -9807,17 +9807,17 @@ Frank Danforth \\
 select * from Person where ident='dyer' union select * from Person where ident='roe';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 dyer & William & Dyer \\
 roe & Valentina & Roerich \\
-\end{tabular}
+\end{sqltable}
 
 Use \texttt{union} to create a consolidated list of salinity
 measurements in which Roerich's, and only Roerich's, have been corrected
 as described in the previous challenge. The output should be something
 like:
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 619 & 0.13 \\
 622 & 0.09 \\
 734 & 0.05 \\
@@ -9826,7 +9826,7 @@ like:
 752 & 0.416 \\
 837 & 0.21 \\
 837 & 0.225 \\
-\end{tabular}
+\end{sqltable}
 \end{challenge}
 
 \begin{challenge}
@@ -9837,11 +9837,11 @@ like:
 select distinct site from Visited;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 DR-1 \\
 DR-3 \\
 MSK-4 \\
-\end{tabular}
+\end{sqltable}
 
 Some major site identifiers are two letters long and some are three. The
 ``in string'' function \texttt{instr(X, Y)} returns the 1-based index of
@@ -9888,7 +9888,7 @@ null:
 select * from Visited;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 619 & DR-1 & 1927-02-08 \\
 622 & DR-1 & 1927-02-10 \\
 734 & DR-3 & 1939-01-07 \\
@@ -9897,7 +9897,7 @@ select * from Visited;
 752 & DR-3 & ~ \\
 837 & MSK-4 & 1932-01-14 \\
 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 Null doesn't behave like other values. If we select the records that
 come before 1930:
@@ -9906,10 +9906,10 @@ come before 1930:
 select * from Visited where dated<'1930-00-00';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 619 & DR-1 & 1927-02-08 \\
 622 & DR-1 & 1927-02-10 \\
-\end{tabular}
+\end{sqltable}
 
 we get two results, and if we select the ones that come during or after
 1930:
@@ -9918,13 +9918,13 @@ we get two results, and if we select the ones that come during or after
 select * from Visited where dated>='1930-00-00';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 734 & DR-3 & 1939-01-07 \\
 735 & DR-3 & 1930-01-12 \\
 751 & DR-3 & 1930-02-26 \\
 837 & MSK-4 & 1932-01-14 \\
 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 we get five, but record \#752 isn't in either set of results. The reason
 is that \texttt{null\textless{}'1930-00-00'} is neither true nor false:
@@ -9961,9 +9961,9 @@ test \texttt{is null}:
 select * from Visited where dated is NULL;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 752 & DR-3 & ~ \\
-\end{tabular}
+\end{sqltable}
 
 or its inverse \texttt{is not null}:
 
@@ -9971,7 +9971,7 @@ or its inverse \texttt{is not null}:
 select * from Visited where dated is not NULL;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 619 & DR-1 & 1927-02-08 \\
 622 & DR-1 & 1927-02-10 \\
 734 & DR-3 & 1939-01-07 \\
@@ -9979,7 +9979,7 @@ select * from Visited where dated is not NULL;
 751 & DR-3 & 1930-02-26 \\
 837 & MSK-4 & 1932-01-14 \\
 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 Null values cause headaches wherever they appear. For example, suppose
 we want to find all the salinity measurements that weren't taken by
@@ -9989,12 +9989,12 @@ Dyer. It's natural to write the query like this:
 select * from Survey where quant='sal' and person!='lake';
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 619 & dyer & sal & 0.13 \\
 622 & dyer & sal & 0.09 \\
 752 & roe & sal & 41.6 \\
 837 & roe & sal & 22.5 \\
-\end{tabular}
+\end{sqltable}
 
 but this query filters omits the records where we don't know who took
 the measurement. Once again, the reason is that when \texttt{person} is
@@ -10006,13 +10006,13 @@ need to add an explicit check:
 select * from Survey where quant='sal' and (person!='lake' or person is null);
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 619 & dyer & sal & 0.13 \\
 622 & dyer & sal & 0.09 \\
 735 & None & sal & 0.06 \\
 752 & roe & sal & 41.6 \\
 837 & roe & sal & 22.5 \\
-\end{tabular}
+\end{sqltable}
 
 We still have to decide whether this is the right thing to do or not. If
 we want to be absolutely sure that we aren't including any measurements
@@ -10079,7 +10079,7 @@ to select all of the dates from the \texttt{Visited} table:
 select dated from Visited;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 1927-02-08 \\
 1927-02-10 \\
 1939-01-07 \\
@@ -10088,7 +10088,7 @@ select dated from Visited;
 ~ \\
 1932-01-14 \\
 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 but to combine them, wee must use an
 \gl{aggregation function}{g:aggregation-function} such as
@@ -10100,9 +10100,9 @@ records as input, and produces a single record as output
 select min(dated) from Visited;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 1927-02-08 \\
-\end{tabular}
+\end{sqltable}
 
 \swcgraphics{f:aggregate}{Aggregation in SQL}{novice/sql/img/sql-aggregation.png}
 
@@ -10110,9 +10110,9 @@ select min(dated) from Visited;
 select max(dated) from Visited;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 1939-01-07 \\
-\end{tabular}
+\end{sqltable}
 
 \texttt{min} and \texttt{max} are just two of the aggregation functions
 built into SQL. Three others are \texttt{avg}, \texttt{count}, and
@@ -10122,25 +10122,25 @@ built into SQL. Three others are \texttt{avg}, \texttt{count}, and
 select avg(reading) from Survey where quant='sal';
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 7.20333333333 \\
-\end{tabular}
+\end{sqltable}
 
 \begin{VerbIn}
 select count(reading) from Survey where quant='sal';
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 9 \\
-\end{tabular}
+\end{sqltable}
 
 \begin{VerbIn}
 select sum(reading) from Survey where quant='sal';
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 64.83 \\
-\end{tabular}
+\end{sqltable}
 
 We used \texttt{count(reading)} here, but we could just as easily have
 counted \texttt{quant} or any other field in the table, or even used
@@ -10154,9 +10154,9 @@ the range of sensible salinity measurements:
 select min(reading), max(reading) from Survey where quant='sal' and reading<=1.0;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 0.05 & 0.21 \\
-\end{tabular}
+\end{sqltable}
 
 We can also combine aggregated results with raw results, although the
 output might surprise you:
@@ -10165,9 +10165,9 @@ output might surprise you:
 select person, count(*) from Survey where quant='sal' and reading<=1.0;
 \end{VerbIn}
 
-\begin{tabular}{ll}
+\begin{sqltable}{ll}
 lake & 7 \\
-\end{tabular}
+\end{sqltable}
 
 Why does Lake's name appear rather than Roerich's or Dyer's? The answer
 is that when it has to aggregate a field, but isn't told how to, the
@@ -10182,9 +10182,9 @@ arbitrary value:
 select person, max(reading), sum(reading) from Survey where quant='missing';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 ~ & ~ & ~ \\
-\end{tabular}
+\end{sqltable}
 
 One final important feature of aggregation functions is that they are
 inconsistent with the rest of SQL in a very useful way. If we add two
@@ -10198,9 +10198,9 @@ that are non-null. This behavior lets us write our queries as:
 select min(dated) from Visited;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 1927-02-08 \\
-\end{tabular}
+\end{sqltable}
 
 instead of always having to filter explicitly:
 
@@ -10208,9 +10208,9 @@ instead of always having to filter explicitly:
 select min(dated) from Visited where dated is not null;
 \end{VerbIn}
 
-\begin{tabular}{l}
+\begin{sqltable}{l}
 1927-02-08 \\
-\end{tabular}
+\end{sqltable}
 
 Aggregating all records at once doesn't always make sense. For example,
 suppose Gina suspects that there is a systematic bias in her data, and
@@ -10223,9 +10223,9 @@ from  Survey
 where quant='rad';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 roe & 8 & 6.56 \\
-\end{tabular}
+\end{sqltable}
 
 because the database manager selects a single arbitrary scientist's name
 rather than aggregating separately for each scientist. Since there are
@@ -10238,9 +10238,9 @@ where quant='rad'
 and   person='dyer';
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 dyer & 2 & 8.81 \\
-\end{tabular}
+\end{sqltable}
 
 but this would be tedious, and if she ever had a data set with fifty or
 five hundred scientists, the chances of her getting all of those queries
@@ -10256,12 +10256,12 @@ where    quant='rad'
 group by person;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 dyer & 2 & 8.81 \\
 lake & 2 & 1.82 \\
 pb & 3 & 6.66 \\
 roe & 1 & 11.25 \\
-\end{tabular}
+\end{sqltable}
 
 \texttt{group by} does exactly what its name implies: groups all the
 records with the same value for the specified field together so that
@@ -10281,7 +10281,7 @@ from     Survey
 group by person, quant;
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 ~ & sal & 1 & 0.06 \\
 ~ & temp & 1 & -26.0 \\
 dyer & rad & 2 & 8.81 \\
@@ -10293,7 +10293,7 @@ pb & rad & 3 & 6.66 \\
 pb & temp & 2 & -20.0 \\
 roe & rad & 1 & 11.25 \\
 roe & sal & 2 & 32.05 \\
-\end{tabular}
+\end{sqltable}
 
 Note that we have added \texttt{person} to the list of fields displayed,
 since the results wouldn't make much sense otherwise.
@@ -10309,7 +10309,7 @@ group by person, quant
 order by person, quant;
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 dyer & rad & 2 & 8.81 \\
 dyer & sal & 2 & 0.11 \\
 lake & rad & 2 & 1.82 \\
@@ -10319,7 +10319,7 @@ pb & rad & 3 & 6.66 \\
 pb & temp & 2 & -20.0 \\
 roe & rad & 1 & 11.25 \\
 roe & sal & 2 & 32.05 \\
-\end{tabular}
+\end{sqltable}
 
 Looking more closely, this query:
 
@@ -10421,7 +10421,7 @@ start by joining the \texttt{Site} and \texttt{Visited} tables:
 select * from Site join Visited;
 \end{VerbIn}
 
-\begin{tabular}{llllll}
+\begin{sqltable}{llllll}
 DR-1 & -49.85 & -128.57 & 619 & DR-1 & 1927-02-08 \\
 DR-1 & -49.85 & -128.57 & 622 & DR-1 & 1927-02-10 \\
 DR-1 & -49.85 & -128.57 & 734 & DR-3 & 1939-01-07 \\
@@ -10446,7 +10446,7 @@ MSK-4 & -48.87 & -123.4 & 751 & DR-3 & 1930-02-26 \\
 MSK-4 & -48.87 & -123.4 & 752 & DR-3 & ~ \\
 MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
 MSK-4 & -48.87 & -123.4 & 844 & DR-1 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 \texttt{join} creates the \gl{cross product}{g:cross-product} of
 two tables, i.e., it joins each record of one with each record of the
@@ -10465,7 +10465,7 @@ site name:
 select * from Site join Visited on Site.name=Visited.site;
 \end{VerbIn}
 
-\begin{tabular}{llllll}
+\begin{sqltable}{llllll}
 DR-1 & -49.85 & -128.57 & 619 & DR-1 & 1927-02-08 \\
 DR-1 & -49.85 & -128.57 & 622 & DR-1 & 1927-02-10 \\
 DR-1 & -49.85 & -128.57 & 844 & DR-1 & 1932-03-22 \\
@@ -10474,7 +10474,7 @@ DR-3 & -47.15 & -126.72 & 735 & DR-3 & 1930-01-12 \\
 DR-3 & -47.15 & -126.72 & 751 & DR-3 & 1930-02-26 \\
 DR-3 & -47.15 & -126.72 & 752 & DR-3 & ~ \\
 MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
-\end{tabular}
+\end{sqltable}
 
 \texttt{on} does the same job as \texttt{where}: it only keeps records
 that pass some test. (The difference between the two is that \texttt{on}
@@ -10500,7 +10500,7 @@ from   Site join Visited
 on     Site.name=Visited.site;
 \end{VerbIn}
 
-\begin{tabular}{lll}
+\begin{sqltable}{lll}
 -49.85 & -128.57 & 1927-02-08 \\
 -49.85 & -128.57 & 1927-02-10 \\
 -49.85 & -128.57 & 1932-03-22 \\
@@ -10509,7 +10509,7 @@ on     Site.name=Visited.site;
 -47.15 & -126.72 & 1930-02-26 \\
 -47.15 & -126.72 & 1939-01-07 \\
 -48.87 & -123.4 & 1932-01-14 \\
-\end{tabular}
+\end{sqltable}
 
 If joining two tables is good, joining many tables must be better. In
 fact, we can join any number of tables simply by adding more
@@ -10524,7 +10524,7 @@ and    Visited.ident=Survey.taken
 and    Visited.dated is not null;
 \end{VerbIn}
 
-\begin{tabular}{lllll}
+\begin{sqltable}{lllll}
 -49.85 & -128.57 & 1927-02-08 & rad & 9.82 \\
 -49.85 & -128.57 & 1927-02-08 & sal & 0.13 \\
 -49.85 & -128.57 & 1927-02-10 & rad & 7.8 \\
@@ -10542,7 +10542,7 @@ and    Visited.dated is not null;
 -48.87 & -123.4 & 1932-01-14 & sal & 0.21 \\
 -48.87 & -123.4 & 1932-01-14 & sal & 22.5 \\
 -49.85 & -128.57 & 1932-03-22 & rad & 11.25 \\
-\end{tabular}
+\end{sqltable}
 
 We can tell which records from \texttt{Site}, \texttt{Visited}, and
 \texttt{Survey} correspond with each other because those tables contain
@@ -10573,13 +10573,13 @@ numbers in queries:
 select rowid, * from Person;
 \end{VerbIn}
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 1 & dyer & William & Dyer \\
 2 & pb & Frank & Pabodie \\
 3 & lake & Anderson & Lake \\
 4 & roe & Valentina & Roerich \\
 5 & danforth & Frank & Danforth \\
-\end{tabular}
+\end{sqltable}
 
 \subsection{Data Hygiene}
 
@@ -10604,7 +10604,7 @@ The third rule is that there should be no redundant information. For
 example, we could get rid of the \texttt{Site} table and rewrite the
 \texttt{Visited} table like this:
 
-\begin{tabular}{llll}
+\begin{sqltable}{llll}
 619 & -49.85 & -128.57 & 1927-02-08 \\
 622 & -49.85 & -128.57 & 1927-02-10 \\
 734 & -47.15 & -126.72 & 1939-01-07 \\
@@ -10613,7 +10613,7 @@ example, we could get rid of the \texttt{Site} table and rewrite the
 752 & -47.15 & -126.72 & ~ \\
 837 & -48.87 & -123.40 & 1932-01-14 \\
 844 & -49.85 & -128.57 & 1932-03-22 \\
-\end{tabular}
+\end{sqltable}
 
 In fact, we could use a single table that recorded all the information
 about each reading in each row, just as a spreadsheet would. The problem
