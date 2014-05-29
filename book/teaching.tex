@@ -1,0 +1,711 @@
+\chapter{Instructor's Guide}\label{s:instructors}
+
+As a species, we know a lot about how brains learn, how effective
+various teaching practices are, and how society's needs and expectations
+shape how and how well we learn. As individuals, though, most people who
+teach at college and university either don't know this knowledge exists,
+or haven't incorporated it into their teaching. It's as if only doctors
+knew about the connection between smoking and cancer.
+
+The best guide to evidence-based learning we have found is \emph{How
+Learning Works: Seven Research-Based Principles for Smart Teaching} (see
+the bibliography for the full citation). Its advice is based in equal
+parts on theory, research, and experience. While some of the
+recommendations may seem banal, the full-length explanations in the book
+itself are anything but.
+
+We try to incorporate these ideas into our teaching, and into our
+\urlfoot{http://teaching.software-carpentry.org}{instructor training
+course}. If you are interested in taking part, please get in touch.
+
+\section{General Advice}
+
+This is a placeholder for general notes about teaching. For up-to-date
+information about software installation and configuration problems, and
+their solutions, see
+\urlfoot{https://github.com/swcarpentry/bc/wiki/Configuration-Problems-and-Solutions}{this
+wiki page}.
+
+\subsection*{Teaching Notes}
+
+\begin{swcitemize}
+\item
+  For bootcamps that extend over more than two days (e.g., four
+  afternoons spread over two weeks), it's a good idea to email the
+  learners at the end of each day with a summary of what was taught
+  (with links to the relevant online notes). This allows absent learners
+  to catch up before the next session, and is also a great opporunity to
+  present the lessons of the day in the context of the entire bootcamp.
+\item
+  Point learners at
+  \urlfoot{http://software-carpentry.org/v5/}{http://software-carpentry.org/v5/},
+  which is the permanent home of the current learning materials, and at
+  \urlfoot{http://software-carpentry.org/v4/}{http://software-carpentry.org/v4/},
+  which is where our previous materials live. The former corresponds to
+  what they're being taught; the latter covers more ground in video as
+  well as in slides and prose. They should also be direct to
+  \urlfoot{http://software-carpentry.org/faq.html}{Software Carpentry's
+  FAQ}.
+\item
+  Explain that the lesson materials can all be freely re-mixed and
+  re-used under the \urlfoot{../../LICENSE.html}{Creative Commons -
+  Attribution} (CC-BY) license, provided people cite us as the original
+  source (e.g., provide a link back to our site). However, Software
+  Carpentry's name and logo are trademarked, and cannot be used without
+  our permission. We normally grant this to any class that (a) covers
+  our core topics and (b) has at least one badged instructor on the
+  teaching roster, but are happy to discuss specifics.
+\item
+  Plan for the first 30-60 minutes of the bootcamp to be spent on
+  installation and setup, because it's going to happen anyway. Running a
+  pre-bootcamp ``help desk'' doesn't really affect this: the people who
+  are most likely to have installation problems probably won't show up.
+  (We fantasize occasionally about turning people away if they haven't
+  installed software, or at least downloaded the installers, but in
+  practice it's hard to do.)
+\item
+  Emphasise that good software development skills contribute to
+  productive, reproducible, reusable research.
+\item
+  Have learners post a red sticky note on their laptop whenever they
+  have a question or need help. Have them take down their sticky notes
+  at the start of each practical exercise, and then post a green one
+  when they're done (and a red one when they need help).
+\item
+  At lunch and again at the end of the day, ask learners to write one
+  good point (i.e., something they learned or enjoyed) on their green
+  sticky note and one bad point (i.e., something that didn't work, that
+  they didn't understand, or that they already knew) on their red one.
+  It only takes a couple of minutes to sort through these, and it's a
+  quick way to find out how things are actually going.
+\item
+  At the very end of the bootcamp, ask learners to alternately give one
+  good point or one bad one about the entire bootcamp. Write these down
+  on the whiteboard as they come in, and do not allow repeats (i.e.,
+  every point has to be new). The first few negative points will usually
+  be pretty innocuous; after those have been exhausted, you will start
+  to get the real feedback.
+\item
+  As a variation on the red/green sticky notes, make little name tents
+  out of red and green paper, held together with name tag labels. The
+  learners write their names on the name tags, and prop the tents either
+  green side up or red side up depending on the feedback they want to
+  give about the lesson being too fast or too slow.
+\item
+  Back up the material with your own anecdotes, experiences and
+  evidence---it makes you more credible, helps learners understand how
+  to apply what you're teaching to their own problems, and prevents the
+  lectures from becoming too dry.
+\item
+  Keep a running list of the commands encountered so far in the lesson
+  in the Etherpad or on a whiteboard adjacent to the projection screen.
+  Encourage learners (particularly ones who already know the material
+  and might otherwise get bored) to take notes in the Etherpad as well.
+  This reduces the effort per learner, gives you a chance to see what
+  they think you're saying, and provides a record after the bootcamp of
+  what was actually taught.
+\item
+  When the co-instructor isn't teaching, she can answer questions on the
+  Etherpad and update it with the key points made by the instructor
+  (along with commands and any related points the instructor may not
+  have mentioned). It's less disruptive to the ``live'' instructor than
+  interjecting with these points, but allows the attendees to get the
+  shared expertise from both instructors.
+\item
+  For bootcamps that extend over more than two days (e.g. four
+  afternoons spread over two weeks), it's a good idea to email the
+  learners at the end of each day with a summary of what was taught
+  (with links to the relevant online notes). Not only does this allow
+  absent learners to catch up before the next session, it's also a great
+  opporunity to present the lessons of the day in the context of the
+  entire bootcamp.
+\item
+  The long-form notes are intended as a script for instructors and as
+  self-study material for learners. Do \emph{not} show these notebooks
+  to learners: instead, start with a blank notebook when teaching and
+  add code as you go. This helps prevent you from racing ahead of
+  learners and makes it easier for you to improvise in response to their
+  questions.
+\item
+  Point learners at the online versions of the long-form notes (either
+  on your bootcamp's home page or at
+  \urlfoot{http://software-carpentry.org/v5/}{http://software-carpentry.org/v5/}
+  \emph{after} the lesson is done: if you do it before the lesson,
+  they'll try to read the notes while you're trying to talk.
+\item
+  If you're really keen, keep the SVG's of the diagrams handy in the
+  directory where you're doing your teaching so that you can include
+  them in your notebooks by adding an
+  \texttt{\textless{}img src="novice/teaching/..."\textgreater{}}
+  element to a Markdown cell (or just display them in your browser).
+  Most people don't ever actually do this though, either because they
+  forget to or because they have a whiteboard or flipchart handy.
+\item
+  There are (at least) three ways to get data files to learners at the
+  start of a lesson:
+
+  \begin{swcenumerate2}
+  \item
+    Create a zip file, add it to your bootcamp's repository, and put a
+    link to it in your bootcamp's \texttt{index.html} page so that they
+    can click, download, and unzip. This uses something everyone already
+    understands, but does assume they know how to navigate from their
+    download directory to their working (lesson) directory, which is
+    often not the case.
+  \item
+    Create a throwaway Git repository on GitHub and tell them to run one
+    command to clone it at the start of class. This (usually) works even
+    if they've never used Git, and as a bonus, lets you identify people
+    who (are going to) have Git problems early.
+  \item
+    Paste the data into an Etherpad for learners to copy. As a bonus,
+    this lets you identify people who (are going to) have trouble using
+    a text editor early.
+  \end{swcenumerate2}
+\item
+  If you are using multiple windows (e.g., a command window and an
+  editor window) make sure they are both large enough to be visible by
+  all attendees. Remember to pause when switching from one window to the
+  other so that learners don't become confused. If possible, use
+  different background colors for different text windows to make it
+  easier for learners to tell them apart (but keep in mind red-green and
+  blue-yellow color blindness).
+\item
+  As you type at the command line, read out what you're typing. Remember
+  that most learners can only go half as fast as you, because they have
+  to watch you type then type it all in again themselves.
+\end{swcitemize}
+
+\subsection*{Pitfalls}
+
+Instructing at a bootcamp isn't trivial. The most important thing is to
+remember that no lesson plan survives contact with the audience. Whether
+it's the network going down or the sudden realization that many of your
+learners \emph{don't} know how to use SSH, you will frequently need to
+improvise. And even when there aren't hiccups like those, try your best
+to adjust your pace and examples based on learners' questions, puzzled
+looks, and sighs of impatience.
+
+\textbf{Allow enough time for setup.}
+
+In almost all cases, learners want to use their own laptops during
+bootcamps so that they leave with a working environment set up. Even if
+you ask attendees to prepare beforehand, and give them detailed
+instructions, some will not have time, or will have run into problems
+that they're not yet able to fix. You should therefore schedule at least
+20 minutes for \emph{checking the learners' machines} at the beginning
+of the first day. Some bootcamps start early on the first day to allow
+time to troubleshoot setup problems.
+
+\textbf{Don't ignore your learners.}
+
+You're not there to reproduce one of our online videos in person: you're
+there to interact with people so that they get a better learning
+experience. You shouldn't ever go more than two or three minutes without
+asking a question (and listening to the answer), and if it has been 15
+minutes since any of your learners asked one, odds are you've either
+lost them or are boring them.
+
+\textbf{Don't bore your learners.}
+
+Your audience will never care more about what you're teaching than you
+appear to, so if they get the feeling you're not interested in it, they
+won't be either. This does \emph{not} mean you have to shout, crack
+three jokes a minute, or harangue them about how this stuff is really,
+really important, but you do owe it to your audience to show up mentally
+as well as physically.
+
+\textbf{Don't be all talk, no action.}
+
+The more time folks spend with their hands on the keyboards doing
+exercises, the more time they're actually paying attention. The students
+have their computers in front of them: if you talk for more than five
+minutes without asking them to use their computers, they'll do so
+anyway---on Facebook.
+
+\textbf{Don't use magic.}
+
+Typing too fast, using shortcuts or commands learners haven't seen
+yet---basically, any time you say, ``Don't worry about this just now,''
+or they say, ``Wait, how did you do that?'' or, ``Can you please slow
+down, I can't keep up,'' you're no longer actually helping them.
+
+\textbf{Don't ignore feedback.}
+
+The feedback you get from learners on sticky notes or through surveys is
+pointless if you don't pay attention to it (or worse, if you explain it
+away). There's no point collecting feedback during and after each
+bootcamp if you don't change what and how you teach to reflect it.
+
+\textbf{Tell learners ``why''.}
+
+Most of our learners are graduate students in science and engineering,
+so they know what evidence looks like, and why working practices should
+be evidence-based. That doesn't mean you have to have the whole of
+empirical software engineering at your fingertips, but please do read
+\emph{\urlfoot{http://www.amazon.com/Facts-Fallacies-Software-Engineering-Robert/dp/0321117425/}{Facts
+and Fallacies of Software Engineering}} and sprinkle a few of the
+findings it quotes into your lessons.
+
+\textbf{Don't show them the forest but not the trees.}
+
+The things we teach reinforce each other, so tie them together at every
+opportunity. Point out that connecting things with pipes in the shell is
+like chaining functions together, or that they can use a shell script to
+re-run a bunch of different tests before committing to version control,
+and so on. If possible, take 15 minutes or so each day to show them how
+you use these tools in your day-to-day work.
+
+\textbf{Don't underestimate setup requirements.}
+
+Do you have enough power outlets? (Are you sure?) Do you have enough
+bandwidth to handle fifty people hitting your version control repository
+at the same time? (How do you know?) Can everyone actually log in? Are
+the washrooms unlocked? Does campus security know you're using the room
+over the weekend?
+
+\textbf{Don't let your learners ignore each other.}
+
+Software Carpentry bootcamps are a great networking opportunity for our
+learners (and for us, too). Get to know your learners by name, have them
+work in pairs, and get them to mix up the pairs at least a couple of
+times. Encourage them to chat to one another at coffee breaks and lunch,
+and to get a pizza or some curry together for dinner on the first day.
+
+\textbf{Relax.}
+
+Something always fails to install for someone (or they fail to install
+anything at all), or a bunch of learners are accidentally locked out of
+the building after lunch, or whoever was supposed to drop off power bars
+didn't. Roll with it, and remember to laugh (even if it's a bit
+hysterically).
+
+\section{The Unix Shell}
+
+Many people have questioned whether we should still teach the shell.
+After all, anyone who wants to rename several thousand data files can
+easily do so interactively in the Python interpreter, and anyone who's
+doing serious data analysis is probably going to do most of their work
+inside the IPython Notebook or R Studio. So why teach the shell?
+
+The first answer is, ``Because so much else depends on it.'' Installing
+software, configuring your default editor, and controlling remote
+machines frequently assume a basic familiarity with the shell, and with
+related ideas like standard input and output. Many tools also use its
+terminology (for example, the \texttt{\%ls} and \texttt{\%cd} magic
+commands in IPython).
+
+The second answer is, ``Because it's an easy way to introduce some
+fundamental ideas about how to use computers.'' As we teach people how
+to use the Unix shell, we teach them that they should get the computer
+to repeat things (via tab completion, \texttt{!} followed by a command
+number, and \texttt{for} loops) rather than repeating things themselves.
+We also teach them to take things they've discovered they do frequently
+and save them for later re-use (via shell scripts), to give things
+sensible names, and to write a little bit of documentation (like comment
+at the top of shell scripts) to make their future selves' lives better.
+
+Finally, and perhaps most importantly, teaching people the shell lets us
+teach them to think about programming in terms of function composition.
+In the case of the shell, this takes the form of pipelines rather than
+nested function calls, but the core idea of ``small pieces, loosely
+joined'' is the same.
+
+All of this material can be covered in three hours as long as learners
+using Windows do not run into roadblocks such as:
+
+\begin{swcitemize}
+\item
+  not being able to figure out where their home directory is
+  (particularly if they're using Cygwin);
+\item
+  not being able to run a plain text editor; and
+\item
+  the shell refusing to run scripts that include DOS line endings.
+\end{swcitemize}
+
+\subsection*{Teaching Notes}
+
+\begin{swcitemize}
+\item
+  Have learners open a shell and then do \texttt{whoami}, \texttt{pwd},
+  and \texttt{ls}. Then have them create a directory called
+  \texttt{bootcamp} and \texttt{cd} into it, so that everything else
+  they do during the lesson is unlikely to harm whatever files they
+  already have.
+\item
+  Get them to run an editor and save a file in their \texttt{bootcamp}
+  directory as early as possible. Doing this is usually the biggest
+  stumbling block during the entire lesson: many will try to run the
+  same editor as the instructor (which may leave them trapped in the
+  awful nether hell that is Vim), or will not know how to navigate to
+  the right directory to save their file, or will run a word processor
+  rather than a plain text editor. The quickest way past these problems
+  is to have more knowledgeable learners help those who need it.
+\item
+  Tab completion sounds like a small thing: it isn't. Re-running old
+  commands using \texttt{!123} or \texttt{!wc} isn't a small thing
+  either, and neither are wildcard expansion and \texttt{for} loops.
+  Each one is an opportunity to repeat one of the big ideas of Software
+  Carpentry: if the computer \emph{can} repeat it, some programmer
+  somewhere will almost certainly have built some way for the computer
+  \emph{to} repeat it.
+\item
+  Building up a pipeline with four or five stages, then putting it in a
+  shell script for re-use and calling that script inside a \texttt{for}
+  loop, is a great opportunity to show how ``seven plus or minus two''
+  connects to programming. Once we have figured out how to do something
+  moderately complicated, we make it re-usable and give it a name so
+  that it only takes up one slot in working memory rather than several.
+  It is also a good opportunity to talk about exploratory programming:
+  rather than designing a program up front, we can do a few useful
+  things and then retroactively decide which are worth encapsulating for
+  future re-use.
+\item
+  We have to leave out many important things because of time
+  constraints, including file permissions, job control, and SSH. If
+  learners already understand the basic material, this can be covered
+  instead using the online lessons as guidelines. These limitations also
+  have follow-on consequences:
+\item
+  It's hard to discuss \texttt{\#!} (shebang) wihtout first discussing
+  permissions, which we don't do.
+\item
+  Installing Bash and a reasonable set of Unix commands on Windows
+  always involves some fiddling and frustration. Please see the latest
+  set of installation guidelines for advice, and try it out yourself
+  \emph{before} teaching a class.
+\item
+  On Windows, it appears that:
+
+\begin{VerbIn}
+$ cd
+$ cd Desktop
+\end{VerbIn}
+
+  will always put someone on their desktop. Have them create the example
+  directory for the shell exercises there so that they can find it
+  easily and watch it evolve.
+\end{swcitemize}
+
+\subsection*{Windows}
+
+Installing Bash and a reasonable set of Unix commands on Windows always
+involves some fiddling and frustration. Please see the latest set of
+installation guidelines for advice, and try it out yourself
+\emph{before} teaching a class. Options we have explored include:
+
+\begin{swcenumerate}
+\item
+  \urlfoot{http://msysgit.github.io/}{msysGit} (also called ``Git Bash''),
+\item
+  \urlfoot{http://www.cygwin.com/}{Cygwin},
+\item
+  using a desktop virtual machine, and
+\item
+  having learners connect to a remote Unix machine (typically a VM in
+  the cloud).
+\end{swcenumerate}
+
+Cygwin was the preferred option until mid-2013, but once we started
+teaching Git, msysGit proved to work better. Desktop virtual machines
+and cloud-based VMs work well for technically sophisticated learners,
+and can reduce installation and configuration at the start of the
+bootcamp, but:
+
+\begin{swcenumerate}
+\item
+  they don't work well on underpowered machines,
+\item
+  they're confusing for novices (because simple things like copy and
+  paste work differently),
+\item
+  learners leave the workshop without a working environment on their
+  operating system of choice, and
+\item
+  learners may show up without having downloaded the VM or the wireless
+  will go down (or become congested) during the lesson.
+\end{swcenumerate}
+
+Whatever you use, please \emph{test it yourself} on a Windows machine
+\emph{before} your bootcamp: things may always have changed behind your
+back since your last bootcamp. And please also make use of our Windows
+setup helper.
+
+\section{Version Control with Git}
+
+Version control might be the most important topic we teach, but Git is
+definitely the most complicated tool. However, GitHub presently
+dominates the open software forge landscape, so we have to help novices
+learn just enough Git to feel they can and should learn more on their
+own.
+
+This is why we don't teach branching: while it is a power tool in the
+hands of a knowledgeable user, it is an extra cognitive burden for
+someone who is new to the idea of version control. This is also why we
+don't get into hashes and commit objects with novices, but try instead
+to convince them that version control is:
+
+\begin{swcenumerate}
+\item
+  a better backup system;
+\item
+  a better Dropbox; and
+\item
+  a better way to collaborate than mailing files back and forth.
+\end{swcenumerate}
+
+We close with material on licensing because:
+
+\begin{swcenumerate}
+\item
+  questions about who owns what, or can use what, arise naturally once
+  we start talking about using public services like GitHub to store
+  files; and
+\item
+  the discussion gives learners a chance to catch their breath after
+  what is often a frustrating couple of hours.
+\end{swcenumerate}
+
+\subsection*{Teaching Notes}
+
+\begin{swcitemize}
+\item
+  Make sure the network is working \emph{before} starting this lesson.
+\item
+  Give learners a five-minute overview of what version control does for
+  them before diving into the watch-and-do practicals. Most of them will
+  have tried to co-author papers by emailing files back and forth, or
+  will have biked into the office only to realize that the USB key with
+  last night's work is still on the kitchen table. Instructors can also
+  make jokes about directories with names like ``final version'',
+  ``final version revised'', ``final version with reviewer three's
+  corrections'', ``really final version'', and, ``come on this really
+  has to be the last version'' to motivate version control as a better
+  way to collaborate and as a better way to back work up.
+\item
+  Version control is typically taught after the shell, so collect
+  learners' names during that session and create a repository for them
+  to share with their names as both their IDs and their passwords.
+\item
+  If your learners are advanced enough to be comfortable SSH, tell them
+  they can use keys to authenticate on GitHub instead of passwords, but
+  don't try to set this up during class: it takes too long, and is a
+  distraction from the core ideas of the lesson.
+\item
+  Be very clear what files learners are to edit and what user IDs they
+  are to use when giving instructions: it is common for them to edit the
+  file the instructor is working on rather than their own, or to use the
+  instructor's user ID and password when committing.
+\item
+  Be equally clear \emph{when} they are to edit things: it's also common
+  for someone to edit the file the instructor is editing and commit
+  changes while the instructor is explaining what's going on, so that a
+  conflict occurs when the instructor comes to commit the file.
+\item
+  If some learners are using Windows, there will inevitably be issues
+  merging files with different line endings. (Even if everyone's on some
+  flavor of Unix, different editors may or may not add a newline to the
+  last line of a file.) Take a moment to explain these issues, since
+  learners will almost certainly trip over them again.
+\item
+  We don't use a Git GUI in these notes because we haven't found one
+  that installs easily and runs reliably on the three major operating
+  systems, and because we want learners to understand what commands are
+  being run. That said, instructors should demo a GUI on their desktop
+  at some point during this lesson and point learners at
+  \urlfoot{http://git-scm.com/downloads/guis}{this page}.
+\item
+  Instructors should also show learners graphical diff/merge tools like
+  \urlfoot{https://sourcegear.com/diffmerge/}{DiffMerge}.
+\item
+  When appropriate, explain that we teach Git rather than CVS,
+  Subversion, or Mercurial primarily because of GitHub's growing
+  popularity: CVS and Subversion are now seen as legacy systems, and
+  Mercurial isn't nearly as widely used in the sciences right now.
+\end{swcitemize}
+
+\subsection*{Text Editor}
+
+We suggest instructors and students use \texttt{nano} as the text editor
+for this lessons because:
+
+\begin{swcitemize}
+\item
+  it runs in all three major operating systems,
+\item
+  it runs inside the shell (switching windows can be confusing to
+  students), and
+\item
+  it has shortcut help at the bottom of the window.
+\end{swcitemize}
+
+Please point out to students during setup that they can and should use
+another text editor if they're already familiar with it. Below you will
+find some tips that could help solving problems when using other
+editors.
+
+\subparagraph{Gedit}
+
+You should use
+
+\begin{VerbIn}
+$ git config --global core.editor 'gedit --standalone'
+\end{VerbIn}
+
+to avoid this error occurring if the student already has a Gedit window
+open:
+
+\begin{VerbIn}
+$ git commit
+\end{VerbIn}
+
+\begin{VerbOut}
+Aborting commit due to empty commit message.
+\end{VerbOut}
+
+\section{Programming with Python}
+
+This lesson is written as an introduction to Python, but its real
+purpose is to introduce the single most important idea in programming:
+how to solve problems by building functions, each of which can fit in a
+programmer's working memory. In order to teach that, we must teach
+people a little about the mechanics of manipulating data with lists and
+file I/O so that their functions can do things they actually care about.
+Our teaching order tries to show practical uses of every idea as soon as
+it is introduced; instructors should resist the temptation to explain
+the ``other 90\%'' of the language as well.
+
+The secondary goal of this lesson is to give them a usable mental model
+of how programs run (what computer science educators call a
+\gl{notional machine}{g:notional-machine} so that they can debug
+things when they go wrong. In particular, they must understand how
+function call stacks work.
+
+The final example asks them to build a command-line tool that works with
+the Unix pipe-and-filter model. We do this because it is a useful skill
+and because it helps learners see that the software they use isn't
+magical. Tools like \texttt{grep} might be more sophisticated than the
+programs our learners can write at this point in their careers, but it's
+crucial they realize this is a difference of scale rather than kind.
+
+\subsection*{Teaching Notes}
+
+\begin{swcitemize}
+\item
+  Explain that we use Python because:
+
+  \begin{swcitemize2}
+  \item
+    It's free.
+  \item
+    It has a lot of scientific libraries, and more are constantly being
+    added.
+  \item
+    It has a large scientific user community.
+  \item
+    It's easier for novices to learn than most of the mature
+    alternatives. (Software Carpentry originally used Perl; when we
+    switched, we found that we could cover as much material in two days
+    in Python as we'd covered in three days in Perl, and that retention
+    was higher.)
+   \end{swcitemize2}
+\item
+  We do \emph{not} include instructions on running the IPython Notebook
+  in the tutorial because we want to focus on the language rather than
+  the tools. Instructors should, however, walk learners through some
+  basic operations:
+
+  \begin{swcitemize2}
+  \item
+    Launch from the command line with \texttt{ipython notebook}.
+  \item
+    Create a new notebook.
+  \item
+    Enter code or data in a cell and execute it.
+  \item
+    Explain the difference between \texttt{In{[}\#{]}} and
+    \texttt{Out{[}\#{]}}.
+   \end{swcitemize2}
+\item
+  Watching the instructor grow programs step by step is as helpful to
+  learners as anything to do with Python. Resist the urge to update a
+  single cell repeatedly (which is what you'd probably do in real life).
+  Instead, clone the previous cell and write the update in the new copy
+  so that learners have a complete record of how the program grew. Once
+  you've done this, you can say, ``Now why don't we just breaks things
+  into small functions right from the start?''
+\item
+  The discussion of command-line scripts assumes that students
+  understand standard I/O and building filters, which are covered in the
+  lesson on the shell.
+\item
+  Do \emph{not} start the notebook with:
+
+\begin{VerbIn}
+ipython notebook --pylab [backend]
+\end{VerbIn}
+
+  The \texttt{-{}-pylab} option has been deprecated for a long time, and
+  is being removed soon.
+\end{swcitemize}
+
+\section{Using Databases and SQL}
+
+Relational databases are not as widely used in science as in business,
+but they are still a common way to store large data sets with complex
+structure. Even when the data itself isn't in a database, the metadata
+could be: for example, meteorological data might be stored in files on
+disk, but data about when and where observations were made, data ranges,
+and so on could be in a database to make it easier for scientists to
+find what they want to.
+
+\subsection*{Teaching Notes}
+
+\begin{swcitemize}
+\item
+  The first few sections (up to ``Missing Data'') usually go very
+  quickly. The pace usually slows down a bit when null values are
+  discussed mostly because learners have a lot of details to keep
+  straight by this point. Things \emph{really} slow down during the
+  discussion of joins, but this is the key idea in the whole lesson:
+  important ideas like primary keys and referential integrity only make
+  sense once learners have seen how they're used in joins. It's worth
+  going over things a couple of times if necessary (with lots of
+  examples).
+\item
+  The sections on creating and modifying data, and programming with
+  databases, can be dropped if time is short. Of the two, people seem to
+  care most about how to add data (which only takes a few minutes to
+  demonstrate).
+\item
+  Overall, this material takes three hours to present assuming that a
+  short exercise is done with each topic.
+\item
+  Simple calculations are actually easier to do in a spreadsheet; the
+  advantages of using a database become clear as soon as filtering and
+  joins are needed. Instructors may therefore want to show a spreadsheet
+  with the information from the four database tables consolidated into a
+  single sheet, and demonstrate what's needed in both systems to answer
+  questions like, ``What was the average radiation reading in 1931?''
+\item
+  Some learners may have heard that NoSQL databases (i.e., ones that
+  don't use the relational model) are the next big thing, and ask why
+  we're not teaching those. The answers are:
+
+  \begin{swcenumerate2}
+  \item
+    Relational databases are far more widely used than NoSQL databases.
+  \item
+    We have far more experience with relational databases than with any
+    other kind, so we have a better idea of what to teach and how to
+    teach it.
+  \item
+    NoSQL databases are as different from each other as they are from
+    relational databases. Until a leader emerges, it isn't clear
+    \emph{which} NoSQL database we should teach.
+  \end{swcenumerate2}
+\item
+  Run \texttt{sqlite3 survey.db \textless{} gen-survey-database.sql} to
+  re-create survey database before loading notebooks.
+\end{swcitemize}

@@ -1,0 +1,1734 @@
+\chapter{Version Control with Git}\label{s:git}
+
+Version control is the lab notebook of the digital world: it's what
+professionals use to keep track of what they've done and to collaborate
+with other people. Every large software development project relies on
+it, and most programmers use it for their small jobs as well. And it
+isn't just for software: books (like this one), papers, small data sets,
+and anything that changes over time or needs to be shared can and should
+be stored in a version control system.
+
+\section{Introducing Version Control}
+
+Wolfman and Dracula have been hired by Universal Missions (a space
+services spinoff from Euphoric State University) to figure out where the
+company should send its next planetary lander. They want to be able to
+work on the plans at the same time, but they have run into problems
+doing this in the past. If they take turns, each one will spend a lot of
+time waiting for the other to finish, but if they work on their own
+copies and email changes back and forth things will be lost,
+overwritten, or duplicated.
+
+The right solution is to use \gl{version
+control}{g:version-control} to manage their work. Version control is better than mailing
+files back and forth because:
+
+\begin{swcitemize}
+\item
+  Nothing that is committed to version control is ever lost. This means
+  it can be used like the ``undo'' feature in an editor, and since all
+  old versions of files are saved it's always possible to go back in
+  time to see exactly who wrote what on a particular day, or what
+  version of a program was used to generate a particular set of results.
+\item
+  It keeps a record of who made what changes when, so that if people
+  have questions later on, they know who to ask.
+\item
+  It's hard (but not impossible) to accidentally overlook or overwrite
+  someone's changes: the version control system automatically notifies
+  users whenever there's a conflict between one person's work and
+  another's.
+\end{swcitemize}
+
+This lesson shows how to use a popular open source version control
+system called Git. It is more complex than some alternatives, but it is
+widely used, both because it's easy to set up and because of a hosting
+site called \urlfoot{http://github.com}{GitHub}. No matter which version
+control system you use, the most important thing to learn is not the
+details of their more obscure commands, but the workflow that they
+encourage.
+
+\section{A Better Kind of Backup}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain which initialization and configuration steps are required once
+  per machine, and which are required once per repository.
+\item
+  Go through the modify-add-commit cycle for single and multiple files
+  and explain where information is stored at each stage.
+\item
+  Identify and Use Git revision numbers.
+\item
+  Compare files with old versions of themselves.
+\item
+  Restore old versions of files.
+\item
+  Configure Git to ignore specific files, and explain why it is
+  sometimes useful to do so.
+\end{swcitemize}
+\end{objectives}
+
+We'll start by exploring how version control can be used to keep track
+of what one person did and when. Even if you aren't collaborating with
+other people, version control is much better for this than the common
+alternative (\figref{f:phdcomics-version}).
+
+\swcgraphics{f:phdcomics-version}{How Most Scientists Manage Files}{novice/git/img/phd101212s.png}
+
+``Piled Higher and Deeper'' by Jorge Cham, http://www.phdcomics.com
+
+\subsection*{Setting Up}
+
+The first time we use Git on a new machine, we need to configure a few
+things. Here's how Dracula sets up his new laptop:
+
+\begin{VerbIn}
+$ git config --global user.name "Vlad Dracula"
+$ git config --global user.email "vlad@tran.sylvan.ia"
+$ git config --global color.ui "auto"
+$ git config --global core.editor "nano"
+\end{VerbIn}
+
+(Please use your own name and email address instead of Dracula's, and
+please make sure you choose an editor that's actually on your system,
+such as \texttt{notepad} on Windows.)
+
+Git commands are written \texttt{git verb}, where \texttt{verb} is what
+we actually want it to do. In this case, we're telling Git:
+
+\begin{swcitemize}
+\item
+  our name and email address,
+\item
+  to colorize output,
+\item
+  what our favorite text editor is, and
+\item
+  that we want to use these settings globally (i.e., for every project),
+\end{swcitemize}
+
+The four commands above only need to be run once: the flag
+\texttt{-{}-global} tells Git to use the settings for every project on
+this machine.
+
+\subsection*{Creating a Repository}
+
+Once Git is configured, we can start using it. Let's create a directory
+for our work:
+
+\begin{VerbIn}
+$ mkdir planets
+$ cd planets
+\end{VerbIn}
+
+and tell Git to make it a \gl{repository}{g:repository}---a place
+where Git can store old versions of our files:
+
+\begin{VerbIn}
+$ git init
+\end{VerbIn}
+
+If we use \texttt{ls} to show the directory's contents, it appears that
+nothing has changed:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+But if we add the \texttt{-a} flag to show everything, we can see that
+Git has created a hidden directory called \texttt{.git}:
+
+\begin{VerbIn}
+$ ls -a
+\end{VerbIn}
+
+\begin{VerbOut}
+.  ..  .git
+\end{VerbOut}
+
+Git stores information about the project in this special sub-directory.
+If we ever delete it, we will lose the project's history.
+
+We can check that everything is set up correctly by asking Git to tell
+us the status of our project:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+\end{VerbOut}
+
+\subsection*{Tracking Changes to Files}
+
+Let's create a file called \texttt{mars.txt} that contains some notes
+about the Red Planet's suitability as a base. (We'll use \texttt{nano}
+to edit the file; you can use whatever editor you like. In particular,
+this does not have to be the core.editor you set globally earlier.)
+
+\begin{VerbIn}
+$ nano mars.txt
+\end{VerbIn}
+
+Type the text below into the \texttt{mars.txt} file:
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+\end{VerbOut}
+
+\texttt{mars.txt} now contains a single line:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+mars.txt
+\end{VerbOut}
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+\end{VerbOut}
+
+If we check the status of our project again, Git tells us that it's
+noticed the new file:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#   mars.txt
+nothing added to commit but untracked files present (use "git add" to track)
+\end{VerbOut}
+
+The ``untracked files'' message means that there's a file in the
+directory that Git isn't keeping track of. We can tell Git that it
+should do so using \texttt{git add}:
+
+\begin{VerbIn}
+$ git add mars.txt
+\end{VerbIn}
+
+and then check that the right thing happened:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+#
+#   new file:   mars.txt
+#
+\end{VerbOut}
+
+Git now knows that it's supposed to keep track of \texttt{mars.txt}, but
+it hasn't yet recorded any changes for posterity as a commit. To get it
+to do that, we need to run one more command:
+
+\begin{VerbIn}
+$ git commit -m "Starting to think about Mars"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master (root-commit) f22b25e] Starting to think about Mars
+ 1 file changed, 1 insertion(+)
+ create mode 100644 mars.txt
+\end{VerbOut}
+
+When we run \texttt{git commit}, Git takes everything we have told it to
+save by using \texttt{git add} and stores a copy permanently inside the
+special \texttt{.git} directory. This permanent copy is called a
+\gl{revision}{g:revision} and its short identifier is
+\texttt{f22b25e}. (Your revision may have another identifier.)
+
+We use the \texttt{-m} flag (for ``message'') to record a comment that
+will help us remember later on what we did and why. If we just run
+\texttt{git commit} without the \texttt{-m} option, Git will launch
+\texttt{nano} (or whatever other editor we configured at the start) so
+that we can write a longer message.
+
+If we run \texttt{git status} now:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+nothing to commit, working directory clean
+\end{VerbOut}
+
+it tells us everything is up to date. If we want to know what we've done
+recently, we can ask Git to show us the project's history using
+\texttt{git log}:
+
+\begin{VerbIn}
+$ git log
+\end{VerbIn}
+
+\begin{VerbOut}
+commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 09:51:46 2013 -0400
+
+    Starting to think about Mars
+\end{VerbOut}
+
+\texttt{git log} lists all revisions made to a repository in reverse
+chronological order. The listing for each revision includes the
+revision's full identifier (which starts with the same characters as the
+short identifier printed by the \texttt{git commit} command earlier),
+the revision's author, when it was created, and the log message Git was
+given when the revision was created.
+
+\begin{swcbox}{Where Are My Changes?}
+
+If we run \texttt{ls} at this point, we will still see just one file
+called \texttt{mars.txt}. That's because Git saves information about
+files' history in the special \texttt{.git} directory mentioned earlier
+so that our filesystem doesn't become cluttered (and so that we can't
+accidentally edit or delete an old version).
+
+\end{swcbox}
+
+\subsection*{Changing a File}
+
+Now suppose Dracula adds more information to the file. (Again, we'll
+edit with \texttt{nano} and then \texttt{cat} the file to show its
+contents; you may use a different editor, and don't need to
+\texttt{cat}.)
+
+\begin{VerbIn}
+$ nano mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+\end{VerbOut}
+
+When we run \texttt{git status} now, it tells us that a file it already
+knows about has been modified:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   mars.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+\end{VerbOut}
+
+The last line is the key phrase: ``no changes added to commit''. We have
+changed this file, but we haven't told Git we will want to save those
+changes (which we do with \texttt{git add}) much less actually saved
+them. Let's double-check our work using \texttt{git diff}, which shows
+us the differences between the current state of the file and the most
+recently saved version:
+
+\begin{VerbIn}
+$ git diff
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index df0654a..315bf3a 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1 +1,2 @@
+ Cold and dry, but everything is my favorite color
++The two moons may be a problem for Wolfman
+\end{VerbOut}
+
+The output is cryptic because it is actually a series of commands for
+tools like editors and \texttt{patch} telling them how to reconstruct
+one file given the other. If we can break it down into pieces:
+
+\begin{swcenumerate}
+\item
+  The first line tells us that Git is using the Unix \texttt{diff}
+  command to compare the old and new versions of the file.
+\item
+  The second line tells exactly which \gl{revisions}{g:revision}
+  of the file Git is comparing; \texttt{df0654a} and \texttt{315bf3a}
+  are unique computer-generated labels for those revisions.
+\item
+  The remaining lines show us the actual differences and the lines on
+  which they occur. In particular, the \texttt{+} markers in the first
+  column show where we are adding lines.
+\end{swcenumerate}
+
+Let's commit our change:
+
+\begin{VerbIn}
+$ git commit -m "Concerns about Mars's moons on my furry friend"
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   mars.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+\end{VerbOut}
+
+Whoops: Git won't commit because we didn't use \texttt{git add} first.
+Let's fix that:
+
+\begin{VerbIn}
+$ git add mars.txt
+$ git commit -m "Concerns about Mars's moons on my furry friend"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master 34961b1] Concerns about Mars's moons on my furry friend
+ 1 file changed, 1 insertion(+)
+\end{VerbOut}
+
+Git insists that we add files to the set we want to commit before
+actually committing anything because we may not want to commit
+everything at once. For example, suppose we're adding a few citations to
+our supervisor's work to our thesis. We might want to commit those
+additions, and the corresponding addition to the bibliography, but
+\emph{not} commit the work we're doing on the conclusion (which we
+haven't finished yet).
+
+To allow for this, Git has a special staging area where it keeps track
+of things that have been added to the current
+\gl{change set}{g:change-set} but not yet committed (\figref{f:staging-area}).
+\texttt{git add} puts things in this area, and \texttt{git commit} then
+copies them to long-term storage (as a commit).
+
+\swcgraphics{f:staging-area}{Git's Staging Area}{novice/git/img/git-staging-area.png}
+
+Let's watch as our changes to a file move from our editor to the staging
+area and into long-term storage. First, we'll add another line to the
+file:
+
+\begin{VerbIn}
+$ nano mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git diff
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index 315bf3a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1,2 +1,3 @@
+ Cold and dry, but everything is my favorite color
+ The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+So far, so good: we've added one line to the end of the file (shown with
+a \texttt{+} in the first column). Now let's put that change in the
+staging area and see what \texttt{git diff} reports:
+
+\begin{VerbIn}
+$ git add mars.txt
+$ git diff
+\end{VerbIn}
+
+There is no output: as far as Git can tell, there's no difference
+between what it's been asked to save permanently and what's currently in
+the directory. However, if we do this:
+
+\begin{VerbIn}
+$ git diff --staged
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index 315bf3a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1,2 +1,3 @@
+ Cold and dry, but everything is my favorite color
+ The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+it shows us the difference between the last committed change and what's
+in the staging area. Let's save our changes:
+
+\begin{VerbIn}
+$ git commit -m "Thoughts about the climate"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master 005937f] Thoughts about the climate
+ 1 file changed, 1 insertion(+)
+\end{VerbOut}
+
+check our status:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+nothing to commit, working directory clean
+\end{VerbOut}
+
+and look at the history of what we've done so far:
+
+\begin{VerbIn}
+$ git log
+\end{VerbIn}
+
+\begin{VerbOut}
+commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 10:14:07 2013 -0400
+
+    Thoughts about the climate
+
+commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 10:07:21 2013 -0400
+
+    Concerns about Mars's moons on my furry friend
+
+commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 09:51:46 2013 -0400
+
+    Starting to think about Mars
+\end{VerbOut}
+
+\subsection*{Exploring History}
+
+If we want to see what we changed when, we use \texttt{git diff} again,
+but refer to old versions using the notation
+\texttt{HEAD\textasciitilde{}1}, \texttt{HEAD\textasciitilde{}2}, and so
+on:
+
+\begin{VerbIn}
+$ git diff HEAD~1 mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index 315bf3a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1,2 +1,3 @@
+ Cold and dry, but everything is my favorite color
+ The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git diff HEAD~2 mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index df0654a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1 +1,3 @@
+ Cold and dry, but everything is my favorite color
++The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+In this way, we build up a chain of revisions. The most recent end of
+the chain is referred to as \texttt{HEAD}; we can refer to previous
+revisions using the \texttt{\textasciitilde{}} notation, so
+\texttt{HEAD\textasciitilde{}1} (pronounced ``head minus one'') means
+``the previous revision'', while \texttt{HEAD\textasciitilde{}123} goes
+back 123 revisions from where we are now.
+
+We can also refer to revisions using those long strings of digits and
+letters that \texttt{git log} displays. These are unique IDs for the
+changes, and ``unique'' really does mean unique: every change to any set
+of files on any machine has a unique 40-character identifier. Our first
+commit was given the ID f22b25e3233b4645dabd0d81e651fe074bd8e73b, so
+let's try this:
+
+\begin{VerbIn}
+$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index df0654a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1 +1,3 @@
+ Cold and dry, but everything is my favorite color
++The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+That's the right answer, but typing random 40-character strings is
+annoying, so Git lets us use just the first few:
+
+\begin{VerbIn}
+$ git diff f22b25e mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+diff --git a/mars.txt b/mars.txt
+index df0654a..b36abfd 100644
+--- a/mars.txt
++++ b/mars.txt
+@@ -1 +1,3 @@
+ Cold and dry, but everything is my favorite color
++The two moons may be a problem for Wolfman
++But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+\subsection*{Recovering Old Versions}
+
+All right: we can save changes to files and see what we've changed---how
+can we restore older versions of things? Let's suppose we accidentally
+overwrite our file:
+
+\begin{VerbIn}
+$ nano mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+We will need to manufacture our own oxygen
+\end{VerbOut}
+
+\texttt{git status} now tells us that the file has been changed, but
+those changes haven't been staged:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   modified:   mars.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+\end{VerbOut}
+
+We can put things back the way they were by using \texttt{git checkout}:
+
+\begin{VerbIn}
+$ git checkout HEAD mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+As you might guess from its name, \texttt{git checkout} checks out
+(i.e., restores) an old version of a file. In this case, we're telling
+Git that we want to recover the version of the file recorded in
+\texttt{HEAD}, which is the last saved revision. If we want to go back
+even further, we can use a revision identifier instead:
+
+\begin{VerbIn}
+$ git checkout f22b25e mars.txt
+\end{VerbIn}
+
+It's important to remember that we must use the revision number that
+identifies the state of the repository \emph{before} the change we're
+trying to undo. A common mistake is to use the revision number of the
+commit in which we made the change we're trying to get rid of (\figref{f:when-updated}).
+
+\swcgraphics{f:when-updated}{When Revisions Are Updated}{novice/git/img/git-when-revisions-updated.png}
+
+\begin{swcbox}{Simplifying the Common Case}
+
+If you read the output of \texttt{git status} carefully, you'll see that
+it includes this hint:
+
+\begin{VerbOut}
+(use "git checkout -- <file>..." to discard changes in working directory)
+\end{VerbOut}
+
+As it says, \texttt{git checkout} without a version identifier restores
+files to the state saved in \texttt{HEAD}. The double dash \texttt{-{}-}
+is needed to separate the names of the files being recovered from the
+command itself: without it, Git would try to use the name of the file as
+the revision identifier.
+
+\end{swcbox}
+
+The fact that files can be reverted one by one tends to change the way
+people organize their work. If everything is in one large document, it's
+hard (but not impossible) to undo changes to the introduction without
+also undoing changes made later to the conclusion. If the introduction
+and conclusion are stored in separate files, on the other hand, moving
+backward and forward in time becomes much easier.
+
+\subsection*{Ignoring Things}
+
+What if we have files that we do not want Git to track for us, like
+backup files created by our editor or intermediate files created during
+data analysis. Let's create a few dummy files:
+
+\begin{VerbIn}
+$ mkdir results
+$ touch a.dat b.dat c.dat results/a.out results/b.out
+\end{VerbIn}
+
+and see what Git says:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#   a.dat
+#   b.dat
+#   c.dat
+#   results/
+nothing added to commit but untracked files present (use "git add" to track)
+\end{VerbOut}
+
+Putting these files under version control would be a waste of disk
+space. What's worse, having them all listed could distract us from
+changes that actually matter, so let's tell Git to ignore them.
+
+We do this by creating a file in the root directory of our project
+called \texttt{.gitignore}.
+
+\begin{VerbIn}
+$ nano .gitignore
+$ cat .gitignore
+\end{VerbIn}
+
+\begin{VerbOut}
+*.dat
+results/
+\end{VerbOut}
+
+These patterns tell Git to ignore any file whose name ends in
+\texttt{.dat} and everything in the \texttt{results} directory. (If any
+of these files were already being tracked, Git would continue to track
+them.)
+
+Once we have created this file, the output of \texttt{git status} is
+much cleaner:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#   .gitignore
+nothing added to commit but untracked files present (use "git add" to track)
+\end{VerbOut}
+
+The only thing Git notices now is the newly-created \texttt{.gitignore}
+file. You might think we wouldn't want to track it, but everyone we're
+sharing our repository with will probably want to ignore the same things
+that we're ignoring. Let's add and commit \texttt{.gitignore}:
+
+\begin{VerbIn}
+$ git add .gitignore
+$ git commit -m "Add the ignore file"
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+nothing to commit, working directory clean
+\end{VerbOut}
+
+As a bonus, using \texttt{.gitignore} helps us avoid accidentally adding
+files to the repository that we don't want.
+
+\begin{VerbIn}
+$ git add a.dat
+\end{VerbIn}
+
+\begin{VerbOut}
+The following paths are ignored by one of your .gitignore files:
+a.dat
+Use -f if you really want to add them.
+fatal: no files added
+\end{VerbOut}
+
+If we really want to override our ignore settings, we can use
+\texttt{git add -f} to force Git to add something. We can also always
+see the status of ignored files if we want:
+
+\begin{VerbIn}
+$ git status --ignored
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Ignored files:
+#  (use "git add -f <file>..." to include in what will be committed)
+#
+#        a.dat
+#        b.dat
+#        c.dat
+#        results/
+
+nothing to commit, working directory clean
+\end{VerbOut}
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Use \texttt{git config} to configure a user name, email address,
+  editor, and other preferences once per machine.
+\item
+  \texttt{git init} initializes a repository.
+\item
+  \texttt{git status} shows the status of a repository.
+\item
+  Files can be stored in a project's working directory (which users
+  see), the staging area (where the next commit is being built up) and
+  the local repository (where snapshots are permanently recorded).
+\item
+  \texttt{git add} puts files in the staging area.
+\item
+  \texttt{git commit} creates a snapshot of the staging area in the
+  local repository.
+\item
+  Always write a log message when committing changes.
+\item
+  \texttt{git diff} displays differences between revisions.
+\item
+  \texttt{git checkout} recovers old versions of files.
+\item
+  The \texttt{.gitignore} file tells Git what files to ignore.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Create a new Git repository on your computer called \texttt{bio}.
+  Write a three-line biography for yourself in a file called
+  \texttt{me.txt}, commit your changes, then modify one line and add a
+  fourth and display the differences between its updated state and its
+  original state.
+\end{challenge}
+
+\begin{challenge}
+  The following sequence of commands creates one Git repository inside
+  another:
+
+\begin{VerbIn}
+$ cd           # return to home directory
+$ mkdir alpha  # make a new directory alpha
+$ cd alpha     # go into alpha
+$ git init     # make the alpha directory a Git repository
+$ mkdir beta   # make a sub-directory alpha/beta
+$ cd beta      # go into alpha/beta
+$ git init     # make the beta sub-directory a Git repository
+\end{VerbIn}
+
+  Why is it a bad idea to do this?
+\end{challenge}
+
+\section{Collaborating}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain what remote repositories are and why they are useful.
+\item
+  Explain what happens when a remote repository is cloned.
+\item
+  Explain what happens when changes are pushed to or pulled from a
+  remote repository.
+\end{swcitemize}
+\end{objectives}
+
+Version control really comes into its own when we begin to collaborate
+with other people. We already have most of the machinery we need to do
+this; the only thing missing is to copy changes from one repository to
+another.
+
+Systems like Git allow us to move work between any two repositories. In
+practice, though, it's easiest to use one copy as a central hub, and to
+keep it on the web rather than on someone's laptop. Most programmers use
+hosting services like \urlfoot{http://github.com}{GitHub} or
+\urlfoot{http://bitbucket.org}{BitBucket} to hold those master copies;
+we'll explore the pros and cons of this in the final section of this
+lesson.
+
+Let's start by sharing the changes we've made to our current project
+with the world. Log in to GitHub, then click on the icon in the top
+right corner to create a new repository called \texttt{planets}
+(\figref{f:create-repo-01}).
+
+\swcgraphics{f:create-repo-01}{First Step in Creating a Repository}{novice/git/img/github-create-repo-01.png}
+
+\swcgraphics{f:create-repo-02}{Second Step in Creating a Repository}{novice/git/img/github-create-repo-02.png}
+
+Name your repository ``planets'' and then click ``Create Repository'' (\figref{f:create-repo-02}).
+As soon as the repository is created, GitHub displays a page with a URL
+and some information on how to configure your local repository (\figref{f:create-repo-03}).
+
+\swcgraphics{f:create-repo-03}{Third Step in Creating a Repository}{novice/git/img/github-create-repo-03.png}
+
+This effectively does the following on GitHub's servers:
+
+\begin{VerbIn}
+$ mkdir planets
+$ cd planets
+$ git init
+\end{VerbIn}
+
+Our local repository still contains our earlier work on
+\texttt{mars.txt}, but the remote repository on GitHub doesn't contain
+any files yet (\figref{f:create-repo-04}).
+
+\swcgraphics{f:create-repo-04}{Fourth Step in Creating a Repository}{novice/git/img/git-freshly-made-github-repo.png}
+
+The next step is to connect the two repositories. We do this by making
+the GitHub repository a \gl{remote}{g:repository-remote} for the
+local repository. The home page of the repository on GitHub includes the
+string we need to identify it (\figref{f:create-repo-05}).
+
+\swcgraphics{f:create-repo-05}{Fifth Step in Creating a Repository}{novice/git/img/github-find-repo-string.png}
+
+Click on the `HTTPS' link to change the \gl{protocol}{g:protocol}
+from SSH to HTTPS. It's slightly less convenient for day-to-day use, but
+much less work for beginners to set up (\figref{f:create-repo-06}).
+
+\swcgraphics{f:create-repo-06}{Sixth Step in Creating a Repository}{novice/git/img/github-change-repo-string.png}
+
+Copy that URL from the browser, go into the local \texttt{planets}
+repository, and run this command:
+
+\begin{VerbIn}
+$ git remote add origin https://github.com/vlad/planets
+\end{VerbIn}
+
+Make sure to use the URL for your repository rather than Vlad's: the
+only difference should be your username instead of \texttt{vlad}.
+
+We can check that the command has worked by running
+\texttt{git remote -v}:
+
+\begin{VerbIn}
+$ git remote -v
+\end{VerbIn}
+
+\begin{VerbOut}
+origin   https://github.com/vlad/planets.git (push)
+origin   https://github.com/vlad/planets.git (fetch)
+\end{VerbOut}
+
+The name \texttt{origin} is a local nickname for your remote repository:
+we could use something else if we wanted to, but \texttt{origin} is by
+far the most common choice.
+
+Once the nickname \texttt{origin} is set up, this command will push the
+changes from our local repository to the repository on GitHub:
+
+\begin{VerbIn}
+$ git push origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+Counting objects: 9, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (9/9), 821 bytes, done.
+Total 9 (delta 2), reused 0 (delta 0)
+To https://github.com/vlad/planets
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+\end{VerbOut}
+
+Our local and remote repositories are now in the state show in \figref{f:after-first-push}.
+
+\swcgraphics{f:after-first-push}{Repositories After First Push}{novice/git/img/github-repo-after-first-push.png}
+
+\begin{swcbox}{The `-u' Flag}
+
+You may see a \texttt{-u} option used with \texttt{git push} in some
+documentation. It is related to concepts we cover in our intermediate
+lesson, and can safely be ignored for now.
+
+\end{swcbox}
+
+We can pull changes from the remote repository to the local one as well:
+
+\begin{VerbIn}
+$ git pull origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+From https://github.com/vlad/planets
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+\end{VerbOut}
+
+Pulling has no effect in this case because the two repositories are
+already synchronized. If someone else had pushed some changes to the
+repository on GitHub, though, this command would download them to our
+local repository.
+
+We can simulate working with a collaborator using another copy of the
+repository on our local machine. To do this, \texttt{cd} to the
+directory \texttt{/tmp}. (Note the absolute path: don't make
+\texttt{tmp} a subdirectory of the existing repository). Instead of
+creating a new repository here with \texttt{git init}, we will
+\gl{clone}{g:repository-clone} the existing repository from
+GitHub:
+
+\begin{VerbIn}
+$ cd /tmp
+$ git clone https://github.com/vlad/planets.git
+\end{VerbIn}
+
+\texttt{git clone} creates a fresh local copy of a remote repository.
+(We did it in \texttt{/tmp} or some other directory so that we don't
+overwrite our existing \texttt{planets} directory.) Our computer now has
+two copies of the repository (\figref{f:after-duplicate-clone}).
+
+\swcgraphics{f:after-duplicate-clone}{After Cloning}{novice/git/img/git-after-duplicate-clone.png}
+
+Let's make a change in the copy in \texttt{/tmp/planets}:
+
+\begin{VerbIn}
+$ cd /tmp/planets
+$ nano pluto.txt
+$ cat pluto.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+It is so a planet!
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git add pluto.txt
+$ git commit -m "Some notes about Pluto"
+\end{VerbIn}
+
+\begin{VerbOut}
+ 1 file changed, 1 insertion(+)
+ create mode 100644 pluto.txt
+\end{VerbOut}
+
+then push the change to GitHub:
+
+\begin{VerbIn}
+$ git push origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+Counting objects: 4, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 306 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/vlad/planets.git
+   9272da5..29aba7c  master -> master
+\end{VerbOut}
+
+Note that we didn't have to create a remote called \texttt{origin}: Git
+does this automatically, using that name, when we clone a repository.
+(This is why \texttt{origin} was a sensible choice earlier when we were
+setting up remotes by hand.)
+
+Our three repositories are now as shown in \figref{f:after-change-to-duplicate}.
+
+\swcgraphics{f:after-change-to-duplicate}{Repositories After Change to Duplicate}{novice/git/img/git-after-change-to-duplicate-repo.png}
+
+We can now download changes into the original repository on our machine:
+
+\begin{VerbIn}
+$ cd ~/planets
+$ git pull origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://github.com/vlad/planets
+ * branch            master     -> FETCH_HEAD
+Updating 9272da5..29aba7c
+Fast-forward
+ pluto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 pluto.txt
+\end{VerbOut}
+
+which puts us in the state shown in \figref{f:after-pulling-to-local}.
+
+\swcgraphics{f:after-pulling-to-local}{Repositories After Pulling}{novice/git/img/git-after-pulling-to-local-repo.png}
+
+In practice, we would probably never have two copies of the same remote
+repository on our laptop at once. Instead, one of those copies would be
+on our laptop, and the other on a lab machine, or on someone else's
+computer. Pushing and pulling changes gives us a reliable way to share
+work between different people and machines.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  A local Git repository can be connected to one or more remote
+  repositories.
+\item
+  Use the HTTPS protocol to connect to remote repositories until you
+  have learned how to set up SSH.
+\item
+  \texttt{git push} copies changes from a local repository to a remote
+  repository.
+\item
+  \texttt{git pull} copies changes from a remote repository to a local
+  repository.
+\item
+  \texttt{git clone} copies a remote repository to create a local
+  repository with a remote called \texttt{origin} automatically set up.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Create a repository on GitHub, clone it, add a file, push those
+  changes to GitHub, and then look at the
+  \gl{timestamp}{g:timestamp} of the change on GitHub. How does
+  GitHub record times, and why?
+\end{challenge}
+
+\section{Conflicts}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain what conflicts are and when they can occur.
+\item
+  Resolve conflicts resulting from a merge.
+\end{swcitemize}
+\end{objectives}
+
+As soon as people can work in parallel, someone's going to step on
+someone else's toes. This will even happen with a single person: if we
+are working on a piece of software on both our laptop and a server in
+the lab, we could make different changes to each copy. Version control
+helps us manage these \gl{conflicts}{g:conflict} by giving us
+tools to \gl{resolve}{g:resolve} overlapping changes.
+
+To see how we can resolve conflicts, we must first create one. The file
+\texttt{mars.txt} currently looks like this in both local copies of our
+\texttt{planets} repository (the one in our home directory and the one
+in \texttt{/tmp}):
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+Let's add a line to the copy under our home directory:
+
+\begin{VerbIn}
+$ nano mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+This line added to our home copy
+\end{VerbOut}
+
+and then push the change to GitHub:
+
+\begin{VerbIn}
+$ git add mars.txt
+$ git commit -m "Adding a line in our home copy"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master 5ae9631] Adding a line in our home copy
+ 1 file changed, 1 insertion(+)
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git push origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 352 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To https://github.com/vlad/planets
+   29aba7c..dabb4c8  master -> master
+\end{VerbOut}
+
+Our repositories are now as shown in \figref{f:after-first-conflict}.
+
+\swcgraphics{f:after-first-conflict}{Repositories After First Conflict}{novice/git/img/git-after-first-conflicting-change.png}
+
+Now let's switch to the copy under \texttt{/tmp} and make a different
+change there \emph{without} updating from GitHub:
+
+\begin{VerbIn}
+$ cd /tmp/planets
+$ nano mars.txt
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+We added a different line in the temporary copy
+\end{VerbOut}
+
+We can commit the change locally:
+
+\begin{VerbIn}
+$ git add mars.txt
+$ git commit -m "Adding a line in the temporary copy"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master 07ebc69] Adding a line in the temporary copy
+ 1 file changed, 1 insertion(+)
+\end{VerbOut}
+
+but Git won't let us push it to GitHub:
+
+\begin{VerbIn}
+$ git push origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+To https://github.com/vlad/planets.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/vlad/planets.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+\end{VerbOut}
+
+Git detects that the changes made in one copy overlap with those made in
+the other and stops us from trampling on our previous work. What we have
+to do is pull the changes from GitHub,
+\gl{merge}{g:repository-merge} them into the copy we're currently
+working in, and then push that. Let's start by pulling:
+
+\begin{VerbIn}
+$ git pull origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 3 (delta 1)
+Unpacking objects: 100% (3/3), done.
+From https://github.com/vlad/planets
+ * branch            master     -> FETCH_HEAD
+Auto-merging mars.txt
+CONFLICT (content): Merge conflict in mars.txt
+Automatic merge failed; fix conflicts and then commit the result.
+\end{VerbOut}
+
+\texttt{git pull} tells us there's a conflict, and marks that conflict
+in the affected file:
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+<<<<<<< HEAD
+We added a different line in the temporary copy
+=======
+This line added to our home copy
+>>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
+\end{VerbOut}
+
+Our change---the one in \texttt{HEAD}---is preceded by
+\texttt{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}}.
+Git has then inserted \texttt{=======} as a separator between the
+conflicting changes and marked the end of the content downloaded from
+GitHub with
+\texttt{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}.
+(The string of letters and digits after that marker identifies the
+revision we've just downloaded.)
+
+It is now up to us to edit this file to remove these markers and
+reconcile the changes. We can do anything we want: keep the change in
+this branch, keep the change made in the other, write something new to
+replace both, or get rid of the change entirely. Let's replace both so
+that the file looks like this:
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+We removed the conflict on this line
+\end{VerbOut}
+
+To finish merging, we add \texttt{mars.txt} to the changes being made by
+the merge and then commit:
+
+\begin{VerbIn}
+$ git add mars.txt
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#   modified:   mars.txt
+#
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git commit -m "Merging changes from GitHub"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master 2abf2b1] Merging changes from GitHub
+\end{VerbOut}
+
+Our repositories are now as shown in \figref{f:after-second-conflict}.
+
+\swcgraphics{f:after-second-conflict}{Repositories After Second Conflict}{novice/git/img/git-after-second-conflicting-change.png}
+
+so we push our changes to GitHub:
+
+\begin{VerbIn}
+$ git push origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+Counting objects: 10, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 697 bytes, done.
+Total 6 (delta 2), reused 0 (delta 0)
+To https://github.com/vlad/planets.git
+   dabb4c8..2abf2b1  master -> master
+\end{VerbOut}
+
+to get the state shown in \figref{f:after-merging}.
+
+\swcgraphics{f:after-merging}{Repositories After Merging}{novice/git/img/git-after-merging.png}
+
+Git keeps track of what we've merged with what, so we don't have to fix
+things by hand again if we switch back to the repository in our home
+directory and pull from GitHub:
+
+\begin{VerbIn}
+$ cd ~/planets
+$ git pull origin master
+\end{VerbIn}
+
+\begin{VerbOut}
+remote: Counting objects: 10, done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 2), reused 6 (delta 2)
+Unpacking objects: 100% (6/6), done.
+From https://github.com/vlad/planets
+ * branch            master     -> FETCH_HEAD
+Updating dabb4c8..2abf2b1
+Fast-forward
+ mars.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+\end{VerbOut}
+
+we get the merged file:
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+We removed the conflict on this line
+\end{VerbOut}
+
+We don't need to merge again because GitHub knows someone has already
+done that.
+
+Version control's ability to merge conflicting changes is another reason
+users tend to divide their programs and papers into multiple files
+instead of storing everything in one large file. There's another benefit
+too: whenever there are repeated conflicts in a particular file, the
+version control system is essentially trying to tell its users that they
+ought to clarify who's responsible for what, or find a way to divide the
+work up differently.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Conflicts occur when two or more people change the same file(s) at the
+  same time.
+\item
+  The version control system does not allow people to blindly overwrite
+  each other's changes. Instead, it highlights conflicts so that they
+  can be resolved.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Clone the repository created by your instructor. Add a new file to it,
+  and modify an existing file (your instructor will tell you which one).
+  When asked by your instructor, pull her changes from the repository to
+  create a conflict, then resolve it.
+\end{challenge}
+
+\begin{challenge}
+  What does Git do when there is a conflict in an image or some other
+  non-textual file that is stored in version control?
+\end{challenge}
+
+\section{Open Science}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain how the GNU Public License (GPL) differs from most other open
+  licenses.
+\item
+  Explain the four kinds of restrictions that can be combined in a
+  Creative Commons license.
+\item
+  Correctly add licensing and citation information to a project
+  repository.
+\item
+  Outline options for hosting code and data and the pros and cons of
+  each.
+\end{swcitemize}
+\end{objectives}
+
+\begin{quote}
+The opposite of ``open'' isn't ``closed''. The opposite of ``open'' is
+``broken''. \\
+--- John Wilbanks
+\end{quote}
+
+Free sharing of information might be the ideal in science, but the
+reality is often more complicated. Normal practice today looks something
+like this:
+
+\begin{swcitemize}
+\item
+  A scientist collects some data and stores it on a machine that is
+  occasionally backed up by her department.
+\item
+  She then writes or modifies a few small programs (which also reside on
+  her machine) to analyze that data.
+\item
+  Once she has some results, she writes them up and submits her paper.
+  She might include her data---a growing number of journals require
+  this---but she probably doesn't include her code.
+\item
+  Time passes.
+\item
+  The journal sends her reviews written anonymously by a handful of
+  other people in her field. She revises her paper to satisfy them,
+  during which time she might also modify the scripts she wrote earlier,
+  and resubmits.
+\item
+  More time passes.
+\item
+  The paper is eventually published. It might include a link to an
+  online copy of her data, but the paper itself will be behind a
+  paywall: only people who have personal or institutional access will be
+  able to read it.
+\end{swcitemize}
+
+For a growing number of scientists, though, the process looks like this:
+
+\begin{swcitemize}
+\item
+  The data that the scientist collects is stored in an open access
+  repository like \urlfoot{http://figshare.com/}{figshare} or
+  \urlfoot{http://datadryad.org/}{Dryad} as soon as it's collected, and
+  given its own DOI.
+\item
+  The scientist creates a new repository on GitHub to hold her work.
+\item
+  As she does her analysis, she pushes changes to her scripts (and
+  possibly some output files) to that repository. She also uses the
+  repository for her paper; that repository is then the hub for
+  collaboration with her colleagues.
+\item
+  When she's happy with the state of her paper, she posts a version to
+  \urlfoot{http://arxiv.org/}{arXiv} or some other preprint server to
+  invite feedback from peers.
+\item
+  Based on that feedback, she may post several revisions before finally
+  submitting her paper to a journal.
+\item
+  The published paper includes links to her preprint and to her code and
+  data repositories, which makes it much easier for other scientists to
+  use her work as starting point for their own research.
+\end{swcitemize}
+
+This open model accelerates discovery: the more open work is, the more
+widely it is cited and re-used. However, people who want to work this
+way need to make some decisions about what exactly ``open'' means in
+practice.
+
+\subsection*{Licensing}
+
+The first question is licensing. Broadly speaking, there are two kinds
+of open license for software, and half a dozen for data and
+publications. For software, people can choose between the
+\urlfoot{http://opensource.org/licenses/GPL-3.0}{GNU Public License} (GPL)
+on the one hand, and licenses like the
+\urlfoot{http://opensource.org/licenses/MIT}{MIT} and
+\urlfoot{http://opensource.org/licenses/BSD-2-Clause}{BSD} licenses on the
+other. All of these licenses allow unrestricted sharing and modification
+of programs, but the GPL is \gl{infective}{g:infective-license}:
+anyone who distributes a modified version of the code (or anything that
+includes GPL'd code) must make \emph{their} code freely available as
+well.
+
+Proponents of the GPL argue that this requirement is needed to ensure
+that people who are benefiting from freely-available code are also
+contributing back to the community. Opponents counter that many open
+source projects have had long and successful lives without this
+condition, and that the GPL makes it more difficult to combine code from
+different sources. At the end of the day, what matters most is that:
+
+\begin{swcenumerate}
+\item
+  every project have a file in its home directory called something like
+  \texttt{LICENSE} or \texttt{LICENSE.txt} that clearly states what the
+  license is, and
+\item
+  people use existing licenses rather than writing new ones.
+\end{swcenumerate}
+
+The second point is as important as the first: most scientists are not
+lawyers, so wording that may seem sensible to a layperson may have
+unintended gaps or consequences. The \urlfoot{http://opensource.org/}{Open
+Source Initiative} maintains a list of open source licenses, and
+\urlfoot{http://www.tldrlegal.com/}{tl;drLegal} explains many of them in
+plain English.
+
+When it comes to data, publications, and the like, scientists have many
+more options to choose from. The good news is that an organization
+called \urlfoot{http://creativecommons.org/}{Creative Commons} has prepared
+a set of licenses using combinations of four basic restrictions:
+
+\begin{swcitemize}
+\item
+  Attribution: derived works must give the original author credit for
+  their work.
+\item
+  No Derivatives: people may copy the work, but must pass it along
+  unchanged.
+\item
+  Share Alike: derivative works must license their work under the same
+  terms as the original.
+\item
+  Noncommercial: free use is allowed, but commercial use is not.
+\end{swcitemize}
+
+These four restrictions are abbreviated ``BY'', ``ND'', ``SA'', and
+``NC'' respectively, so ``CC-BY-ND'' means, ``People can re-use the work
+both for free and commercially, but cannot make changes and must cite
+the original.'' These \urlfoot{http://creativecommons.org/licenses/}{short
+descriptions} summarize the six CC licenses in plain language, and
+include links to their full legal formulations.
+
+There is one other important license that doesn't fit into this
+categorization. Scientists (and other people) can choose to put material
+in the public domain, which is often abbreviated ``PD''. In this case,
+anyone can do anything they want with it, without needing to cite the
+original or restrict further re-use. The table below shows how the six
+Creative Commons licenses and PD relate to one another:
+
+\begin{tabular}{llllllll}
+& Licenses that can be used for derivative work or adaptation \\
+Original work & by & by-nc & by-nc-nd & by-nc-sa & by-nd & by-sa & pd \\
+by & X & X & X & X & X & X & \\
+by-nc & & X & X & X & & & \\
+by-nc-nd & & & & & & & \\
+by-nc-sa & & & & X & & & \\
+by-nd & & & & & & & \\
+by-sa & & & & & & X & \\
+pd & X & X & X & X & X & X & X \\
+\end{tabular}
+
+\urlfoot{http://software-carpentry.org/license.html}{Software Carpentry}
+uses CC-BY for its lessons and the MIT License for its code in order to
+encourage the widest possible re-use. Again, the most important thing is
+for the \texttt{LICENSE} file in the root directory of your project to
+state clearly what your license is. You may also want to include a file
+called \texttt{CITATION} or \texttt{CITATION.txt} that describes how to
+reference your project; the one for Software Carpentry states:
+
+\begin{VerbFile}
+To reference Software Carpentry in publications, please cite both of the following:
+
+Greg Wilson: "Software Carpentry: Lessons Learned". arXiv:1307.5448, July 2013.
+
+@online{wilson-software-carpentry-2013,
+  author      = {Greg Wilson},
+  title       = {Software Carpentry: Lessons Learned},
+  version     = {1},
+  date        = {2013-07-20},
+  eprinttype  = {arxiv},
+  eprint      = {1307.5448}
+}
+\end{VerbFile}
+
+\subsection*{Hosting}
+
+The second big question for groups that want to open up their work is
+where to host their code and data. One option is for the lab, the
+department, or the university to provide a server, manage accounts and
+backups, and so on. The main benefit of this is that it clarifies who
+owns what, which is particularly important if any of the material is
+sensitive (i.e., relates to experiments involving human subjects or may
+be used in a patent application). The main drawbacks are the cost of
+providing the service and its longevity: a scientist who has spent ten
+years collecting data would like to be sure that data will still be
+available ten years from now, but that's well beyond the lifespan of
+most of the grants that fund academic infrastructure.
+
+Another option is to purchase a domain and pay an
+\gl{Internet service provider}{g:isp} (ISP) to host it. This gives
+the individual or group more control, and sidesteps problems that can
+arise when moving from one institution to another, but requires more
+time and effort to set up than either the option above or the option
+below.
+
+The third option is to use a public hosting service like
+\urlfoot{http://github.com}{GitHub},
+\urlfoot{http://bitbucket.org}{BitBucket},
+\urlfoot{http://code.google.com}{Google Code}, or
+\urlfoot{http://sourceforge.net}{SourceForge}. All of these allow people to
+create repositories through a web interface, and also provide mailing
+lists, ways to keep track of who's doing what, and so on. They all
+benefit from economies of scale and network effects: it's easier to run
+one large service well than to run many smaller services to the same
+standard, and it's also easier for people to collaborate if they're
+using the same service, not least because it gives them fewer passwords
+to remember.
+
+However, all of these services place some constraints on people's work.
+In particular, most give users a choice: if they're willing to share
+their work with others, it will be hosted for free, but if they want
+privacy, they may have to pay. Sharing might seem like the only valid
+choice for science, but many institutions may not allow researchers to
+do this, either because they want to protect future patent applications
+or simply because what's new is often also frightening.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Open scientific work is more useful and more highly cited than closed.
+\item
+  People who incorporate GPL'd software into theirs must make theirs
+  open; most other open licenses do not require this.
+\item
+  The Creative Commons family of licenses allow people to mix and match
+  requirements and restrictions on attribution, creation of derivative
+  works, further sharing, and commercialization.
+\item
+  People who are not lawyers should not try to write licenses from
+  scratch.
+\item
+  Projects can be hosted on university servers, on personal domains, or
+  on public forges.
+\item
+  Rules regarding intellectual property and storage of sensitive
+  information apply no matter where code and data are hosted.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Find out whether you are allowed to apply an open license to your
+  software. Can you do this unilaterally, or do you need permission from
+  someone in your institution? If so, who?
+\end{challenge}
+
+\begin{challenge}
+  Find out whether you are allowed to host your work openly on a public
+  forge. Can you do this unilaterally, or do you need permission from
+  someone in your institution? If so, who?
+\end{challenge}

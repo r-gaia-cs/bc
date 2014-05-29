@@ -1,0 +1,1792 @@
+\chapter{A Few Extras}\label{s:extras}
+
+A few things come up in our classes that don't fit naturally into the
+flow of our lessons. We have gathered several of them here.
+
+\section{Branching in Git}
+
+Here's where we are right now:
+
+\begin{VerbIn}
+$ git log
+\end{VerbIn}
+
+\begin{VerbOut}
+commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 10:14:07 2013 -0400
+
+    Thoughts about the climate
+
+commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 10:07:21 2013 -0400
+
+    Concerns about Mars's moons on my furry friend
+
+commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Date:   Thu Aug 22 09:51:46 2013 -0400
+
+    Starting to think about Mars
+
+$ cat mars.txt
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+We can draw the history of the repository as shown in \figref{f:branching-01}
+(we'll see in a
+second why there's a box called \texttt{master}):
+
+\swcgraphics{f:branching-01}{Initial History of Repository}{novice/extras/img/git-branching-01.png}
+
+Let's run this command:
+
+\begin{VerbIn}
+$ git branch moons
+\end{VerbIn}
+
+It appears to do nothing, but behind the scenes it has created a new
+\gl{branch}{g:branch} called \texttt{moons} (\figref{f:branching-02}):
+
+\begin{VerbIn}
+$ git branch
+\end{VerbIn}
+
+\begin{VerbOut}
+* master
+  moons
+\end{VerbOut}
+
+\swcgraphics{f:branching-02}{Repository Immediately After Creating Branch}{novice/extras/img/git-branching-02.png}
+
+Git is now maintaining two named bookmarks in our history:
+\texttt{master}, which was created automatically when we set up the
+repository, and \texttt{moons}, which we just made. They both point to
+the same revision right now, but we can change that. Let's make
+\texttt{moons} the active branch (\figref{f:branching-03}):
+
+\begin{VerbIn}
+$ git checkout moons
+\end{VerbIn}
+
+\begin{VerbOut}
+Switched to branch 'moons'
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git branch
+\end{VerbIn}
+
+\begin{VerbOut}
+  master
+* moons
+\end{VerbOut}
+
+\swcgraphics{f:branching-03}{Repository After Switching Branches}{novice/extras/img/git-branching-03.png}
+
+Our file looks the same:
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+because it \emph{is} the same: Let's add another line to it:
+
+\begin{VerbIn}
+$ echo "Maybe we should put the base on one of the moons instead?" >> mars.txt
+\end{VerbIn}
+
+and add an entirely new file:
+
+\begin{VerbIn}
+$ echo "Phobos is larger than Deimos" > moons.txt
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+mars.txt    moons.txt
+\end{VerbOut}
+
+Git now tells us that we have one changed file and one new file:
+
+\begin{VerbIn}
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch moons
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#    modified:   mars.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#    moons.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+\end{VerbOut}
+
+Let's add and commit those changes (the \texttt{-A} flag to
+\texttt{git commit} means ``add everything''):
+
+\begin{VerbIn}
+$ git add -A
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch moons
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#    modified:   mars.txt
+#    new file:   moons.txt
+#
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git commit -m "Thinking about the moons"
+\end{VerbIn}
+
+\begin{VerbOut}
+[moons 62e7791] Thinking about the moons
+ 2 files changed, 2 insertions(+)
+ create mode 100644 moons.txt
+\end{VerbOut}
+
+\swcgraphics{f:branching-04}{Repository After Committing to Branch}{novice/extras/img/git-branching-04.png}
+
+Our repository is now in the state shown in \figref{f:branching-04}.
+The \texttt{moons} branch has advanced to record the changes we just
+made, but \texttt{master} is still where it was. If we switch back to
+\texttt{master}:
+
+\begin{VerbIn}
+$ git checkout master
+\end{VerbIn}
+
+our changes seem to disappear:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+mars.txt
+\end{VerbOut}
+
+\begin{VerbIn}
+$ cat mars.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Cold and dry, but everything is my favorite color
+The two moons may be a problem for Wolfman
+But the Mummy will appreciate the lack of humidity
+\end{VerbOut}
+
+They're still in the repository---they're just not in the revision that
+\texttt{master} is currently pointing to. In essence, we've created a
+parallel timeline that shares some history with the original one before
+diverging.
+
+Let's make some changes in the \texttt{master} branch to further
+illustrate this point:
+
+\begin{VerbIn}
+$ echo "Should we go with a classical name like Ares Base?" > names.txt
+$ git status
+\end{VerbIn}
+
+\begin{VerbOut}
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#    names.txt
+nothing added to commit but untracked files present (use "git add" to track)
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git add names.txt
+$ git commit -m "We will need a cool name for our secret base"
+\end{VerbIn}
+
+\begin{VerbOut}
+[master dfcf908] We will need a cool name for our secret base
+ 1 file changed, 1 insertion(+)
+ create mode 100644 names.txt
+\end{VerbOut}
+
+\swcgraphics{f:branching-05}{Repository After Branches Have Diverged}{novice/extras/img/git-branching-05.png}
+
+Our repository is now as shown in \figref{f:branching-05}.
+\texttt{master} and \texttt{moons} have both moved on from their
+original common state, but in different ways. They could continue
+independent existence indefinitely, but at some point we'll probably
+want to \gl{merge}{g:merge} our changes. Let's do that now:
+
+\begin{VerbIn}
+$ git branch
+\end{VerbIn}
+
+\begin{VerbOut}
+* master
+  moons
+\end{VerbOut}
+
+\begin{VerbIn}
+$ git merge moons
+\end{VerbIn}
+
+When we run the \texttt{git merge} command, Git opens an editor to let
+us write a log entry about what we're doing. The editor session
+initially contains this:
+
+\begin{VerbOut}
+Merge branch 'moons'
+
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+\end{VerbOut}
+
+If we notice that something is wrong and decide not to complete the
+merge, we must delete everything in the file---Git interprets an empty
+log message to mean, ``Don't proceed.'' Otherwise, everything that isn't
+marked as a comment with \texttt{\#} will be saved to the log. In this
+case, we'll stick with the default log message. When we save the file
+and exit the editor, Git displays this:
+
+\begin{VerbOut}
+Merge made by the 'recursive' strategy.
+ mars.txt  | 1 +
+ moons.txt | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 100644 moons.txt
+\end{VerbOut}
+
+We now have all of our changes in one place:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+mars.txt    moons.txt    names.txt
+\end{VerbOut}
+
+and our repository looks like \figref{f:branching-06}:
+
+\swcgraphics{f:branching-06}{Repository After Merging}{novice/extras/img/git-branching-06.png}
+
+We can ask Git to draw a diagram of the repository's history with this
+command:
+
+\begin{VerbIn}
+$ git log --oneline --topo-order --graph
+\end{VerbIn}
+
+\begin{VerbOut}
+*   e0cf8ab Merge branch 'moons'
+|\
+| * 62e7791 Thinking about the moons
+* | dfcf908 We will need a cool name for our secret base
+|/
+* 005937f Thoughts about the climate
+* 34961b1 Concerns about Mars's moons on my furry friend
+* f22b25e Starting to think about Mars
+\end{VerbOut}
+
+This ASCII art is fine for small sets of changes, but for anything
+significant, it's much better to use a GUI that can draw graphs using
+lines instead of characters.
+
+Branching strikes most newcomers as unnecessary complexity, particularly
+for single-author projects. After all, if we need to make some changes
+to a project, what do we gain by creating parallel universes?
+
+The answer is that branching makes it easy for us to concentrate on one
+thing at a time. Suppose we are part-way through rewriting a function
+that calculates spatial correlations when we realize that the task would
+be easier if our file I/O routines always stored things as complex
+numbers. Most people would put the spatial correlation changes aside,
+change the file I/O, then (hopefully) come back to the original task.
+
+The problem with this is that we have to remember what we were doing,
+even if we realize halfway through rewriting file I/O that we should
+also rewrite our error handling. It's quite common to wind up with half
+a dozen tasks stacked on top of one another, and quite hard to them all
+straight. Branching allows us to put what we're doing in a safe place,
+solve the new problem, then resume our earlier work.
+
+In practice, most developers never make changes directly in the
+\texttt{master} branch. Instead, they create a new branch from it for
+every change they want to make, then merge those branches back to
+\texttt{master} when the work is complete. Returning to our hypothetical
+example, we would:
+
+\begin{swcenumerate}
+\item
+  create a branch called something like
+  \texttt{better-spatial-correlation} for those changes;
+\item
+  go back to master and create another branch called
+  \texttt{file-input-produces-complex-values} for \emph{those} changes;
+\item
+  merge \texttt{file-input-produces-complex-values} into
+  \texttt{master};
+\item
+  merge \texttt{master} into \texttt{better-spatial-correlation}; and
+\item
+  finish work on the spatial correlation function and merge it all back
+  into \texttt{master}.
+\end{swcenumerate}
+
+And if, partway through this process, our supervisor asked us to change
+the graph-plotting routines to conform to the university's new style
+guide, we would simply switch back to \texttt{master}, create a branch
+for that, make the changes, produce the desired graphs, and leave the
+changes parked in that branch until we were ready to merge them.
+
+\section{Code Review}
+
+The model shown in the \urlfoot{../git/02-collab.html}{main lesson} in
+which everyone pushes and pulls from a single repository, is perfectly
+usable, but there's one thing it \emph{doesn't} let us do:
+\gl{code review}{g:code-review}. Suppose Dracula wants to be able
+to look at Wolfman's changes before merging them into the master copy on
+GitHub, just as he would review Wolfman's paper before publishing it (or
+perhaps even before submitting it for publication). We need to arrange
+things so that Wolfman can commit his changes and Dracula can compare
+them with the master copy; in fact, we want Wolfman to be able to commit
+many times, so that he can incorporate Dracula's feedback and get
+further review as often as necessary.
+
+To allow code review, most programmers take a slightly more roundabout
+route to merging. When the project starts, Dracula creates a repository
+on GitHub in exactly the same way as \urlfoot{../git/02-collab.html}{we
+created the \texttt{planets} repository} and then
+\gl{clones}{g:repository-clone} it to his desktop:
+
+\begin{VerbIn}
+$ git clone https://github.com/vlad/undersea.git
+\end{VerbIn}
+
+\begin{VerbOut}
+Cloning into 'undersea'...
+warning: You appear to have cloned an empty repository.
+\end{VerbOut}
+
+\texttt{git clone} automatically adds the original repository on GitHub
+as a remote of the local repository called \texttt{origin}---this is why
+we chose \texttt{origin} as a remote name in our previous example:
+
+\begin{VerbIn}
+$ cd undersea
+$ git remote -v
+\end{VerbIn}
+
+\begin{VerbOut}
+origin https://github.com/vlad/undersea.git (fetch)
+origin https://github.com/vlad/undersea.git (push)
+\end{VerbOut}
+
+Dracula can now push and pull changes just as before.
+
+Wolfman doesn't clone Dracula's GitHub repository directly. Instead, he
+\gl{forks}{g:repository-fork} it, i.e., clones it on GitHub. He
+does this using the GitHub web interface (\figref{f:git-fork-ui}).
+
+\swcgraphics{f:git-fork-ui}{Forking a Repository on Git}{novice/extras/img/git-fork-ui.png}
+
+He then clones his own GitHub repository, not Dracula's, to give himself
+a desktop copy (\figref{f:git-fork-01}.
+
+This may seem like unnecessary work, but it allows Wolfman and Dracula
+to collaborate much more effectively. Suppose Wolfman makes a change to
+the project. He commits it to his local repository, then uses
+\texttt{git push} to copy those changes to GitHub (\figref{f:git-forking-02}).
+
+\swcgraphics{f:git-fork-01}{Repositories After Cloning the Fork}{novice/extras/img/git-forking-01.png}
+
+\swcgraphics{f:git-forking-02}{Repositories After Pushing Changes to Personal Copy}{novice/extras/img/git-forking-02.png}
+
+He then creates a \gl{pull request}{g:pull-request}, which
+notifies Dracula that Wolfman wants to merge some changes into Dracula's
+repository (\figref{f:git-forking-03}).
+
+\swcgraphics{f:git-forking-03}{Creating a Pull Request}{novice/extras/img/git-forking-03.png}
+
+A pull request is a merge waiting to happen. When Dracula views it
+online, he can see and comment on the changes Wolfman wants to make.
+Commenting is the crucial step here, and half the reason Wolfman went to
+the trouble of forking the repository on GitHub. Dracula, or anyone else
+involved in the project, can now give Wolfman feedback on what he is
+trying to do: this function is too long, that one contains a bug,
+there's a special case that isn't being handled anywhere, and so on.
+Wolfman can then update his code, commit locally, and push those changes
+to GitHub to update the pull request.
+
+This process is exactly like peer review of papers, though usually much
+faster. In large open source projects like Firefox, it's very common for
+a pull request to be updated several times before finally being accepted
+and merged. Working this way not only helps maintain the quality of the
+code, it is also a very effective way to transfer knowledge.
+
+If Wolfman wants to do more work while he's waiting for Dracula to
+review his first modification, he creates a new branch in his local
+repository, pushes it to GitHub, and then issues a pull request from
+that. We can now see why Git, Mercurial, and other modern version
+control systems use branching so much: it helps people work together,
+but on their own time. It might take Dracula several days to get around
+to reviewing Wolfman's changes. Rather than being stalled until then,
+Wolfman can just switch to another branch and work on something else,
+then switch back when Dracula's review finally comes in. Once the
+changes in a particular branch have been accepted, Wolfman can delete
+it; provided it has been merged into \texttt{master} (or some other
+branch), the only thing that will be lost is the pointer with the branch
+name, not the changes themselves.
+
+We said above that code review is half the reason every developer should
+have their own repository on GitHub (or whatever service is being used).
+The other reason is that working this way allows people to explore ideas
+without needing permission from any central authority. If you want to
+change this tutorial, you can fork the
+\urlfoot{https://github.com/swcarpentry/bc}{Software Carpentry repository
+on GitHub} and start rewriting things in your repository. You can send
+us a pull request if you want to share you changes with us, but you
+don't have to. And if other people like your version better than ours,
+they can start forking your repository and sending pull requests to you
+instead of to us.
+
+If this sounds familiar, it's because it is the way science itself
+works. When someone publishes a new method or result, other scientists
+can immediately start building on top of it---essentially, they can
+create their own fork of the work and start committing changes to it. If
+the first scientist likes the second's work, she can incorporate those
+findings into her next paper, which is analogous to merging a pull
+request. If she doesn't, then it's up to other scientists to decide
+whose work to build on, or whether to try to combine both approaches.
+
+\section{Manual Pages}
+
+We can get help for any Unix command with the \texttt{man} (short for
+manual) command. For example, here is the command to look up information
+on \texttt{cp}:
+
+\begin{VerbIn}
+$ man cp
+\end{VerbIn}
+
+The output displayed is referred to as the ``man page''.
+
+The man page will be displayed in the default file viewer for our shell,
+which usually a program called \texttt{more}. When \texttt{more}
+displays a colon `:', we can press the space bar to get the next page,
+the letter `h' to get help, or the letter `q' to quit.
+
+\texttt{man}'s output is typically complete but concise, as it is
+designed to be used as a reference rather than a tutorial. Most man
+pages are divided into sections:
+
+\begin{swcitemize}
+\item
+  NAME: gives the name of the command and a brief description
+\item
+  SYNOPSIS: how to run the command, including optional and mandatory
+  parameters. (We will explain the syntax later.)
+\item
+  DESCRIPTION: a fuller description than the synopsis, including a
+  description of all the options to the command. This section may also
+  include example usage or details about how the command works.
+\item
+  EXAMPLES: self-explanatory.
+\item
+  SEE ALSO: list other commands that we might find useful or other
+  sources of information that might help us.
+\end{swcitemize}
+
+Other sections we might see include AUTHOR, REPORTING BUGS, COPYRIGHT,
+HISTORY, (known) BUGS, and COMPATIBILITY.
+
+\subsection*{How to Read the Synopsis}
+
+Here is the is synopsis for the \texttt{cp} command on Ubuntu Linux:
+
+\begin{VerbOut}
+SYNOPSIS
+   cp [OPTION]... [-T] SOURCE DEST
+   cp [OPTION]... SOURCE... DIRECTORY
+   cp [OPTION]... -t DIRECTORY SOURCE...
+\end{VerbOut}
+
+This tells the reader that there are three ways to use the command.
+Let's look at the first usage:
+
+\begin{VerbOut}
+cp [OPTION]... [-T] SOURCE DEST
+\end{VerbOut}
+
+\texttt{{[}OPTION{]}} means the \texttt{cp} command can be followed by
+one or more optional \gl{flags}{g:command-line-flag}. We can tell
+they're optional because of the square brackets, and we can tell that
+one or more are welcome because of the ellipsis (\ldots{}). For example,
+the fact that \texttt{{[}-T{]}} is in square brackets, but after the
+ellipsis, means that it's optional, but if it's used, it must come after
+all the other options.
+
+\texttt{SOURCE} refers to the source file or directory, and
+\texttt{DEST} to the destination file or directory. Their precise
+meanings are explained at the top of the \texttt{DESCRIPTION} section.
+
+The other two usage examples can be read in similar ways. Note that to
+use the last one, the \texttt{-t} option is mandatory (because it isn't
+shown in square brackets).
+
+The \texttt{DESCRIPTION} section starts with a few paragraphs explaining
+the command and its use, then expands on the possible options one by
+one:
+
+\begin{VerbOut}
+     The following options are available:
+
+     -a    Same as -pPR options. Preserves structure and attributes of
+           files but not directory structure.
+
+     -f    If the destination file cannot be opened, remove it and create
+           a new file, without prompting for confirmation regardless of
+           its permissions.  (The -f option overrides any previous -n
+           option.)
+
+           The target file is not unlinked before the copy.  Thus, any
+           existing access rights will be retained.
+
+      ...  ...
+\end{VerbOut}
+
+\subsection*{Finding Help on Specific Options}
+
+If we want to skip ahead to the option you're interested in, we can
+search for it using the slash key `/'. (This isn't part of the
+\texttt{man} command: it's a feature of \texttt{more}.) For example, to
+find out about \texttt{-t}, we can type \texttt{/-t} and press return.
+After that, we can use the `n' key to navigate to the next match until
+we find the detailed information we need:
+
+\begin{VerbOut}
+-t, --target-directory=DIRECTORY
+     copy all SOURCE arguments into DIRECTORY
+\end{VerbOut}
+
+This means that this option has the short form \texttt{-t} and the long
+form \texttt{-{}-target-directory} and that it takes an argument. Its
+meaning is to copy all the SOURCE arguments into DIRECTORY. Thus, we can
+give the destination explicitly instead of relying on having to place
+the directory at the end.
+
+\subsection*{Limitations of Man Pages}
+
+Man pages can be useful for a quick confirmation of how to run a
+command, but they are not famous for being readable. If you can't find
+what you need in the man page---or you can't understand what you've
+found---try entering ``unix command copy file'' into your favorite
+search engine: it will often produce more helpful results.
+
+\begin{swcbox}{You May Also Enjoy\ldots{}}
+
+The \urlfoot{http://explainshell.com/}{explainshell.com} site does a great
+job of breaking complex Unix commands into parts and explaining what
+each does. Sadly, it doesn't work in reverse\ldots{}
+
+\end{swcbox}
+
+\section{Permissions}
+
+Unix controls who can read, modify, and run files using
+\emph{permissions}. We'll discuss how Windows handles permissions at the
+end of the section: the concepts are similar, but the rules are
+different.
+
+Let's start with Nelle. She has a unique \gl{user
+name}{g:user-name}, \texttt{nnemo}, and a \gl{user ID}{g:user-id}, 1404.
+
+\begin{swcbox}{Why Integer IDs?}
+
+Why integers for IDs? Again, the answer goes back to the early 1970s.
+Character strings like \texttt{alan.turing} are of varying length, and
+comparing one to another takes many instructions. Integers, on the other
+hand, use a fairly small amount of storage (typically four characters),
+and can be compared with a single instruction. To make operations fast
+and simple, programmers often keep track of things internally using
+integers, then use a lookup table of some kind to translate those
+integers into user-friendly text for presentation. Of course,
+programmers being programmers, they will often skip the user-friendly
+string part and just use the integers, in the same way that someone
+working in a lab might talk about Experiment 28 instead of ``the
+chronotypical alpha-response trials on anacondas''.
+
+\end{swcbox}
+
+Users can belong to any number of \gl{groups}{g:user-group}, each
+of which has a unique \gl{group name}{g:user-group-name} and
+numeric \gl{group ID}{g:user-group-id}. The list of who's in what
+group is usually stored in the file \texttt{/etc/group}. (If you're in
+front of a Unix machine right now, try running \texttt{cat /etc/group}
+to look at that file.)
+
+Now let's look at files and directories. Every file and directory on a
+Unix computer belongs to one owner and one group. Along with each file's
+content, the operating system stores the numeric IDs of the user and
+group that own it.
+
+The user-and-group model means that for each file every user on the
+system falls into one of three categories: the owner of the file,
+someone in the file's group, and everyone else.
+
+For each of these three categories, the computer keeps track of whether
+people in that category can read the file, write to the file, or execute
+the file (i.e., run it if it is a program).
+
+For example, if a file had the following set of permissions:
+
+user
+
+group
+
+all
+
+read
+
+yes
+
+yes
+
+no
+
+write
+
+yes
+
+no
+
+no
+
+execute
+
+no
+
+no
+
+no
+
+it would mean that:
+
+\begin{swcitemize}
+\item
+  the file's owner can read and write it, but not run it;
+\item
+  other people in the file's group can read it, but not modify it or run
+  it; and
+\item
+  everybody else can do nothing with it at all.
+\end{swcitemize}
+
+Let's look at this model in action. If we \texttt{cd} into the
+\texttt{labs} directory and run \texttt{ls -F}, it puts a \texttt{*} at
+the end of \texttt{setup}'s name. This is its way of telling us that
+\texttt{setup} is executable, i.e., that it's (probably) something the
+computer can run.
+
+\begin{VerbIn}
+$ cd labs
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+safety.txt    setup*     waiver.txt
+\end{VerbOut}
+
+\begin{swcbox}{Necessary But Not Sufficient}
+
+The fact that something is marked as executable doesn't actually mean it
+contains a program of some kind. We could easily mark this HTML file as
+executable using the commands that are introduced below. Depending on
+the operating system we're using, trying to ``run'' it will either fail
+(because it doesn't contain instructions the computer recognizes) or
+cause the operating system to open the file with whatever application
+usually handles it (such as a web browser).
+
+\end{swcbox}
+
+Now let's run the command \texttt{ls -l}:
+
+\begin{VerbIn}
+$ ls -l
+\end{VerbIn}
+
+\begin{VerbOut}
+-rw-rw-r-- 1 vlad bio  1158  2010-07-11 08:22 safety.txt
+-rwxr-xr-x 1 vlad bio 31988  2010-07-23 20:04 setup
+-rw-rw-r-- 1 vlad bio  2312  2010-07-11 08:23 waiver.txt
+\end{VerbOut}
+
+The \texttt{-l} flag tells \texttt{ls} to give us a long-form listing.
+It's a lot of information, so let's go through the columns in turn.
+
+On the right side, we have the files' names. Next to them, moving left,
+are the times and dates they were last modified. Backup systems and
+other tools use this information in a variety of ways, but you can use
+it to tell when you (or anyone else with permission) last changed a
+file.
+
+Next to the modification time is the file's size in bytes and the names
+of the user and group that owns it (in this case, \texttt{vlad} and
+\texttt{bio} respectively). We'll skip over the second column for now
+(the one showing \texttt{1} for each file) because it's the first column
+that we care about most. This shows the file's permissions, i.e., who
+can read, write, or execute it.
+
+Let's have a closer look at one of those permission strings:
+\texttt{-rwxr-xr-x}. The first character tells us what type of thing
+this is: `-' means it's a regular file, while `d' means it's a
+directory, and other characters mean more esoteric things.
+
+The next three characters tell us what permissions the file's owner has.
+Here, the owner can read, write, and execute the file: \texttt{rwx}. The
+middle triplet shows us the group's permissions. If the permission is
+turned off, we see a dash, so \texttt{r-x} means ``read and execute, but
+not write''. The final triplet shows us what everyone who isn't the
+file's owner, or in the file's group, can do. In this case, it's `r-x'
+again, so everyone on the system can look at the file's contents and run
+it.
+
+To change permissions, we use the \texttt{chmod} command (whose name
+stands for ``change mode''). Here's a long-form listing showing the
+permissions on the final grades in the course Vlad is teaching:
+
+\begin{VerbIn}
+$ ls -l final.grd
+\end{VerbIn}
+
+\begin{VerbOut}
+-rwxrwxrwx 1 vlad bio  4215  2010-08-29 22:30 final.grd
+\end{VerbOut}
+
+Whoops: everyone in the world can read it---and what's worse, modify it!
+(They could also try to run the grades file as a program, which would
+almost certainly not work.)
+
+The command to change the owner's permissions to \texttt{rw-} is:
+
+\begin{VerbIn}
+$ chmod u=rw final.grd
+\end{VerbIn}
+
+The `u' signals that we're changing the privileges of the user (i.e.,
+the file's owner), and \texttt{rw} is the new set of permissions. A
+quick \texttt{ls -l} shows us that it worked, because the owner's
+permissions are now set to read and write:
+
+\begin{VerbIn}
+$ ls -l final.grd
+\end{VerbIn}
+
+\begin{VerbOut}
+-rw-rwxrwx 1 vlad bio  4215  2010-08-30 08:19 final.grd
+\end{VerbOut}
+
+Let's run \texttt{chmod} again to give the group read-only permission:
+
+\begin{VerbIn}
+$ chmod g=r final.grd
+$ ls -l final.grd
+\end{VerbIn}
+
+\begin{VerbOut}
+-rw-r--rw- 1 vlad bio  4215  2010-08-30 08:19 final.grd
+\end{VerbOut}
+
+And finally, let's give ``all'' (everyone on the system who isn't the
+file's owner or in its group) no permissions at all:
+
+\begin{VerbIn}
+$ chmod a= final.grd
+$ ls -l final.grd
+\end{VerbIn}
+
+\begin{VerbOut}
+-rw-r----- 1 vlad bio  4215  2010-08-30 08:20 final.grd
+\end{VerbOut}
+
+Here, the `a' signals that we're changing permissions for ``all'', and
+since there's nothing on the right of the ``='', ``all'''s new
+permissions are empty.
+
+We can search by permissions, too. Here, for example, we can use
+\texttt{-type f -perm -u=x} to find files that the user can execute:
+
+\begin{VerbIn}
+$ find . -type f -perm -u=x
+\end{VerbIn}
+
+\begin{VerbOut}
+./tools/format
+./tools/stats
+\end{VerbOut}
+
+Before we go any further, let's run \texttt{ls -a -l} to get a long-form
+listing that includes directory entries that are normally hidden:
+
+\begin{VerbIn}
+$ ls -a -l
+\end{VerbIn}
+
+\begin{VerbOut}
+drwxr-xr-x 1 vlad bio     0  2010-08-14 09:55 .
+drwxr-xr-x 1 vlad bio  8192  2010-08-27 23:11 ..
+-rw-rw-r-- 1 vlad bio  1158  2010-07-11 08:22 safety.txt
+-rwxr-xr-x 1 vlad bio 31988  2010-07-23 20:04 setup
+-rw-rw-r-- 1 vlad bio  2312  2010-07-11 08:23 waiver.txt
+\end{VerbOut}
+
+The permissions for \texttt{.} and \texttt{..} (this directory and its
+parent) start with a `d'. But look at the rest of their permissions: the
+`x' means that ``execute'' is turned on. What does that mean? A
+directory isn't a program---how can we ``run'' it?
+
+In fact, `x' means something different for directories. It gives someone
+the right to \emph{traverse} the directory, but not to look at its
+contents. The distinction is subtle, so let's have a look at an example.
+Vlad's home directory has three subdirectories called \texttt{venus},
+\texttt{mars}, and \texttt{pluto} (\figref{f:x-for-directories}).
+
+\swcgraphics{f:x-for-directories}{``Execute'' Permission for Directories}{novice/extras/img/x-for-directories.png}
+
+Each of these has a subdirectory in turn called \texttt{notes}, and
+those sub-subdirectories contain various files. If a user's permissions
+on \texttt{venus} are `r-x', then if she tries to see the contents of
+\texttt{venus} and \texttt{venus/notes} using \texttt{ls}, the computer
+lets her see both. If her permissions on \texttt{mars} are just `r--',
+then she is allowed to read the contents of both \texttt{mars} and
+\texttt{mars/notes}. But if her permissions on \texttt{pluto} are only
+`--x', she cannot see what's in the \texttt{pluto} directory:
+\texttt{ls pluto} will tell her she doesn't have permission to view its
+contents. If she tries to look in \texttt{pluto/notes}, though, the
+computer will let her do that. She's allowed to go through
+\texttt{pluto}, but not to look at what's there. This trick gives people
+a way to make some of their directories visible to the world as a whole
+without opening up everything else.
+
+\subsection*{What about Windows?}
+
+Those are the basics of permissions on Unix. As we said at the outset,
+though, things work differently on Windows. There, permissions are
+defined by \gl{access control lists}{g:access-control-list}, or
+ACLs. An ACL is a list of pairs, each of which combines a ``who'' with a
+``what''. For example, you could give the Mummy permission to append
+data to a file without giving him permission to read or delete it, and
+give Frankenstein permission to delete a file without being able to see
+what it contains.
+
+This is more flexible that the Unix model, but it's also more complex to
+administer and understand on small systems. (If you have a large
+computer system, \emph{nothing} is easy to administer or understand.)
+Some modern variants of Unix support ACLs as well as the older
+read-write-execute permissions, but hardly anyone uses them.
+
+\section{Shell Variables}
+
+The shell is just a program, and like other programs, it has variables.
+Those variables control its execution, so by changing their values you
+can change how the shell and other programs behave.
+
+Let's start by running the command \texttt{set} and looking at some of
+the variables in a typical shell session:
+
+\begin{VerbIn}
+$ set
+\end{VerbIn}
+
+\begin{VerbOut}
+COMPUTERNAME=TURING
+HOME=/home/vlad
+HOMEDRIVE=C:
+HOSTNAME=TURING
+HOSTTYPE=i686
+NUMBER_OF_PROCESSORS=4
+OS=Windows_NT
+PATH=/Users/vlad/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PWD=/home/vlad
+UID=1000
+USERNAME=vlad
+...
+\end{VerbOut}
+
+As you can see, there are quite a few---in fact, four or five times more
+than what's shown here. And yes, using \texttt{set} to \emph{show}
+things might seem a little strange, even for Unix, but if you don't give
+it any arguments, it might as well show you things you \emph{could} set.
+
+Every variable has a name. By convention, variables that are always
+present are given upper-case names. All shell variables' values are
+strings, even those (like \texttt{UID}) that look like numbers. It's up
+to programs to convert these strings to other types when necessary. For
+example, if a program wanted to find out how many processors the
+computer had, it would convert the value of the
+\texttt{NUMBER\_OF\_PROCESSORS} variable from a string to an integer.
+
+Similarly, some variables (like \texttt{PATH}) store lists of values. In
+this case, the convention is to use a colon `:' as a separator. If a
+program wants the individual elements of such a list, it's the program's
+responsibility to split the variable's string value into pieces.
+
+\subsection*{The \texttt{PATH} Variable}
+
+Let's have a closer look at that \texttt{PATH} variable. Its value
+defines the shell's \gl{search path}{g:search-path}, i.e., the
+list of directories that the shell looks in for runnable programs when
+you type in a program name without specifying what directory it is in.
+
+For example, when we type a command like \texttt{analyze}, the shell
+needs to decide whether to run \texttt{./analyze} or
+\texttt{/bin/analyze}. The rule it uses is simple: the shell checks each
+directory in the \texttt{PATH} variable in turn, looking for a program
+with the requested name in that directory. As soon as it finds a match,
+it stops searching and runs the program.
+
+To show how this works, here are the components of \texttt{PATH} listed
+one per line:
+
+\begin{VerbOut}
+/Users/vlad/bin
+/usr/local/git/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/bin
+\end{VerbOut}
+
+On our computer, there are actually three programs called
+\texttt{analyze} in three different directories: \texttt{/bin/analyze},
+\texttt{/usr/local/bin/analyze}, and \texttt{/users/vlad/analyze}. Since
+the shell searches the directories in the order they're listed in
+\texttt{PATH}, it finds \texttt{/bin/analyze} first and runs that.
+Notice that it will \emph{never} find the program
+\texttt{/users/vlad/analyze} unless we type in the full path to the
+program, since the directory \texttt{/users/vlad} isn't in
+\texttt{PATH}.
+
+\subsection*{Showing the Value of a Variable}
+
+Let's show the value of the variable \texttt{HOME}:
+
+\begin{VerbIn}
+$ echo HOME
+\end{VerbIn}
+
+\begin{VerbOut}
+HOME
+\end{VerbOut}
+
+That just prints ``HOME'', which isn't what we wanted (though it is what
+we actually asked for). Let's try this instead:
+
+\begin{VerbIn}
+$ echo $HOME
+\end{VerbIn}
+
+\begin{VerbOut}
+/home/vlad
+\end{VerbOut}
+
+The dollar sign tells the shell that we want the \emph{value} of the
+variable rather than its name. This works just like wildcards: the shell
+does the replacement \emph{before} running the program we've asked for.
+Thanks to this expansion, what we actually run is
+\texttt{echo /home/vlad}, which displays the right thing.
+
+\subsection*{Creating and Changing Variables}
+
+Creating a variable is easy---we just assign a value to a name using
+``='':
+
+\begin{VerbIn}
+$ SECRET_IDENTITY=Dracula
+$ echo $SECRET_IDENTITY
+\end{VerbIn}
+
+\begin{VerbOut}
+Dracula
+\end{VerbOut}
+
+To change the value, just assign a new one:
+
+\begin{VerbIn}
+$ SECRET_IDENTITY=Camilla
+$ echo $SECRET_IDENTITY
+\end{VerbIn}
+
+\begin{VerbOut}
+Camilla
+\end{VerbOut}
+
+If we want to set some variables automatically every time we run a
+shell, we can put commands to do this in a file called \texttt{.bashrc}
+in our home directory. (The `.' character at the front prevents
+\texttt{ls} from listing this file unless we specifically ask it to
+using \texttt{-a}: we normally don't want to worry about it. The ``rc''
+at the end is an abbreviation for ``run control'', which meant something
+really important decades ago, and is now just a convention everyone
+follows without understanding why.)
+
+For example, here are two lines in \texttt{/home/vlad/.bashrc}:
+
+\begin{VerbOut}
+export SECRET_IDENTITY=Dracula
+export TEMP_DIR=/tmp
+export BACKUP_DIR=$TEMP_DIR/backup
+\end{VerbOut}
+
+These three lines create the variables \texttt{SECRET\_IDENTITY},
+\texttt{TEMP\_DIR}, and \texttt{BACKUP\_DIR}, and export them so that
+any programs the shell runs can see them as well. Notice that
+\texttt{BACKUP\_DIR}'s definition relies on the value of
+\texttt{TEMP\_DIR}, so that if we change where we put temporary files,
+our backups will be relocated automatically.
+
+While we're here, it's also common to use the \texttt{alias} command to
+create shortcuts for things we frequently type. For example, we can
+define the alias \texttt{backup} to run \texttt{/bin/zback} with a
+specific set of arguments:
+
+\begin{VerbOut}
+alias backup=/bin/zback -v --nostir -R 20000 $HOME $BACKUP_DIR
+\end{VerbOut}
+
+As you can see, aliases can save us a lot of typing, and hence a lot of
+typing mistakes. You can find interesting suggestions for other aliases
+and other bash tricks by searching for ``sample bashrc'' in your
+favorite search engine.
+
+\section{Working Remotely}
+
+Let's take a closer look at what happens when we use the shell on a
+desktop or laptop computer. The first step is to log in so that the
+operating system knows who we are and what we're allowed to do. We do
+this by typing our username and password; the operating system checks
+those values against its records, and if they match, runs a shell for
+us.
+
+As we type commands, the 1's and 0's that represent the characters we're
+typing are sent from the keyboard to the shell. The shell displays those
+characters on the screen to represent what we type, and then, if what we
+typed was a command, the shell executes it and displays its output (if
+any).
+
+What if we want to run some commands on another machine, such as the
+server in the basement that manages our database of experimental
+results? To do this, we have to first log in to that machine. We call
+this a \gl{remote login}{g:remote-login}, and the other computer a
+remote computer. Once we do this, everything we type is passed to a
+shell running on the remote computer. That shell runs those commands on
+our behalf, just as a local shell would, then sends back output for our
+computer to display.
+
+The tool we use to log in remotely is the {[}secure
+shell)(\#g:secure-shell), or SSH. In particular, the command
+\texttt{ssh username@computer} runs SSH and connects to the remote
+computer we have specified. After we log in, we can use the remote shell
+to use the remote computer's files and directories. Typing \texttt{exit}
+or Control-D terminates the remote shell and returns us to our previous
+shell.
+
+In the example below, the remote machine's command prompt is
+\texttt{moon\textgreater{}} instead of just \texttt{\$}. To make it
+clearer which machine is doing what, we'll indent the commands sent to
+the remote machine and their output.
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ssh vlad@moon.euphoric.edu
+Password: ********
+\end{VerbIn}
+
+\begin{VerbIn}
+    moon> hostname
+\end{VerbIn}
+
+\begin{VerbOut}
+    moon
+\end{VerbOut}
+
+\begin{VerbIn}
+    moon> pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+    /home/vlad
+\end{VerbOut}
+
+\begin{VerbIn}
+    moon> ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+    bin/     cheese.txt   dark_side/   rocks.cfg
+\end{VerbOut}
+
+\begin{VerbIn}
+    moon> exit
+\end{VerbIn}
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+The secure shell is called ``secure'' to contrast it with an older
+program called \texttt{rsh}, which stood for ``remote shell''. Back in
+the day, when everyone trusted each other and knew every chip in their
+computer by its first name, people didn't encrypt anything except the
+most sensitive information when sending it over a network. However, that
+meant that villains could watch network traffic, steal usernames and
+passwords, and use them for all manner of nefarious purposes. SSH was
+invented to prevent this (or at least slow it down). It uses several
+sophisticated, and heavily tested, encryption protocols to ensure that
+outsiders can't see what's in the messages going back and forth between
+different computers.
+
+\texttt{ssh} has a companion program called \texttt{scp}, which stands
+for ``secure copy''. It allows us to copy files to or from a remote
+computer using the same kind of connection as SSH. The command's name
+combines \texttt{cp}'s and \texttt{ssh}'s, and so does its operation. To
+copy a file, we specify the source and destination paths, either of
+which may include computer names. If we leave out a computer name,
+\texttt{scp} assumes we mean the machine we're running on. For example,
+this command copies our latest results to the backup server in the
+basement, printing out its progress as it does so:
+
+\begin{VerbIn}
+$ scp results.dat vlad@backupserver:backups/results-2011-11-11.dat
+Password: ********
+\end{VerbIn}
+
+\begin{VerbOut}
+results.dat              100%  9  1.0 MB/s 00:00
+\end{VerbOut}
+
+Copying a whole directory is similar: we just use the \texttt{-r} option
+to signal that we want copying to be recursive. For example, this
+command copies all of our results from the backup server to our laptop:
+
+\begin{VerbIn}
+$ scp -r vlad@backupserver:backups ./backups
+Password: ********
+\end{VerbIn}
+
+\begin{VerbOut}
+results-2011-09-18.dat              100%  7  1.0 MB/s 00:00
+results-2011-10-04.dat              100%  9  1.0 MB/s 00:00
+results-2011-10-28.dat              100%  8  1.0 MB/s 00:00
+results-2011-11-11.dat              100%  9  1.0 MB/s 00:00
+\end{VerbOut}
+
+Here's one more thing SSH can do for us. Suppose we want to check
+whether we have already created the file
+\texttt{backups/results-2011-11-12.dat} on the backup server. Instead of
+logging in and then typing \texttt{ls}, we could do this:
+
+\begin{VerbIn}
+$ ssh vlad@backupserver "ls results"
+Password: ********
+\end{VerbIn}
+
+\begin{VerbOut}
+results-2011-09-18.dat  results-2011-10-28.dat
+results-2011-10-04.dat  results-2011-11-11.dat
+\end{VerbOut}
+
+SSH takes the argument after our remote username and passes them to the
+shell on the remote computer. (We have to put quotes around it to make
+it look like a single argument.) Since those arguments are a legal
+command, the remote shell runs \texttt{ls results} for us and sends the
+output back to our local shell for display.
+
+\begin{swcbox}{All Those Passwords}
+
+Typing our password over and over again is annoying, especially if the
+commands we want to run remotely are in a loop. To remove the need to do
+this, we can create an \gl{authentication
+key}{g:authentication-key} to tell the remote machine that it should always trust us. We
+discuss authentication keys in our intermediate lessons.
+
+\end{swcbox}
+
+\section{Exceptions}
+
+Assertions help us catch errors in our code, but things can go wrong for
+other reasons, like missing or badly-formatted files. Most modern
+programming languages allow programmers to use
+\gl{exceptions}{g:exception} to separate what the program should
+do if everything goes right from what it should do if something goes
+wrong. Doing this makes both cases easier to read and understand.
+
+For example, here's a small piece of code that tries to read parameters
+and a grid from two separate files, and reports an error if either goes
+wrong:
+
+\begin{VerbIn}
+try:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+except:
+    log.error('Failed to read input file(s)')
+    sys.exit(ERROR)
+\end{VerbIn}
+
+We join the normal case and the error-handling code using the keywords
+\texttt{try} and \texttt{except}. These work together like \texttt{if}
+and \texttt{else}: the statements under the \texttt{try} are what should
+happen if everything works, while the statements under \texttt{except}
+are what the program should do if something goes wrong.
+
+We have actually seen exceptions before without knowing it, since by
+default, when an exception occurs, Python prints it out and halts our
+program. For example, trying to open a nonexistent file triggers a type
+of exception called an \texttt{IOError}, while trying to access a list
+element that doesn't exist causes an \texttt{IndexError}:
+
+\begin{VerbIn}
+open('nonexistent-file.txt', 'r')
+\end{VerbIn}
+
+\begin{VerbErr}
+---------------------------------------------------------------------------
+IOError                                   Traceback (most recent call last)
+
+<ipython-input-13-58cbde3dd63c> in <module>()
+----> 1 open('nonexistent-file.txt', 'r')
+
+IOError: [Errno 2] No such file or directory: 'nonexistent-file.txt'
+\end{VerbErr}
+
+\begin{VerbIn}
+values = [0, 1, 2]
+print values[999]
+\end{VerbIn}
+
+\begin{VerbErr}
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+
+<ipython-input-14-7fed13afc650> in <module>()
+1 values = [0, 1, 2]
+----> 2 print values[999]
+
+IndexError: list index out of range
+\end{VerbErr}
+
+We can use \texttt{try} and \texttt{except} to deal with these errors
+ourselves if we don't want the program simply to fall over:
+
+\begin{VerbIn}
+try:
+    reader = open('nonexistent-file.txt', 'r')
+except IOError:
+    print 'Whoops!'
+\end{VerbIn}
+
+\begin{VerbOut}
+Whoops!
+\end{VerbOut}
+
+When Python executes this code, it runs the statement inside the
+\texttt{try}. If that works, it skips over the \texttt{except} block
+without running it. If an exception occurs inside the \texttt{try}
+block, though, Python compares the type of the exception to the type
+specified by the \texttt{except}. If they match, it executes the code in
+the \texttt{except} block.
+
+\texttt{IOError} is the particular kind of exception Python raises when
+there is a problem related to input and output, such as files not
+existing or the program not having the permissions it needs to read
+them. We can put as many lines of code in a \texttt{try} block as we
+want, just as we can put many statements under an \texttt{if}. We can
+also handle several different kinds of errors afterward. For example,
+here's some code to calculate the entropy at each point in a grid:
+
+\begin{VerbIn}
+try:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+except IOError:
+    report_error_and_exit('IO error')
+except ArithmeticError:
+    report_error_and_exit('Arithmetic error')
+\end{VerbIn}
+
+Python tries to run the four functions inside the \texttt{try} as
+normal. If an error occurs in any of them, Python immediately jumps down
+and tries to find an \texttt{except} of the corresponding type: if the
+exception is an \texttt{IOError}, Python jumps into the first error
+handler, while if it's an \texttt{ArithmeticError}, Python jumps into
+the second handler instead. It will only execute one of these, just as
+it will only execute one branch of a series of
+\texttt{if}/\texttt{elif}/\texttt{else} statements.
+
+This layout has made the code easier to read, but we've lost something
+important: the message printed out by the \texttt{IOError} branch
+doesn't tell us which file caused the problem. We can do better if we
+capture and hang on to the object that Python creates to record
+information about the error:
+
+\begin{VerbIn}
+try:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+except IOError as err:
+    report_error_and_exit('Cannot read/write' + err.filename)
+except ArithmeticError as err:
+    report_error_and_exit(err.message)
+\end{VerbIn}
+
+If something goes wrong in the \texttt{try}, Python creates an exception
+object, fills it with information, and assigns it to the variable
+\texttt{err}. (There's nothing special about this variable name---we can
+use anything we want.) Exactly what information is recorded depends on
+what kind of error occurred; Python's documentation describes the
+properties of each type of error in detail, but we can always just print
+the exception object. In the case of an I/O error, we print out the name
+of the file that caused the problem. And in the case of an arithmetic
+error, printing out the message embedded in the exception object is what
+Python would have done anyway.
+
+So much for how exceptions work: how should they be used? Some
+programmers use \texttt{try} and \texttt{except} to give their programs
+default behaviors. For example, if this code can't read the grid file
+that the user has asked for, it creates a default grid instead:
+
+\begin{VerbIn}
+try:
+    grid = read_grid(grid_file)
+except IOError:
+    grid = default_grid()
+\end{VerbIn}
+
+Other programmers would explicitly test for the grid file, and use
+\texttt{if} and \texttt{else} for control flow:
+
+\begin{VerbIn}
+if file_exists(grid_file):
+    grid = read_grid(grid_file)
+else:
+    grid = default_grid()
+\end{VerbIn}
+
+It's mostly a matter of taste, but we prefer the second style. As a
+rule, exceptions should only be used to handle exceptional cases. If the
+program knows how to fall back to a default grid, that's not an
+unexpected event. Using \texttt{if} and \texttt{else} instead of
+\texttt{try} and \texttt{except} sends different signals to anyone
+reading our code, even if they do the same thing.
+
+Novices often ask another question about exception handling style, but
+before we address it, there's something in our example that you might
+not have noticed. Exceptions can actually be thrown a long way: they
+don't have to be handled immediately. Take another look at this code:
+
+\begin{VerbIn}
+try:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+except IOError as err:
+    report_error_and_exit('Cannot read/write' + err.filename)
+except ArithmeticError as err:
+    report_error_and_exit(err.message)
+\end{VerbIn}
+
+The four lines in the \texttt{try} block are all function calls. They
+might catch and handle exceptions themselves, but if an exception occurs
+in one of them that \emph{isn't} handled internally, Python looks in the
+calling code for a matching \texttt{except}. If it doesn't find one
+there, it looks in that function's caller, and so on. If we get all the
+way back to the main program without finding an exception handler,
+Python's default behavior is to print an error message like the ones
+we've been seeing all along.
+
+This rule is the origin of the rule
+\urlfoot{../rules.html\#throw-low-catch-high}{throw low, catch high}. There
+are many places in our program where an error might occur. There are
+only a few, though, where errors can sensibly be handled. For example, a
+linear algebra library doesn't know whether it's being called directly
+from the Python interpreter, or whether it's being used as a component
+in a larger program. In the latter case, the library doesn't know if the
+program that's calling it is being run from the command line or from a
+GUI. The library therefore shouldn't try to handle or report errors
+itself, because it has no way of knowing what the right way to do this
+is. It should instead just raise an exception, and let its caller figure
+out how best to handle it.
+
+Finally, we can raise exceptions ourselves if we want to. In fact, we
+\emph{should} do this, since it's the standard way in Python to signal
+that something has gone wrong. Here, for example, is a function that
+reads a grid and checks its consistency:
+
+\begin{VerbIn}
+def read_grid(grid_file):
+    data = read_raw_data(grid_file)
+    if not grid_consistent(data):
+        raise Exception('Inconsistent grid: ' + grid_file)
+    result = normalize_grid(data)
+    return result
+\end{VerbIn}
+
+The \texttt{raise} statement creates a new exception with a meaningful
+error message. Since \texttt{read\_grid} itself doesn't contain a
+\texttt{try}/\texttt{except} block, this exception will always be thrown
+up and out of the function, to be caught and handled by whoever is
+calling \texttt{read\_grid}. We can define new types of exceptions if we
+want to. And we should, so that errors in our code can be distinguished
+from errors in other people's code. However, this involves classes and
+objects, which is outside the scope of these lessons.
+
+\section{Numbers}
+
+Let's start by looking at how numbers are stored. If we only have the
+two digits 0 and 1, the natural way to store a positive integer is to
+use base 2, so $1001_{2}$ is
+$(1×2^{3})+(0×2^{2})+(0×2^{1})+(1×2^{0}) = 9_{10}$.
+It's equally natural to extend this scheme to
+negative numbers by reserving one bit for the sign. If, for example, we
+use 0 for positive numbers and 1 for those that are negative,
+$+9^{10}$ would be $01001^{2}$ and
+$-9^{10}$ would be $11001^{10}$.
+
+There are two problems with this. The first is that this scheme gives us
+two representations for zero ($00000_{2}$ and
+$10000_{2}$). This isn't necessarily fatal, but any claims
+this scheme has to being ``natural'' disappear when we have to write
+code like:
+
+\begin{VerbIn}
+if (length != +0) and (length != -0)
+\end{VerbIn}
+
+As for the other problem, it turns out that the circuits needed to do
+addition and other arithmetic on this
+\gl{sign and magnitude representation}{g:sign-and-magnitude} are
+more complicated than the hardware needed for another called
+\gl{two's complement}{g:twos-complement}. Instead of mirroring
+positive values, two's complement rolls over when going below zero, just
+like a car's odometer. If we're using four bits per number, so that
+$0_{10}$ is $0000_{2}$, then $-1_{10}$
+is $1111_{2}$. $-2_{10}$ is $1110_{2}$,
+$-3_{10}$ is $1101_{2}$, and so on until we reach
+the most negative number we can represent, $1000_{2}$, which
+is -8. Our representation then wraps around again, so that
+$0111_{2}$ is $7_{10}$.
+
+This scheme isn't intuitive, but it solves sign and magnitude's ``double
+zero'' problem, and the hardware to handle it is faster and cheaper. As
+a bonus, we can still tell whether a number is positive or negative by
+looking at the first bit: negative numbers have a 1, positives have a 0.
+The only odd thing is its asymmetry: because 0 counts as a positive
+number, numbers go from -8 to 7, or -16 to 15, and so on. As a result,
+even if \texttt{x} is a valid number, \texttt{-x} may not be.
+
+Finding a good representation for real numbers (called
+\gl{floating point numbers}{g:floating-point}, since the decimal
+point can move around) is a much harder problem. The root of the problem
+is that we cannot represent an infinite number of real values with a
+finite set of bit patterns. And unlike integers, no matter what values
+we \emph{do} represent, there will be an infinite number of values
+between each of them that we can't.
+
+Floating point numbers are usually represented using sign, magnitude,
+and an exponent. In a 32-bit word, the IEEE 754 standard calls for 1 bit
+of sign, 23 bits for the magnitude (or \emph{mantissa}), and 8 bits for
+the exponent. To illustrate the problems with floating point, we'll use
+a much dumber representation: we'll only worry about positive values
+without fractional parts, and we'll only use 3 for the magnitude and 2
+for the exponent.
+
+Exponent
+
+00
+
+01
+
+10
+
+11
+
+000
+
+0
+
+0
+
+0
+
+0
+
+001
+
+1
+
+2
+
+4
+
+8
+
+010
+
+2
+
+4
+
+8
+
+16
+
+Mantissa
+
+011
+
+3
+
+6
+
+12
+
+24
+
+100
+
+4
+
+8
+
+16
+
+32
+
+101
+
+5
+
+10
+
+20
+
+40
+
+110
+
+6
+
+12
+
+24
+
+48
+
+111
+
+7
+
+14
+
+28
+
+56
+
+The table above shows the values that we can represent this way. Each
+one is the mantissa times two to the exponent. For example, the decimal
+values 48 is binary 110 times 2 to the binary 11 power, which is 6 times
+2 to the third, or 6 times 8. (Note that real floating point
+representations like the IEEE 754 standard don't have the redundancy
+shown in this table, but that doesn't affect our argument.)
+
+The first thing you should notice is that there are a lot of values we
+\emph{can't} store. We can do 8 and 10, for example, but not 9. This is
+exactly like the problems hand calculators have with fractions like 1/3:
+in decimal, we have to round that to 0.3333 or 0.3334.
+
+But if this scheme has no representation for 9, then 8+1 must be stored
+as either 8 or 10. This raises an interesting question: if 8+1 is 8,
+what is 8+1+1? If we add from the left, 8+1 is 8, plus another 1 is 8
+again. If we add from the right, though, 1+1 is 2, and 2+8 is 10.
+Changing the order of operations can make the difference between right
+and wrong. There's no randomness involved---a particular order of
+operations will always produce the same result---but as the number of
+steps increases, so too does the difficulty of figuring out what the
+best order is.
+
+This is the sort of problem that numerical analysts spend their time on.
+In this case, if we sort the values we're adding, then add from smallest
+to largest, it gives us a better chance of getting the best possible
+answer. In other situations, like inverting a matrix, the rules are much
+more complicated.
+
+Here's another observation about our uneven number line: the spacing
+between the values we can represent is uneven, but the relative spacing
+between each set of values stays the same, i.e., the first group is
+separated by 1, then the separation becomes 2, then 4, then 8, so that
+the ratio of the spacing to the values stays roughly constant. This
+happens because we're multiplying the same fixed set of mantissas by
+ever-larger exponents, and it points us at a couple of useful
+definitions.
+
+The \gl{absolute error}{g:absolute-error} in some approximation is
+simply the absolute value of the difference between the actual value and
+the approximation. The \gl{relative error}{g:relative-error}, on
+the other hand, is the ratio of the absolute error to the value we're
+approximating. For example, if we're off by 1 in approximating 8+1 and
+56+1, the absolute error is the same in both cases, but the relative
+error in the first case is 1/9 = 11\%, while the relative error in the
+second case is only 1/57 = 1.7\%. When we're thinking about floating
+point numbers, relative error is almost always more useful than absolute
+error. After all, it makes little sense to say that we're off by a
+hundredth when the value in question is a billionth.
+
+To see why this matters, let's have a look at a little program:
+
+\begin{VerbIn}
+nines = []
+sums = []
+current = 0.0
+for i in range(1, 10):
+    num = 9.0 / (10.0 ** i)
+    nines.append(num)
+    current += num
+    sums.append(current)
+
+for i in range(len(nines)):
+    print '%.18f %.18f' % (nines[i], sums[i])
+\end{VerbIn}
+
+The loop runs over the integers from 1 to 9 inclusive. Using those
+values, we create the numbers 0.9, 0.09, 0.009, and so on, and put them
+in the list \texttt{vals}. We then calculate the sum of those numbers.
+Clearly, this should be 0.9, 0.99, 0.999, and so on. But is it?
+
+\begin{tabular}{lll}
+1 & 0.900000000000000022 & 0.900000000000000022 \\
+2 & 0.089999999999999997 & 0.989999999999999991 \\
+3 & 0.008999999999999999 & 0.998999999999999999 \\
+4 & 0.000900000000000000 & 0.999900000000000011 \\
+5 & 0.000090000000000000 & 0.999990000000000046 \\
+6 & 0.000009000000000000 & 0.999999000000000082 \\
+7 & 0.000000900000000000 & 0.999999900000000053 \\
+8 & 0.000000090000000000 & 0.999999990000000061 \\
+9 & 0.000000009000000000 & 0.999999999000000028 \\
+\end{tabular}
+
+Here are our answers. The first column is the loop index; the second,
+what we actually got when we tried to calculate 0.9, 0.09, and so on,
+and the third is the cumulative sum.
+
+The first thing you should notice is that the very first value
+contributing to our sum is already slightly off. Even with 23 bits for a
+mantissa, we cannot exactly represent 0.9 in base 2, any more than we
+can exactly represent 1/3 in base 10. Doubling the size of the mantissa
+would reduce the error, but we can't ever eliminate it.
+
+The second thing to notice is that our approximation to 0.0009 actually
+appears accurate, as do all of the approximations after that. This may
+be misleading, though: after all, we've only printed things out to 18
+decimal places. As for the errors in the last few digits of the sums,
+there doesn't appear to be any regular pattern in the way they increase
+and decrease.
+
+This phenomenon is one of the things that makes testing scientific
+programs hard. If a function uses floating point numbers, what do we
+compare its result to if we want to check that it's working correctly?
+If we compared the sum of the first few numbers in \texttt{vals} to what
+it's supposed to be, the answer could be \texttt{False}, even if we're
+initializing the list with the right values, and calculating the sum
+correctly. This is a genuinely hard problem, and no one has a good
+generic answer. The root of our problem is that we're using
+approximations, and each approximation has to be judged on its own
+merits.
+
+There are things you can do, though. The first rule is, compare what you
+get to analytic solutions whenever you can. For example, if you're
+looking at the behavior of drops of liquid helium, start by checking
+your program's output on a stationary spherical drop in zero gravity.
+You should be able to calculate the right answer in that case, and if
+your program doesn't work for that, it probably won't work for anything
+else.
+
+The second rule is to compare more complex versions of your code to
+simpler ones. If you're about to replace a simple algorithm for
+calculating heat transfer with one that's more complex, but hopefully
+faster, don't throw the old code away. Instead, use its output as a
+check on the correctness of the new code. And if you bump into someone
+at a conference who has a program that can calculate some of the same
+results as yours, swap data sets: it'll help you both.
+
+The third rule is, never use \texttt{==} (or \texttt{!=}) on floating
+point numbers, because two numbers calculated in different ways will
+probably not have exactly the same bits. Instead, check to see whether
+two values are within some tolerance, and if they are, treat them as
+equal. Doing this forces you to make your tolerances explicit, which is
+useful in its own right (just as putting error bars on experimental
+results is useful).
+
+\section{Why I Teach}
+
+\swcgraphics{f:madeleine}{Madeleine}{novice/extras/img/madeleine.jpg}
+
+Several independent studies have confirmed that my daughter Madeline
+(\figref{f:madeleine}) is the cutest child on the planet (plus or
+minus 5\%, 19 times out of 20). She means the world to me, but by the
+time she's grown, the world is going to be dealing with the
+consequences of our generation's short-sightedness.  Climate change,
+resource shortages, drug-resistant diseases---the list is a long one,
+and the only things that will save us are more science and more
+courage.
+
+That's why I teach. I teach because I need your help to make this world
+fit for her to live in. I teach because I need you to discover more and
+invent faster so that the world she inherits from you will be better
+than the one you're inheriting from my generation. Science is not just
+the greatest adventure of our time: it is, quite literally, a matter of
+life and death, and I hope that what we have taught you will help you do
+it better.
+
+Thank you for your time: may you always see the world through the eyes
+of a child.

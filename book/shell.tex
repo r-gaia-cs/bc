@@ -1,0 +1,3027 @@
+\chapter{The Unix Shell}\label{s:shell}
+
+The Unix shell has been around longer than most of its users have been
+alive. It has survived so long because it's a power tool that allows
+people to do complex things with just a few keystrokes. More
+importantly, it helps them combine existing programs in new ways and
+automate repetitive tasks so that they don't have to type the same
+things over and over again.
+
+\section{Introducing the Shell}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain how the shell relates to the keyboard, the screen, the
+  operating system, and users' programs.
+\item
+  Explain when and why command-line interfaces should be used instead of
+  graphical interfaces.
+\end{swcitemize}
+\end{objectives}
+
+Nelle Nemo, a marine biologist, has just returned from a six-month
+survey of the
+\urlfoot{http://en.wikipedia.org/wiki/North\_Pacific\_Gyre}{North Pacific
+Gyre}, where she has been sampling gelatinous marine life in the
+\urlfoot{http://en.wikipedia.org/wiki/Great\_Pacific\_Garbage\_Patch}{Great
+Pacific Garbage Patch}. She has 300 samples in all, and now needs to:
+
+\begin{swcenumerate}
+\item
+  Run each sample through an assay machine that will measure the
+  relative abundance of 300 different proteins. The machine's output for
+  a single sample is a file with one line for each protein.
+\item
+  Calculate statistics for each of the proteins separately using a
+  program her supervisor wrote called \texttt{goostat}.
+\item
+  Compare the statistics for each protein with corresponding statistics
+  for each other protein using a program one of the other graduate
+  students wrote called \texttt{goodiff}.
+\item
+  Write up. Her supervisor would really like her to do this by the end
+  of the month so that her paper can appear in an upcoming special issue
+  of \emph{Aquatic Goo Letters}.
+\end{swcenumerate}
+
+It takes about half an hour for the assay machine to process each
+sample. The good news is, it only takes two minutes to set each one up.
+Since her lab has eight assay machines that she can use in parallel,
+this step will ``only'' take about two weeks.
+
+The bad news is that if she has to run \texttt{goostat} and
+\texttt{goodiff} by hand, she'll have to enter filenames and click
+``OK'' 45,150 times (300 runs of \texttt{goostat}, plus 300×299/2 runs
+of \texttt{goodiff}). At 30 seconds each, that will take more than two
+weeks. Not only would she miss her paper deadline, the chances of her
+typing all of those commands right are practically zero.
+
+The next few lessons will explore what she should do instead. More
+specifically, they explain how she can use a command shell to automate
+the repetitive steps in her processing pipeline so that her computer can
+work 24 hours a day while she writes her paper. As a bonus, once she has
+put a processing pipeline together, she will be able to use it again
+whenever she collects more data.
+
+\subsection*{What and Why}
+
+At a high level, computers do four things:
+
+\begin{swcitemize}
+\item
+  run programs;
+\item
+  store data;
+\item
+  communicate with each other; and
+\item
+  interact with us.
+\end{swcitemize}
+
+They can do the last of these in many different ways, including direct
+brain-computer links and speech interfaces. Since these are still in
+their infancy, most of us use windows, icons, mice, and pointers. These
+technologies didn't become widespread until the 1980s, but their roots
+go back to Doug Engelbart's work in the 1960s, which you can see in what
+has been called ``\urlfoot{http://www.youtube.com/watch?v=a11JDLBXtPQ}{The
+Mother of All Demos}''.
+
+Going back even further, the only way to interact with early computers
+was to rewire them. But in between, from the 1950s to the 1980s, most
+people used line printers. These devices only allowed input and output
+of the letters, numbers, and punctuation found on a standard keyboard,
+so programming languages and interfaces had to be designed around that
+constraint.
+
+This kind of interface is called a \gl{command-line
+interface}{g:cli}, or CLI, to distinguish it from the
+\gl{graphical user interface}{g:gui}, or GUI, that most people now
+use. The heart of a CLI is a \gl{read-evaluate-print
+loop}{g:repl}, or REPL: when the user types a command and then presses the enter
+(or return) key, the computer reads it, executes it, and prints its
+output. The user then types another command, and so on until the user
+logs off.
+
+This description makes it sound as though the user sends commands
+directly to the computer, and the computer sends output directly to the
+user. In fact, there is usually a program in between called a
+\gl{command shell}{g:shell}. What the user types goes into the
+shell; it figures out what commands to run and orders the computer to
+execute them.
+
+A shell is a program like any other. What's special about it is that its
+job is to run other programs rather than to do calculations itself. The
+most popular Unix shell is Bash, the Bourne Again SHell (so-called
+because it's derived from a shell written by Stephen Bourne---this is
+what passes for wit among programmers). Bash is the default shell on
+most modern implementations of Unix, and in most packages that provide
+Unix-like tools for Windows.
+
+Using Bash or any other shell sometimes feels more like programming than
+like using a mouse. Commands are terse (often only a couple of
+characters long), their names are frequently cryptic, and their output
+is lines of text rather than something visual like a graph. On the other
+hand, the shell allows us to combine existing tools in powerful ways
+with only a few keystrokes and to set up pipelines to handle large
+volumes of data automatically. In addition, the command line is often
+the easiest way to interact with remote machines. As clusters and cloud
+computing become more popular for scientific data crunching, being able
+to drive them is becoming a necessary skill.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  A shell is a program whose primary purpose is to read commands and run
+  other programs.
+\item
+  The shell's main advantages are its high action-to-keystroke ratio,
+  its support for automating repetitive tasks, and that it can be used
+  to access networked machines.
+\item
+  The shell's main disadvantages are its primarily textual nature and
+  how cryptic its commands and operation can be.
+\end{swcitemize}
+\end{keypoints}
+
+\section{Files and Directories}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Explain the similarities and differences between a file and a
+  directory.
+\item
+  Translate an absolute path into a relative path and vice versa.
+\item
+  Construct absolute and relative paths that identify specific files and
+  directories.
+\item
+  Explain the steps in the shell's read-run-print cycle.
+\item
+  Identify the actual command, flags, and filenames in a command-line
+  call.
+\item
+  Demonstrate the use of tab completion, and explain its advantages.
+\end{swcitemize}
+\end{objectives}
+
+The part of the operating system responsible for managing files and
+directories is called the \gl{file system}{g:filesystem}. It
+organizes our data into files, which hold information, and directories
+(also called ``folders''), which hold files or other directories.
+
+Several commands are frequently used to create, inspect, rename, and
+delete files and directories. To start exploring them, let's open a
+shell window:
+
+\begin{VerbIn}
+$
+\end{VerbIn}
+
+The dollar sign is a \gl{prompt}{g:prompt}, which shows us that
+the shell is waiting for input; your shell may show something more
+elaborate.
+
+Type the command \texttt{whoami}, then press the Enter key (sometimes
+marked Return) to send the command to the shell. The command's output is
+the ID of the current user, i.e., it shows us who the shell thinks we
+are:
+
+\begin{VerbIn}
+$ whoami
+\end{VerbIn}
+
+\begin{VerbOut}
+vlad
+\end{VerbOut}
+
+More specifically, when we type \texttt{whoami} the shell:
+
+\begin{swcenumerate}
+\item
+  finds a program called \texttt{whoami},
+\item
+  runs that program,
+\item
+  displays that program's output, then
+\item
+  displays a new prompt to tell us that it's ready for more commands.
+\end{swcenumerate}
+
+Next, let's find out where we are by running a command called
+\texttt{pwd} (which stands for ``print working directory''). At any
+moment, our \gl{current working
+directory}{g:current-working-directory} is our current default directory, i.e., the directory that
+the computer assumes we want to run commands in unless we explicitly
+specify something else. Here, the computer's response is
+\texttt{/users/vlad}, which is Vlad's \gl{home
+directory}{g:home-directory}:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+\begin{swcbox}{Alphabet Soup}
+
+If the command to find out who we are is \texttt{whoami}, the command to
+find out where we are ought to be called \texttt{whereami}, so why is it
+\texttt{pwd} instead? The usual answer is that in the early 1970s, when
+Unix was first being developed, every keystroke counted: the devices of
+the day were slow, and backspacing on a teletype was so painful that
+cutting the number of keystrokes in order to cut the number of typing
+mistakes was actually a win for usability. The reality is that commands
+were added to Unix one by one, without any master plan, by people who
+were immersed in its jargon. The result is as inconsistent as the roolz
+uv Inglish speling, but we're stuck with it now.
+
+\end{swcbox}
+
+To understand what a ``home directory'' is, let's have a look at how the
+file system as a whole is organized. At the top is the
+\gl{root directory}{g:root-directory} that holds everything else.
+We refer to it using a slash character \texttt{/} on its own; this is
+the leading slash in \texttt{/users/vlad}.
+
+Inside that directory are several other directories: \texttt{bin} (which
+is where some built-in programs are stored), \texttt{data} (for
+miscellaneous data files), \texttt{users} (where users' personal
+directories are located), \texttt{tmp} (for temporary files that don't
+need to be stored long-term), and so on (\figref{f:filesystem}).
+
+\swcgraphics{f:filesystem}{A Typical Filesystem}{novice/shell/img/filesystem.png}
+
+We know that our current working directory \texttt{/users/vlad} is
+stored inside \texttt{/users} because \texttt{/users} is the first part
+of its name. Similarly, we know that \texttt{/users} is stored inside
+the root directory \texttt{/} because its name begins with \texttt{/}.
+
+Underneath \texttt{/users}, we find one directory for each user with an
+account on this machine (\figref{f:homedir}). The Mummy's files are stored in
+\texttt{/users/imhotep}, Wolfman's in \texttt{/users/larry}, and ours in
+\texttt{/users/vlad}, which is why \texttt{vlad} is the last part of the
+directory's name.
+
+\swcgraphics{f:homedir}{Home Directories}{novice/shell/img/home-directories.png}
+
+\begin{quote} % FIXME
+Notice that there are two meanings for the \texttt{/} character. When it
+appears at the front of a file or directory name, it refers to the root
+directory. When it appears \emph{inside} a name, it's just a separator.
+\end{quote}
+
+Let's see what's in Vlad's home directory by running \texttt{ls}, which
+stands for ``listing'' (\figref{f:listing}):
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+bin          data      mail       music
+notes.txt    papers    pizza.cfg  solar
+solar.pdf    swc
+\end{VerbOut}
+
+\swcgraphics{f:listing}{Vlad's Home Directory}{novice/shell/img/vlad-homedir.png}
+
+\texttt{ls} prints the names of the files and directories in the current
+directory in alphabetical order, arranged neatly into columns. We can
+make its output more comprehensible by using the
+\gl{flag}{g:command-line-flag} \texttt{-F}, which tells
+\texttt{ls} to add a trailing \texttt{/} to the names of directories:
+
+\begin{VerbIn}
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+bin/         data/     mail/      music/
+notes.txt    papers/   pizza.cfg  solar/
+solar.pdf    swc/
+\end{VerbOut}
+
+Here, we can see that \texttt{/users/vlad} contains seven
+\gl{sub-directories}{g:sub-directory}. The names that don't have
+trailing slashes, like \texttt{notes.txt}, \texttt{pizza.cfg}, and
+\texttt{solar.pdf}, are plain old files. And note that there is a space
+between \texttt{ls} and \texttt{-F}: without it, the shell thinks we're
+trying to run a command called \texttt{ls-F}, which doesn't exist.
+
+\begin{swcbox}{What's In A Name?}
+
+You may have noticed that all of Vlad's files' names are ``something dot
+something''. This is just a convention: we can call a file
+\texttt{mythesis} or almost anything else we want. However, most people
+use two-part names most of the time to help them (and their programs)
+tell different kinds of files apart. The second part of such a name is
+called the \gl{filename extension}{g:filename-extension}, and
+indicates what type of data the file holds: \texttt{.txt} signals a
+plain text file, \texttt{.pdf} indicates a PDF document, \texttt{.cfg}
+is a configuration file full of parameters for some program or other,
+and so on.
+
+This is just a convention, albeit an important one. Files contain bytes:
+it's up to us and our programs to interpret those bytes according to the
+rules for PDF documents, images, and so on.
+
+Naming a PNG image of a whale as \texttt{whale.mp3} doesn't somehow
+magically turn it into a recording of whalesong, though it \emph{might}
+cause the operating system to try to open it with a music player when
+someone double-clicks it.
+
+\end{swcbox}
+
+Now let's take a look at what's in Vlad's \texttt{data} directory by
+running \texttt{ls -F data}, i.e., the command \texttt{ls} with the
+parameters \texttt{-F} and \texttt{data}. The second parameter---the one
+\emph{without} a leading dash---tells \texttt{ls} that we want a listing
+of something other than our current working directory:
+
+\begin{VerbIn}
+$ ls -F data
+\end{VerbIn}
+
+\begin{VerbOut}
+amino-acids.txt   elements/     morse.txt
+pdb/              planets.txt   sunspot.txt
+\end{VerbOut}
+
+The output shows us that there are four text files and two
+sub-sub-directories. Organizing things hierarchically in this way helps
+us keep track of our work: it's possible to put hundreds of files in our
+home directory, just as it's possible to pile hundreds of printed papers
+on our desk, but it's a self-defeating strategy.
+
+Notice, by the way that we spelled the directory name \texttt{data}. It
+doesn't have a trailing slash: that's added to directory names by
+\texttt{ls} when we use the \texttt{-F} flag to help us tell things
+apart. And it doesn't begin with a slash because it's a
+\gl{relative path}{g:relative-path}, i.e., it tells \texttt{ls}
+how to find something from where we are, rather than from the root of
+the file system.
+
+If we run \texttt{ls -F /data} (\emph{with} a leading slash) we get a
+different answer, because \texttt{/data} is an
+\gl{absolute path}{g:absolute-path}:
+
+\begin{VerbIn}
+$ ls -F /data
+\end{VerbIn}
+
+\begin{VerbOut}
+access.log    backup/    hardware.cfg
+network.cfg
+\end{VerbOut}
+
+The leading \texttt{/} tells the computer to follow the path from the
+root of the filesystem, so it always refers to exactly one directory, no
+matter where we are when we run the command.
+
+What if we want to change our current working directory? Before we do
+this, \texttt{pwd} shows us that we're in \texttt{/users/vlad}, and
+\texttt{ls} without any parameters shows us that directory's contents:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+bin/         data/     mail/      music/
+notes.txt    papers/   pizza.cfg  solar/
+solar.pdf    swc/
+\end{VerbOut}
+
+We can use \texttt{cd} followed by a directory name to change our
+working directory. \texttt{cd} stands for ``change directory'', which is
+a bit misleading: the command doesn't change the directory, it changes
+the shell's idea of what directory we are in.
+
+\begin{VerbIn}
+$ cd data
+\end{VerbIn}
+
+\texttt{cd} doesn't print anything, but if we run \texttt{pwd} after it,
+we can see that we are now in \texttt{/users/vlad/data}. If we run
+\texttt{ls} without parameters now, it lists the contents of
+\texttt{/users/vlad/data}, because that's where we now are:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad/data
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+amino-acids.txt   elements/     morse.txt
+pdb/              planets.txt   sunspot.txt
+\end{VerbOut}
+
+We now know how to go down the directory tree: how do we go up? We could
+use an absolute path:
+
+\begin{VerbIn}
+$ cd /users/vlad
+\end{VerbIn}
+
+but it's almost always simpler to use \texttt{cd ..} to go up one level:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad/data
+\end{VerbOut}
+
+\begin{VerbIn}
+$ cd ..
+\end{VerbIn}
+
+\texttt{..} is a special directory name meaning ``the directory
+containing this one'', or more succinctly, the
+\gl{parent}{g:parent-directory} of the current directory. Sure
+enough, if we run \texttt{pwd} after running \texttt{cd ..}, we're back
+in \texttt{/users/vlad}:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+The special directory \texttt{..} doesn't usually show up when we run
+\texttt{ls}. If we want to display it, we can give \texttt{ls} the
+\texttt{-a} flag:
+
+\begin{VerbIn}
+$ ls -F -a
+\end{VerbIn}
+
+\begin{VerbOut}
+./           ../       bin/       data/
+mail/        music/    notes.txt  papers/
+pizza.cfg    solar/    solar.pdf    swc/
+\end{VerbOut}
+
+\texttt{-a} stands for ``show all''; it forces \texttt{ls} to show us
+file and directory names that begin with \texttt{.}, such as \texttt{..}
+(which, if we're in \texttt{/users/vlad}, refers to the \texttt{/users}
+directory). As you can see, it also displays another special directory
+that's just called \texttt{.}, which means ``the current working
+directory''. It may seem redundant to have a name for it, but we'll see
+some uses for it soon.
+
+\begin{swcbox}{Orthogonality}
+
+The special names \texttt{.} and \texttt{..} don't belong to
+\texttt{ls}; they are interpreted the same way by every program. For
+example, if we are in \texttt{/users/vlad/data}, the command
+\texttt{ls ..} will give us a listing of \texttt{/users/vlad}. When the
+meanings of the parts are the same no matter how they're combined,
+programmers say they are \gl{orthogonal}{g:orthogonal}: Orthogonal
+systems tend to be easier for people to learn because there are fewer
+special cases and exceptions to keep track of.
+
+\end{swcbox}
+
+\subsection*{Nelle's Pipeline: Organizing Files}
+
+Knowing just this much about files and directories, Nelle is ready to
+organize the files that the protein assay machine will create. First,
+she creates a directory called \texttt{north-pacific-gyre} (to remind
+herself where the data came from). Inside that, she creates a directory
+called \texttt{2012-07-03}, which is the date she started processing the
+samples. She used to use names like \texttt{conference-paper} and
+\texttt{revised-results}, but she found them hard to understand after a
+couple of years. (The final straw was when she found herself creating a
+directory called \texttt{revised-revised-results-3}.)
+
+\begin{quote}
+Nelle names her directories ``year-month-day'', with leading zeroes for
+months and days, because the shell displays file and directory names in
+alphabetical order. If she used month names, December would come before
+July; if she didn't use leading zeroes, November ('11') would come
+before July ('7').
+\end{quote}
+
+Each of her physical samples is labelled according to her lab's
+convention with a unique ten-character ID, such as ``NENE01729A''. This
+is what she used in her collection log to record the location, time,
+depth, and other characteristics of the sample, so she decides to use it
+as part of each data file's name. Since the assay machine's output is
+plain text, she will call her files \texttt{NENE01729A.txt},
+\texttt{NENE01812A.txt}, and so on. All 1520 files will go into the same
+directory.
+
+If she is in her home directory, Nelle can see what files she has using
+the command:
+
+\begin{VerbIn}
+$ ls north-pacific-gyre/2012-07-03/
+\end{VerbIn}
+
+This is a lot to type, but she can let the shell do most of the work. If
+she types:
+
+\begin{VerbIn}
+$ ls no
+\end{VerbIn}
+
+and then presses tab, the shell automatically completes the directory
+name for her:
+
+\begin{VerbIn}
+$ ls north-pacific-gyre/
+\end{VerbIn}
+
+If she presses tab again, Bash will add \texttt{2012-07-03/} to the
+command, since it's the only possible completion. Pressing tab again
+does nothing, since there are 1520 possibilities; pressing tab twice
+brings up a list of all the files, and so on. This is called
+\gl{tab completion}{g:tab-completion}, and we will see it in many
+other tools as we go on.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  The file system is responsible for managing information on the disk.
+\item
+  Information is stored in files, which are stored in directories
+  (folders).
+\item
+  Directories can also store other directories, which forms a directory
+  tree.
+\item
+  \texttt{/} on its own is the root directory of the whole filesystem.
+\item
+  A relative path specifies a location starting from the current
+  location.
+\item
+  An absolute path specifies a location from the root of the filesystem.
+\item
+  Directory names in a path are separated with `/' on Unix, but
+  `\textbackslash{}' on Windows.
+\item
+  `..' means ``the directory above the current one''; `.' on its own
+  means ``the current directory''.
+\item
+  Most files' names are \texttt{something.extension}. The extension
+  isn't required, and doesn't guarantee anything, but is normally used
+  to indicate the type of data in the file.
+\item
+  Most commands take options (flags) which begin with a `-'.
+\end{swcitemize}
+\end{keypoints}
+
+Please refer to \figref{f:filesys-challenge} for the following challenges.
+
+\swcgraphics{f:filesys-challenge}{File System for Challenge Questions}{novice/shell/img/filesystem-challenge.png}
+
+\begin{challenge}
+
+  If \texttt{pwd} displays \texttt{/users/thing}, what will
+  \texttt{ls ../backup} display? 1.
+  \texttt{../backup: No such file or directory} 2.
+  \texttt{2012-12-01 2013-01-08 2013-01-27} 3.
+  \texttt{2012-12-01/ 2013-01-08/ 2013-01-27/} 4.
+  \texttt{original pnas\_final pnas\_sub}
+
+\end{challenge}
+
+\begin{challenge}
+
+  If \texttt{pwd} displays \texttt{/users/backup}, and \texttt{-r} tells
+  \texttt{ls} to display things in reverse order, what command will
+  display:
+
+\begin{VerbOut}
+pnas-sub/ pnas-final/ original/
+\end{VerbOut}
+
+\begin{swcenumerate}
+\item
+  \texttt{ls pwd}
+\item
+  \texttt{ls -r -F}
+\item
+  \texttt{ls -r -F /users/backup}
+\item
+  Either \#2 or \#3 above, but not \#1.
+\end{swcenumerate}
+
+\end{challenge}
+
+\begin{challenge}
+
+  What does the command \texttt{cd} without a directory name do? 1. It has
+  no effect. 2. It changes the working directory to \texttt{/}. 3. It
+  changes the working directory to the user's home directory. 4. It
+  produces an error message.
+
+\end{challenge}
+
+\begin{challenge}
+
+  What does the command \texttt{ls} do when used with the -s and -h
+  arguments?
+
+\end{challenge}
+
+\section{Creating Things}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Create a directory hierarchy that matches a given diagram.
+\item
+  Create files in that hierarchy using an editor or by copying and
+  renaming existing files.
+\item
+  Display the contents of a directory using the command line.
+\item
+  Delete specified files and/or directories.
+\end{swcitemize}
+\end{objectives}
+
+We now know how to explore files and directories, but how do we create
+them in the first place? Let's go back to Vlad's home directory,
+\texttt{/users/vlad}, and use \texttt{ls -F} to see what it contains:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+bin/         data/     mail/      music/
+notes.txt    papers/   pizza.cfg  solar/
+solar.pdf    swc/
+\end{VerbOut}
+
+Let's create a new directory called \texttt{thesis} using the command
+\texttt{mkdir thesis} (which has no output):
+
+\begin{VerbIn}
+$ mkdir thesis
+\end{VerbIn}
+
+As you might (or might not) guess from its name, \texttt{mkdir} means
+``make directory''. Since \texttt{thesis} is a relative path (i.e.,
+doesn't have a leading slash), the new directory is made below the
+current working directory:
+
+\begin{VerbIn}
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+bin/         data/     mail/      music/
+notes.txt    papers/   pizza.cfg  solar/
+solar.pdf    swc/      thesis/
+\end{VerbOut}
+
+However, there's nothing in it yet:
+
+\begin{VerbIn}
+$ ls -F thesis
+\end{VerbIn}
+
+Let's change our working directory to \texttt{thesis} using \texttt{cd},
+then run a text editor called Nano to create a file called
+\texttt{draft.txt} (\figref{f:nano}).
+
+\begin{VerbIn}
+$ cd thesis
+$ nano draft.txt
+\end{VerbIn}
+
+\swcgraphics{f:nano}{The Nano Editor}{novice/shell/img/nano-screenshot.png}
+
+\begin{swcbox}{Which Editor?}
+
+When we say, ``\texttt{nano} is a text editor'' we really do mean
+``text'': it can only work with plain character data, not tables,
+images, or any other human-friendly media. We use it in examples because
+almost anyone can drive it anywhere without training, but please use
+something more powerful for real work. On Unix systems (such as Linux
+and Mac OS X), many programmers use
+\urlfoot{http://www.gnu.org/software/emacs/}{Emacs} or
+\urlfoot{http://www.vim.org/}{Vim} (both of which are completely
+unintuitive, even by Unix standards), or a graphical editor such as
+\urlfoot{http://projects.gnome.org/gedit/}{Gedit}. On Windows, you may wish
+to use \urlfoot{http://notepad-plus-plus.org/}{Notepad++}.
+
+No matter what editor you use, you will need to know where it searches
+for and saves files. If you start it from the shell, it will (probably)
+use your current working directory as its default location. If you use
+your computer's start menu, it may want to save files in your desktop or
+documents directory instead. You can change this by navigating to
+another directory the first time you ``Save As\ldots{}''
+
+\end{swcbox}
+
+Let's type in a few lines of text, then use Control-O to write our data
+to disk:
+
+Once our file is saved, we can use Control-X to quit the editor and
+return to the shell. (Unix documentation often uses the shorthand
+\texttt{\^{}A} to mean ``control-A''.) \texttt{nano} doesn't leave any
+output on the screen after it exits, but \texttt{ls} now shows that we
+have created a file called \texttt{draft.txt}:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+draft.txt
+\end{VerbOut}
+
+Let's tidy up by running \texttt{rm draft.txt}:
+
+\begin{VerbIn}
+$ rm draft.txt
+\end{VerbIn}
+
+This command removes files (``rm'' is short for ``remove''). If we run
+\texttt{ls} again, its output is empty once more, which tells us that
+our file is gone:
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{swcbox}{Deleting Is Forever}
+
+Unix doesn't have a trash bin: when we delete files, they are unhooked
+from the file system so that their storage space on disk can be
+recycled. Tools for finding and recovering deleted files do exist, but
+there's no guarantee they'll work in any particular situation, since the
+computer may recycle the file's disk space right away.
+
+\end{swcbox}
+
+Let's re-create that file and then move up one directory to
+\texttt{/users/vlad} using \texttt{cd ..}:
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad/thesis
+\end{VerbOut}
+
+\begin{VerbIn}
+$ nano draft.txt
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+draft.txt
+\end{VerbOut}
+
+\begin{VerbIn}
+$ cd ..
+\end{VerbIn}
+
+If we try to remove the entire \texttt{thesis} directory using
+\texttt{rm thesis}, we get an error message:
+
+\begin{VerbIn}
+$ rm thesis
+\end{VerbIn}
+
+\begin{VerbErr}
+rm: cannot remove `thesis': Is a directory
+\end{VerbErr}
+
+This happens because \texttt{rm} only works on files, not directories.
+The right command is \texttt{rmdir}, which is short for ``remove
+directory''. It doesn't work yet either, though, because the directory
+we're trying to remove isn't empty:
+
+\begin{VerbIn}
+$ rmdir thesis
+\end{VerbIn}
+
+\begin{VerbErr}
+rmdir: failed to remove `thesis': Directory not empty
+\end{VerbErr}
+
+This little safety feature can save you a lot of grief, particularly if
+you are a bad typist. To really get rid of \texttt{thesis} we must first
+delete the file \texttt{draft.txt}:
+
+\begin{VerbIn}
+$ rm thesis/draft.txt
+\end{VerbIn}
+
+The directory is now empty, so \texttt{rmdir} can delete it:
+
+\begin{VerbIn}
+$ rmdir thesis
+\end{VerbIn}
+
+\begin{swcbox}{With Great Power Comes Great Responsibility}
+
+Removing the files in a directory just so that we can remove the
+directory quickly becomes tedious. Instead, we can use \texttt{rm} with
+the \texttt{-r} flag (which stands for ``recursive''):
+
+\begin{VerbIn}
+$ rm -r thesis
+\end{VerbIn}
+
+This removes everything in the directory, then the directory itself. If
+the directory contains sub-directories, \texttt{rm -r} does the same
+thing to them, and so on. It's very handy, but can do a lot of damage if
+used without care.
+
+\end{swcbox}
+
+Let's create that directory and file one more time. (Note that this time
+we're running \texttt{nano} with the path \texttt{thesis/draft.txt},
+rather than going into the \texttt{thesis} directory and running
+\texttt{nano} on \texttt{draft.txt} there.)
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/users/vlad
+\end{VerbOut}
+
+\begin{VerbIn}
+$ mkdir thesis
+\end{VerbIn}
+
+\begin{VerbIn}
+$ nano thesis/draft.txt
+$ ls thesis
+\end{VerbIn}
+
+\begin{VerbOut}
+draft.txt
+\end{VerbOut}
+
+\texttt{draft.txt} isn't a particularly informative name, so let's
+change the file's name using \texttt{mv}, which is short for ``move'':
+
+\begin{VerbIn}
+$ mv thesis/draft.txt thesis/quotes.txt
+\end{VerbIn}
+
+The first parameter tells \texttt{mv} what we're ``moving'', while the
+second is where it's to go. In this case, we're moving
+\texttt{thesis/draft.txt} to \texttt{thesis/quotes.txt}, which has the
+same effect as renaming the file. Sure enough, \texttt{ls} shows us that
+\texttt{thesis} now contains one file called \texttt{quotes.txt}:
+
+\begin{VerbIn}
+$ ls thesis
+\end{VerbIn}
+
+\begin{VerbOut}
+quotes.txt
+\end{VerbOut}
+
+Just for the sake of inconsistency, \texttt{mv} also works on
+directories---there is no separate \texttt{mvdir} command.
+
+Let's move \texttt{quotes.txt} into the current working directory. We
+use \texttt{mv} once again, but this time we'll just use the name of a
+directory as the second parameter to tell \texttt{mv} that we want to
+keep the filename, but put the file somewhere new. (This is why the
+command is called ``move''.) In this case, the directory name we use is
+the special directory name \texttt{.} that we mentioned earlier.
+
+\begin{VerbIn}
+$ mv thesis/quotes.txt .
+\end{VerbIn}
+
+The effect is to move the file from the directory it was in to the
+current working directory. \texttt{ls} now shows us that \texttt{thesis}
+is empty:
+
+\begin{VerbIn}
+$ ls thesis
+\end{VerbIn}
+
+Further, \texttt{ls} with a filename or directory name as a parameter
+only lists that file or directory. We can use this to see that
+\texttt{quotes.txt} is still in our current directory:
+
+\begin{VerbIn}
+$ ls quotes.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+quotes.txt
+\end{VerbOut}
+
+The \texttt{cp} command works very much like \texttt{mv}, except it
+copies a file instead of moving it. We can check that it did the right
+thing using \texttt{ls} with two paths as parameters---like most Unix
+commands, \texttt{ls} can be given thousands of paths at once:
+
+\begin{VerbIn}
+$ cp quotes.txt thesis/quotations.txt
+$ ls quotes.txt thesis/quotations.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+quotes.txt   thesis/quotations.txt
+\end{VerbOut}
+
+To prove that we made a copy, let's delete the \texttt{quotes.txt} file
+in the current directory and then run that same \texttt{ls} again. This
+time it tells us that it can't find \texttt{quotes.txt} in the current
+directory, but it does find the copy in \texttt{thesis} that we didn't
+delete:
+
+\begin{VerbIn}
+$ ls quotes.txt thesis/quotations.txt
+\end{VerbIn}
+
+\begin{VerbErr}
+ls: cannot access quotes.txt: No such file or directory
+\end{VerbErr}
+\begin{VerbOut}
+thesis/quotations.txt
+\end{VerbOut}
+
+\begin{swcbox}{Another Useful Abbreviation}
+
+The shell interprets the character \texttt{\textasciitilde{}} (tilde) at
+the start of a path to mean ``the current user's home directory''. For
+example, if Vlad's home directory is \texttt{/home/vlad}, then
+\texttt{\textasciitilde{}/data} is equivalent to
+\texttt{/home/vlad/data}. This only works if it is the first character
+in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
+\emph{not} \texttt{/home/vlad/elsewhere}.
+
+\end{swcbox}
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Unix documentation uses `\^{}A' to mean ``control-A''.
+\item
+  The shell does not have a trash bin: once something is deleted, it's
+  really gone.
+\item
+  Nano is a very simple text editor---please use something else for real
+  work.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  What is the output of the closing \texttt{ls} command in the sequence
+  shown below?
+
+\begin{VerbIn}
+$ pwd
+\end{VerbIn}
+
+\begin{VerbOut}
+/home/thing/data
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ls
+\end{VerbIn}
+
+\begin{VerbOut}
+proteins.dat
+\end{VerbOut}
+
+\begin{VerbIn}
+$ mkdir recombine
+$ mv proteins.dat recombine
+$ cp recombine/proteins.dat ../proteins-saved.dat
+$ ls
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  Suppose that:
+
+\begin{VerbIn}
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+analyzed/  fructose.dat    raw/   sucrose.dat
+\end{VerbOut}
+
+  What command(s) could you run so that the commands below will produce
+  the output shown?
+
+\begin{VerbIn}
+$ ls
+\begin{VerbIn}
+
+\begin{VerbOut}
+analyzed   raw
+\end{VerbOut}
+
+\begin{VerbIn}
+$ ls analyzed
+\end{VerbIn}
+
+\begin{VerbOut}
+fructose.dat    sucrose.dat
+\end{VerbOut}
+\end{challenge}
+
+\begin{challenge}
+  What does \texttt{cp} do when given several filenames and a directory
+  name, as in:
+
+\begin{VerbIn}
+$ mkdir backup
+$ cp thesis/citations.txt thesis/quotations.txt backup
+\end{VerbIn}
+
+  What does it do when given three or more filenames, as in:
+
+\begin{VerbIn}
+$ ls -F
+\end{VerbIn}
+
+\begin{VerbOut}
+intro.txt    methods.txt    survey.txt
+\end{VerbOut}
+
+\begin{VerbIn}
+$ cp intro.txt methods.txt survey.txt
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  The command \texttt{ls -R} lists the contents of directories
+  recursively, i.e., lists their sub-directories, sub-sub-directories,
+  and so on in alphabetical order at each level. The command
+  \texttt{ls -t} lists things by time of last change, with most recently
+  changed files or directories first. In what order does
+  \texttt{ls -R -t} display things?
+\end{challenge}
+
+\section{Pipes and Filters}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Redirect a command's output to a file.
+\item
+  Process a file instead of keyboard input using redirection.
+\item
+  Construct command pipelines with two or more stages.
+\item
+  Explain what usually happens if a program or pipeline isn't given any
+  input to process.
+\item
+  Explain Unix's ``small pieces, loosely joined'' philosophy.
+\end{swcitemize}
+\end{objectives}
+
+Now that we know a few basic commands, we can finally look at the
+shell's most powerful feature: the ease with which it lets us combine
+existing programs in new ways. We'll start with a directory called
+\texttt{molecules} that contains six files describing some simple
+organic molecules. The \texttt{.pdb} extension indicates that these
+files are in Protein Data Bank format, a simple text format that
+specifies the type and position of each atom in the molecule.
+
+\begin{VerbIn}
+$ ls molecules
+\end{VerbIn}
+
+\begin{VerbOut}
+cubane.pdb    ethane.pdb    methane.pdb
+octane.pdb    pentane.pdb   propane.pdb
+\end{VerbOut}
+
+Let's go into that directory with \texttt{cd} and run the command
+\texttt{wc *.pdb}. \texttt{wc} is the ``word count'' command: it counts
+the number of lines, words, and characters in files. The \texttt{*} in
+\texttt{*.pdb} matches zero or more characters, so the shell turns
+\texttt{*.pdb} into a complete list of \texttt{.pdb} files:
+
+\begin{VerbIn}
+$ cd molecules
+$ wc *.pdb
+\end{VerbIn}
+
+\begin{VerbOut}
+  20  156 1158 cubane.pdb
+  12   84  622 ethane.pdb
+   9   57  422 methane.pdb
+  30  246 1828 octane.pdb
+  21  165 1226 pentane.pdb
+  15  111  825 propane.pdb
+ 107  819 6081 total
+\end{VerbOut}
+
+\begin{swcbox}{Wildcards}
+
+\texttt{*} is a \gl{wildcard}{g:wildcard}. It matches zero or more
+characters, so \texttt{*.pdb} matches \texttt{ethane.pdb},
+\texttt{propane.pdb}, and so on. On the other hand, \texttt{p*.pdb} only
+matches \texttt{pentane.pdb} and \texttt{propane.pdb}, because the `p'
+at the front only matches itself.
+
+\texttt{?} is also a wildcard, but it only matches a single character.
+This means that \texttt{p?.pdb} matches \texttt{pi.pdb} or
+\texttt{p5.pdb}, but not \texttt{propane.pdb}. We can use any number of
+wildcards at a time: for example, \texttt{p*.p?*} matches anything that
+starts with a `p' and ends with `.', `p', and at least one more
+character (since the `?' has to match one character, and the final `*'
+can match any number of characters). Thus, \texttt{p*.p?*} would match
+\texttt{preferred.practice}, and even \texttt{p.pi} (since the first `*'
+can match no characters at all), but not \texttt{quality.practice}
+(doesn't start with `p') or \texttt{preferred.p} (there isn't at least
+one character after the `.p').
+
+When the shell sees a wildcard, it expands the wildcard to create a list
+of matching filenames \emph{before} running the command that was asked
+for. This means that commands like \texttt{wc} and \texttt{ls} never see
+the wildcard characters, just what those wildcards matched. This is
+another example of orthogonal design.
+
+\end{swcbox}
+
+If we run \texttt{wc -l} instead of just \texttt{wc}, the output shows
+only the number of lines per file:
+
+\begin{VerbIn}
+$ wc -l *.pdb
+\end{VerbIn}
+
+\begin{VerbOut}
+  20  cubane.pdb
+  12  ethane.pdb
+   9  methane.pdb
+  30  octane.pdb
+  21  pentane.pdb
+  15  propane.pdb
+ 107  total
+\end{VerbOut}
+
+We can also use \texttt{-w} to get only the number of words, or
+\texttt{-c} to get only the number of characters.
+
+Which of these files is shortest? It's an easy question to answer when
+there are only six files, but what if there were 6000? Our first step
+toward a solution is to run the command:
+
+\begin{VerbIn}
+$ wc -l *.pdb > lengths
+\end{VerbIn}
+
+The \texttt{\textgreater{}} tells the shell to
+\gl{redirect}{g:redirect} the command's output to a file instead
+of printing it to the screen. The shell will create the file if it
+doesn't exist, or overwrite the contents of that file if it does. (This
+is why there is no screen output: everything that \texttt{wc} would have
+printed has gone into the file \texttt{lengths} instead.)
+\texttt{ls lengths} confirms that the file exists:
+
+\begin{VerbIn}
+$ ls lengths
+\end{VerbIn}
+
+\begin{VerbOut}
+lengths
+\end{VerbOut}
+
+We can now send the content of \texttt{lengths} to the screen using
+\texttt{cat lengths}. \texttt{cat} stands for ``concatenate'': it prints
+the contents of files one after another. There's only one file in this
+case, so \texttt{cat} just shows us what it contains:
+
+\begin{VerbIn}
+$ cat lengths
+\end{VerbIn}
+
+\begin{VerbOut}
+  20  cubane.pdb
+  12  ethane.pdb
+   9  methane.pdb
+  30  octane.pdb
+  21  pentane.pdb
+  15  propane.pdb
+ 107  total
+\end{VerbOut}
+
+Now let's use the \texttt{sort} command to sort its contents. This does
+\emph{not} change the file; instead, it sends the sorted result to the
+screen:
+
+\begin{VerbIn}
+$ sort lengths
+\end{VerbIn}
+
+\begin{VerbOut}
+  9  methane.pdb
+ 12  ethane.pdb
+ 15  propane.pdb
+ 20  cubane.pdb
+ 21  pentane.pdb
+ 30  octane.pdb
+107  total
+\end{VerbOut}
+
+We can put the sorted list of lines in another temporary file called
+\texttt{sorted-lengths} by putting
+\texttt{\textgreater{} sorted-lengths} after the command, just as we
+used \texttt{\textgreater{} lengths} to put the output of \texttt{wc}
+into \texttt{lengths}. Once we've done that, we can run another command
+called \texttt{head} to get the first few lines in
+\texttt{sorted-lengths}:
+
+\begin{VerbIn}
+$ sort lengths > sorted-lengths
+$ head -1 sorted-lengths
+\end{VerbIn}
+
+\begin{VerbOut}
+  9  methane.pdb
+\end{VerbOut}
+
+Using the parameter \texttt{-1} with \texttt{head} tells it that we only
+want the first line of the file; \texttt{-20} would get the first 20,
+and so on. Since \texttt{sorted-lengths} contains the lengths of our
+files ordered from least to greatest, the output of \texttt{head} must
+be the file with the fewest lines.
+
+If you think this is confusing, you're in good company: even once you
+understand what \texttt{wc}, \texttt{sort}, and \texttt{head} do, all
+those intermediate files make it hard to follow what's going on. We can
+make it easier to understand by running \texttt{sort} and \texttt{head}
+together:
+
+\begin{VerbIn}
+$ sort lengths | head -1
+\end{VerbIn}
+
+\begin{VerbOut}
+  9  methane.pdb
+\end{VerbOut}
+
+The vertical bar between the two commands is called a
+\gl{pipe}{g:pipe}. It tells the shell that we want to use the
+output of the command on the left as the input to the command on the
+right. The computer might create a temporary file if it needs to, or
+copy data from one program to the other in memory, or something else
+entirely; we don't have to know or care.
+
+We can use another pipe to send the output of \texttt{wc} directly to
+\texttt{sort}, which then sends its output to \texttt{head}:
+
+\begin{VerbIn}
+$ wc -l *.pdb | sort | head -1
+\end{VerbIn}
+
+\begin{VerbOut}
+  9  methane.pdb
+\end{VerbOut}
+
+This is exactly like a mathematician nesting functions like
+\emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
+\emph{x} times $\pi$''. In our case, the calculation is ``head of sort of
+word count of \texttt{*.pdb}''.
+
+Here's what actually happens behind the scenes when we create a pipe.
+When a computer runs a program---any program---it creates a
+\gl{process}{g:process} in memory to hold the program's software
+and its current state. Every process has an input channel called
+\gl{standard input}{g:standard-input}. (By this point, you may be
+surprised that the name is so memorable, but don't worry: most Unix
+programmers call it ``stdin''. Every process also has a default output
+channel called \gl{standard output}{g:standard-output} (or
+``stdout'').
+
+The shell is actually just another program. Under normal circumstances,
+whatever we type on the keyboard is sent to the shell on its standard
+input, and whatever it produces on standard output is displayed on our
+screen. When we tell the shell to run a program, it creates a new
+process and temporarily sends whatever we type on our keyboard to that
+process's standard input, and whatever the process sends to standard
+output to the screen.
+
+Here's what happens when we run
+\texttt{wc -l *.pdb \textgreater{} lengths}. The shell starts by telling
+the computer to create a new process to run the \texttt{wc} program.
+Since we've provided some filenames as parameters, \texttt{wc} reads
+from them instead of from standard input. And since we've used
+\texttt{\textgreater{}} to redirect output to a file, the shell connects
+the process's standard output to that file.
+
+If we run \texttt{wc -l *.pdb \textbar{} sort} instead, the shell
+creates two processes (one for each process in the pipe) so that
+\texttt{wc} and \texttt{sort} run simultaneously. The standard output of
+\texttt{wc} is fed directly to the standard input of \texttt{sort};
+since there's no redirection with \texttt{\textgreater{}},
+\texttt{sort}'s output goes to the screen. And if we run
+\texttt{wc -l *.pdb \textbar{} sort \textbar{} head -1}, we get three
+processes with data flowing from the files, through \texttt{wc} to
+\texttt{sort}, and from \texttt{sort} through \texttt{head} to the
+screen.
+
+This simple idea is why Unix has been so successful. Instead of creating
+enormous programs that try to do many different things, Unix programmers
+focus on creating lots of simple tools that each do one job well, and
+that work well with each other. This programming model is called
+\gl{pipes and filters}{g:pipe-and-filter}. We've already seen
+pipes; a \gl{filter}{g:filter} is a program like \texttt{wc} or
+\texttt{sort} that transforms a stream of input into a stream of output.
+Almost all of the standard Unix tools can work this way: unless told to
+do otherwise, they read from standard input, do something with what
+they've read, and write to standard output.
+
+The key is that any program that reads lines of text from standard input
+and writes lines of text to standard output can be combined with every
+other program that behaves this way as well. You can \emph{and should}
+write your programs this way so that you and other people can put those
+programs into pipes to multiply their power.
+
+\begin{swcbox}{Redirecting Input}
+
+As well as using \texttt{\textgreater{}} to redirect a program's output,
+we can use \texttt{\textless{}} to redirect its input, i.e., to read
+from a file instead of from standard input. For example, instead of
+writing \texttt{wc ammonia.pdb}, we could write
+\texttt{wc \textless{} ammonia.pdb}. In the first case, \texttt{wc} gets
+a command line parameter telling it what file to open. In the second,
+\texttt{wc} doesn't have any command line parameters, so it reads from
+standard input, but we have told the shell to send the contents of
+\texttt{ammonia.pdb} to \texttt{wc}'s standard input.
+
+\end{swcbox}
+
+\subsection*{Nelle's Pipeline: Checking Files}
+
+Nelle has run her samples through the assay machines and created 1520
+files in the \texttt{north-pacific-gyre/2012-07-03} directory described
+earlier. As a quick sanity check, she types:
+
+\begin{VerbIn}
+$ cd north-pacific-gyre/2012-07-03
+$ wc -l *.txt
+\end{VerbIn}
+
+The output is 1520 lines that look like this:
+
+\begin{VerbOut}
+300 NENE01729A.txt
+300 NENE01729B.txt
+300 NENE01736A.txt
+300 NENE01751A.txt
+300 NENE01751B.txt
+300 NENE01812A.txt
+... ...
+\end{VerbOut}
+
+Now she types this:
+
+\begin{VerbIn}
+$ wc -l *.txt | sort | head -5
+\end{VerbIn}
+
+\begin{VerbOut}
+ 240 NENE02018B.txt
+ 300 NENE01729A.txt
+ 300 NENE01729B.txt
+ 300 NENE01736A.txt
+ 300 NENE01751A.txt
+\end{VerbOut}
+
+Whoops: one of the files is 60 lines shorter than the others. When she
+goes back and checks it, she sees that she did that assay at 8:00 on a
+Monday morning---someone was probably in using the machine on the
+weekend, and she forgot to reset it. Before re-running that sample, she
+checks to see if any files have too much data:
+
+\begin{VerbIn}
+$ wc -l *.txt | sort | tail -5
+\end{VerbIn}
+
+\begin{VerbOut}
+ 300 NENE02040A.txt
+ 300 NENE02040B.txt
+ 300 NENE02040Z.txt
+ 300 NENE02043A.txt
+ 300 NENE02043B.txt
+\end{VerbOut}
+
+Those numbers look good---but what's that `Z' doing there in the
+third-to-last line? All of her samples should be marked `A' or `B'; by
+convention, her lab uses `Z' to indicate samples with missing
+information. To find others like it, she does this:
+
+\begin{VerbIn}
+$ ls *Z.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+NENE01971Z.txt    NENE02040Z.txt
+\end{VerbOut}
+
+Sure enough, when she checks the log on her laptop, there's no depth
+recorded for either of those samples. Since it's too late to get the
+information any other way, she must exclude those two files from her
+analysis. She could just delete them using \texttt{rm}, but there are
+actually some analyses she might do later where depth doesn't matter, so
+instead, she'll just be careful later on to select files using the
+wildcard expression \texttt{*{[}AB{]}.txt}. As always, the `*' matches
+any number of characters; the expression \texttt{{[}AB{]}} matches
+either an `A' or a `B', so this matches all the valid data files she
+has.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  \texttt{command \textgreater{} file} redirects a command's output to a
+  file.
+\item
+  \texttt{first \textbar{} second} is a pipeline: the output of the
+  first command is used as the input to the second.
+\item
+  The best way to use the shell is to use pipes to combine simple
+  single-purpose programs (filters).
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  If we run \texttt{sort} on this file:
+
+\begin{VerbOut}
+10
+2
+19
+22
+6
+\end{VerbOut}
+
+  the output is:
+
+\begin{VerbOut}
+10
+19
+2
+22
+6
+\end{VerbOut}
+
+  If we run \texttt{sort -n} on the same input, we get this instead:
+
+\begin{VerbOut}
+2
+6
+10
+19
+22
+\end{VerbOut}
+
+  Explain why \texttt{-n} has this effect.
+\end{challenge}
+
+\begin{challenge}
+  What is the difference between:
+
+\begin{VerbIn}
+$ wc -l < mydata.dat
+\end{VerbIn}
+
+  and:
+
+\begin{VerbIn}
+$ wc -l mydata.dat
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  The command \texttt{uniq} removes adjacent duplicated lines from its
+  input. For example, if a file \texttt{salmon.txt} contains:
+
+\begin{VerbOut}
+coho
+coho
+steelhead
+coho
+steelhead
+steelhead
+\end{VerbOut}
+
+  then \texttt{uniq salmon.txt} produces:
+
+\begin{VerbOut}
+coho
+steelhead
+coho
+steelhead
+\end{VerbOut}
+
+  Why do you think \texttt{uniq} only removes \emph{adjacent} duplicated
+  lines? (Hint: think about very large data sets.) What other command
+  could you combine with it in a pipe to remove all duplicated lines?
+\end{challenge}
+
+\begin{challenge}
+  A file called \texttt{animals.txt} contains the following data:
+
+\begin{VerbOut}
+2012-11-05,deer
+2012-11-05,rabbit
+2012-11-05,raccoon
+2012-11-06,rabbit
+2012-11-06,deer
+2012-11-06,fox
+2012-11-07,rabbit
+2012-11-07,bear
+\end{VerbOut}
+
+  What text passes through each of the pipes and the final redirect in
+  the pipeline below?
+
+\begin{VerbIn}
+$ cat animals.txt | head -5 | tail -3 | sort -r > final.txt
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  The command:
+
+\begin{VerbIn}
+$ cut -d , -f 2 animals.txt
+\end{VerbIn}
+
+  produces the following output:
+
+\begin{VerbOut}
+deer
+rabbit
+raccoon
+rabbit
+deer
+fox
+rabbit
+bear
+\end{VerbOut}
+
+  What other command(s) could be added to this in a pipeline to find out
+  what animals the file contains (without any duplicates in their
+  names)?
+\end{challenge}
+
+\section{Loops}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Write a loop that applies one or more commands separately to each file
+  in a set of files.
+\item
+  Trace the values taken on by a loop variable during execution of the
+  loop.
+\item
+  Explain the difference between a variable's name and its value.
+\item
+  Explain why spaces and some punctuation characters shouldn't be used
+  in files' names.
+\item
+  Demonstrate how to see what commands have recently been executed.
+\item
+  Re-run recently executed commands without retyping them.
+\end{swcitemize}
+\end{objectives}
+
+Wildcards and tab completion are two ways to reduce typing (and typing
+mistakes). Another is to tell the shell to do something over and over
+again. Suppose we have several hundred genome data files named
+\texttt{basilisk.dat}, \texttt{unicorn.dat}, and so on. When new files
+arrive, we'd like to rename the existing ones to
+\texttt{original-basilisk.dat} and \texttt{original-unicorn.dat}. We
+can't use:
+
+\begin{VerbIn}
+$ mv *.dat original-*.dat
+\end{VerbIn}
+
+because that would expand (in the two-file case) to:
+
+\begin{VerbIn}
+$ mv basilisk.dat unicorn.dat
+\end{VerbIn}
+
+This wouldn't back up our files: it would replace the content of
+\texttt{unicorn.dat} with whatever's in \texttt{basilisk.dat}.
+
+Instead, we can use a \gl{loop}{g:for-loop} to do some operation
+once for each thing in a list. Here's a simple example that displays the
+first three lines of each file in turn:
+
+\begin{VerbIn}
+$ for filename in basilisk.dat unicorn.dat
+> do
+>    head -3 $filename
+> done
+\end{VerbIn}
+
+\begin{VerbOut}
+COMMON NAME: basilisk
+CLASSIFICATION: basiliscus vulgaris
+UPDATED: 1745-05-02
+COMMON NAME: unicorn
+CLASSIFICATION: equus monoceros
+UPDATED: 1738-11-24
+\end{VerbOut}
+
+When the shell sees the keyword \texttt{for}, it knows it is supposed to
+repeat a command (or group of commands) once for each thing in a list.
+In this case, the list is the two filenames. Each time through the loop,
+the name of the thing currently being operated on is assigned to the
+\gl{variable}{g:variable} called \texttt{filename}. Inside the
+loop, we get the variable's value by putting \texttt{\$} in front of it:
+\texttt{\$filename} is \texttt{basilisk.dat} the first time through the
+loop, \texttt{unicorn.dat} the second, and so on. Finally, the command
+that's actually being run is our old friend \texttt{head}, so this loop
+prints out the first three lines of each data file in turn.
+
+\begin{swcbox}{Follow the Prompt}
+
+The shell prompt changes from \texttt{\$} to \texttt{\textgreater{}} and
+back again as we were typing in our loop. The second prompt,
+\texttt{\textgreater{}}, is different to remind us that we haven't
+finished typing a complete command yet.
+
+\end{swcbox}
+
+We have called the variable in this loop \texttt{filename} in order to
+make its purpose clearer to human readers. The shell itself doesn't care
+what the variable is called; if we wrote this loop as:
+
+\begin{VerbIn}
+for x in basilisk.dat unicorn.dat
+do
+    head -3 $x
+done
+\end{VerbIn}
+
+or:
+
+\begin{VerbIn}
+for temperature in basilisk.dat unicorn.dat
+do
+    head -3 $temperature
+done
+\end{VerbIn}
+
+it would work exactly the same way. \emph{Don't do this.} Programs are
+only useful if people can understand them, so meaningless names (like
+\texttt{x}) or misleading names (like \texttt{temperature}) increase the
+odds that the program won't do what its readers think it does.
+
+Here's a slightly more complicated loop:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    echo $filename
+    head -100 $filename | tail -20
+done
+\end{VerbIn}
+
+The shell starts by expanding \texttt{*.dat} to create the list of files
+it will process. The \gl{loop body}{g:loop-body} then executes two
+commands for each of those files. The first, \texttt{echo}, just prints
+its command-line parameters to standard output. For example:
+
+\begin{VerbIn}
+$ echo hello there
+\end{VerbIn}
+
+prints:
+
+\begin{VerbOut}
+hello there
+\end{VerbOut}
+
+In this case, since the shell expands \texttt{\$filename} to be the name
+of a file, \texttt{echo \$filename} just prints the name of the file.
+Note that we can't write this as:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    $filename
+    head -100 $filename | tail -20
+done
+\end{VerbIn}
+
+because then the first time through the loop, when \texttt{\$filename}
+expanded to \texttt{basilisk.dat}, the shell would try to run
+\texttt{basilisk.dat} as a program. Finally, the \texttt{head} and
+\texttt{tail} combination selects lines 81-100 from whatever file is
+being processed.
+
+\begin{swcbox}{Spaces in Names}
+
+Filename expansion in loops is another reason you should not use spaces
+in filenames. Suppose our data files are named:
+
+\begin{VerbFile}
+basilisk.dat
+red dragon.dat
+unicorn.dat
+\end{VerbFile}
+
+If we try to process them using:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    head -100 $filename | tail -20
+done
+\end{VerbIn}
+
+then the shell will expand \texttt{*.dat} to create:
+
+\begin{VerbOut}
+basilisk.dat red dragon.dat unicorn.dat
+\end{VerbOut}
+
+With older versions of Bash, or most other shells, \texttt{filename}
+will then be assigned the following values in turn:
+
+\begin{VerbFile}
+basilisk.dat
+red
+dragon.dat
+unicorn.dat
+\end{VerbFile}
+
+That's a problem: \texttt{head} can't read files called \texttt{red} and
+\texttt{dragon.dat} because they don't exist, and won't be asked to read
+the file \texttt{red dragon.dat}.
+
+We can make our script a little bit more robust by
+\gl{quoting}{g:shell-quoting} our use of the variable:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    head -100 "$filename" | tail -20
+done
+\end{VerbIn}
+
+but it's simpler just to avoid using spaces (or other special
+characters) in filenames.
+
+\end{swcbox}
+
+Going back to our original file renaming problem, we can solve it using
+this loop:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    mv $filename original-$filename
+done
+\end{VerbIn}
+
+This loop runs the \texttt{mv} command once for each filename. The first
+time, when \texttt{\$filename} expands to \texttt{basilisk.dat}, the
+shell executes:
+
+\begin{VerbIn}
+mv basilisk.dat original-basilisk.dat
+\end{VerbIn}
+
+The second time, the command is:
+
+\begin{VerbIn}
+mv unicorn.dat original-unicorn.dat
+\end{VerbIn}
+
+\begin{swcbox}{Measure Twice, Run Once}
+
+A loop is a way to do many things at once---or to make many mistakes at
+once if it does the wrong thing. One way to check what a loop
+\emph{would} do is to echo the commands it would run instead of actually
+running them. For example, we could write our file renaming loop like
+this:
+
+\begin{VerbIn}
+for filename in *.dat
+do
+    echo mv $filename original-$filename
+done
+\end{VerbIn}
+
+Instead of running \texttt{mv}, this loop runs \texttt{echo}, which
+prints out:
+
+\begin{VerbIn}
+mv basilisk.dat original-basilisk.dat
+mv unicorn.dat original-unicorn.dat
+\end{VerbIn}
+
+\emph{without} actually running those commands. We can then use up-arrow
+to redisplay the loop, back-arrow to get to the word \texttt{echo},
+delete it, and then press ``enter'' to run the loop with the actual
+\texttt{mv} commands. This isn't foolproof, but it's a handy way to see
+what's going to happen when you're still learning how loops work.
+
+\end{swcbox}
+
+\subsection*{Nelle's Pipeline: Processing Files}
+
+Nelle is now ready to process her data files. Since she's still learning
+how to use the shell, she decides to build up the required commands in
+stages. Her first step is to make sure that she can select the right
+files---remember, these are ones whose names end in `A' or `B', rather
+than `Z':
+
+\begin{VerbIn}
+$ cd north-pacific-gyre/2012-07-03
+$ for datafile in *[AB].txt
+> do
+>     echo $datafile
+> done
+\end{VerbIn}
+
+\begin{VerbOut}
+NENE01729A.txt
+NENE01729B.txt
+NENE01736A.txt
+...
+NENE02043A.txt
+NENE02043B.txt
+\end{VerbOut}
+
+Her next step is to decide what to call the files that the
+\texttt{goostats} analysis program will create. Prefixing each input
+file's name with ``stats'' seems simple, so she modifies her loop to do
+that:
+
+\begin{VerbIn}
+$ for datafile in *[AB].txt
+> do
+>     echo $datafile stats-$datafile
+> done
+\end{VerbIn}
+
+\begin{VerbOut}
+NENE01729A.txt stats-NENE01729A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01736A.txt stats-NENE01736A.txt
+...
+NENE02043A.txt stats-NENE02043A.txt
+NENE02043B.txt stats-NENE02043B.txt
+\end{VerbOut}
+
+She hasn't actually run \texttt{goostats} yet, but now she's sure she
+can select the right files and generate the right output filenames.
+
+Typing in commands over and over again is becoming tedious, though, and
+Nelle is worried about making mistakes, so instead of re-entering her
+loop, she presses the up arrow. In response, the shell redisplays the
+whole loop on one line (using semi-colons to separate the pieces):
+
+\begin{VerbIn}
+$ for datafile in *[AB].txt; do echo $datafile stats-$datafile; done
+\end{VerbIn}
+
+Using the left arrow key, Nelle backs up and changes the command
+\texttt{echo} to \texttt{goostats}:
+
+\begin{VerbIn}
+$ for datafile in *[AB].txt; do bash goostats $datafile stats-$datafile; done
+\end{VerbIn}
+
+When she presses enter, the shell runs the modified command. However,
+nothing appears to happen---there is no output. After a moment, Nelle
+realizes that since her script doesn't print anything to the screen any
+longer, she has no idea whether it is running, much less how quickly.
+She kills the job by typing Control-C, uses up-arrow to repeat the
+command, and edits it to read:
+
+\begin{VerbIn}
+$ for datafile in *[AB].txt; do echo $datafile; bash goostats $datafile stats-$datafile; done
+\end{VerbIn}
+
+\begin{swcbox}{Beginning and End}
+
+We can move to the beginning of a line in the shell by typing
+\texttt{\^{}A} (which means Control-A) and to the end using
+\texttt{\^{}E}.
+
+\end{swcbox}
+
+When she runs her program now, it produces one line of output every five
+seconds or so:
+
+\begin{VerbOut}
+NENE01729A.txt
+NENE01729B.txt
+NENE01736A.txt
+...
+\end{VerbOut}
+
+1518 times 5 seconds, divided by 60, tells her that her script will take
+about two hours to run. As a final check, she opens another terminal
+window, goes into \texttt{north-pacific-gyre/2012-07-03}, and uses
+\texttt{cat stats-NENE01729B.txt} to examine one of the output files. It
+looks good, so she decides to get some coffee and catch up on her
+reading.
+
+\begin{swcbox}{Those Who Know History Can Choose to Repeat It}
+
+Another way to repeat previous work is to use the \texttt{history}
+command to get a list of the last few hundred commands that have been
+executed, and then to use \texttt{!123} (where ``123'' is replaced by
+the command number) to repeat one of those commands. For example, if
+Nelle types this:
+
+\begin{VerbIn}
+$ history | tail -5
+\end{VerbIn}
+
+\begin{VerbOut}
+  456  ls -l NENE0*.txt
+  457  rm stats-NENE01729B.txt.txt
+  458  bash goostats NENE01729B.txt stats-NENE01729B.txt
+  459  ls -l NENE0*.txt
+  460  history
+\end{VerbOut}
+
+then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
+by typing \texttt{!458}.
+
+\end{swcbox}
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  A \texttt{for} loop repeats commands once for every thing in a list.
+\item
+  Every \texttt{for} loop needs a variable to refer to the current
+  ``thing''.
+\item
+  Use \texttt{\$name} to expand a variable (i.e., get its value).
+\item
+  Do not use spaces, quotes, or wildcard characters such as `*' or `?'
+  in filenames, as it complicates variable expansion.
+\item
+  Give files consistent names that are easy to match with wildcard
+  patterns to make it easy to select them for looping.
+\item
+  Use the up-arrow key to scroll up through previous commands to edit
+  and repeat them.
+\item
+  Use \texttt{history} to display recent commands, and \texttt{!number}
+  to repeat a command by number.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Suppose that \texttt{ls} initially displays:
+
+\begin{VerbOut}
+fructose.dat    glucose.dat   sucrose.dat
+\end{VerbOut}
+
+  What is the output of:
+
+\begin{VerbIn}
+for datafile in *.dat
+do
+    ls *.dat
+done
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  In the same directory, what is the effect of this loop?
+
+\begin{VerbIn}
+for sugar in *.dat
+do
+    echo $sugar
+    cat $sugar > xylose.dat
+done
+\end{VerbIn}
+
+  \begin{swcenumerate}
+  \item
+    Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
+    \texttt{sucrose.dat}, and copies \texttt{sucrose.dat} to create
+    \texttt{xylose.dat}.
+  \item
+    Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
+    \texttt{sucrose.dat}, and concatenates all three files to create
+    \texttt{xylose.dat}.
+  \item
+    Prints \texttt{fructose.dat}, \texttt{glucose.dat},
+    \texttt{sucrose.dat}, and \texttt{xylose.dat}, and copies
+    \texttt{sucrose.dat} to create \texttt{xylose.dat}.
+  \item
+    None of the above.
+  \end{swcenumerate}
+\end{challenge}
+
+\begin{challenge}
+  The \texttt{expr} does simple arithmetic using command-line
+  parameters:
+
+\begin{VerbIn}
+$ expr 3 + 5
+\end{VerbIn}
+
+\begin{VerbOut}
+8
+\end{VerbOut}
+
+\begin{VerbIn}
+$ expr 30 / 5 - 2
+\end{VerbIn}
+
+\begin{VerbOut}
+4
+\end{VerbOut}
+
+  Given this, what is the output of:
+
+\begin{VerbIn}
+for left in 2 3
+do
+    for right in $left
+    do
+        expr $left + $right
+    done
+done
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  Describe in words what the following loop does.
+
+\begin{VerbIn}
+for how in frog11 prcb redig
+do
+    $how -limit 0.01 NENE01729B.txt
+done
+\end{VerbIn}
+\end{challenge}
+
+\section{Shell Scripts}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Write a shell script that runs a command or series of commands for a
+  fixed set of files.
+\item
+  Run a shell script from the command line.
+\item
+  Write a shell script that operates on a set of files defined by the
+  user on the command line.
+\item
+  Create pipelines that include user-written shell scripts.
+\end{swcitemize}
+\end{objectives}
+
+We are finally ready to see what makes the shell such a powerful
+programming environment. We are going to take the commands we repeat
+frequently and save them in files so that we can re-run all those
+operations again later by typing a single command. For historical
+reasons, a bunch of commands saved in a file is usually called a
+\gl{shell script}{g:shell-script}, but make no mistake: these are
+actually small programs.
+
+Let's start by putting the following line in the file
+\texttt{middle.sh}:
+
+\begin{VerbFile}
+head -20 cholesterol.pdb | tail -5
+\end{VerbFile}
+
+This is a variation on the pipe we constructed earlier: it selects lines
+16-20 of the file \texttt{cholesterol.pdb}. Remember, we are \emph{not}
+running it as a command just yet: we are putting the commands in a file.
+
+Once we have saved the file, we can ask the shell to execute the
+commands it contains. Our shell is called \texttt{bash}, so we run the
+following command:
+
+\begin{VerbIn}
+$ bash middle.sh
+\end{VerbIn}
+
+\begin{VerbOut}
+ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
+ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
+ATOM     16  C           1       0.771  -0.937   1.840  1.00  0.00
+ATOM     17  C           1      -0.664  -0.610   2.293  1.00  0.00
+ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
+\end{VerbOut}
+
+Sure enough, our script's output is exactly what we would get if we ran
+that pipeline directly.
+
+\begin{swcbox}{Text vs. Whatever}
+
+We usually call programs like Microsoft Word or LibreOffice Writer
+``text editors'', but we need to be a bit more careful when it comes to
+programming. By default, Microsoft Word uses \texttt{.docx} files to
+store not only text, but also formatting information about fonts,
+headings, and so on. This extra information isn't stored as characters,
+and doesn't mean anything to tools like \texttt{head}: they expect input
+files to contain nothing but the letters, digits, and punctuation on a
+standard computer keyboard. When editing programs, therefore, you must
+either use a plain text editor, or be careful to save files as plain
+text.
+
+\end{swcbox}
+
+What if we want to select lines from an arbitrary file? We could edit
+\texttt{middle.sh} each time to change the filename, but that would
+probably take longer than just retyping the command. Instead, let's edit
+\texttt{middle.sh} and replace \texttt{cholesterol.pdb} with a special
+variable called \texttt{\$1}:
+
+\begin{VerbIn}
+$ cat middle.sh
+\end{VerbIn}
+
+\begin{VerbFile}
+head -20 $1 | tail -5
+\end{VerbFile}
+
+Inside a shell script, \texttt{\$1} means ``the first filename (or other
+parameter) on the command line''. We can now run our script like this:
+
+\begin{VerbIn}
+$ bash middle.sh cholesterol.pdb
+\end{VerbIn}
+
+\begin{VerbOut}
+ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
+ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
+ATOM     16  C           1       0.771  -0.937   1.840  1.00  0.00
+ATOM     17  C           1      -0.664  -0.610   2.293  1.00  0.00
+ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
+\end{VerbOut}
+
+or on a different file like this:
+
+\begin{VerbIn}
+$ bash middle.sh vitamin-a.pdb
+\end{VerbIn}
+
+\begin{VerbOut}
+ATOM     14  C           1       1.788  -0.987  -0.861
+ATOM     15  C           1       2.994  -0.265  -0.829
+ATOM     16  C           1       4.237  -0.901  -1.024
+ATOM     17  C           1       5.406  -0.117  -1.087
+ATOM     18  C           1      -0.696  -2.628  -0.641
+\end{VerbOut}
+
+We still need to edit \texttt{middle.sh} each time we want to adjust the
+range of lines, though. Let's fix that by using the special variables
+\texttt{\$2} and \texttt{\$3}:
+
+\begin{VerbIn}
+$ cat middle.sh
+\end{VerbIn}
+
+\begin{VerbFile}
+head $2 $1 | tail $3
+\end{VerbFile}
+
+\begin{VerbIn}
+$ bash middle.sh vitamin-a.pdb -20 -5
+\end{VerbIn}
+
+\begin{VerbOut}
+ATOM     14  C           1       1.788  -0.987  -0.861
+ATOM     15  C           1       2.994  -0.265  -0.829
+ATOM     16  C           1       4.237  -0.901  -1.024
+ATOM     17  C           1       5.406  -0.117  -1.087
+ATOM     18  C           1      -0.696  -2.628  -0.641
+\end{VerbOut}
+
+This works, but it may take the next person who reads \texttt{middle.sh}
+a moment to figure out what it does. We can improve our script by adding
+some \gl{comments}{g:comment} at the top:
+
+\begin{VerbIn}
+$ cat middle.sh
+\end{VerbIn}
+
+\begin{VerbOut}
+# Select lines from the middle of a file.
+# Usage: middle.sh filename -end_line -num_lines
+head $2 $1 | tail $3
+\end{VerbOut}
+
+A comment starts with a \texttt{\#} character and runs to the end of the
+line. The computer ignores comments, but they're invaluable for helping
+people understand and use scripts.
+
+What if we want to process many files in a single pipeline? For example,
+if we want to sort our \texttt{.pdb} files by length, we would type:
+
+\begin{VerbIn}
+$ wc -l *.pdb | sort -n
+\end{VerbIn}
+
+because \texttt{wc -l} lists the number of lines in the files and
+\texttt{sort -n} sorts things numerically. We could put this in a file,
+but then it would only ever sort a list of \texttt{.pdb} files in the
+current directory. If we want to be able to get a sorted list of other
+kinds of files, we need a way to get all those names into the script. We
+can't use \texttt{\$1}, \texttt{\$2}, and so on because we don't know
+how many files there are. Instead, we use the special variable
+\texttt{\$*}, which means, ``All of the command-line parameters to the
+shell script.'' Here's an example:
+
+\begin{VerbIn}
+$ cat sorted.sh
+\end{VerbIn}
+
+\begin{VerbOut}
+wc -l $* | sort -n
+\end{VerbOut}
+
+\begin{VerbIn}
+$ bash sorted.sh *.dat backup/*.dat
+\end{VerbIn}
+
+\begin{VerbOut}
+      29 chloratin.dat
+      89 backup/chloratin.dat
+      91 sphagnoi.dat
+     156 sphag2.dat
+     172 backup/sphag-merged.dat
+     182 girmanis.dat
+\end{VerbOut}
+
+\begin{swcbox}{Why Isn't It Doing Anything?}
+
+What happens if a script is supposed to process a bunch of files, but we
+don't give it any filenames? For example, what if we type:
+
+\begin{VerbIn}
+$ bash sorted.sh
+\end{VerbIn}
+
+but don't say \texttt{*.dat} (or anything else)? In this case,
+\texttt{\$*} expands to nothing at all, so the pipeline inside the
+script is effectively:
+
+\begin{VerbFile}
+wc -l | sort -n
+\end{VerbFile}
+
+Since it doesn't have any filenames, \texttt{wc} assumes it is supposed
+to process standard input, so it just sits there and waits for us to
+give it some data interactively. From the outside, though, all we see is
+it sitting there: the script doesn't appear to do anything.
+
+\end{swcbox}
+
+We have two more things to do before we're finished with our simple
+shell scripts. If you look at a script like:
+
+\begin{VerbFile}
+wc -l $* | sort -n
+\end{VerbFile}
+
+you can probably puzzle out what it does. On the other hand, if you look
+at this script:
+
+\begin{VerbFile}
+# List files sorted by number of lines.
+wc -l $* | sort -n
+\end{VerbFile}
+
+you don't have to puzzle it out---the comment at the top tells you what
+it does. A line or two of documentation like this make it much easier
+for other people (including your future self) to re-use your work. The
+only caveat is that each time you modify the script, you should check
+that the comment is still accurate: an explanation that sends the reader
+in the wrong direction is worse than none at all.
+
+Second, suppose we have just run a series of commands that did something
+useful---for example, that created a graph we'd like to use in a paper.
+We'd like to be able to re-create the graph later if we need to, so we
+want to save the commands in a file. Instead of typing them in again
+(and potentially getting them wrong) we can do this:
+
+\begin{VerbIn}
+$ history | tail -4 > redo-figure-3.sh
+\end{VerbIn}
+
+The file \texttt{redo-figure-3.sh} now contains:
+
+\begin{VerbFile}
+297 goostats -r NENE01729B.txt stats-NENE01729B.txt
+298 goodiff stats-NENE01729B.txt /data/validated/01729.txt > 01729-differences.txt
+299 cut -d ',' -f 2-3 01729-differences.txt > 01729-time-series.txt
+300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
+\end{VerbFile}
+
+After a moment's work in an editor to remove the serial numbers on the
+commands, we have a completely accurate record of how we created that
+figure.
+
+\begin{swcbox}{Unnumbering}
+
+Nelle could also use \texttt{colrm} (short for ``column removal'') to
+remove the serial numbers on her previous commands. Its parameters are
+the range of characters to strip from its input:
+
+\begin{VerbIn}
+$ history | tail -5
+\end{VerbIn}
+
+\begin{VerbOut}
+  173  cd /tmp
+  174  ls
+  175  mkdir bakup
+  176  mv bakup backup
+  177  history | tail -5
+\end{VerbOut}
+
+\begin{VerbIn}
+$ history | tail -5 | colrm 1 7
+\end{VerbIn}
+
+\begin{VerbOut}
+cd /tmp
+ls
+mkdir bakup
+mv bakup backup
+history | tail -5
+history | tail -5 | colrm 1 7
+\end{VerbOut}
+
+\end{swcbox}
+
+In practice, most people develop shell scripts by running commands at
+the shell prompt a few times to make sure they're doing the right thing,
+then saving them in a file for re-use. This style of work allows people
+to recycle what they discover about their data and their workflow with
+one call to \texttt{history} and a bit of editing to clean up the output
+and save it as a shell script.
+
+\subsection*{Nelle's Pipeline: Creating a Script}
+
+An off-hand comment from her supervisor has made Nelle realize that she
+should have provided a couple of extra parameters to \texttt{goostats}
+when she processed her files. This might have been a disaster if she had
+done all the analysis by hand, but thanks to for loops, it will only
+take a couple of hours to re-do.
+
+But experience has taught her that if something needs to be done twice,
+it will probably need to be done a third or fourth time as well. She
+runs the editor and writes the following:
+
+\begin{VerbFile}
+# Calculate reduced stats for data files at J = 100 c/bp.
+for datafile in $*
+do
+    echo $datafile
+    goostats -J 100 -r $datafile stats-$datafile
+done
+\end{VerbFile}
+
+(The parameters \texttt{-J 100} and \texttt{-r} are the ones her
+supervisor said she should have used.) She saves this in a file called
+\texttt{do-stats.sh} so that she can now re-do the first stage of her
+analysis by typing:
+
+\begin{VerbIn}
+$ bash do-stats.sh *[AB].txt
+\end{VerbIn}
+
+She can also do this:
+
+\begin{VerbIn}
+$ bash do-stats.sh *[AB].txt | wc -l
+\end{VerbIn}
+
+so that the output is just the number of files processed rather than the
+names of the files that were processed.
+
+One thing to note about Nelle's script is that it lets the person
+running it decide what files to process. She could have written it as:
+
+\begin{VerbFile}
+# Calculate reduced stats for  A and Site B data files at J = 100 c/bp.
+for datafile in *[AB].txt
+do
+    echo $datafile
+    goostats -J 100 -r $datafile stats-$datafile
+done
+\end{VerbFile}
+
+The advantage is that this always selects the right files: she doesn't
+have to remember to exclude the `Z' files. The disadvantage is that it
+\emph{always} selects just those files---she can't run it on all files
+(including the `Z' files), or on the `G' or `H' files her colleagues in
+Antarctica are producing, without editing the script. If she wanted to
+be more adventurous, she could modify her script to check for
+command-line parameters, and use \texttt{*{[}AB{]}.txt} if none were
+provided. Of course, this introduces another tradeoff between
+flexibility and complexity.
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Save commands in files (usually called shell scripts) for re-use.
+\item
+  \texttt{bash filename} runs the commands saved in a file.
+\item
+  \texttt{\$*} refers to all of a shell script's command-line
+  parameters.
+\item
+  \texttt{\$1}, \texttt{\$2}, etc., refer to specified command-line
+  parameters.
+\item
+  Letting users decide what files to process is more flexible and more
+  consistent with built-in Unix commands.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Leah has several hundred data files, each of which is formatted like
+  this:
+
+\begin{VerbFile}
+2013-11-05,deer,5
+2013-11-05,rabbit,22
+2013-11-05,raccoon,7
+2013-11-06,rabbit,19
+2013-11-06,deer,2
+2013-11-06,fox,1
+2013-11-07,rabbit,18
+2013-11-07,bear,1
+\end{VerbFile}
+
+  Write a shell script called \texttt{species.sh} that takes any number
+  of filenames as command-line parameters, and uses \texttt{cut},
+  \texttt{sort}, and \texttt{uniq} to print a list of the unique species
+  appearing in each of those files separately.
+\end{challenge}
+
+\begin{challenge}
+  Write a shell script called \texttt{longest.sh} that takes the name of
+  a directory and a filename extension as its parameters, and prints out
+  the name of the file with the most lines in that directory with that
+  extension. For example:
+
+\begin{VerbIn}
+$ bash longest.sh /tmp/data pdb
+\end{VerbIn}
+
+  would print the name of the \texttt{.pdb} file in \texttt{/tmp/data}
+  that has the most lines.
+\end{challenge}
+
+\begin{challenge}
+  If you run the command:
+
+\begin{VerbIn}
+$ history | tail -5 > recent.sh
+\end{VerbIn}
+
+  the last command in the file is the \texttt{history} command itself,
+  i.e., the shell has added \texttt{history} to the command log before
+  actually running it. In fact, the shell \emph{always} adds commands to
+  the log before running them. Why do you think it does this?
+\end{challenge}
+
+\begin{challenge}
+  Joel's \texttt{data} directory contains three files:
+  \texttt{fructose.dat}, \texttt{glucose.dat}, and \texttt{sucrose.dat}.
+  Explain what a script called \texttt{example.sh} would do when run as
+  \texttt{bash example.sh *.dat} if it contained the following lines:
+
+\begin{VerbFile}
+# Script 1
+echo *.*
+\end{VerbFile}
+
+\begin{VerbFile}
+# Script 2
+for filename in $1 $2 $3
+do
+    cat $filename
+done
+\end{VerbFile}
+
+\begin{VerbFile}
+# Script 3
+echo $*.dat
+\end{VerbFile}
+
+\end{challenge}
+
+\section{Finding Things}
+
+\begin{objectives}
+\begin{swcitemize}
+\item
+  Use \texttt{grep} to select lines from text files that match simple
+  patterns.
+\item
+  Use \texttt{find} to find files whose names match simple patterns.
+\item
+  Use the output of one command as the command-line parameters to
+  another command.
+\item
+  Explain what is meant by ``text'' and ``binary'' files, and why many
+  common tools don't handle the latter well.
+\end{swcitemize}
+\end{objectives}
+
+You can guess someone's age by how they talk about search: young people
+use ``Google'' as a verb, while crusty old Unix programmers use
+``grep''. The word is a contraction of ``global/regular
+expression/print'', a common sequence of operations in early Unix text
+editors. It is also the name of a very useful command-line program.
+
+\texttt{grep} finds and prints lines in files that match a pattern. For
+our examples, we will use a file that contains three haikus taken from a
+1998 competition in \emph{Salon} magazine:
+
+\begin{VerbIn}
+$ cat haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+The Tao that is seen
+Is not the true Tao, until
+You bring fresh toner.
+
+With searching comes loss
+and the presence of absence:
+"My Thesis" not found.
+
+Yesterday it worked
+Today it is not working
+Software is like that.
+\end{VerbOut}
+
+\begin{swcbox}{Forever, or Five Years}
+
+We haven't linked to the original haikus because they don't appear to be
+on \emph{Salon}'s site any longer. As
+\urlfoot{http://www.clir.org/pubs/archives/ensuring.pdf}{Jeff Rothenberg
+said}, ``Digital information lasts forever---or five years, whichever
+comes first.''
+
+\end{swcbox}
+
+Let's find lines that contain the word ``not'':
+
+\begin{VerbIn}
+$ grep not haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Is not the true Tao, until
+"My Thesis" not found
+Today it is not working
+\end{VerbOut}
+
+Here, \texttt{not} is the pattern we're searching for. It's pretty
+simple: every alphanumeric character matches against itself. After the
+pattern comes the name or names of the files we're searching in. The
+output is the three lines in the file that contain the letters ``not''.
+
+Let's try a different pattern: ``day''.
+
+\begin{VerbIn}
+$ grep day haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+Yesterday it worked
+Today it is not working
+\end{VerbOut}
+
+This time, the output is lines containing the words ``Yesterday'' and
+``Today'', which both have the letters ``day''. If we give \texttt{grep}
+the \texttt{-w} flag, it restricts matches to word boundaries, so that
+only lines with the word ``day'' will be printed:
+
+\begin{VerbIn}
+$ grep -w day haiku.txt
+\end{VerbIn}
+
+In this case, there aren't any, so \texttt{grep}'s output is empty.
+
+Another useful option is \texttt{-n}, which numbers the lines that
+match:
+
+\begin{VerbIn}
+$ grep -n it haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+5:With searching comes loss
+9:Yesterday it worked
+10:Today it is not working
+\end{VerbOut}
+
+Here, we can see that lines 5, 9, and 10 contain the letters ``it''.
+
+We can combine flags as we do with other Unix commands. For example,
+since \texttt{-i} makes matching case-insensitive and \texttt{-v}
+inverts the match, using them both only prints lines that \emph{don't}
+match the pattern in any mix of upper and lower case:
+
+\begin{VerbIn}
+$ grep -i -v the haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+You bring fresh toner.
+
+With searching comes loss
+
+Yesterday it worked
+Today it is not working
+Software is like that.
+\end{VerbOut}
+
+\texttt{grep} has lots of other options. To find out what they are, we
+can type \texttt{man grep}. \texttt{man} is the Unix ``manual'' command:
+it prints a description of a command and its options, and (if you're
+lucky) provides a few examples of how to use it:
+
+\begin{VerbIn}
+$ man grep
+\end{VerbIn}
+
+\begin{VerbOut}
+GREP(1)                                                                                              GREP(1)
+
+NAME
+grep, egrep, fgrep - print lines matching a pattern
+
+SYNOPSIS
+grep [OPTIONS] PATTERN [FILE...]
+grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]
+
+DESCRIPTION
+grep  searches the named input FILEs (or standard input if no files are named, or if a single hyphen-
+minus (-) is given as file name) for lines containing a match to the given PATTERN.  By default, grep
+prints the matching lines.
+...        ...        ...
+
+OPTIONS
+Generic Program Information
+--help Print  a  usage  message  briefly summarizing these command-line options and the bug-reporting
+address, then exit.
+
+-V, --version
+Print the version number of grep to the standard output stream.  This version number should be
+included in all bug reports (see below).
+
+Matcher Selection
+-E, --extended-regexp
+Interpret  PATTERN  as  an  extended regular expression (ERE, see below).  (-E is specified by
+POSIX.)
+
+-F, --fixed-strings
+Interpret PATTERN as a list of fixed strings, separated by newlines, any of  which  is  to  be
+matched.  (-F is specified by POSIX.)
+...        ...        ...
+\end{VerbOut}
+
+\begin{swcbox}{Wildcards}
+
+\texttt{grep}'s real power doesn't come from its options, though; it
+comes from the fact that patterns can include wildcards. (The technical
+name for these is \gl{regular expressions}{g:regular-expression},
+which is what the ``re'' in ``grep'' stands for.) Regular expressions
+are both complex and powerful; if you want to do complex searches,
+please look at the lesson on \urlfoot{http://software-carpentry.org}{our
+website}. As a taster, we can find lines that have an `o' in the second
+position like this:
+
+\begin{VerbIn}
+$ grep -E '^.o' haiku.txt
+\end{VerbIn}
+
+\begin{VerbOut}
+You bring fresh toner.
+Today it is not working
+Software is like that.
+\end{VerbOut}
+
+We use the \texttt{-E} flag and put the pattern in quotes to prevent the
+shell from trying to interpret it. (If the pattern contained a `*', for
+example, the shell would try to expand it before running \texttt{grep}.)
+The `\textbackslash{}\^{}' in the pattern anchors the match to the start
+of the line. The `.' matches a single character (just like `?' in the
+shell), while the `o' matches an actual `o'.
+
+\end{swcbox}
+
+While \texttt{grep} finds lines in files, the \texttt{find} command
+finds files themselves. Again, it has a lot of options; to show how the
+simplest ones work, we'll use the directory tree shown in \figref{f:find-tree}.
+
+\swcgraphics{f:find-tree}{Directory Tree for \texttt{find} Examples}{novice/shell/img/find-file-tree.png}
+
+Vlad's home directory contains one file called \texttt{notes.txt} and
+four subdirectories: \texttt{thesis} (which is sadly empty),
+\texttt{data} (which contains two files \texttt{one.txt} and
+\texttt{two.txt}), a \texttt{tools} directory that contains the programs
+\texttt{format} and \texttt{stats}, and an empty subdirectory called
+\texttt{old}.
+
+For our first command, let's run \texttt{find . -type d -print}. As
+always, the \texttt{.} on its own means the current working directory,
+which is where we want our search to start; \texttt{-type d} means
+``things that are directories'', and (unsurprisingly) \texttt{-print}
+means ``print what's found''. Sure enough, \texttt{find}'s output is the
+names of the five directories in our little tree (including \texttt{.}):
+
+\begin{VerbIn}
+$ find . -type d -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./
+./data
+./thesis
+./tools
+./tools/old
+\end{VerbOut}
+
+If we change \texttt{-type d} to \texttt{-type f}, we get a listing of
+all the files instead:
+
+\begin{VerbIn}
+$ find . -type f -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./data/one.txt
+./data/two.txt
+./notes.txt
+./tools/format
+./tools/stats
+\end{VerbOut}
+
+\texttt{find} automatically goes into subdirectories, their
+subdirectories, and so on to find everything that matches the pattern
+we've given it. If we don't want it to, we can use \texttt{-maxdepth} to
+restrict the depth of search:
+
+\begin{VerbIn}
+$ find . -maxdepth 1 -type f -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./notes.txt
+\end{VerbOut}
+
+The opposite of \texttt{-maxdepth} is \texttt{-mindepth}, which tells
+\texttt{find} to only report things that are at or below a certain
+depth. \texttt{-mindepth 2} therefore finds all the files that are two
+or more levels below us:
+
+\begin{VerbIn}
+$ find . -mindepth 2 -type f -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./data/one.txt
+./data/two.txt
+./tools/format
+./tools/stats
+\end{VerbOut}
+
+Another option is \texttt{-empty}, which restricts matches to empty
+files and directories:
+
+\begin{VerbIn}
+$ find . -empty -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./thesis
+./tools/old
+\end{VerbOut}
+
+Now let's try matching by name:
+
+\begin{VerbIn}
+$ find . -name *.txt -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./notes.txt
+\end{VerbOut}
+
+We expected it to find all the text files, but it only prints out
+\texttt{./notes.txt}. The problem is that the shell expands wildcard
+characters like \texttt{*} \emph{before} commands run. Since
+\texttt{*.txt} in the current directory expands to \texttt{notes.txt},
+the command we actually ran was:
+
+\begin{VerbIn}
+$ find . -name notes.txt -print
+\end{VerbIn}
+
+\texttt{find} did what we asked; we just asked for the wrong thing.
+
+To get what we want, let's do what we did with \texttt{grep}: put
+\texttt{*.txt} in single quotes to prevent the shell from expanding the
+\texttt{*} wildcard. This way, \texttt{find} actually gets the pattern
+\texttt{*.txt}, not the expanded filename \texttt{notes.txt}:
+
+\begin{VerbIn}
+$ find . -name '*.txt' -print
+\end{VerbIn}
+
+\begin{VerbOut}
+./data/one.txt
+./data/two.txt
+./notes.txt
+\end{VerbOut}
+
+\begin{swcbox}{Listing vs. Finding}
+
+\texttt{ls} and \texttt{find} can be made to do similar things given the
+right options, but under normal circumstances, \texttt{ls} lists
+everything it can, while \texttt{find} searches for things with certain
+properties and shows them.
+
+\end{swcbox}
+
+As we said earlier, the command line's power lies in combining tools.
+We've seen how to do that with pipes; let's look at another technique.
+As we just saw, \texttt{find . -name '*.txt' -print} gives us a list of
+all text files in or below the current directory. How can we combine
+that with \texttt{wc -l} to count the lines in all those files?
+
+The simplest way is to put the \texttt{find} command inside
+\texttt{\$()}:
+
+\begin{VerbIn}
+$ wc -l $(find . -name '*.txt' -print)
+\end{VerbIn}
+
+\begin{VerbOut}
+70  ./data/one.txt
+420  ./data/two.txt
+30  ./notes.txt
+520  total
+\end{VerbOut}
+
+When the shell executes this command, the first thing it does is run
+whatever is inside the \texttt{\$()}. It then replaces the \texttt{\$()}
+expression with that command's output. Since the output of \texttt{find}
+is the three filenames \texttt{./data/one.txt}, \texttt{./data/two.txt},
+and \texttt{./notes.txt}, the shell constructs the command:
+
+\begin{VerbIn}
+$ wc -l ./data/one.txt ./data/two.txt ./notes.txt
+\end{VerbIn}
+
+which is what we wanted. This expansion is exactly what the shell does
+when it expands wildcards like \texttt{*} and \texttt{?}, but lets us
+use any command we want as our own ``wildcard''.
+
+It's very common to use \texttt{find} and \texttt{grep} together. The
+first finds files that match a pattern; the second looks for lines
+inside those files that match another pattern. Here, for example, we can
+find PDB files that contain iron atoms by looking for the string ``FE''
+in all the \texttt{.pdb} files below the current directory:
+
+\begin{VerbIn}
+$ grep FE $(find . -name '*.pdb' -print)
+\end{VerbIn}
+
+\begin{VerbOut}
+./human/heme.pdb:ATOM  25  FE  1  -0.924  0.535  -0.518
+\end{VerbOut}
+
+\begin{swcbox}{Binary Files}
+
+We have focused exclusively on finding things in text files. What if
+your data is stored as images, in databases, or in some other format?
+One option would be to extend tools like \texttt{grep} to handle those
+formats. This hasn't happened, and probably won't, because there are too
+many formats to support.
+
+The second option is to convert the data to text, or extract the
+text-ish bits from the data. This is probably the most common approach,
+since it only requires people to build one tool per data format (to
+extract information). On the one hand, it makes simple things easy to
+do. On the negative side, complex things are usually impossible. For
+example, it's easy enough to write a program that will extract X and Y
+dimensions from image files for \texttt{grep} to play with, but how
+would you write something to find values in a spreadsheet whose cells
+contained formulas?
+
+The third choice is to recognize that the shell and text processing have
+their limits, and to use a programming language such as Python instead.
+When the time comes to do this, don't be too hard on the shell: many
+modern programming languages, Python included, have borrowed a lot of
+ideas from it, and imitation is also the sincerest form of praise.
+
+\end{swcbox}
+
+\section{Conclusion}
+
+The Unix shell is older than most of the people who use it. It has
+survived so long because it is one of the most productive programming
+environments ever created---maybe even \emph{the} most productive. Its
+syntax may be cryptic, but people who have mastered it can experiment
+with different commands interactively, then use what they have learned
+to automate their work. Graphical user interfaces may be better at the
+first, but the shell is still unbeaten at the second. And as Alfred
+North Whitehead wrote in 1911, ``Civilization advances by extending the
+number of important operations which we can perform without thinking
+about them.''
+
+\begin{keypoints}
+\begin{swcitemize}
+\item
+  Use \texttt{find} to find files and directories, and \texttt{grep} to
+  find text patterns in files.
+\item
+  \texttt{\$(command)} inserts a command's output in place.
+\item
+  \texttt{man command} displays the manual page for a given command.
+\end{swcitemize}
+\end{keypoints}
+
+\begin{challenge}
+  Write a short explanatory comment for the following shell script:
+
+\begin{VerbIn}
+find . -name '*.dat' -print | wc -l | sort -n
+\end{VerbIn}
+\end{challenge}
+
+\begin{challenge}
+  The \texttt{-v} flag to \texttt{grep} inverts pattern matching, so
+  that only lines which do \emph{not} match the pattern are printed.
+  Given that, which of the following commands will find all files in
+  \texttt{/data} whose names end in \texttt{ose.dat} (e.g.,
+  \texttt{sucrose.dat} or \texttt{maltose.dat}), but do \emph{not}
+  contain the word \texttt{temp}?
+
+  \begin{swcenumerate}
+  \item
+    \texttt{find /data -name '*.dat' -print \textbar{} grep ose \textbar{} grep -v temp}
+  \item
+    \texttt{find /data -name ose.dat -print \textbar{} grep -v temp}
+  \item
+    \texttt{grep -v temp \$(find /data -name '*ose.dat' -print)}
+  \item
+    None of the above.
+  \end{swcenumerate}
+\end{challenge}
