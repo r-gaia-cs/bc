@@ -9168,10 +9168,6 @@ displays scientists' names. We do this using the SQL command
 table we want them from. Our query and its output look like this:
 
 \begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
-
-\begin{VerbIn}
 select family, personal from Person;
 \end{VerbIn}
 
@@ -9303,10 +9299,6 @@ select Personal, Family from PERSON;
 Data is often redundant, so queries often return redundant information.
 For example, if we select the quantitites that have been measured from
 the \texttt{survey} table, we get this:
-
-\begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
 
 \begin{VerbIn}
 select quant from Survey;
@@ -9521,10 +9513,6 @@ particular site was visited. We can select these records from the
 \texttt{Visited} table by using a \texttt{where} clause in our query:
 
 \begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
-
-\begin{VerbIn}
 select * from Visited where site='DR-1';
 \end{VerbIn}
 
@@ -9720,20 +9708,13 @@ select * from Site where (lat > -60) or (lat < 60);
   zero or more characters''.
 
   \begin{tabular}{ll}
-    Expression & Value
-  \\
-  \hline
-  \texttt{'a' like 'a'} & True
-  \\
-  \texttt{'a' like '\%a'} & True
-  \\
-  \texttt{'b' like '\%a'} & False
-  \\
-  \texttt{'alpha' like 'a\%'} & True
-  \\
-  \texttt{'alpha' like 'a\%p\%'} & True
-  \\
-    \end{tabular}
+    Expression & Value \\
+    \texttt{'a' like 'a'} & True \\
+    \texttt{'a' like '\%a'} & True \\
+    \texttt{'b' like '\%a'} & False \\
+    \texttt{'alpha' like 'a\%'} & True \\
+    \texttt{'alpha' like 'a\%p\%'} & True \\
+  \end{tabular}
 
   The expression \texttt{*column-name* not like *pattern*} inverts the
   test. Using \texttt{like}, write a query that finds all the records in
@@ -9764,10 +9745,6 @@ After carefully re-reading the expedition logs, we realize that the
 radiation measurements they report may need to be corrected upward by
 5\%. Rather than modifying the stored data, we can do this calculation
 on the fly as part of our query:
-
-\begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
 
 \begin{VerbIn}
 select 1.05 * reading from Survey where quant='rad';
@@ -9908,21 +9885,16 @@ eight records, but \#752 doesn't have a date---or rather, its date is
 null:
 
 \begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
-
-\begin{VerbIn}
 select * from Visited;
 \end{VerbIn}
 
-% FIXME: look for 'None' in tables
 \begin{tabular}{lll}
 619 & DR-1 & 1927-02-08 \\
 622 & DR-1 & 1927-02-10 \\
 734 & DR-3 & 1939-01-07 \\
 735 & DR-3 & 1930-01-12 \\
 751 & DR-3 & 1930-02-26 \\
-752 & DR-3 & None \\
+752 & DR-3 & ~ \\
 837 & MSK-4 & 1932-01-14 \\
 844 & DR-1 & 1932-03-22 \\
 \end{tabular}
@@ -9990,7 +9962,7 @@ select * from Visited where dated is NULL;
 \end{VerbIn}
 
 \begin{tabular}{lll}
-752 & DR-3 & None \\
+752 & DR-3 & ~ \\
 \end{tabular}
 
 or its inverse \texttt{is not null}:
@@ -10104,10 +10076,6 @@ We now want to calculate ranges and averages for our data. We know how
 to select all of the dates from the \texttt{Visited} table:
 
 \begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
-
-\begin{VerbIn}
 select dated from Visited;
 \end{VerbIn}
 
@@ -10117,7 +10085,7 @@ select dated from Visited;
 1939-01-07 \\
 1930-01-12 \\
 1930-02-26 \\
-None \\
+~ \\
 1932-01-14 \\
 1932-03-22 \\
 \end{tabular}
@@ -10214,8 +10182,8 @@ arbitrary value:
 select person, max(reading), sum(reading) from Survey where quant='missing';
 \end{VerbIn}
 
-\begin{tabular}{lll} % FIXME: nulls in table
-None & None & None \\
+\begin{tabular}{lll}
+~ & ~ & ~ \\
 \end{tabular}
 
 One final important feature of aggregation functions is that they are
@@ -10314,8 +10282,8 @@ group by person, quant;
 \end{VerbIn}
 
 \begin{tabular}{llll}
-None & sal & 1 & 0.06 \\
-None & temp & 1 & -26.0 \\
+~ & sal & 1 & 0.06 \\
+~ & temp & 1 & -26.0 \\
 dyer & rad & 2 & 8.81 \\
 dyer & sal & 2 & 0.11 \\
 lake & rad & 2 & 1.82 \\
@@ -10450,10 +10418,6 @@ The SQL command to do this is \texttt{join}. To see how it works, let's
 start by joining the \texttt{Site} and \texttt{Visited} tables:
 
 \begin{VerbIn}
-%load_ext sqlitemagic
-\end{VerbIn}
-
-\begin{VerbIn}
 select * from Site join Visited;
 \end{VerbIn}
 
@@ -10463,7 +10427,7 @@ DR-1 & -49.85 & -128.57 & 622 & DR-1 & 1927-02-10 \\
 DR-1 & -49.85 & -128.57 & 734 & DR-3 & 1939-01-07 \\
 DR-1 & -49.85 & -128.57 & 735 & DR-3 & 1930-01-12 \\
 DR-1 & -49.85 & -128.57 & 751 & DR-3 & 1930-02-26 \\
-DR-1 & -49.85 & -128.57 & 752 & DR-3 & None \\
+DR-1 & -49.85 & -128.57 & 752 & DR-3 & ~ \\
 DR-1 & -49.85 & -128.57 & 837 & MSK-4 & 1932-01-14 \\
 DR-1 & -49.85 & -128.57 & 844 & DR-1 & 1932-03-22 \\
 DR-3 & -47.15 & -126.72 & 619 & DR-1 & 1927-02-08 \\
@@ -10471,7 +10435,7 @@ DR-3 & -47.15 & -126.72 & 622 & DR-1 & 1927-02-10 \\
 DR-3 & -47.15 & -126.72 & 734 & DR-3 & 1939-01-07 \\
 DR-3 & -47.15 & -126.72 & 735 & DR-3 & 1930-01-12 \\
 DR-3 & -47.15 & -126.72 & 751 & DR-3 & 1930-02-26 \\
-DR-3 & -47.15 & -126.72 & 752 & DR-3 & None \\
+DR-3 & -47.15 & -126.72 & 752 & DR-3 & ~ \\
 DR-3 & -47.15 & -126.72 & 837 & MSK-4 & 1932-01-14 \\
 DR-3 & -47.15 & -126.72 & 844 & DR-1 & 1932-03-22 \\
 MSK-4 & -48.87 & -123.4 & 619 & DR-1 & 1927-02-08 \\
@@ -10479,7 +10443,7 @@ MSK-4 & -48.87 & -123.4 & 622 & DR-1 & 1927-02-10 \\
 MSK-4 & -48.87 & -123.4 & 734 & DR-3 & 1939-01-07 \\
 MSK-4 & -48.87 & -123.4 & 735 & DR-3 & 1930-01-12 \\
 MSK-4 & -48.87 & -123.4 & 751 & DR-3 & 1930-02-26 \\
-MSK-4 & -48.87 & -123.4 & 752 & DR-3 & None \\
+MSK-4 & -48.87 & -123.4 & 752 & DR-3 & ~ \\
 MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
 MSK-4 & -48.87 & -123.4 & 844 & DR-1 & 1932-03-22 \\
 \end{tabular}
@@ -10508,7 +10472,7 @@ DR-1 & -49.85 & -128.57 & 844 & DR-1 & 1932-03-22 \\
 DR-3 & -47.15 & -126.72 & 734 & DR-3 & 1939-01-07 \\
 DR-3 & -47.15 & -126.72 & 735 & DR-3 & 1930-01-12 \\
 DR-3 & -47.15 & -126.72 & 751 & DR-3 & 1930-02-26 \\
-DR-3 & -47.15 & -126.72 & 752 & DR-3 & None \\
+DR-3 & -47.15 & -126.72 & 752 & DR-3 & ~ \\
 MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
 \end{tabular}
 
@@ -10540,7 +10504,7 @@ on     Site.name=Visited.site;
 -49.85 & -128.57 & 1927-02-08 \\
 -49.85 & -128.57 & 1927-02-10 \\
 -49.85 & -128.57 & 1932-03-22 \\
--47.15 & -126.72 & None \\
+-47.15 & -126.72 & ~ \\
 -47.15 & -126.72 & 1930-01-12 \\
 -47.15 & -126.72 & 1930-02-26 \\
 -47.15 & -126.72 & 1939-01-07 \\
@@ -10646,7 +10610,7 @@ example, we could get rid of the \texttt{Site} table and rewrite the
 734 & -47.15 & -126.72 & 1939-01-07 \\
 735 & -47.15 & -126.72 & 1930-01-12 \\
 751 & -47.15 & -126.72 & 1930-02-26 \\
-752 & -47.15 & -126.72 & null \\
+752 & -47.15 & -126.72 & ~ \\
 837 & -48.87 & -123.40 & 1932-01-14 \\
 844 & -49.85 & -128.57 & 1932-03-22 \\
 \end{tabular}
