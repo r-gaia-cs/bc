@@ -220,7 +220,7 @@ work 24 hours a day while she writes her paper. As a bonus, once she has
 put a processing pipeline together, she will be able to use it again
 whenever she collects more data.
 
-\mbox{}\paragraph{What and Why}
+\subsection*{What and Why}
 
 At a high level, computers do four things:
 
@@ -661,7 +661,7 @@ special cases and exceptions to keep track of.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Nelle's Pipeline: Organizing Files}
+\subsection*{Nelle's Pipeline: Organizing Files}
 
 Knowing just this much about files and directories, Nelle is ready to
 organize the files that the protein assay machine will create. First,
@@ -1546,7 +1546,7 @@ standard input, but we have told the shell to send the contents of
 
 \end{swcbox}
 
-\mbox{}\paragraph{Nelle's Pipeline: Checking Files}
+\subsection*{Nelle's Pipeline: Checking Files}
 
 Nelle has run her samples through the assay machines and created 1520
 files in the \texttt{north-pacific-gyre/2012-07-03} directory described
@@ -2022,7 +2022,7 @@ what's going to happen when you're still learning how loops work.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Nelle's Pipeline: Processing Files}
+\subsection*{Nelle's Pipeline: Processing Files}
 
 Nelle is now ready to process her data files. Since she's still learning
 how to use the shell, she decides to build up the required commands in
@@ -2564,7 +2564,7 @@ to recycle what they discover about their data and their workflow with
 one call to \texttt{history} and a bit of editing to clean up the output
 and save it as a shell script.
 
-\mbox{}\paragraph{Nelle's Pipeline: Creating a Script}
+\subsection*{Nelle's Pipeline: Creating a Script}
 
 An off-hand comment from her supervisor has made Nelle realize that she
 should have provided a couple of extra parameters to \texttt{goostats}
@@ -3129,7 +3129,7 @@ ideas from it, and imitation is also the sincerest form of praise.
 
 \end{swcbox}
 
-\mbox{}\paragraph{Conclusion}
+\section{Conclusion}
 
 The Unix shell is older than most of the people who use it. It has
 survived so long because it is one of the most productive programming
@@ -3263,7 +3263,7 @@ alternative (\figref{f:phdcomics-version}).
 
 ``Piled Higher and Deeper'' by Jorge Cham, http://www.phdcomics.com
 
-\mbox{}\paragraph{Setting Up}
+\subsection*{Setting Up}
 
 The first time we use Git on a new machine, we need to configure a few
 things. Here's how Dracula sets up his new laptop:
@@ -3297,7 +3297,7 @@ The four commands above only need to be run once: the flag
 \texttt{-{}-global} tells Git to use the settings for every project on
 this machine.
 
-\mbox{}\paragraph{Creating a Repository}
+\subsection*{Creating a Repository}
 
 Once Git is configured, we can start using it. Let's create a directory
 for our work:
@@ -3350,7 +3350,7 @@ $ git status
 nothing to commit (create/copy files and use "git add" to track)
 \end{VerbOut}
 
-\mbox{}\paragraph{Tracking Changes to Files}
+\subsection*{Tracking Changes to Files}
 
 Let's create a file called \texttt{mars.txt} that contains some notes
 about the Red Planet's suitability as a base. (We'll use \texttt{nano}
@@ -3500,7 +3500,7 @@ accidentally edit or delete an old version).
 
 \end{swcbox}
 
-\mbox{}\paragraph{Changing a File}
+\subsection*{Changing a File}
 
 Now suppose Dracula adds more information to the file. (Again, we'll
 edit with \texttt{nano} and then \texttt{cat} the file to show its
@@ -3727,7 +3727,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
     Starting to think about Mars
 \end{VerbOut}
 
-\mbox{}\paragraph{Exploring History}
+\subsection*{Exploring History}
 
 If we want to see what we changed when, we use \texttt{git diff} again,
 but refer to old versions using the notation
@@ -3811,7 +3811,7 @@ index df0654a..b36abfd 100644
 +But the Mummy will appreciate the lack of humidity
 \end{VerbOut}
 
-\mbox{}\paragraph{Recovering Old Versions}
+\subsection*{Recovering Old Versions}
 
 All right: we can save changes to files and see what we've changed---how
 can we restore older versions of things? Let's suppose we accidentally
@@ -3898,7 +3898,7 @@ also undoing changes made later to the conclusion. If the introduction
 and conclusion are stored in separate files, on the other hand, moving
 backward and forward in time becomes much easier.
 
-\mbox{}\paragraph{Ignoring Things}
+\subsection*{Ignoring Things}
 
 What if we have files that we do not want Git to track for us, like
 backup files created by our editor or intermediate files created during
@@ -4734,7 +4734,7 @@ widely it is cited and re-used. However, people who want to work this
 way need to make some decisions about what exactly ``open'' means in
 practice.
 
-\mbox{}\paragraph{Licensing}
+\subsection*{Licensing}
 
 The first question is licensing. Broadly speaking, there are two kinds
 of open license for software, and half a dozen for data and
@@ -4840,7 +4840,7 @@ Greg Wilson: "Software Carpentry: Lessons Learned". arXiv:1307.5448, July 2013.
 }
 \end{VerbFile}
 
-\mbox{}\paragraph{Hosting}
+\subsection*{Hosting}
 
 The second big question for groups that want to open up their work is
 where to host their code and data. One option is for the lab, the
@@ -5632,16 +5632,6 @@ together more closely.)
   simple visualizations.
 \end{swcitemize}
 \end{keypoints}
-
-\mbox{}\paragraph{Next Steps}
-
-Our work so far has convinced us that something's wrong with our first
-data file. We would like to check the other 11 the same way, but typing
-in the same commands repeatedly is tedious and error-prone. Since
-computers don't get bored (that we know of), we should create a way to
-do a complete analysis with a single command, and then figure out how to
-repeat that step once for each file. These operations are the subjects
-of the next two lessons.
 
 \section{Creating Functions}
 
@@ -6465,24 +6455,6 @@ parameter in the list. That's why we don't have to provide
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Next Steps}
-
-We now have a function called \texttt{analyze} to visualize a single
-data set. We could use it to explore all 12 of our current data sets
-like this:
-
-\begin{VerbIn}
-analyze('inflammation-01.csv')
-analyze('inflammation-02.csv')
-...
-analyze('inflammation-12.csv')
-\end{VerbIn}
-
-but the chances of us typing all 12 filenames correctly aren't great,
-and we'll be even worse off if we get another hundred files. What we
-need is a way to tell Python to do something once for each file, and
-that will be the subject of the next lesson.
-
 \section{Analyzing Multiple Data Sets}
 
 We have created a function called \texttt{analyze} that creates graphs
@@ -6920,24 +6892,6 @@ the first, and their minima show the same staircase structure.
   \texttt{?} to match any single character.
 \end{swcitemize}
 \end{keypoints}
-
-\mbox{}\paragraph{Next Steps}
-
-We have now solved our original problem: we can analyze any number of
-data files with a single command. More importantly, we have met two of
-the most important ideas in programming:
-
-\begin{swcenumerate}
-\item
-  Use functions to make code easier to re-use and easier to understand.
-\item
-  Use lists and arrays to store related values, and loops to repeat
-  operations on them.
-\end{swcenumerate}
-
-We have one more big idea to introduce, and then we will be able to go
-back and create a heat map like the one we initially used to display our
-first data set.
 
 \section{Making Choices}
 
@@ -7657,14 +7611,6 @@ left, right = right, left
 \end{swcitemize}
 \end{keypoints}
 
-\mbox{}\paragraph{Next Steps}
-
-Our final heatmap function is 17 lines long, which means that if there's
-a 95\% chance of each line being correct, the odds of the whole function
-being right are only 41\%. Before we go any further, we need to learn
-how to test whether our code is doing what we want it to do, and that
-will be the subject of the next lesson.
-
 \section{Defensive Programming}
 
 Our previous lessons have introduced the basic tools of programming:
@@ -8124,7 +8070,7 @@ until it seems to produce the right answer, but that's very inefficient
 testing). The more experienced a programmer is, the more systematically
 they debug, and most follow some variation on the rules explained below.
 
-\mbox{}\paragraph{Know What It's Supposed to Do}
+\subsection*{Know What It's Supposed to Do}
 
 The first step in debugging something is to
 \urlfoot{../../rules.html\#know-what-its-supposed-to-do}{know what it's
@@ -8182,7 +8128,7 @@ the next program. In practice, scientists tend to do the following:
   automatically.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Make It Fail Every Time}
+\subsection*{Make It Fail Every Time}
 
 We can only debug something when it fails, so the second step is always
 to find a test case that
@@ -8202,7 +8148,7 @@ likely to happen when we're tired, frustrated, and up against a
 deadline, which is one of the reasons late-night (or overnight) coding
 sessions are almost never worthwhile.
 
-\mbox{}\paragraph{Make It Fail Fast}
+\subsection*{Make It Fail Fast}
 
 If it takes 20 minutes for the bug to surface, we can only do three
 experiments an hour. That doesn't must mean we'll get less data in more
@@ -8228,7 +8174,7 @@ possible region of code:
   than one thing we don't need to worry about.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Change One Thing at a Time, For a Reason}
+\subsection*{Change One Thing at a Time, For a Reason}
 
 Replacing random chunks of code is unlikely to do much good. (After all,
 if you got it wrong the first time, you'll probably get it wrong the
@@ -8247,7 +8193,7 @@ than half of fixes made to code introduce (or re-introduce) bugs, so
 re-running all of our tests tells us whether we have
 \gl{regressed}{g:regression}.
 
-\mbox{}\paragraph{Keep Track of What You've Done}
+\subsection*{Keep Track of What You've Done}
 
 Good scientists keep track of what they've done so that they can
 reproduce their work, and so that they don't waste time repeating the
@@ -8275,7 +8221,7 @@ of code\ldots{}
 
 \end{swcbox}
 
-\mbox{}\paragraph{Be Humble}
+\subsection*{Be Humble}
 
 And speaking of help: if we can't find a bug in 10 minutes, we should
 \urlfoot{../../rules.html\#be-humble}{be humble} and ask for help. Just
@@ -8335,14 +8281,6 @@ working programs, not more.
   Be humble.
 \end{swcitemize}
 \end{keypoints}
-
-\mbox{}\paragraph{Next Steps}
-
-We have now seen the basics of building and testing Python code in the
-IPython Notebook. The last thing we need to learn is how to build
-command-line programs that we can use in pipelines and shell scripts, so
-that we can integrate our tools with other people's work. This will be
-the subject of our next and final lesson.
 
 \section{Command-Line Programs}
 
@@ -11568,7 +11506,7 @@ pages are divided into sections:
 Other sections we might see include AUTHOR, REPORTING BUGS, COPYRIGHT,
 HISTORY, (known) BUGS, and COMPATIBILITY.
 
-\mbox{}\paragraph{How to Read the Synopsis}
+\subsection*{How to Read the Synopsis}
 
 Here is the is synopsis for the \texttt{cp} command on Ubuntu Linux:
 
@@ -11623,7 +11561,7 @@ one:
       ...  ...
 \end{VerbOut}
 
-\mbox{}\paragraph{Finding Help on Specific Options}
+\subsection*{Finding Help on Specific Options}
 
 If we want to skip ahead to the option you're interested in, we can
 search for it using the slash key `/'. (This isn't part of the
@@ -11643,7 +11581,7 @@ meaning is to copy all the SOURCE arguments into DIRECTORY. Thus, we can
 give the destination explicitly instead of relying on having to place
 the directory at the end.
 
-\mbox{}\paragraph{Limitations of Man Pages}
+\subsection*{Limitations of Man Pages}
 
 Man pages can be useful for a quick confirmation of how to run a
 command, but they are not famous for being readable. If you can't find
@@ -11936,7 +11874,7 @@ computer will let her do that. She's allowed to go through
 a way to make some of their directories visible to the world as a whole
 without opening up everything else.
 
-\mbox{}\paragraph{What about Windows?}
+\subsection*{What about Windows?}
 
 Those are the basics of permissions on Unix. As we said at the outset,
 though, things work differently on Windows. There, permissions are
@@ -11999,7 +11937,7 @@ this case, the convention is to use a colon `:' as a separator. If a
 program wants the individual elements of such a list, it's the program's
 responsibility to split the variable's string value into pieces.
 
-\mbox{}\paragraph{The \texttt{PATH} Variable}
+\subsection*{The \texttt{PATH} Variable}
 
 Let's have a closer look at that \texttt{PATH} variable. Its value
 defines the shell's \gl{search path}{g:search-path}, i.e., the
@@ -12036,7 +11974,7 @@ Notice that it will \emph{never} find the program
 program, since the directory \texttt{/users/vlad} isn't in
 \texttt{PATH}.
 
-\mbox{}\paragraph{Showing the Value of a Variable}
+\subsection*{Showing the Value of a Variable}
 
 Let's show the value of the variable \texttt{HOME}:
 
@@ -12065,7 +12003,7 @@ does the replacement \emph{before} running the program we've asked for.
 Thanks to this expansion, what we actually run is
 \texttt{echo /home/vlad}, which displays the right thing.
 
-\mbox{}\paragraph{Creating and Changing Variables}
+\subsection*{Creating and Changing Variables}
 
 Creating a variable is easy---we just assign a value to a name using
 ``='':
@@ -12864,7 +12802,7 @@ their solutions, see
 \urlfoot{https://github.com/swcarpentry/bc/wiki/Configuration-Problems-and-Solutions}{this
 wiki page}.
 
-\mbox{}\paragraph{Teaching Notes}
+\subsection*{Teaching Notes}
 
 \begin{swcitemize}
 \item
@@ -13014,7 +12952,7 @@ wiki page}.
   to watch you type then type it all in again themselves.
 \end{swcitemize}
 
-\mbox{}\paragraph{Pitfalls}
+\subsection*{Pitfalls}
 
 Instructing at a bootcamp isn't trivial. The most important thing is to
 remember that no lesson plan survives contact with the audience. Whether
@@ -13162,7 +13100,7 @@ using Windows do not run into roadblocks such as:
   the shell refusing to run scripts that include DOS line endings.
 \end{swcitemize}
 
-\mbox{}\paragraph{Teaching Notes}
+\subsection*{Teaching Notes}
 
 \begin{swcitemize}
 \item
@@ -13226,7 +13164,7 @@ $ cd Desktop
   easily and watch it evolve.
 \end{swcitemize}
 
-\mbox{}\paragraph{Windows}
+\subsection*{Windows}
 
 Installing Bash and a reasonable set of Unix commands on Windows always
 involves some fiddling and frustration. Please see the latest set of
@@ -13305,7 +13243,7 @@ We close with material on licensing because:
   what is often a frustrating couple of hours.
 \end{swcenumerate}
 
-\mbox{}\paragraph{Teaching Notes}
+\subsection*{Teaching Notes}
 
 \begin{swcitemize}
 \item
@@ -13363,7 +13301,7 @@ We close with material on licensing because:
   Mercurial isn't nearly as widely used in the sciences right now.
 \end{swcitemize}
 
-\mbox{}\paragraph{Text Editor}
+\subsection*{Text Editor}
 
 We suggest instructors and students use \texttt{nano} as the text editor
 for this lessons because:
@@ -13427,7 +13365,7 @@ magical. Tools like \texttt{grep} might be more sophisticated than the
 programs our learners can write at this point in their careers, but it's
 crucial they realize this is a difference of scale rather than kind.
 
-\mbox{}\paragraph{Teaching Notes}
+\subsection*{Teaching Notes}
 
 \begin{swcitemize}
 \item
@@ -13498,7 +13436,7 @@ disk, but data about when and where observations were made, data ranges,
 and so on could be in a database to make it easier for scientists to
 find what they want to.
 
-\mbox{}\paragraph{Teaching Notes}
+\subsection*{Teaching Notes}
 
 \begin{swcitemize}
 \item
@@ -13555,7 +13493,7 @@ in our lessons.
 
 \section{Shell Reference}
 
-\mbox{}\paragraph{Basic Commands}
+\subsection*{Basic Commands}
 
 \begin{swcitemize}
 \item
@@ -13598,7 +13536,7 @@ in our lessons.
   \texttt{whoami} shows the user's current identity.
 \end{swcitemize}
 
-\mbox{}\paragraph{Paths}
+\subsection*{Paths}
 
 \begin{swcitemize}
 \item
@@ -13617,7 +13555,7 @@ in our lessons.
   \texttt{?.txt} matches \texttt{a.txt} but not \texttt{any.txt}.
 \end{swcitemize}
 
-\mbox{}\paragraph{Combining Commands}
+\subsection*{Combining Commands}
 
 \begin{swcitemize}
 \item
@@ -13805,7 +13743,7 @@ lines from remote file
 
 \section{Python Reference}
 
-\mbox{}\paragraph{Basic Operations}
+\subsection*{Basic Operations}
 
 \begin{swcitemize}
 \item
@@ -13828,7 +13766,7 @@ lines from remote file
   \texttt{list\_name{[}i{]}} selects the i'th value from a list.
 \end{swcitemize}
 
-\mbox{}\paragraph{Control Flow}
+\subsection*{Control Flow}
 
 \begin{swcitemize}
 \item
@@ -13862,7 +13800,7 @@ else:
   when the program is running.
 \end{swcitemize}
 
-\mbox{}\paragraph{Functions}
+\subsection*{Functions}
 
 \begin{swcitemize}
 \item
@@ -13874,7 +13812,7 @@ else:
   Call a function using \texttt{name(...values...)}.
 \end{swcitemize}
 
-\mbox{}\paragraph{Libraries}
+\subsection*{Libraries}
 
 \begin{swcitemize}
 \item
@@ -13894,7 +13832,7 @@ else:
   a pattern.
 \end{swcitemize}
 
-\mbox{}\paragraph{Arrays}
+\subsection*{Arrays}
 
 \begin{swcitemize}
 \item
@@ -13916,7 +13854,7 @@ else:
 
 \section{SQL Reference}
 
-\mbox{}\paragraph{Basic Queries}
+\subsection*{Basic Queries}
 
 Select one or more columns from a table:
 
@@ -13954,7 +13892,7 @@ Sort results in ascending and descending order:
 SELECT * FROM table_name ORDER BY column_name_1 ASC, column_name_2 DESC;
 \end{Verbatim}
 
-\mbox{}\paragraph{Filtering}
+\subsection*{Filtering}
 
 Select only data meeting a condition:
 
@@ -13968,7 +13906,7 @@ Select only data meeting a combination of conditions:
 SELECT * FROM table_name WHERE (column_name_1 >= 1000) AND (column_name_2 = 'A' OR column_name_2 = 'B');
 \end{Verbatim}
 
-\mbox{}\paragraph{Missing Data}
+\subsection*{Missing Data}
 
 Use \texttt{NULL} to represent missing data.
 
@@ -13988,7 +13926,7 @@ Test whether a value is not null:
 SELECT * FROM table_name WHERE column_name IS NOT NULL;
 \end{Verbatim}
 
-\mbox{}\paragraph{Grouping and Aggregation}
+\subsection*{Grouping and Aggregation}
 
 Combine values using aggregation functions:
 
@@ -14002,7 +13940,7 @@ Combine data into groups and calculate combined values in groups:
 SELECT column_name_1, SUM(column_name_2), COUNT(*) FROM table_name GROUP BY column_name_1;
 \end{Verbatim}
 
-\mbox{}\paragraph{Joins}
+\subsection*{Joins}
 
 Join data from two tables:
 
@@ -14010,13 +13948,13 @@ Join data from two tables:
 SELECT * FROM table_name_1 JOIN table_name_2 ON table_name_1.column_name = table_name_2.column_name;
 \end{Verbatim}
 
-\mbox{}\paragraph{Writing Queries}
+\subsection*{Writing Queries}
 
 SQL commands must be combined in the following order: \texttt{SELECT},
 \texttt{FROM}, \texttt{JOIN}, \texttt{ON}, \texttt{WHERE},
 \texttt{GROUP BY}, \texttt{ORDER BY}.
 
-\mbox{}\paragraph{Creating Tables}
+\subsection*{Creating Tables}
 
 Create tables by specifying column names and types. Include primary and
 foreign key relationships and other constraints.
@@ -14031,7 +13969,7 @@ CREATE TABLE survey(
 );
 \end{Verbatim}
 
-\mbox{}\paragraph{Programming}
+\subsection*{Programming}
 
 Execute queries in a general-purpose programming language by:
 
