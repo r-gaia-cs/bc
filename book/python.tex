@@ -174,7 +174,7 @@ separating them with commas.
 If we imagine the variable as a sticky note with a name written on it,
 assignment is like putting the sticky note on a particular value (\figref{f:assignment}).
 
-\swcgraphics{f:assignment}{Assignment}{novice/python/img/python-sticky-note-variables-01.png}
+\swcgraphics{f:assignment}{Assignment}{novice/python/img/python-sticky-note-variables-01.pdf}{0.75}
 
 This means that assigning a value to one variable does \emph{not} change
 the values of other variables. For example, let's store the subject's
@@ -189,7 +189,7 @@ print 'weight in kilograms:', weight_kg, 'and in pounds:', weight_lb
 weight in kilograms: 57.5 and in pounds: 126.5
 \end{VerbOut}
 
-\swcgraphics{f:before-changing-weight}{Before Changing Weight}{novice/python/img/python-sticky-note-variables-02.png}
+\swcgraphics{f:before-changing-weight}{Before Changing Weight}{novice/python/img/python-sticky-note-variables-02.pdf}{0.75}
 
 and then change \texttt{weight\_kg} (\figref{f:after-changing-weight}):
 
@@ -202,7 +202,7 @@ print 'weight in kilograms is now:', weight_kg, 'and weight in pounds is still:'
 weight in kilograms is now: 100.0 and weight in pounds is still: 126.5
 \end{VerbOut}
 
-\swcgraphics{f:after-changing-weight}{After Changing Weight}{novice/python/img/python-sticky-note-variables-03.png}
+\swcgraphics{f:after-changing-weight}{After Changing Weight}{novice/python/img/python-sticky-note-variables-03.pdf}{0.75}
 
 Since \texttt{weight\_lb} doesn't ``remember'' where its value came
 from, it isn't automatically updated when \texttt{weight\_kg} changes.
@@ -460,7 +460,7 @@ print 'maximum inflammation for patient 2:', data[2, :].max()
 maximum inflammation for patient 2: 19.0
 \end{VerbOut}
 
-\swcgraphics{f:across-axis}{Operating Across an Axis}{novice/python/img/python-operations-across-axes.png}
+\swcgraphics{f:across-axis}{Operating Across an Axis}{novice/python/img/python-operations-across-axes.pdf}{0.75}
 
 What if we need the maximum inflammation for \emph{all} patients, or the
 average for each day? As \figref{f:across-axis} shows, we want to perform the
@@ -957,7 +957,7 @@ original = 32.0
 final = fahr_to_celsius(original)
 \end{VerbIn}
 
-\swcgraphics{f:call-stack-01}{Initial Call Stack}{novice/python/img/python-call-stack-01.png}
+\swcgraphics{f:call-stack-01}{Initial Call Stack}{novice/python/img/python-call-stack-01.pdf}{0.75}
 
 \figref{f:call-stack-01} shows what memory looks like after the first line has
 been executed.
@@ -968,13 +968,13 @@ called a \gl{stack frame}{g:stack-frame} to keep track of the
 variables defined by \texttt{fahr\_to\_kelvin}. Initially, this stack
 frame only holds the value of \texttt{temp} (\figref{f:call-stack-02}).
 
-\swcgraphics{f:call-stack-02}{Call Stack Immediately Upon Call}{novice/python/img/python-call-stack-02.png}
+\swcgraphics{f:call-stack-02}{Call Stack Immediately Upon Call}{novice/python/img/python-call-stack-02.pdf}{0.75}
 
 When we call \texttt{fahr\_to\_kelvin} inside
 \texttt{fahr\_to\_celsius}, Python creates another stack frame to hold
 \texttt{fahr\_to\_kelvin}'s variables (\figref{f:call-stack-03}).
 
-\swcgraphics{f:call-stack-03}{Call Stack During Nested Function Call}{novice/python/img/python-call-stack-03.png}
+\swcgraphics{f:call-stack-03}{Call Stack During Nested Function Call}{novice/python/img/python-call-stack-03.pdf}{0.75}
 
 It does this because there are now two variables in play called
 \texttt{temp}: the parameter to \texttt{fahr\_to\_celsius}, and the
@@ -989,9 +989,9 @@ throws away \texttt{fahr\_to\_kelvin}'s stack frame and creates a new
 variable in the stack frame for \texttt{fahr\_to\_celsius} to hold the
 temperature in Kelvin (\figref{f:call-stack-04}).
 
-\swcgraphics{f:call-stack-04}{Call Stack Between Calls}{novice/python/img/python-call-stack-04.png}
+\swcgraphics{f:call-stack-04}{Call Stack Between Calls}{novice/python/img/python-call-stack-04.pdf}{0.75}
 
-\swcgraphics{f:call-stack-05}{Call Stack During Second Call}{novice/python/img/python-call-stack-05.png}
+\swcgraphics{f:call-stack-05}{Call Stack During Second Call}{novice/python/img/python-call-stack-05.pdf}{0.75}
 
 It then calls \texttt{kelvin\_to\_celsius}, which means it creates a
 stack frame to hold that function's variables (\figref{f:call-stack-05}).
@@ -1000,13 +1000,13 @@ Once again, Python throws away that stack frame when
 \texttt{result} in the stack frame for \texttt{fahr\_to\_celsius}
 (\figref{f:call-stack-06}).
 
-\swcgraphics{f:call-stack-06}{Call Stack Immediately Before Final Return}{novice/python/img/python-call-stack-06.png}
+\swcgraphics{f:call-stack-06}{Call Stack Immediately Before Final Return}{novice/python/img/python-call-stack-06.pdf}{0.75}
 
 Finally, when \texttt{fahr\_to\_celsius} is done, Python throws away
 \emph{its} stack frame and puts its result in a new variable called
 \texttt{final} that lives in the stack frame we started with (\figref{f:call-stack-07}).
 
-\swcgraphics{f:call-stack-07}{Call Stack After Calls Are Finished}{novice/python/img/python-call-stack-07.png}
+\swcgraphics{f:call-stack-07}{Call Stack After Calls Are Finished}{novice/python/img/python-call-stack-07.pdf}{0.75}
 
 This final stack frame is always there; it holds the variables we
 defined outside the functions in our code. What it \emph{doesn't} hold
@@ -2057,7 +2057,7 @@ every shade is some combination of red, green, and blue
 intensities. We can think of these three values as being the axes in a
 cube (\figref{f:color-cube}).
 
-\swcgraphics{f:color-cube}{The RGB Color Cube}{novice/python/img/color-cube.png}
+\swcgraphics{f:color-cube}{The RGB Color Cube}{novice/python/img/color-cube.png}{1.0}
 
 An RGB color is an example of a multi-part value: like a Cartesian
 coordinate, it is one thing with several parts. We can represent such a
@@ -2207,7 +2207,7 @@ body of the \texttt{if} (i.e., the lines indented underneath it) are
 executed. If the test is false, the body of the \texttt{else} is
 executed instead, so only one or the other is ever executed (\figref{f:conditional}).
 
-\swcgraphics{f:conditional}{Flow of Control in a Conditional}{novice/python/img/python-flowchart-conditional.png}
+\swcgraphics{f:conditional}{Flow of Control in a Conditional}{novice/python/img/python-flowchart-conditional.pdf}{0.75}
 
 Conditional statements don't have to include an \texttt{else}. If there
 isn't one, Python simply does nothing if the test is false:
@@ -2364,7 +2364,7 @@ As \figref{f:nested-loop} shows, the \gl{inner loop}{g:inner-loop} runs
 from start to finish each time the \gl{outer loop}{g:outer-loop}
 runs once.
 
-\swcgraphics{f:nested-loop}{Execution of Nested Loops}{novice/python/img/python-flowchart-nested-loops.png}
+\swcgraphics{f:nested-loop}{Execution of Nested Loops}{novice/python/img/python-flowchart-nested-loops.pdf}{0.75}
 
 We can combine nesting and conditionals to create patterns in an image:
 
@@ -2958,7 +2958,7 @@ represented as a pair of numbers, which are the time the interval
 started and ended. The output is the largest range that they all
 include (\figref{f:overlapping-ranges}).
 
-\swcgraphics{f:overlapping-ranges}{Overlapping Ranges}{novice/python/img/python-overlapping-ranges.png}
+\swcgraphics{f:overlapping-ranges}{Overlapping Ranges}{novice/python/img/python-overlapping-ranges.pdf}{0.75}
 
 Most novice programmers would solve this problem like this:
 

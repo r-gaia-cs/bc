@@ -40,7 +40,7 @@ We can draw the history of the repository as shown in \figref{f:branching-01}
 (we'll see in a
 second why there's a box called \texttt{master}):
 
-\swcgraphics{f:branching-01}{Initial History of Repository}{novice/extras/img/git-branching-01.png}
+\swcgraphics{f:branching-01}{Initial History of Repository}{novice/extras/img/git-branching-01.pdf}{0.75}
 
 Let's run this command:
 
@@ -60,7 +60,7 @@ $ git branch
   moons
 \end{VerbOut}
 
-\swcgraphics{f:branching-02}{Repository Immediately After Creating Branch}{novice/extras/img/git-branching-02.png}
+\swcgraphics{f:branching-02}{Repository Immediately After Creating Branch}{novice/extras/img/git-branching-02.pdf}{0.75}
 
 Git is now maintaining two named bookmarks in our history:
 \texttt{master}, which was created automatically when we set up the
@@ -85,7 +85,7 @@ $ git branch
 * moons
 \end{VerbOut}
 
-\swcgraphics{f:branching-03}{Repository After Switching Branches}{novice/extras/img/git-branching-03.png}
+\swcgraphics{f:branching-03}{Repository After Switching Branches}{novice/extras/img/git-branching-03.pdf}{0.75}
 
 Our file looks the same:
 
@@ -165,7 +165,7 @@ $ git commit -m "Thinking about the moons"
  create mode 100644 moons.txt
 \end{VerbOut}
 
-\swcgraphics{f:branching-04}{Repository After Committing to Branch}{novice/extras/img/git-branching-04.png}
+\swcgraphics{f:branching-04}{Repository After Committing to Branch}{novice/extras/img/git-branching-04.pdf}{0.75}
 
 Our repository is now in the state shown in \figref{f:branching-04}.
 The \texttt{moons} branch has advanced to record the changes we just
@@ -229,7 +229,7 @@ $ git commit -m "We will need a cool name for our secret base"
  create mode 100644 names.txt
 \end{VerbOut}
 
-\swcgraphics{f:branching-05}{Repository After Branches Have Diverged}{novice/extras/img/git-branching-05.png}
+\swcgraphics{f:branching-05}{Repository After Branches Have Diverged}{novice/extras/img/git-branching-05.pdf}{0.75}
 
 Our repository is now as shown in \figref{f:branching-05}.
 \texttt{master} and \texttt{moons} have both moved on from their
@@ -291,7 +291,7 @@ mars.txt    moons.txt    names.txt
 
 and our repository looks like \figref{f:branching-06}:
 
-\swcgraphics{f:branching-06}{Repository After Merging}{novice/extras/img/git-branching-06.png}
+\swcgraphics{f:branching-06}{Repository After Merging}{novice/extras/img/git-branching-06.pdf}{0.75}
 
 We can ask Git to draw a diagram of the repository's history with this
 command:
@@ -411,7 +411,7 @@ Wolfman doesn't clone Dracula's GitHub repository directly. Instead, he
 \gl{forks}{g:repository-fork} it, i.e., clones it on GitHub. He
 does this using the GitHub web interface (\figref{f:git-fork-ui}).
 
-\swcgraphics{f:git-fork-ui}{Forking a Repository on Git}{novice/extras/img/git-fork-ui.png}
+\swcgraphics{f:git-fork-ui}{Forking a Repository on Git}{novice/extras/img/git-fork-ui.png}{0.35}
 
 He then clones his own GitHub repository, not Dracula's, to give himself
 a desktop copy (\figref{f:git-fork-01}.
@@ -421,15 +421,15 @@ to collaborate much more effectively. Suppose Wolfman makes a change to
 the project. He commits it to his local repository, then uses
 \texttt{git push} to copy those changes to GitHub (\figref{f:git-forking-02}).
 
-\swcgraphics{f:git-fork-01}{Repositories After Cloning the Fork}{novice/extras/img/git-forking-01.png}
+\swcgraphics{f:git-fork-01}{Repositories After Cloning the Fork}{novice/extras/img/git-forking-01.pdf}{0.75}
 
-\swcgraphics{f:git-forking-02}{Repositories After Pushing Changes to Personal Copy}{novice/extras/img/git-forking-02.png}
+\swcgraphics{f:git-forking-02}{Repositories After Pushing Changes to Personal Copy}{novice/extras/img/git-forking-02.pdf}{0.75}
 
 He then creates a \gl{pull request}{g:pull-request}, which
 notifies Dracula that Wolfman wants to merge some changes into Dracula's
 repository (\figref{f:git-forking-03}).
 
-\swcgraphics{f:git-forking-03}{Creating a Pull Request}{novice/extras/img/git-forking-03.png}
+\swcgraphics{f:git-forking-03}{Creating a Pull Request}{novice/extras/img/git-forking-03.pdf}{0.75}
 
 A pull request is a merge waiting to happen. When Dracula views it
 online, he can see and comment on the changes Wolfman wants to make.
@@ -874,7 +874,7 @@ contents. The distinction is subtle, so let's have a look at an example.
 Vlad's home directory has three subdirectories called \texttt{venus},
 \texttt{mars}, and \texttt{pluto} (\figref{f:x-for-directories}).
 
-\swcgraphics{f:x-for-directories}{``Execute'' Permission for Directories}{novice/extras/img/x-for-directories.png}
+\swcgraphics{f:x-for-directories}{``Execute'' Permission for Directories}{novice/extras/img/x-for-directories.pdf}{0.75}
 
 Each of these has a subdirectory in turn called \texttt{notes}, and
 those sub-subdirectories contain various files. If a user's permissions
@@ -1541,97 +1541,18 @@ a much dumber representation: we'll only worry about positive values
 without fractional parts, and we'll only use 3 for the magnitude and 2
 for the exponent.
 
-Exponent
-
-00
-
-01
-
-10
-
-11
-
-000
-
-0
-
-0
-
-0
-
-0
-
-001
-
-1
-
-2
-
-4
-
-8
-
-010
-
-2
-
-4
-
-8
-
-16
-
-Mantissa
-
-011
-
-3
-
-6
-
-12
-
-24
-
-100
-
-4
-
-8
-
-16
-
-32
-
-101
-
-5
-
-10
-
-20
-
-40
-
-110
-
-6
-
-12
-
-24
-
-48
-
-111
-
-7
-
-14
-
-28
-
-56
+\begin{tabular}{llllll}
+         &     & \multicolumn{4}{c}{Exponent} \\
+         &     & 00 & 01 & 10 & 11 \\
+         & 000 &  0 &  0 &  0 &  0 \\
+         & 001 &  1 &  2 &  4 &  8 \\
+         & 010 &  2 &  4 &  8 & 16 \\
+Mantissa & 011 &  3 &  6 & 12 & 24 \\
+         & 100 &  4 &  8 & 16 & 32 \\
+         & 101 &  5 & 10 & 20 & 40 \\
+         & 110 &  6 & 12 & 24 & 48 \\
+         & 111 &  7 & 14 & 28 & 56 \\
+\end{tabular}
 
 The table above shows the values that we can represent this way. Each
 one is the mantissa times two to the exponent. For example, the decimal
@@ -1769,7 +1690,7 @@ results is useful).
 
 \section{Why I Teach}
 
-\swcgraphics{f:madeleine}{Madeleine}{novice/extras/img/madeleine.jpg}
+\swcgraphics{f:madeleine}{Madeleine}{novice/extras/img/madeleine.jpg}{0.5}
 
 Several independent studies have confirmed that my daughter Madeline
 (\figref{f:madeleine}) is the cutest child on the planet (plus or
