@@ -1559,20 +1559,9 @@ def analyze(filename):
 
     plt.tight_layout()
     plt.show()
-
-analyze('inflammation-01.csv')
 \end{VerbIn}
 
-% FIXME: image
-
-We can use it to analyze other data sets one by one:
-
-\begin{VerbIn}
-analyze('inflammation-02.csv')
-\end{VerbIn}
-
-% FIXME: image
-
+We can use it to analyze other data sets one by one,
 but we have a dozen data sets right now and more on the way. We want to
 create plots for all our data sets with a single statement. To do that,
 we'll have to teach the computer how to repeat things.
@@ -1909,7 +1898,7 @@ As these examples show, \texttt{glob.glob}'s result is a list of
 strings, which means we can loop over it to do something with each
 filename in turn. In our case, the ``something'' we want is our
 \texttt{analyze} function. Let's test it by analyzing the first three
-files in the list:
+files in the list (\figref{f:inflammation-loop}):
 
 \begin{VerbIn}
 filenames = glob.glob('*.csv')
@@ -1919,17 +1908,14 @@ for f in filenames:
     analyze(f)
 \end{VerbIn}
 
-\begin{VerbOut}
-inflammation-01.csv
-% FIXME: image
-
-inflammation-02.csv
-% FIXME: image
-
-inflammation-03.csv
-% FIXME: image
-
-\end{VerbOut}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{novice/python/img/inflammation-loop-01.png}
+\includegraphics[scale=0.5]{novice/python/img/inflammation-loop-02.png}
+\includegraphics[scale=0.5]{novice/python/img/inflammation-loop-03.png}
+\caption{Inflammation Statistics for First Three Data Sets}\label{f:inflammation-loop}
+\end{center}
+\end{figure}
 
 Sure enough, the maxima of these data sets show exactly the same ramp as
 the first, and their minima show the same staircase structure.
