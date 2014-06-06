@@ -1,12 +1,10 @@
 \chapter{Glossary}\label{s:gloss}
 
-\begin{swcdescription}
-
-\item[absolute error]:
+\gterm{absolute error}:
 The absolute value of the difference between a mathematical value
 and its finite approximation in a computer.
 
-\item[absolute path]:
+\gterm{absolute path}:
 A \gl{path}{g:path} that refers to a
 particular location in a file system. Absolute paths are usually written
 with respect to the file system's \gl{root
@@ -14,24 +12,24 @@ directory}{g:root-directory}, and begin with either ``/'' (on Unix) or
 ``\textbackslash{}'' (on Microsoft Windows). See also:
 \gl{relative path}{g:relative-path}.
 
-\item[access control list] (ACL):
+\gterm{access control list} (ACL):
 A list of permissions attached to a file or directory
 that specifies who can do what with it.
 
-\item[additive color model]:
+\gterm{additive color model}:
 A way to represent colors as the sum of
 contributions from primary colors such as \gl{red, green,
 and blue}{g:rgb}.
 
-\item[aggregation function]:
+\gterm{aggregation function}:
 A function such as \texttt{sum} or
 \texttt{max} that combines many values to produce a single result.
 
-\item[alias] (a library):
+\gterm{alias} (a library):
 To give a \gl{library}{g:library} a
 nickname while importing it.
 
-\item[assertion]:
+\gterm{assertion}:
 An expression which is supposed to be true at a
 particular point in a program. Programmers typically put assertions in
 their code to check for errors; if the assertion fails (i.e., if the
@@ -40,89 +38,89 @@ message. See also: \gl{invariant}{g:invariant},
 \gl{precondition}{g:precondition},
 \gl{postcondition}{g:postcondition}.
 
-\item[assignment]:
+\gterm{assignment}:
 To give a value a name by associating a variable
 with it.
 
-\item[atomic value]:
+\gterm{atomic value}:
 A value that cannot be decomposed into smaller
 pieces. For example, the number 12 is usually considered atomic (unless
 we are teaching addition to school children, in which case we might
 decompose it into tens and ones).
 
-\item[branch]:
+\gterm{branch}:
 A "parallel universe" in a \gl{version control}{g:version-control} \gl{repository}{g:repository}.
 Programmers typically use branches to isolate different sets of changes from one another during development
 so that they can concentrate on one problem at a time.
 See also: \gl{merge}{g:repository-merge}.
 
-\item[call stack]:
+\gterm{call stack}:
 A data structure inside a running program that
 keeps track of active function calls. Each call's variables are stored
 in a \gl{stack frame}{g:stack-frame}; a new stack frame is put on
 top of the stack for each call, and discarded when the call is finished.
 
-\item[cascading delete]:
+\gterm{cascading delete}:
 The practice of automatically deleting things
 in a database that depend on a record when that record is deleted. See
 also: \gl{referential integrity}{g:referential-integrity}.
 
-\item[case insensitive]:
+\gterm{case insensitive}:
 Treating text as if upper and lower case
 characters were the same. See also: \gl{case
 sensitive}{g:case-sensitive}.
  
-\item[catch] (an exception):
+\gterm{catch} (an exception):
 To handle an \gl{exception}{g:exception} that has been \gl{raised}{g:raise-exception}
 somewhere else in a program.
 
-\item[change set]:
+\gterm{change set}:
 A group of changes to one or more files that are
 \gl{committed}{g:commit} to a \gl{version
 control}{g:version-control} \gl{repository}{g:repository} in a single operation.
 
-\item[clone] (a repository):
+\gterm{clone} (a repository):
 To make a local copy of a \gl{version control}{g:version-control} \gl{repository}{g:repository}.
 See also: \gl{fork}{g:repository-fork}.
 
-\item[code review]:
+\gterm{code review}:
 A systematic peer review of a piece of software,
 or of changes to a piece of software.
 Peer review is often conducted on \gl{pull requests}{g:pull-request}
 before they are \gl{merged}{g:repository-merge} into a \gl{repository}{g:repository}.
 
-\item[comma-separated values] (CSV):
+\gterm{comma-separated values} (CSV):
 A common textual representation
 for tables in which the values in each row are separated by commas.
 
-\item[command-line interface] (CLI):
+\gterm{command-line interface} (CLI):
 An interface based on typing
 commands, usually at a \gl{REPL}{g:repl}. See also:
 \gl{graphical user interface}{g:gui}.
 
-\item[comment]:
+\gterm{comment}:
 A remark in a program that is intended to help human
 readers understand what is going on, but is ignored by the computer.
 Comments in Python, R, and the Unix shell start with a \texttt{\#}
 character and run to the end of the line; comments in SQL start with
 \texttt{-{}-}, and other languages have other conventions.
 
-\item[conditional statement]:
+\gterm{conditional statement}:
 A statement in a program that might or
 might not be executed depending on whether a test is true or false.
 
-\item[conflict]:
+\gterm{conflict}:
 A change made by one user of a
 \gl{version control system}{g:version-control} that is
 incompatible with changes made by other users. Helping users
 \gl{resolve}{g:resolve} conflicts is one of version control's
 major tasks.
 
-\item[cross product]:
+\gterm{cross product}:
 A pairing of all elements of one set with all
 elements of another.
 
-\item[current working directory]:
+\gterm{current working directory}:
 The directory that
 \gl{relative paths}{g:relative-path} are calculated from;
 equivalently, the place where files referenced by name only are searched
@@ -130,71 +128,71 @@ for. Every \gl{process}{g:process} has a current working
 directory. The current working directory is usually referred to using
 the shorthand notation \texttt{.} (pronounced ``dot'').
 
-\item[cursor]:
+\gterm{cursor}:
 A pointer into a database that keeps track of
 outstanding operations.
 
-\item[data type]:
+\gterm{data type}:
 A kind of data value, such as
 \gl{integer}{g:integer} or \gl{character string}{g:string}.
 
-\item[database manager]:
+\gterm{database manager}:
 A program that manages a
 \gl{relational database}{g:relational-database}.
 
-\item[default parameter value]:
+\gterm{default parameter value}:
 A value to use for a parameter if
 nothing is specified explicitly.
 
-\item[defensive programming]:
+\gterm{defensive programming}:
 The practice of writing programs that
 check their own operation to catch errors as early as possible.
 
-\item[delimiter]:
+\gterm{delimiter}:
 A character or characters used to separate
 individual values, such as the commas between columns in a
 \gl{CSV}{g:csv} file.
 
-\item[disk block]:
+\gterm{disk block}:
 The smallest unit of storage that can be allocated
 on a computer disk. Disk blocks are typically 512 bytes in size.
 
-\item[docstring]:
+\gterm{docstring}:
 Short for ``documentation string'', this refers to
 textual documentation embedded in Python programs. Unlike comments,
 docstrings are preserved in the running program and can be examined in
 interactive sessions.
 
-\item[documentation]:
+\gterm{documentation}:
 Human-language text written to explain what
 software does, how it works, or how to use it.
 
-\item[dotted notation]:
+\gterm{dotted notation}:
 A two-part notation used in many programming
 languages in which \texttt{thing.component} refers to the
 \texttt{component} belonging to \texttt{thing}.
 
-\item[empty string]:
+\gterm{empty string}:
 A character string containing no characters,
 often thought of as the ``zero'' of text.
 
-\item[encapsulation]:
+\gterm{encapsulation}:
 The practice of hiding something's
 implementation details so that the rest of a program can worry about
 \emph{what} it does rather than \emph{how} it does it.
 
-\item[exception]:
+\gterm{exception}:
 An event that disrupts the normal or expected execution of a program.
 Most modern languages record information about what went wrong
 in a piece of data (also called an exception).
 See also: \gl{catch}{g:catch-exception}, \gl{raise}{g:raise-exception}.
 
-\item[field] (of a database):
+\gterm{field} (of a database):
 A set of data values of a particular
 type, one for each \gl{record}{g:record-database} in a
 \gl{table}{g:table-database}.
 
-\item[filename extension]:
+\gterm{filename extension}:
 The portion of a file's name that comes
 after the final ``.'' character. By convention this identifies the
 file's type: \texttt{.txt} means ``text file'', \texttt{.png} means
@@ -204,20 +202,20 @@ MP3 sound file \texttt{homepage.html}. Since many applications use
 filename extensions to identify the \gl{MIME type}{g:mime-type} of
 the file, misnaming files may cause those applications to fail.
 
-\item[filesystem]:
+\gterm{filesystem}:
 A set of files, directories, and I/O devices (such
 as keyboards and screens). A filesystem may be spread across many
 physical devices, or many filesystems may be stored on a single physical
 device; the \gl{operating system}{g:operating-system} manages
 access.
 
-\item[filter]:
+\gterm{filter}:
 A program that transforms a stream of data. Many Unix
 command-line tools are written as filters: they read data from
 \gl{standard input}{g:standard-input}, process it, and write the
 result to \gl{standard output}{g:standard-output}.
 
-\item[flag]:
+\gterm{flag}:
 A terse way to specify an option or setting to a
 command-line program. By convention Unix applications use a dash
 followed by a single letter, such as \texttt{-v}, or two dashes followed
@@ -225,179 +223,179 @@ by a word, such as \texttt{-{}-verbose}, while DOS applications use a
 slash, such as \texttt{/V}. Depending on the application, a flag may be
 followed by a single argument, as in \texttt{-o /tmp/output.txt}.
 
-\item[floating point number]:
+\gterm{floating point number}:
 A number containing a fractional
 part and an exponent. See also: \gl{integer}{g:integer}.
 
-\item[for loop]:
+\gterm{for loop}:
 A loop that is executed once for each value in some
 kind of set, list, or range. See also: \gl{while
 loop}{g:while-loop}.
 
-\item[foreign key]:
+\gterm{foreign key}:
 One or more values in a
 \gl{database table}{g:table-database} that identify a
 \gl{records}{g:record-database} in another table.
 
-\item[fork]:
+\gterm{fork}:
 To \gl{clone}{g:repository-clone} a \gl{version control}{g:version-control} \gl{repository}{g:repository}
 on a server.
 
-\item[function call]:
+\gterm{function call}:
 A use of a function in another piece of
 software.
 
-\item[function body]:
+\gterm{function body}:
 The statements that are executed inside a
 function.
 
-\item[function composition]:
+\gterm{function composition}:
 The immediate application of one function
 to the result of another, such as \texttt{f(g(x))}.
 
-\item[graphical user interface] (GUI):
+\gterm{graphical user interface} (GUI):
 A graphical user interface,
 usually controlled by using a mouse. See also:
 \gl{command-line interface}{g:cli}.
 
-\item[home directory]:
+\gterm{home directory}:
 The default directory associated with an
 account on a computer system. By convention, all of a user's files are
 stored in or below her home directory.
 
-\item[HTTP]:
+\gterm{HTTP}:
 The Hypertext Transfer \gl{Protocol}{g:protocol} used for sharing web pages and other data
 on the World Wide Web.
 
-\item[immutable]:
+\gterm{immutable}:
 Unchangeable. The value of immutable data cannot be
 altered after it has been created. See also:
 \gl{mutable}{g:mutable}.
 
-\item[import]:
+\gterm{import}:
 To load a \gl{library}{g:library} into a program.
 
-\item[in-place operator]:
+\gterm{in-place operator}:
 An operator such as \texttt{+=} that
 provides a shorthand notation for the common case in which the variable
 being assigned to is also an operand on the right hand side of the
 assignment. For example, the statement \texttt{x += 3} means the same
 thing as \texttt{x = x + 3}.
 
-\item[index]:
+\gterm{index}:
 A subscript that specifies the location of a single
 value in a collection, such as a single pixel in an image.
 
-\item[infective license]:
+\gterm{infective license}:
 A license such as the
 \urlfoot{http://opensource.org/licenses/GPL-3.0}{GPL} that compels people
 who incorporate material into their own work to place similar sharing
 requirements on it.
 
-\item[inner loop]:
+\gterm{inner loop}:
 A loop that is inside another loop. See also:
 \gl{outer loop}{g:outer-loop}.
 
-\item[integer]:
+\gterm{integer}:
 A whole number, such as -12343. See also:
 \gl{floating-point number}{g:float}.
 
-\item[invariant]:
+\gterm{invariant}:
 An expression whose value doesn't change during the
 execution of a program, typically used in an
 \gl{assertion}{g:assertion}. See also:
 \gl{precondition}{g:precondition},
 \gl{postcondition}{g:postcondition}.
 
-\item[library]:
+\gterm{library}:
 A family of code units (functions, classes, variables)
 that implement a set of related tasks.
 
-\item[loop body]:
+\gterm{loop body}:
 The set of statements or commands that are repeated inside a \gl{for loop}{g:for-loop}
 or \gl{while loop}{g:while-loop}.
 
-\item[loop variable]:
+\gterm{loop variable}:
 The variable that keeps track of the progress of
 the loop.
 
-\item[member]:
+\gterm{member}:
 A variable contained within an
 \gl{object}{g:object}.
 
-\item[merge] (a repository):
+\gterm{merge} (a repository):
 To reconcile two sets of change to a
 \gl{repository}{g:repository}.
 
-\item[method]:
+\gterm{method}:
 A function which is tied to a particular
 \gl{object}{g:object}. Each of an object's methods typically
 implements one of the things it can do, or one of the questions it can
 answer.
 
-\item[mutable]:
+\gterm{mutable}:
 Changeable. The value of mutable data can be updated
 in place. See also: \gl{immutable}{g:immutable}.
 
-\item[notional machine]:
+\gterm{notional machine}:
 An abstraction of a computer used to think
 about what it can and will do.
 
-\item[object]:
+\gterm{object}:
 A particular ``chunk'' of data associated with specific
 operations called \gl{methods}{g:method}.
 
-\item[orthogonal]:
+\gterm{orthogonal}:
 To have meanings or behaviors that are independent
 of each other. If a set of concepts or tools are orthogonal, they can be
 combined in any way.
 
-\item[outer loop]:
+\gterm{outer loop}:
 A loop that contains another loop. See also:
 \gl{inner loop}{g:inner-loop}.
 
-\item[parameter]:
+\gterm{parameter}:
 A value passed into a function, or a variable named
 in the function's declaration that is used to hold such a value.
 
-\item[parent directory]:
+\gterm{parent directory}:
 The directory that ``contains'' the one in
 question. Every directory in a file system except the
 \gl{root directory}{g:root-directory} has a parent. A directory's
 parent is usually referred to using the shorthand notation \texttt{..}
 (pronounced ``dot dot'').
 
-\item[pipe]:
+\gterm{pipe}:
 A connection from the output of one program to the input
 of another. When two or more programs are connected in this way, they
 are called a ``pipeline''.
 
-\item[pipe and filter]:
+\gterm{pipe and filter}:
 A model of programming in which
 \gl{filters}{g:filter} that process \gl{streams}{g:stream}
 of data are connected end-to-end. The pipe and filter model is used
 extensively in the Unix \gl{shell}{g:shell}.
 
-\item[postcondition]:
+\gterm{postcondition}:
 A condition that a function (or other block of
 code) guarantees is true once it has finished running. Postconditions
 are often represented using \gl{assertions}{g:assertion}.
 
-\item[precondition]:
+\gterm{precondition}:
 A condition that must be true in order for a
 function (or other block of code) to run correctly.
 
-\item[prepared statement]:
+\gterm{prepared statement}:
 A template for an \gl{SQL}{g:sql}
 query in which some values can be filled in.
 
-\item[primary key]:
+\gterm{primary key}:
 One or more \gl{fields}{g:field-database} in
 a \gl{database table}{g:table-database} whose values are
 guaranteed to be unique for each \gl{record}{g:record-database},
 i.e., whose values uniquely identify the entry.
 
-\item[process]:
+\gterm{process}:
 A running instance of a program, containing code,
 variable values, open files and network connections, and so on.
 Processes are the ``actors'' that the
@@ -405,73 +403,73 @@ Processes are the ``actors'' that the
 runs each process for a few milliseconds at a time to give the
 impression that they are executing simultaneously.
 
-\item[prompt]:
+\gterm{prompt}:
 A character or characters display by a
 \gl{REPL}{g:repl} to show that it is waiting for its next command.
 
-\item[protocol]:
+\gterm{protocol}:
 A set of rules that define how one computer communicates with another.
 Common protocols on the Internet include \gl{HTTP}{g:http} and \gl{SSH}{g:ssh}.
  
-\item[pull request]:
+\gterm{pull request}:
 A set of changes created in one \gl{version control}{g:version-control} \gl{repository}{g:repository}
 that is being offered to another for \gl{merging}{g:repository-merge}.
 
-\item[query]:
+\gterm{query}:
 A database operation that reads values but does not
 modify anything. Queries are expressed in a special-purpose language
 called \gl{SQL}{g:sql}.
 
-\item[quoting] (in the shell):
+\gterm{quoting} (in the shell):
 Using quotation marks of various kinds
 to prevent the shell from interpreting special characters. For example,
 to pass the string \texttt{*.txt} to a program, it is usually necessary
 to write it as \texttt{'*.txt'} (with single quotes) so that the shell
 will not try to expand the \texttt{*} wildcard.
  
-\item[raise] (an exception):
+\gterm{raise} (an exception):
 To explicitly signal that an \gl{exception}{g:exception} has occured in a program.
 See also: \gl{catch}{g:catch-exception}.
 
-\item[read-eval-print loop] (REPL):
+\gterm{read-eval-print loop} (REPL):
 A \gl{command-line
 interface}{g:cli} that reads a command from the user, executes it, prints the
 result, and waits for another command.
 
-\item[record] (in a database):
+\gterm{record} (in a database):
 A set of related values making up a
 single entry in a \gl{database table}{g:table-database}, typically
 shown as a row. See also: \gl{field}{g:field-database}.
 
-\item[redirect]:
+\gterm{redirect}:
 To send a command's output to a file rather than to
 the screen or another command, or equivalently to read a command's input
 from a file.
 
-\item[referential integrity]:
+\gterm{referential integrity}:
 The internal consistency of values in a
 database. If an entry in one table contains a
 \gl{foreign key}{g:foreign-key}, but the corresponding
 \gl{records}{g:record-database} don't exist, referential integrity
 has been violated.
 
-\item[regression]:
+\gterm{regression}:
 To re-introduce a bug that was once fixed.
 
-\item[regular expressions] (RE):
+\gterm{regular expressions} (RE):
 A pattern that specifies a set of
 character strings. REs are most often used to find sequences of
 characters in strings.
 
-\item[relational database]:
+\gterm{relational database}:
 A collection of data organized into
 \gl{tables}{g:table-database}.
  
-\item[relative error]:
+\gterm{relative error}:
 The ratio of the \gl{absolute error}{g:absolute-error} in an approximation of a value
 to the value being approximated.
 
-\item[relative path]:
+\gterm{relative path}:
 A \gl{path}{g:path} that specifies the
 location of a file or directory with respect to the
 \gl{current working directory}{g:current-working-directory}. Any
@@ -479,197 +477,195 @@ path that does not begin with a separator character (``/'' or
 ``\textbackslash{}'') is a relative path. See also:
 \gl{absolute path}{g:absolute-path}.
  
-\item[remote login]:
+\gterm{remote login}:
 To connect to a computer over a network,
 e.g., to run a \gl{shell}{g:shell} on it.
 See also: \gl{SSH}{g:ssh}.
 
-\item[remote repository]:
+\gterm{remote repository}:
 A version control
 \gl{repository}{g:repository} other than the current one that the
 current one is somehow connected to or mirroring.
 
-\item[repository]:
+\gterm{repository}:
 A storage area where a
 \gl{version control}{g:version-control} system stores old
 \gl{revisions}{g:revision} of files and information about who
 changed what, when.
 
-\item[resolve]:
+\gterm{resolve}:
 To eliminate the \gl{conflicts}{g:conflict}
 between two or more incompatible changes to a file or set of files being
 managed by a \gl{version control}{g:version-control} system.
 
-\item[return statement]:
+\gterm{return statement}:
 A statement that causes a function to stop
 executing and return a value to its caller immediately.
 
-\item[revision]:
+\gterm{revision}:
 A recorded state of a
 \gl{version control}{g:version-control}
 \gl{repository}{g:repository}.
 
-\item[RGB]:
+\gterm{RGB}:
 An \gl{additive model}{g:additive-color-model} that represents colors
 as combinations of red, green, and blue. Each color's value is typically
 in the range 0..255 (i.e., a one-byte integer).
 
-\item[root directory]:
+\gterm{root directory}:
 The top-most directory in a
 \gl{filesystem}{g:filesystem}. Its name is ``/'' on Unix
 (including Linux and Mac OS X) and ``\textbackslash{}'' on Microsoft
 Windows.
  
-\item[search path]:
+\gterm{search path}:
 The list of directories in which the \gl{shell}{g:shell} searches for programs when they are run.
 
-\item[sentinel value]:
+\gterm{sentinel value}:
 A value in a collection that has a special
 meaning, such as 999 to mean ``age unknown''.
 
-\item[sequence]:
+\gterm{sequence}:
 An ordered collection of values whose elements can be
 specified with a single integer index, such as a vector.
 
-\item[shape] (of an array):
+\gterm{shape} (of an array):
 An array's dimensions, represented as a
-vector. For example, a 5×3 array's shape is \texttt{(5,3)}.
+vector. For example, a 5${\times}$3 array's shape is \texttt{(5,3)}.
 
-\item[shell]:
+\gterm{shell}:
 A \gl{command-line interface}{g:cli} such as Bash
 (the Bourne-Again Shell) or the Microsoft Windows DOS shell that allows
 a user to interact with the \gl{operating
 system}{g:operating-system}.
 
-\item[shell script]:
+\gterm{shell script}:
 A set of \gl{shell}{g:shell} commands
 stored in a file for re-use. A shell script is a program executed by the
 shell; the name ``script'' is used for historical reasons.
  
-\item[sign and magnitude]:
+\gterm{sign and magnitude}:
 A scheme for representing numbers in which one bit indicates the sign (positive or negative)
 and the other bits store the number's absolute value.
 See also: \gl{two's complement}{g:twos-complement}.
 
-\item[silent failure]:
+\gterm{silent failure}:
 Failing without producing any warning messages.
 Silent failures are hard to detect and debug.
 
-\item[slice]:
+\gterm{slice}:
 A regular subsequence of a larger sequence, such as the
 first five elements or every second element.
 
-\item[SQL] (Structured Query Language):
+\gterm{SQL} (Structured Query Language):
 A special-purpose language for
 describing operations on \gl{relational
 databases}{g:relational-database}.
 
-\item[SQL injection attack]:
+\gterm{SQL injection attack}:
 An attack on a program in which the
 user's input contains malicious SQL statements. If this text is copied
 directly into an SQL statement, it will be executed in the database.
 
-\item[SSH]:
+\gterm{SSH}:
 The Secure Shell \gl{protocol}{g:protocol} used for secure communication between computers.
 SSH is often used for \gl{remote login}{g:remote-login} between computers.
 
-\item[SSH key]:
+\gterm{SSH key}:
 A digital key that identifies one computer or user to another.
 
-\item[stack frame]:
+\gterm{stack frame}:
 A data structure that provides storage for a
 function's local variables. Each time a function is called, a new stack
 frame is created and put on the top of the \gl{call
 stack}{g:call-stack}. When the function returns, the stack frame is discarded.
 
-\item[standard input] (stdin):
+\gterm{standard input} (stdin):
 A process's default input stream. In
 interactive command-line applications, it is typically connected to the
 keyboard;; in a \gl{pipe}{g:pipe}, it receives data from the
 \gl{standard output}{g:standard-output} of the preceding process.
 
-\item[standard output] (stdout):
+\gterm{standard output} (stdout):
 A process's default output stream. In
 interactive command-line applications, data sent to standard output is
 displayed on the screen; in a \gl{pipe}{g:pipe}, it is passed to
 the \gl{standard input}{g:standard-input} of the next process.
 
-\item[stride]:
+\gterm{stride}:
 The offset between successive elements of a
 \gl{slice}{g:slice}.
 
-\item[string]:
+\gterm{string}:
 Short for ``character string'', a
 \gl{sequence}{g:sequence} of zero or more characters.
 
-\item[sub-directory]:
+\gterm{sub-directory}:
 A directory contained within another directory.
 
-\item[tab completion]:
+\gterm{tab completion}:
 A feature provided by many interactive systems
 in which pressing the Tab key triggers automatic completion of the
 current word or command.
 
-\item[table] (in a database):
+\gterm{table} (in a database):
 A set of data in a
 \gl{relational database}{g:relational-database} organized into a
 set of \gl{records}{g:record-database}, each having the same named
 \gl{fields}{g:field-database}.
 
-\item[test oracle]:
+\gterm{test oracle}:
 A program, device, data set, or human being
 against which the results of a test can be compared.
 
-\item[test-driven development] (TDD):
+\gterm{test-driven development} (TDD):
 The practice of writing unit
 tests \emph{before} writing the code they test.
  
-\item[timestamp]:
+\gterm{timestamp}:
 A record of when a particular event occurred.
 
-\item[tuple]:
+\gterm{tuple}:
 An \gl{immutable}{g:immutable}
 \gl{sequence}{g:sequence} of values.
  
-\item[two's complement]:
+\gterm{two's complement}:
 A scheme for representing numbers which wraps around like an odometer
 so that 111...111 represents -1.
 See also: \gl{sign and magnitude}{g:sign-and-magnitude}.
  
-\item[user group]:
+\gterm{user group}:
 A set of users on a computer system.
  
-\item[user group ID]:
+\gterm{user group ID}:
 A numerical ID that specifies a \gl{user group}{g:user-group}.
  
-\item[user group name]:
+\gterm{user group name}:
 A textual name for a \gl{user group}{g:user-group}.
  
-\item[user ID]:
+\gterm{user ID}:
 A numerical ID that specifies an individual user on a computer system.
 See also: \gl{user name}{g:user-name}.
  
-\item[user name]:
+\gterm{user name}:
 A textual name for a user on a computer system.
 See also: \gl{user ID}{g:user-id}.
 
-\item[variable]:
+\gterm{variable}:
 A name in a program that is associated with a value
 or a collection of values.
 
-\item[version control]:
+\gterm{version control}:
 A tool for managing changes to a set of files.
 Each set of changes creates a new \gl{revision}{g:revision} of the
 files; the version control system allows users to recover old revisions
 reliably, and helps manage conflicting changes made by different users.
  
-\item[while loop]:
+\gterm{while loop}:
 A loop that keeps executing as long as some condition is true.
 See also: \gl{for loop}{g:for-loop}.
 
-\item[wildcard]:
+\gterm{wildcard}:
 A character used in pattern matching. In the Unix
 shell, the wildcard ``*'' matches zero or more characters, so that
 \texttt{*.txt} matches all files whose names end in \texttt{.txt}.
-
-\end{swcdescription}

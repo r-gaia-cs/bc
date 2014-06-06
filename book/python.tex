@@ -310,7 +310,7 @@ The expression \texttt{data{[}30, 20{]}} may not surprise you, but
 MATLAB start counting at 1, because that's what human beings have done
 for thousands of years. Languages in the C family (including C++, Java,
 Perl, and Python) count from 0 because that's simpler for computers to
-do. As a result, if we have an M×N array in Python, its indices go from
+do. As a result, if we have an M${\times}$N array in Python, its indices go from
 0 to M-1 on the first axis and 0 to N-1 on the second. It takes a bit of
 getting used to, but one way to remember the rule is that the index is
 how many steps we have to take from the start to get the item we want.
@@ -493,7 +493,7 @@ print data.mean(axis=0).shape
 (40,)
 \end{VerbOut}
 
-The expression \texttt{(40,)} tells us we have an N×1 vector, so this is
+The expression \texttt{(40,)} tells us we have an N${\times}$1 vector, so this is
 the average inflammation per day for all patients. If we average across
 axis 1, we get:
 
@@ -2458,7 +2458,7 @@ hideous:
   measurements has exactly the same value as the (fractional) mean.
 \item
   We are calculating the mean of \texttt{data} either once or twice each
-  time we go through the loop. That means that on a 40×60 data set, we
+  time we go through the loop. That means that on a 40${\times}$60 data set, we
   are performing the same calculation 2400 times.
 \end{swcenumerate}
 
