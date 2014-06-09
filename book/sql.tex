@@ -143,12 +143,12 @@ taken & person & quant & reading \\
 844 & roe & rad & 11.25 \\
 \end{tabular}
 
-Notice that three entries---one in the \texttt{Visited} table, and two
-in the \texttt{Survey} table---are shown in red because they don't
+Notice that three entries---one in the \code{Visited} table, and two
+in the \code{Survey} table---are shown in red because they don't
 contain any actual data: we'll return to these missing values
 \gl{later}{s:null}. For now, let's write an SQL query that
 displays scientists' names. We do this using the SQL command
-\texttt{select}, giving it the names of the columns we want and the
+\code{select}, giving it the names of the columns we want and the
 table we want them from. Our query and its output look like this:
 
 \begin{VerbIn}
@@ -218,7 +218,7 @@ danforth & danforth & danforth \\
 \end{sqltable}
 
 As a shortcut, we can select all of the columns in a table using
-\texttt{*}:
+\code{*}:
 
 \begin{VerbIn}
 select * from Person;
@@ -233,7 +233,7 @@ danforth & Frank & Danforth \\
 \end{sqltable}
 
 \begin{challenge}
-  Write a query that selects only site names from the \texttt{Site}
+  Write a query that selects only site names from the \code{Site}
   table.
 \end{challenge}
 
@@ -282,7 +282,7 @@ select Personal, Family from PERSON;
 
 Data is often redundant, so queries often return redundant information.
 For example, if we select the quantitites that have been measured from
-the \texttt{survey} table, we get this:
+the \code{survey} table, we get this:
 
 \begin{VerbIn}
 select quant from Survey;
@@ -313,7 +313,7 @@ rad \\
 \end{sqltable}
 
 We can eliminate the redundant output to make the result more readable
-by adding the \texttt{distinct} keyword to our query:
+by adding the \code{distinct} keyword to our query:
 
 \begin{VerbIn}
 select distinct quant from Survey;
@@ -360,7 +360,7 @@ appear to be adjacent in the database. Again, it's important to remember
 that rows aren't actually ordered: they're just displayed that way.
 
 \begin{challenge}
-  Write a query that selects distinct dates from the \texttt{Site}
+  Write a query that selects distinct dates from the \code{Site}
   table.
 \end{challenge}
 
@@ -368,7 +368,7 @@ As we mentioned earlier, database records are not stored in any
 particular order. This means that query results aren't necessarily
 sorted, and even if they are, we often want to sort them in a different
 way, e.g., by the name of the project instead of by the name of the
-scientist. We can do this in SQL by adding an \texttt{order by} clause
+scientist. We can do this in SQL by adding an \code{order by} clause
 to our query:
 
 \begin{VerbIn}
@@ -384,7 +384,7 @@ roe & Valentina & Roerich \\
 \end{sqltable}
 
 By default, results are sorted in ascending order (i.e., from least to
-greatest). We can sort in the opposite order using \texttt{desc} (for
+greatest). We can sort in the opposite order using \code{desc} (for
 ``descending''):
 
 \begin{VerbIn}
@@ -400,12 +400,12 @@ danforth & Frank & Danforth \\
 \end{sqltable}
 
 (And if we want to make it clear that we're sorting in ascending order,
-we can use \texttt{asc} instead of \texttt{desc}.)
+we can use \code{asc} instead of \code{desc}.)
 
 We can also sort on several fields at once. For example, this query
-sorts results first in ascending order by \texttt{taken}, and then in
-descending order by \texttt{person} within each group of equal
-\texttt{taken} values:
+sorts results first in ascending order by \code{taken}, and then in
+descending order by \code{person} within each group of equal
+\code{taken} values:
 
 \begin{VerbIn}
 select taken, person from Survey order by taken asc, person desc;
@@ -458,13 +458,13 @@ select distinct taken, person from Survey order by taken asc, person desc;
 \end{sqltable}
 
 \begin{challenge}
-  Write a query that returns the distinct dates in the \texttt{Visited}
+  Write a query that returns the distinct dates in the \code{Visited}
   table.
 \end{challenge}
 
 \begin{challenge}
   Write a query that displays the full names of the scientists in the
-  \texttt{Person} table, ordered by family name.
+  \code{Person} table, ordered by family name.
 \end{challenge}
 
 \begin{keypoints}
@@ -494,7 +494,7 @@ One of the most powerful features of a database is the ability to
 \gl{filter}{g:filter} data, i.e., to select only those records
 that match certain criteria. For example, suppose we want to see when a
 particular site was visited. We can select these records from the
-\texttt{Visited} table by using a \texttt{where} clause in our query:
+\code{Visited} table by using a \code{where} clause in our query:
 
 \begin{VerbIn}
 select * from Visited where site='DR-1';
@@ -507,12 +507,12 @@ select * from Visited where site='DR-1';
 \end{sqltable}
 
 The database manager executes this query in two stages. First, it checks
-at each row in the \texttt{Visited} table to see which ones satisfy the
-\texttt{where}. It then uses the column names following the
-\texttt{select} keyword to determine what columns to display.
+at each row in the \code{Visited} table to see which ones satisfy the
+\code{where}. It then uses the column names following the
+\code{select} keyword to determine what columns to display.
 
 This processing order means that we can filter records using
-\texttt{where} based on values in columns that aren't then displayed
+\code{where} based on values in columns that aren't then displayed
 (\figref{f:filter}):
 
 \begin{VerbIn}
@@ -557,7 +557,7 @@ Sweden}.
 \end{swcbox}
 
 If we want to find out what measurements were taken by either Lake or
-Roerich, we can combine the tests on their names using \texttt{or}:
+Roerich, we can combine the tests on their names using \code{or}:
 
 \begin{VerbIn}
 select * from Survey where person='lake' or person='roe';
@@ -576,7 +576,7 @@ select * from Survey where person='lake' or person='roe';
 844 & roe & rad & 11.25 \\
 \end{sqltable}
 
-Alternatively, we can use \texttt{in} to see if a value is in a specific
+Alternatively, we can use \code{in} to see if a value is in a specific
 set:
 
 \begin{VerbIn}
@@ -596,7 +596,7 @@ select * from Survey where person in ('lake', 'roe');
 844 & roe & rad & 11.25 \\
 \end{sqltable}
 
-We can combine \texttt{and} with \texttt{or}, but we need to be careful
+We can combine \code{and} with \code{or}, but we need to be careful
 about which operator is executed first. If we \emph{don't} use
 parentheses, we get this:
 
@@ -630,7 +630,7 @@ select * from Survey where quant='sal' and (person='lake' or person='roe');
 837 & roe & sal & 22.5 \\
 \end{sqltable}
 
-Finally, we can use \texttt{distinct} with \texttt{where} to give a
+Finally, we can use \code{distinct} with \code{where} to give a
 second level of filtering:
 
 \begin{VerbIn}
@@ -645,7 +645,7 @@ roe & sal \\
 roe & rad \\
 \end{sqltable}
 
-But remember: \texttt{distinct} is applied to the values displayed in
+But remember: \code{distinct} is applied to the values displayed in
 the chosen columns, not to the entire rows as they are being processed.
 
 \begin{swcbox}{Growing Queries}
@@ -681,35 +681,35 @@ select * from Site where (lat > -60) or (lat < 60);
 
 \begin{challenge}
   Normalized salinity readings are supposed to be between 0.0 and 1.0.
-  Write a query that selects all records from \texttt{Survey} with
+  Write a query that selects all records from \code{Survey} with
   salinity values outside this range.
 \end{challenge}
 
 \begin{challenge}
-  The SQL test \texttt{*column-name* like *pattern*} is true if the
+  The SQL test \code{*column-name* like *pattern*} is true if the
   value in the named column matches the pattern given; the character
   `\%' can be used any number of times in the pattern to mean ``match
   zero or more characters''.
 
   \begin{tabular}{ll}
     Expression & Value \\
-    \texttt{'a' like 'a'} & True \\
-    \texttt{'a' like '\%a'} & True \\
-    \texttt{'b' like '\%a'} & False \\
-    \texttt{'alpha' like 'a\%'} & True \\
-    \texttt{'alpha' like 'a\%p\%'} & True \\
+    \code{'a' like 'a'} & True \\
+    \code{'a' like '\%a'} & True \\
+    \code{'b' like '\%a'} & False \\
+    \code{'alpha' like 'a\%'} & True \\
+    \code{'alpha' like 'a\%p\%'} & True \\
   \end{tabular}
 
-  The expression \texttt{*column-name* not like *pattern*} inverts the
-  test. Using \texttt{like}, write a query that finds all the records in
-  \texttt{Visited} that \emph{aren't} from sites labelled
+  The expression \code{*column-name* not like *pattern*} inverts the
+  test. Using \code{like}, write a query that finds all the records in
+  \code{Visited} that \emph{aren't} from sites labelled
   `DR-something'.
 \end{challenge}
 
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  Use \texttt{where} to filter records according to Boolean conditions.
+  Use \code{where} to filter records according to Boolean conditions.
 \item
   Filtering is done on whole records, so conditions can use fields that
   are not actually displayed.
@@ -745,7 +745,7 @@ select 1.05 * reading from Survey where quant='rad';
 11.8125 \\
 \end{sqltable}
 
-When we run the query, the expression \texttt{1.05 * reading} is
+When we run the query, the expression \code{1.05 * reading} is
 evaluated for each row. Expressions can use any of the fields, all of
 usual arithmetic operators, and a variety of common functions. (Exactly
 which ones depends on which database manager is being used.) For
@@ -764,7 +764,7 @@ select taken, round(5*(reading-32)/9, 2) from Survey where quant='temp';
 \end{sqltable}
 
 We can also combine values from different fields, for example by using
-the string concatenation operator \texttt{\textbar{}\textbar{}}:
+the string concatenation operator \code{\textbar{}\textbar{}}:
 
 \begin{VerbIn}
 select personal || ' ' || family from Person;
@@ -781,12 +781,12 @@ Frank Danforth \\
 \begin{challenge}
   After further reading, we realize that Valentina Roerich was reporting
   salinity as percentages. Write a query that returns all of her
-  salinity measurements from the \texttt{Survey} table with the values
+  salinity measurements from the \code{Survey} table with the values
   divided by 100.
 \end{challenge}
 
 \begin{challenge}
-  The \texttt{union} operator combines the results of two queries:
+  The \code{union} operator combines the results of two queries:
 \begin{VerbIn}
 select * from Person where ident='dyer' union select * from Person where ident='roe';
 \end{VerbIn}
@@ -796,7 +796,7 @@ dyer & William & Dyer \\
 roe & Valentina & Roerich \\
 \end{sqltable}
 
-Use \texttt{union} to create a consolidated list of salinity
+Use \code{union} to create a consolidated list of salinity
 measurements in which Roerich's, and only Roerich's, have been corrected
 as described in the previous challenge. The output should be something
 like:
@@ -814,7 +814,7 @@ like:
 \end{challenge}
 
 \begin{challenge}
-  The site identifiers in the \texttt{Visited} table have two parts
+  The site identifiers in the \code{Visited} table have two parts
   separated by a `-':
 
 \begin{VerbIn}
@@ -828,9 +828,9 @@ MSK-4 \\
 \end{sqltable}
 
 Some major site identifiers are two letters long and some are three. The
-``in string'' function \texttt{instr(X, Y)} returns the 1-based index of
+``in string'' function \code{instr(X, Y)} returns the 1-based index of
 the first occurrence of string Y in string X, or 0 if Y does not exist
-in X. The substring function \texttt{substr(X, I)} returns the substring
+in X. The substring function \code{substr(X, I)} returns the substring
 of X starting at index I. Use these two functions to produce a list of
 unique major site identifiers. (For this data, the list should contain
 only ``DR'' and ``MSK'').
@@ -859,12 +859,12 @@ only ``DR'' and ``MSK'').
 \end{objectives}
 
 Real-world data is never complete---there are always holes. Databases
-represent these holes using special value called \texttt{null}.
-\texttt{null} is not zero, \texttt{False}, or the empty string; it is a
+represent these holes using special value called \code{null}.
+\code{null} is not zero, \code{False}, or the empty string; it is a
 one-of-a-kind value that means ``nothing here''. Dealing with
-\texttt{null} requires a few special tricks and some careful thinking.
+\code{null} requires a few special tricks and some careful thinking.
 
-To start, let's have a look at the \texttt{Visited} table. There are
+To start, let's have a look at the \code{Visited} table. There are
 eight records, but \#752 doesn't have a date---or rather, its date is
 null:
 
@@ -911,19 +911,19 @@ select * from Visited where dated>='1930-00-00';
 \end{sqltable}
 
 we get five, but record \#752 isn't in either set of results. The reason
-is that \texttt{null\textless{}'1930-00-00'} is neither true nor false:
+is that \code{null\textless{}'1930-00-00'} is neither true nor false:
 null means, ``We don't know,'' and if we don't know the value on the
 left side of a comparison, we don't know whether the comparison is true
 or false. Since databases represent ``don't know'' as null, the value of
-\texttt{null\textless{}'1930-00-00'} is actually \texttt{null}.
-\texttt{null\textgreater{}='1930-00-00'} is also null because we can't
+\code{null\textless{}'1930-00-00'} is actually \code{null}.
+\code{null\textgreater{}='1930-00-00'} is also null because we can't
 answer to that question either. And since the only records kept by a
-\texttt{where} are those for which the test is true, record \#752 isn't
+\code{where} are those for which the test is true, record \#752 isn't
 included in either set of results.
 
 Comparisons aren't the only operations that behave this way with nulls.
-\texttt{1+null} is \texttt{null}, \texttt{5*null} is \texttt{null},
-\texttt{log(null)} is \texttt{null}, and so on. In particular, comparing
+\code{1+null} is \code{null}, \code{5*null} is \code{null},
+\code{log(null)} is \code{null}, and so on. In particular, comparing
 things to null with = and != produces null:
 
 \begin{VerbIn}
@@ -938,8 +938,8 @@ select * from Visited where dated!=NULL;
 
 % FIXME: empty table
 
-To check whether a value is \texttt{null} or not, we must use a special
-test \texttt{is null}:
+To check whether a value is \code{null} or not, we must use a special
+test \code{is null}:
 
 \begin{VerbIn}
 select * from Visited where dated is NULL;
@@ -949,7 +949,7 @@ select * from Visited where dated is NULL;
 752 & DR-3 & ~ \\
 \end{sqltable}
 
-or its inverse \texttt{is not null}:
+or its inverse \code{is not null}:
 
 \begin{VerbIn}
 select * from Visited where dated is not NULL;
@@ -981,8 +981,8 @@ select * from Survey where quant='sal' and person!='lake';
 \end{sqltable}
 
 but this query filters omits the records where we don't know who took
-the measurement. Once again, the reason is that when \texttt{person} is
-\texttt{null}, the \texttt{!=} comparison produces \texttt{null}, so the
+the measurement. Once again, the reason is that when \code{person} is
+\code{null}, the \code{!=} comparison produces \code{null}, so the
 record isn't kept in our results. If we want to keep these records we
 need to add an explicit check:
 
@@ -1004,7 +1004,7 @@ by Lake in our results, we need to exclude all the records for which we
 don't know who did the work.
 
 \begin{challenge}
-  Write a query that sorts the records in \texttt{Visited} by date,
+  Write a query that sorts the records in \code{Visited} by date,
   omitting entries for which the date is not known (i.e., is null).
 \end{challenge}
 
@@ -1021,7 +1021,7 @@ select * from Visited where dated in ('1927-02-08', null);
 \begin{challenge}
   Some database designers prefer to use a
   \gl{sentinel value}{g:sentinel-value} to mark missing data
-  rather than \texttt{null}. For example, they will use the date
+  rather than \code{null}. For example, they will use the date
   ``0000-00-00'' to mark a missing date, or -1.0 to mark a missing
   salinity or radiation reading (since actual readings cannot be
   negative). What does this simplify? What burdens or risks does it
@@ -1031,13 +1031,13 @@ select * from Visited where dated in ('1927-02-08', null);
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  Databases use \texttt{null} to represent missing information.
+  Databases use \code{null} to represent missing information.
 \item
-  Any arithmetic or Boolean operation involving \texttt{null} produces
-  \texttt{null} as a result.
+  Any arithmetic or Boolean operation involving \code{null} produces
+  \code{null} as a result.
 \item
-  The only operators that can safely be used with \texttt{null} are
-  \texttt{is null} and \texttt{is not null}.
+  The only operators that can safely be used with \code{null} are
+  \code{is null} and \code{is not null}.
 \end{swcitemize}
 \end{keypoints}
 
@@ -1057,7 +1057,7 @@ select * from Visited where dated in ('1927-02-08', null);
 \end{objectives}
 
 We now want to calculate ranges and averages for our data. We know how
-to select all of the dates from the \texttt{Visited} table:
+to select all of the dates from the \code{Visited} table:
 
 \begin{VerbIn}
 select dated from Visited;
@@ -1076,7 +1076,7 @@ select dated from Visited;
 
 but to combine them, wee must use an
 \gl{aggregation function}{g:aggregation-function} such as
-\texttt{min} or \texttt{max}. Each of these functions takes a set of
+\code{min} or \code{max}. Each of these functions takes a set of
 records as input, and produces a single record as output
 (\figref{f:aggregate}):
 
@@ -1098,9 +1098,9 @@ select max(dated) from Visited;
 1939-01-07 \\
 \end{sqltable}
 
-\texttt{min} and \texttt{max} are just two of the aggregation functions
-built into SQL. Three others are \texttt{avg}, \texttt{count}, and
-\texttt{sum}:
+\code{min} and \code{max} are just two of the aggregation functions
+built into SQL. Three others are \code{avg}, \code{count}, and
+\code{sum}:
 
 \begin{VerbIn}
 select avg(reading) from Survey where quant='sal';
@@ -1126,9 +1126,9 @@ select sum(reading) from Survey where quant='sal';
 64.83 \\
 \end{sqltable}
 
-We used \texttt{count(reading)} here, but we could just as easily have
-counted \texttt{quant} or any other field in the table, or even used
-\texttt{count(*)}, since the function doesn't care about the values
+We used \code{count(reading)} here, but we could just as easily have
+counted \code{quant} or any other field in the table, or even used
+\code{count(*)}, since the function doesn't care about the values
 themselves, just how many values there are.
 
 SQL lets us do several aggregations at once. We can, for example, find
@@ -1173,7 +1173,7 @@ select person, max(reading), sum(reading) from Survey where quant='missing';
 One final important feature of aggregation functions is that they are
 inconsistent with the rest of SQL in a very useful way. If we add two
 values, and one of them is null, the result is null. By extension, if we
-use \texttt{sum} to add all the values in a set, and any of those values
+use \code{sum} to add all the values in a set, and any of those values
 are null, the result should also be null. It's much more useful, though,
 for aggregation functions to ignore null values and only combine those
 that are non-null. This behavior lets us write our queries as:
@@ -1231,7 +1231,7 @@ five hundred scientists, the chances of her getting all of those queries
 right is small.
 
 What we need to do is tell the database manager to aggregate the hours
-for each scientist separately using a \texttt{group by} clause:
+for each scientist separately using a \code{group by} clause:
 
 \begin{VerbIn}
 select   person, count(reading), round(avg(reading), 2)
@@ -1247,17 +1247,17 @@ pb & 3 & 6.66 \\
 roe & 1 & 11.25 \\
 \end{sqltable}
 
-\texttt{group by} does exactly what its name implies: groups all the
+\code{group by} does exactly what its name implies: groups all the
 records with the same value for the specified field together so that
 aggregation can process each batch separately. Since all the records in
-each batch have the same value for \texttt{person}, it no longer matters
+each batch have the same value for \code{person}, it no longer matters
 that the database manager is picking an arbitrary one to display
-alongside the aggregated \texttt{reading} values.
+alongside the aggregated \code{reading} values.
 
 Just as we can sort by multiple criteria at once, we can also group by
 multiple criteria. To get the average reading by scientist and quantity
 measured, for example, we just add another field to the
-\texttt{group by} clause:
+\code{group by} clause:
 
 \begin{VerbIn}
 select   person, quant, count(reading), round(avg(reading), 2)
@@ -1279,7 +1279,7 @@ roe & rad & 1 & 11.25 \\
 roe & sal & 2 & 32.05 \\
 \end{sqltable}
 
-Note that we have added \texttt{person} to the list of fields displayed,
+Note that we have added \code{person} to the list of fields displayed,
 since the results wouldn't make much sense otherwise.
 
 Let's go one step further and remove all the entries where we don't know
@@ -1309,18 +1309,18 @@ Looking more closely, this query:
 
 \begin{swcenumerate}
 \item
-  selected records from the \texttt{Survey} table where the
-  \texttt{person} field was not null;
+  selected records from the \code{Survey} table where the
+  \code{person} field was not null;
 \item
-  grouped those records into subsets so that the \texttt{person} and
-  \texttt{quant} values in each subset were the same;
+  grouped those records into subsets so that the \code{person} and
+  \code{quant} values in each subset were the same;
 \item
-  ordered those subsets first by \texttt{person}, and then within each
-  sub-group by \texttt{quant}; and
+  ordered those subsets first by \code{person}, and then within each
+  sub-group by \code{quant}; and
 \item
   counted the number of records in each subset, calculated the average
-  \texttt{reading} in each, and chose a \texttt{person} and
-  \texttt{quant} value from each (it doesn't matter which ones, since
+  \code{reading} in each, and chose a \code{person} and
+  \code{quant} value from each (it doesn't matter which ones, since
   they're all equal).
 \end{swcenumerate}
 
@@ -1331,8 +1331,8 @@ Looking more closely, this query:
 
 \begin{challenge}
   The average of a set of values is the sum of the values divided by the
-  number of values. Does this mean that the \texttt{avg} function
-  returns 2.0 or 3.0 when given the values 1.0, \texttt{null}, and 5.0?
+  number of values. Does this mean that the \code{avg} function
+  returns 2.0 or 3.0 when given the values 1.0, \code{null}, and 5.0?
 \end{challenge}
 
 \begin{challenge}
@@ -1348,7 +1348,7 @@ select reading - avg(reading) from Survey where quant='rad';
 \end{challenge}
 
 \begin{challenge}
-  The function \texttt{group\_concat(field, separator)} concatenates all
+  The function \code{group\_concat(field, separator)} concatenates all
   the values in a field using the specified separator character (or `,'
   if the separator isn't specified). Use this to produce a one-line list
   of scientists' names, such as:
@@ -1366,7 +1366,7 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
   An aggregation function combines many values to produce a single new
   value.
 \item
-  Aggregation functions ignore \texttt{null} values.
+  Aggregation functions ignore \code{null} values.
 \item
   Aggregation happens after filtering.
 \end{swcitemize}
@@ -1394,12 +1394,12 @@ William Dyer, Frank Pabodie, Anderson Lake, Valentina Roerich, Frank Danforth
 In order to submit her data to a web site that aggregates historical
 meteorological data, Gina needs to format it as latitude, longitude,
 date, quantity, and reading. However, her latitudes and longitudes are
-in the \texttt{Site} table, while the dates of measurements are in the
-\texttt{Visited} table and the readings themselves are in the
-\texttt{Survey} table. She needs to combine these tables somehow.
+in the \code{Site} table, while the dates of measurements are in the
+\code{Visited} table and the readings themselves are in the
+\code{Survey} table. She needs to combine these tables somehow.
 
-The SQL command to do this is \texttt{join}. To see how it works, let's
-start by joining the \texttt{Site} and \texttt{Visited} tables:
+The SQL command to do this is \code{join}. To see how it works, let's
+start by joining the \code{Site} and \code{Visited} tables:
 
 \begin{VerbIn}
 select * from Site join Visited;
@@ -1432,10 +1432,10 @@ MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
 MSK-4 & -48.87 & -123.4 & 844 & DR-1 & 1932-03-22 \\
 \end{sqltable}
 
-\texttt{join} creates the \gl{cross product}{g:cross-product} of
+\code{join} creates the \gl{cross product}{g:cross-product} of
 two tables, i.e., it joins each record of one with each record of the
 other to give all possible combinations. Since there are three records
-in \texttt{Site} and eight in \texttt{Visited}, the join's output has 24
+in \code{Site} and eight in \code{Visited}, the join's output has 24
 records. And since each table has three fields, the output has six
 fields.
 
@@ -1460,19 +1460,19 @@ DR-3 & -47.15 & -126.72 & 752 & DR-3 & ~ \\
 MSK-4 & -48.87 & -123.4 & 837 & MSK-4 & 1932-01-14 \\
 \end{sqltable}
 
-\texttt{on} does the same job as \texttt{where}: it only keeps records
-that pass some test. (The difference between the two is that \texttt{on}
-filters records as they're being created, while \texttt{where} waits
+\code{on} does the same job as \code{where}: it only keeps records
+that pass some test. (The difference between the two is that \code{on}
+filters records as they're being created, while \code{where} waits
 until the join is done and then does the filtering.) Once we add this to
 our query, the database manager throws away records that combined
 information about two different sites, leaving us with just the ones we
 want.
 
-Notice that we used \texttt{table.field} to specify field names in the
+Notice that we used \code{table.field} to specify field names in the
 output of the join. We do this because tables can have fields with the
 same name, and we need to be specific which ones we're talking about.
-For example, if we joined the \texttt{person} and \texttt{visited}
-tables, the result would inherit a field called \texttt{ident} from each
+For example, if we joined the \code{person} and \code{visited}
+tables, the result would inherit a field called \code{ident} from each
 of the original tables.
 
 We can now use the same dotted notation to select the three columns we
@@ -1497,7 +1497,7 @@ on     Site.name=Visited.site;
 
 If joining two tables is good, joining many tables must be better. In
 fact, we can join any number of tables simply by adding more
-\texttt{join} clauses to our query, and more \texttt{on} tests to filter
+\code{join} clauses to our query, and more \code{on} tests to filter
 out combinations of records that don't make sense:
 
 \begin{VerbIn}
@@ -1528,18 +1528,18 @@ and    Visited.dated is not null;
 -49.85 & -128.57 & 1932-03-22 & rad & 11.25 \\
 \end{sqltable}
 
-We can tell which records from \texttt{Site}, \texttt{Visited}, and
-\texttt{Survey} correspond with each other because those tables contain
+We can tell which records from \code{Site}, \code{Visited}, and
+\code{Survey} correspond with each other because those tables contain
 \gl{primary keys}{g:primary-key} and
 \gl{foreign keys}{g:foreign-key}. A primary key is a value, or
 combination of values, that uniquely identifies each record in a table.
 A foreign key is a value (or combination of values) from one table that
 identifies a unique record in another table. Another way of saying this
 is that a foreign key is the primary key of one table that appears in
-some other table. In our database, \texttt{Person.ident} is the primary
-key in the \texttt{Person} table, while \texttt{Survey.person} is a
-foreign key relating the \texttt{Survey} table's entries to entries in
-\texttt{Person}.
+some other table. In our database, \code{Person.ident} is the primary
+key in the \code{Person} table, while \code{Survey.person} is a
+foreign key relating the \code{Survey} table's entries to entries in
+\code{Person}.
 
 Most database designers believe that every table should have a
 well-defined primary key. They also believe that this key should be
@@ -1579,14 +1579,14 @@ name like ``Eloise St. Cyr'' or ``Jan Mikkel Steubart''.
 
 The second rule is that every record should have a unique primary key.
 This can be a serial number that has no intrinsic meaning, one of the
-values in the record (like the \texttt{ident} field in the
-\texttt{Person} table), or even a combination of values: the triple
-\texttt{(taken, person, quant)} from the \texttt{Survey} table uniquely
+values in the record (like the \code{ident} field in the
+\code{Person} table), or even a combination of values: the triple
+\code{(taken, person, quant)} from the \code{Survey} table uniquely
 identifies every measurement.
 
 The third rule is that there should be no redundant information. For
-example, we could get rid of the \texttt{Site} table and rewrite the
-\texttt{Visited} table like this:
+example, we could get rid of the \code{Site} table and rewrite the
+\code{Visited} table like this:
 
 \begin{sqltable}{llll}
 619 & -49.85 & -128.57 & 1927-02-08 \\
@@ -1676,7 +1676,7 @@ most other operations only make sense once queries are understood. If we
 want to create and modify data, we need to know two other pairs of
 commands.
 
-The first pair are \texttt{create table} and \texttt{drop table}. While
+The first pair are \code{create table} and \code{drop table}. While
 they are written as two words, they are actually single commands. The
 first one creates a new table; its arguments are the names and types of
 the table's columns. For example, the following statements create the
@@ -1717,7 +1717,7 @@ names they give different data types, is an unending portability
 headache.
 
 When we create a table, we can specify several kinds of constraints on
-its columns. For example, a better definition for the \texttt{Survey}
+its columns. For example, a better definition for the \code{Survey}
 table would be:
 
 \begin{VerbIn}
@@ -1736,8 +1736,8 @@ Once again, exactly what constraints are avialable and what they're
 called depends on which database manager we are using.
 
 Once tables have been created, we can add and remove records using our
-other pair of commands, \texttt{insert} and \texttt{delete}. The
-simplest form of \texttt{insert} statement lists values in order:
+other pair of commands, \code{insert} and \code{delete}. The
+simplest form of \code{insert} statement lists values in order:
 
 \begin{VerbIn}
 insert into Site values('DR-1', -49.85, -128.57);
@@ -1754,26 +1754,26 @@ insert into JustLatLong select lat, long from site;
 
 Deleting records can be a bit trickier, because we have to ensure that
 the database remains internally consistent. If all we care about is a
-single table, we can use the \texttt{delete} command with a
-\texttt{where} clause that matches the records we want to discard. For
+single table, we can use the \code{delete} command with a
+\code{where} clause that matches the records we want to discard. For
 example, once we realize that Frank Danforth didn't take any
-measurements, we can remove him from the \texttt{Person} table like
+measurements, we can remove him from the \code{Person} table like
 this:
 
 \begin{VerbIn}
 delete from Person where ident = "danforth";
 \end{VerbIn}
 
-But what if we removed Anderson Lake instead? Our \texttt{Survey} table
+But what if we removed Anderson Lake instead? Our \code{Survey} table
 would still contain seven records of measurements he'd taken, but that's
-never supposed to happen: \texttt{Survey.person} is a foreign key into
-the \texttt{Person} table, and all our queries assume there will be a
+never supposed to happen: \code{Survey.person} is a foreign key into
+the \code{Person} table, and all our queries assume there will be a
 row in the latter matching every value in the former.
 
 This problem is called \gl{referential
 integrity}{g:referential-integrity}: we need to ensure that all references between tables can
 always be resolved correctly. One way to do this is to delete all the
-records that use \texttt{'lake'} as a foreign key before deleting the
+records that use \code{'lake'} as a foreign key before deleting the
 record that uses it as a primary key. If our database manager supports
 it, we can automate this using \gl{cascading
 delete}{g:cascading-delete}. However, this technique is outside the scope of this chapter.
@@ -1791,8 +1791,8 @@ the MP3 files, but the files themselves live on disk.
 \end{swcbox}
 
 \begin{challenge}
-  Write an SQL statement to replace all uses of \texttt{null} in
-  \texttt{Survey.person} with the string \texttt{'unknown'}.
+  Write an SQL statement to replace all uses of \code{null} in
+  \code{Survey.person} with the string \code{'unknown'}.
 \end{challenge}
 
 \begin{challenge}
@@ -1807,17 +1807,17 @@ Taken,Temp
 \end{VerbFile}
 
   Write a small Python program that reads this file in and prints out
-  the SQL \texttt{insert} statements needed to add these records to the
+  the SQL \code{insert} statements needed to add these records to the
   survey database. Note: you will need to add an entry for Olmstead to
-  the \texttt{Person} table. If you are testing your program repeatedly,
-  you may want to investigate SQL's \texttt{insert or replace} command.
+  the \code{Person} table. If you are testing your program repeatedly,
+  you may want to investigate SQL's \code{insert or replace} command.
 \end{challenge}
 
 \begin{challenge}
   SQLite has several administrative commands that aren't part of the SQL
-  standard. One of them is \texttt{.dump}, which prints the SQL commands
-  needed to re-create the database. Another is \texttt{.load}, which
-  reads a file created by \texttt{.dump} and restores the database. A
+  standard. One of them is \code{.dump}, which prints the SQL commands
+  needed to re-create the database. Another is \code{.load}, which
+  reads a file created by \code{.dump} and restores the database. A
   colleague of yours thinks that storing dump files (which are text) in
   version control is a good way to track and manage changes to the
   database. What are the pros and cons of this approach? (Hint: records
@@ -1857,7 +1857,7 @@ almost exactly the same model: library and function names may differ,
 but the concepts are the same.
 
 Here's a short Python program that selects latitudes and longitudes from
-an SQLite database stored in a file called \texttt{survey.db}:
+an SQLite database stored in a file called \code{survey.db}:
 
 \begin{VerbIn}
 import sqlite3
@@ -1877,7 +1877,7 @@ connection.close()
 (-48.87, -123.4)
 \end{VerbOut}
 
-The program starts by importing the \texttt{sqlite3} library. If we were
+The program starts by importing the \code{sqlite3} library. If we were
 connecting to MySQL, DB2, or some other database, we would import a
 different library, but all of them provide the same functions, so that
 the rest of our program does not have to change (at least, not much) if
@@ -1891,13 +1891,13 @@ just like the cursor in an editor, its role is to keep track of where we
 are in the database.
 
 On line 4, we use that cursor to ask the database to execute a query for
-us. The query is written in SQL, and passed to \texttt{cursor.execute}
+us. The query is written in SQL, and passed to \code{cursor.execute}
 as a string. It's our job to make sure that SQL is properly formatted;
 if it isn't, or if something goes wrong when it is being executed, the
 database will report an error.
 
 The database returns the results of the query to us in response to the
-\texttt{cursor.fetchall} call on line 5. This result is a list with one
+\code{cursor.fetchall} call on line 5. This result is a list with one
 entry for each record in the result set; if we loop over that list (line
 6) and print those list entries (line 7), we can see that each one is a
 tuple with one element for each field we asked for.
@@ -1986,18 +1986,18 @@ print "full name for dyer:", get_name('survey.db', 'dyer')
 full name for dyer: William Dyer
 \end{VerbOut}
 
-The key changes are in the query string and the \texttt{execute} call.
+The key changes are in the query string and the \code{execute} call.
 Instead of formatting the query ourselves, we put question marks in the
 query template where we want to insert values. When we call
-\texttt{execute}, we provide a list that contains as many values as
+\code{execute}, we provide a list that contains as many values as
 there are question marks in the query. The library matches values to
 question marks in order, and translates any special characters in the
 values into their escaped equivalents so that they are safe to use.
 
 \begin{challenge}
   Write a Python program that creates a new database in a file called
-  \texttt{original.db} containing a single table called
-  \texttt{Pressure}, with a single field called \texttt{reading}, and
+  \code{original.db} containing a single table called
+  \code{Pressure}, with a single field called \code{reading}, and
   inserts 100,000 random numbers between 10.0 and 25.0. How long does it
   take this program to run? How long does it take to run a program that
   simply writes those random numbers to a file?
@@ -2005,9 +2005,9 @@ values into their escaped equivalents so that they are safe to use.
 
 \begin{challenge}
   Write a Python program that creates a new database called
-  \texttt{backup.db} with the same structure as \texttt{original.db} and
-  copies all the values greater than 20.0 from \texttt{original.db} to
-  \texttt{backup.db}. Which is faster: filtering values in the query, or
+  \code{backup.db} with the same structure as \code{original.db} and
+  copies all the values greater than 20.0 from \code{original.db} to
+  \code{backup.db}. Which is faster: filtering values in the query, or
   reading everything into memory and filtering in Python?
 \end{challenge}
 

@@ -22,8 +22,8 @@ contributions from primary colors such as \gl{red, green,
 and blue}{g:rgb}.
 
 \gterm{aggregation function}:
-A function such as \texttt{sum} or
-\texttt{max} that combines many values to produce a single result.
+A function such as \code{sum} or
+\code{max} that combines many values to produce a single result.
 
 \gterm{alias} (a library):
 To give a \gl{library}{g:library} a
@@ -101,9 +101,9 @@ commands, usually at a \gl{REPL}{g:repl}. See also:
 \gterm{comment}:
 A remark in a program that is intended to help human
 readers understand what is going on, but is ignored by the computer.
-Comments in Python, R, and the Unix shell start with a \texttt{\#}
+Comments in Python, R, and the Unix shell start with a \code{\#}
 character and run to the end of the line; comments in SQL start with
-\texttt{-{}-}, and other languages have other conventions.
+\code{-{}-}, and other languages have other conventions.
 
 \gterm{conditional statement}:
 A statement in a program that might or
@@ -126,7 +126,7 @@ The directory that
 equivalently, the place where files referenced by name only are searched
 for. Every \gl{process}{g:process} has a current working
 directory. The current working directory is usually referred to using
-the shorthand notation \texttt{.} (pronounced ``dot'').
+the shorthand notation \code{.} (pronounced ``dot'').
 
 \gterm{cursor}:
 A pointer into a database that keeps track of
@@ -169,8 +169,8 @@ software does, how it works, or how to use it.
 
 \gterm{dotted notation}:
 A two-part notation used in many programming
-languages in which \texttt{thing.component} refers to the
-\texttt{component} belonging to \texttt{thing}.
+languages in which \code{thing.component} refers to the
+\code{component} belonging to \code{thing}.
 
 \gterm{empty string}:
 A character string containing no characters,
@@ -195,10 +195,10 @@ type, one for each \gl{record}{g:record-database} in a
 \gterm{filename extension}:
 The portion of a file's name that comes
 after the final ``.'' character. By convention this identifies the
-file's type: \texttt{.txt} means ``text file'', \texttt{.png} means
+file's type: \code{.txt} means ``text file'', \code{.png} means
 ``Portable Network Graphics file'', and so on. These conventions are not
 enforced by most operating systems: it is perfectly possible to name an
-MP3 sound file \texttt{homepage.html}. Since many applications use
+MP3 sound file \code{homepage.html}. Since many applications use
 filename extensions to identify the \gl{MIME type}{g:mime-type} of
 the file, misnaming files may cause those applications to fail.
 
@@ -218,10 +218,10 @@ result to \gl{standard output}{g:standard-output}.
 \gterm{flag}:
 A terse way to specify an option or setting to a
 command-line program. By convention Unix applications use a dash
-followed by a single letter, such as \texttt{-v}, or two dashes followed
-by a word, such as \texttt{-{}-verbose}, while DOS applications use a
-slash, such as \texttt{/V}. Depending on the application, a flag may be
-followed by a single argument, as in \texttt{-o /tmp/output.txt}.
+followed by a single letter, such as \code{-v}, or two dashes followed
+by a word, such as \code{-{}-verbose}, while DOS applications use a
+slash, such as \code{/V}. Depending on the application, a flag may be
+followed by a single argument, as in \code{-o /tmp/output.txt}.
 
 \gterm{floating point number}:
 A number containing a fractional
@@ -251,7 +251,7 @@ function.
 
 \gterm{function composition}:
 The immediate application of one function
-to the result of another, such as \texttt{f(g(x))}.
+to the result of another, such as \code{f(g(x))}.
 
 \gterm{graphical user interface} (GUI):
 A graphical user interface,
@@ -276,11 +276,11 @@ altered after it has been created. See also:
 To load a \gl{library}{g:library} into a program.
 
 \gterm{in-place operator}:
-An operator such as \texttt{+=} that
+An operator such as \code{+=} that
 provides a shorthand notation for the common case in which the variable
 being assigned to is also an operand on the right hand side of the
-assignment. For example, the statement \texttt{x += 3} means the same
-thing as \texttt{x = x + 3}.
+assignment. For example, the statement \code{x += 3} means the same
+thing as \code{x = x + 3}.
 
 \gterm{index}:
 A subscript that specifies the location of a single
@@ -362,7 +362,7 @@ in the function's declaration that is used to hold such a value.
 The directory that ``contains'' the one in
 question. Every directory in a file system except the
 \gl{root directory}{g:root-directory} has a parent. A directory's
-parent is usually referred to using the shorthand notation \texttt{..}
+parent is usually referred to using the shorthand notation \code{..}
 (pronounced ``dot dot'').
 
 \gterm{pipe}:
@@ -423,9 +423,9 @@ called \gl{SQL}{g:sql}.
 \gterm{quoting} (in the shell):
 Using quotation marks of various kinds
 to prevent the shell from interpreting special characters. For example,
-to pass the string \texttt{*.txt} to a program, it is usually necessary
-to write it as \texttt{'*.txt'} (with single quotes) so that the shell
-will not try to expand the \texttt{*} wildcard.
+to pass the string \code{*.txt} to a program, it is usually necessary
+to write it as \code{'*.txt'} (with single quotes) so that the shell
+will not try to expand the \code{*} wildcard.
  
 \gterm{raise} (an exception):
 To explicitly signal that an \gl{exception}{g:exception} has occured in a program.
@@ -531,7 +531,7 @@ specified with a single integer index, such as a vector.
 
 \gterm{shape} (of an array):
 An array's dimensions, represented as a
-vector. For example, a 5${\times}$3 array's shape is \texttt{(5,3)}.
+vector. For example, a 5${\times}$3 array's shape is \code{(5,3)}.
 
 \gterm{shell}:
 A \gl{command-line interface}{g:cli} such as Bash
@@ -668,4 +668,4 @@ See also: \gl{for loop}{g:for-loop}.
 \gterm{wildcard}:
 A character used in pattern matching. In the Unix
 shell, the wildcard ``*'' matches zero or more characters, so that
-\texttt{*.txt} matches all files whose names end in \texttt{.txt}.
+\code{*.txt} matches all files whose names end in \code{.txt}.

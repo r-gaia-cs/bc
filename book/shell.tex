@@ -34,11 +34,11 @@ Pacific Garbage Patch}. She has 300 samples in all, and now needs to:
   a single sample is a file with one line for each protein.
 \item
   Calculate statistics for each of the proteins separately using a
-  program her supervisor wrote called \texttt{goostat}.
+  program her supervisor wrote called \code{goostat}.
 \item
   Compare the statistics for each protein with corresponding statistics
   for each other protein using a program one of the other graduate
-  students wrote called \texttt{goodiff}.
+  students wrote called \code{goodiff}.
 \item
   Write up. Her supervisor would really like her to do this by the end
   of the month so that her paper can appear in an upcoming special issue
@@ -50,10 +50,10 @@ sample. The good news is, it only takes two minutes to set each one up.
 Since her lab has eight assay machines that she can use in parallel,
 this step will ``only'' take about two weeks.
 
-The bad news is that if she has to run \texttt{goostat} and
-\texttt{goodiff} by hand, she'll have to enter filenames and click
-``OK'' 45,150 times (300 runs of \texttt{goostat}, plus 300${\times}$299/2 runs
-of \texttt{goodiff}). At 30 seconds each, that will take more than two
+The bad news is that if she has to run \code{goostat} and
+\code{goodiff} by hand, she'll have to enter filenames and click
+``OK'' 45,150 times (300 runs of \code{goostat}, plus 300${\times}$299/2 runs
+of \code{goodiff}). At 30 seconds each, that will take more than two
 weeks. Not only would she miss her paper deadline, the chances of her
 typing all of those commands right are practically zero.
 
@@ -183,7 +183,7 @@ The dollar sign is a \gl{prompt}{g:prompt}, which shows us that
 the shell is waiting for input; your shell may show something more
 elaborate.
 
-Type the command \texttt{whoami}, then press the Enter key (sometimes
+Type the command \code{whoami}, then press the Enter key (sometimes
 marked Return) to send the command to the shell. The command's output is
 the ID of the current user, i.e., it shows us who the shell thinks we
 are:
@@ -191,18 +191,17 @@ are:
 \begin{VerbIn}
 $ whoami
 \end{VerbIn}
-
 % [c]
 \begin{VerbOut}
 nelle
 \end{VerbOut}
 
 \noindent
-More specifically, when we type \texttt{whoami} the shell:
+More specifically, when we type \code{whoami} the shell:
 
 \begin{swcenumerate}
 \item
-  finds a program called \texttt{whoami},
+  finds a program called \code{whoami},
 \item
   runs that program,
 \item
@@ -212,12 +211,12 @@ More specifically, when we type \texttt{whoami} the shell:
 \end{swcenumerate}
 
 Next, let's find out where we are by running a command called
-\texttt{pwd} (which stands for ``print working directory''). At any
+\code{pwd} (which stands for ``print working directory''). At any
 moment, our \gl{current working
 directory}{g:current-working-directory} is our current default directory, i.e., the directory that
 the computer assumes we want to run commands in unless we explicitly
 specify something else. Here, the computer's response is
-\texttt{/users/nelle}, which is Nelle's \gl{home
+\code{/users/nelle}, which is Nelle's \gl{home
 directory}{g:home-directory}:
 
 \begin{VerbIn}
@@ -231,9 +230,9 @@ $ pwd
 
 \begin{swcbox}{Alphabet Soup}
 
-If the command to find out who we are is \texttt{whoami}, why is the
-command to find out where we are called \texttt{pwd} instead of
-\texttt{whereami}?  The usual answer is that in the early 1970s, when
+If the command to find out who we are is \code{whoami}, why is the
+command to find out where we are called \code{pwd} instead of
+\code{whereami}?  The usual answer is that in the early 1970s, when
 Unix was first being developed, every keystroke counted: the devices
 of the day were slow, and backspacing on a teletype was so painful
 that cutting the number of keystrokes in order to cut the number of
@@ -247,37 +246,37 @@ as the roolz uv Inglish speling, but we're stuck with it now.
 To understand what a ``home directory'' is, let's have a look at how the
 file system as a whole is organized. At the top is the
 \gl{root directory}{g:root-directory} that holds everything else.
-We refer to it using a slash character \texttt{/} on its own; this is
-the leading slash in \texttt{/users/nelle}.
+We refer to it using a slash character \code{/} on its own; this is
+the leading slash in \code{/users/nelle}.
 
-Inside that directory are several other directories: \texttt{bin} (which
-is where some built-in programs are stored), \texttt{data} (for
-miscellaneous data files), \texttt{users} (where users' personal
-directories are located), \texttt{tmp} (for temporary files that don't
+Inside that directory are several other directories: \code{bin} (which
+is where some built-in programs are stored), \code{data} (for
+miscellaneous data files), \code{users} (where users' personal
+directories are located), \code{tmp} (for temporary files that don't
 need to be stored long-term), and so on (\figref{f:filesystem}).
 
 \swcgraphics{f:filesystem}{A Typical Filesystem}{novice/shell/img/filesystem.pdf}{0.75}
 
-We know that our current working directory \texttt{/users/nelle} is
-stored inside \texttt{/users} because \texttt{/users} is the first part
-of its name. Similarly, we know that \texttt{/users} is stored inside
-the root directory \texttt{/} because its name begins with \texttt{/}.
+We know that our current working directory \code{/users/nelle} is
+stored inside \code{/users} because \code{/users} is the first part
+of its name. Similarly, we know that \code{/users} is stored inside
+the root directory \code{/} because its name begins with \code{/}.
 
-Underneath \texttt{/users}, we find one directory for each user with
+Underneath \code{/users}, we find one directory for each user with
 an account on this machine (\figref{f:homedir}). The Mummy's files are
-stored in \texttt{/users/imhotep}, Wolfman's in \texttt{/users/larry},
-and ours in \texttt{/users/nelle}, which is why \texttt{nelle} is the
+stored in \code{/users/imhotep}, Wolfman's in \code{/users/larry},
+and ours in \code{/users/nelle}, which is why \code{nelle} is the
 last part of the directory's name.
 
 \swcgraphics{f:homedir}{Home Directories}{novice/shell/img/home-directories.pdf}{0.75}
 
 \begin{quote} % FIXME
-Notice that there are two meanings for the \texttt{/} character. When it
+Notice that there are two meanings for the \code{/} character. When it
 appears at the front of a file or directory name, it refers to the root
 directory. When it appears \emph{inside} a name, it's just a separator.
 \end{quote}
 
-Let's see what's in Nelle's home directory by running \texttt{ls}, which
+Let's see what's in Nelle's home directory by running \code{ls}, which
 stands for ``listing'' (\figref{f:listing}):
 
 \begin{VerbIn}
@@ -293,11 +292,11 @@ solar.pdf    swc
 
 \swcgraphics{f:listing}{Nelle's Home Directory}{novice/shell/img/homedir.pdf}{0.75}
 
-\texttt{ls} prints the names of the files and directories in the current
+\code{ls} prints the names of the files and directories in the current
 directory in alphabetical order, arranged neatly into columns. We can
 make its output more comprehensible by using the
-\gl{flag}{g:command-line-flag} \texttt{-F}, which tells
-\texttt{ls} to add a trailing \texttt{/} to the names of directories:
+\gl{flag}{g:command-line-flag} \code{-F}, which tells
+\code{ls} to add a trailing \code{/} to the names of directories:
 
 \begin{VerbIn}
 $ ls -F
@@ -310,40 +309,40 @@ notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
 \end{VerbOut}
 
-Here, we can see that \texttt{/users/nelle} contains seven
+Here, we can see that \code{/users/nelle} contains seven
 \gl{sub-directories}{g:sub-directory}. The names that don't have
-trailing slashes, like \texttt{notes.txt}, \texttt{pizza.cfg}, and
-\texttt{solar.pdf}, are plain old files. And note that there is a space
-between \texttt{ls} and \texttt{-F}: without it, the shell thinks we're
-trying to run a command called \texttt{ls-F}, which doesn't exist.
+trailing slashes, like \code{notes.txt}, \code{pizza.cfg}, and
+\code{solar.pdf}, are plain old files. And note that there is a space
+between \code{ls} and \code{-F}: without it, the shell thinks we're
+trying to run a command called \code{ls-F}, which doesn't exist.
 
 \begin{swcbox}{What's In A Name?}
 
 You may have noticed that all of Nelle's files' names are ``something dot
 something''. This is just a convention: we can call a file
-\texttt{mythesis} or almost anything else we want. However, most people
+\code{mythesis} or almost anything else we want. However, most people
 use two-part names most of the time to help them (and their programs)
 tell different kinds of files apart. The second part of such a name is
 called the \gl{filename extension}{g:filename-extension}, and
-indicates what type of data the file holds: \texttt{.txt} signals a
-plain text file, \texttt{.pdf} indicates a PDF document, \texttt{.cfg}
+indicates what type of data the file holds: \code{.txt} signals a
+plain text file, \code{.pdf} indicates a PDF document, \code{.cfg}
 is a configuration file full of parameters for some program or other,
 and so on.
 
 This is just a convention, albeit an important one. Files contain
 bytes: it's up to us and our programs to interpret those bytes
 according to the rules for PDF documents, images, and so on.  Naming a
-PNG image of a whale as \texttt{whale.mp3} doesn't somehow magically
+PNG image of a whale as \code{whale.mp3} doesn't somehow magically
 turn it into a recording of whalesong, though it \emph{might} cause
 the operating system to try to open it with a music player when
 someone double-clicks it.
 
 \end{swcbox}
 
-Now let's take a look at what's in Nelle's \texttt{data} directory by
-running \texttt{ls -F data}, i.e., the command \texttt{ls} with the
-arguments \texttt{-F} and \texttt{data}. The second argument---the one
-\emph{without} a leading dash---tells \texttt{ls} that we want a listing
+Now let's take a look at what's in Nelle's \code{data} directory by
+running \code{ls -F data}, i.e., the command \code{ls} with the
+arguments \code{-F} and \code{data}. The second argument---the one
+\emph{without} a leading dash---tells \code{ls} that we want a listing
 of something other than our current working directory:
 
 \begin{VerbIn}
@@ -362,16 +361,16 @@ us keep track of our work: it's possible to put hundreds of files in our
 home directory, just as it's possible to pile hundreds of printed papers
 on our desk, but it's a self-defeating strategy.
 
-Notice, by the way that we spelled the directory name \texttt{data}. It
+Notice, by the way that we spelled the directory name \code{data}. It
 doesn't have a trailing slash: that's added to directory names by
-\texttt{ls} when we use the \texttt{-F} flag to help us tell things
+\code{ls} when we use the \code{-F} flag to help us tell things
 apart. And it doesn't begin with a slash because it's a
-\gl{relative path}{g:relative-path}, i.e., it tells \texttt{ls}
+\gl{relative path}{g:relative-path}, i.e., it tells \code{ls}
 how to find something from where we are, rather than from the root of
 the file system.
 
-If we run \texttt{ls -F /data} (\emph{with} a leading slash) we get a
-different answer, because \texttt{/data} is an
+If we run \code{ls -F /data} (\emph{with} a leading slash) we get a
+different answer, because \code{/data} is an
 \gl{absolute path}{g:absolute-path}:
 
 \begin{VerbIn}
@@ -385,13 +384,13 @@ network.cfg
 \end{VerbOut}
 
 \noindent
-The leading \texttt{/} tells the computer to follow the path from the
+The leading \code{/} tells the computer to follow the path from the
 root of the filesystem, so it always refers to exactly one directory, no
 matter where we are when we run the command.
 
 What if we want to change our current working directory? Before we do
-this, \texttt{pwd} shows us that we're in \texttt{/users/nelle}, and
-\texttt{ls} without any arguments shows us that directory's contents:
+this, \code{pwd} shows us that we're in \code{/users/nelle}, and
+\code{ls} without any arguments shows us that directory's contents:
 
 \begin{VerbIn}
 $ pwd
@@ -414,8 +413,8 @@ notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
 \end{VerbOut}
 
-We can use \texttt{cd} followed by a directory name to change our
-working directory. \texttt{cd} stands for ``change directory'', which is
+We can use \code{cd} followed by a directory name to change our
+working directory. \code{cd} stands for ``change directory'', which is
 a bit misleading: the command doesn't change the directory, it changes
 the shell's idea of what directory we are in.
 
@@ -423,10 +422,10 @@ the shell's idea of what directory we are in.
 $ cd data
 \end{VerbIn}
 
-\texttt{cd} doesn't print anything, but if we run \texttt{pwd} after it,
-we can see that we are now in \texttt{/users/nelle/data}. If we run
-\texttt{ls} without arguments now, it lists the contents of
-\texttt{/users/nelle/data}, because that's where we now are:
+\code{cd} doesn't print anything, but if we run \code{pwd} after it,
+we can see that we are now in \code{/users/nelle/data}. If we run
+\code{ls} without arguments now, it lists the contents of
+\code{/users/nelle/data}, because that's where we now are:
 
 \begin{VerbIn}
 $ pwd
@@ -456,7 +455,7 @@ $ cd /users/nelle
 \end{VerbIn}
 
 \noindent
-but it's almost always simpler to use \texttt{cd ..} to go up one level:
+but it's almost always simpler to use \code{cd ..} to go up one level:
 
 \begin{VerbIn}
 $ pwd
@@ -478,15 +477,15 @@ $ pwd
 /users/nelle
 \end{VerbOut}
 
-\texttt{..} is a special directory name meaning ``the directory
+\code{..} is a special directory name meaning ``the directory
 containing this one'', or more succinctly, the
 \gl{parent}{g:parent-directory} of the current directory. Sure
-enough, if we run \texttt{pwd} after running \texttt{cd ..}, we're back
-in \texttt{/users/nelle}.
+enough, if we run \code{pwd} after running \code{cd ..}, we're back
+in \code{/users/nelle}.
 
-The special directory \texttt{..} doesn't usually show up when we run
-\texttt{ls}. If we want to display it, we can give \texttt{ls} the
-\texttt{-a} flag:
+The special directory \code{..} doesn't usually show up when we run
+\code{ls}. If we want to display it, we can give \code{ls} the
+\code{-a} flag:
 
 \begin{VerbIn}
 $ ls -F -a
@@ -500,20 +499,20 @@ pizza.cfg    solar/    solar.pdf    swc/
 \end{VerbOut}
 
 \noindent
-\texttt{-a} stands for ``show all''; it forces \texttt{ls} to show us
-file and directory names that begin with \texttt{.}, such as \texttt{..}
-(which, if we're in \texttt{/users/nelle}, refers to the \texttt{/users}
+\code{-a} stands for ``show all''; it forces \code{ls} to show us
+file and directory names that begin with \code{.}, such as \code{..}
+(which, if we're in \code{/users/nelle}, refers to the \code{/users}
 directory). As you can see, it also displays another special directory
-that's just called \texttt{.}, which means ``the current working
+that's just called \code{.}, which means ``the current working
 directory''. It may seem redundant to have a name for it, but we'll see
 some uses for it soon.
 
 \begin{swcbox}{Orthogonality}
 
-The special names \texttt{.} and \texttt{..} don't belong to
-\texttt{ls}; they are interpreted the same way by every program. For
-example, if we are in \texttt{/users/nelle/data}, the command
-\texttt{ls ..} will give us a listing of \texttt{/users/nelle}. When the
+The special names \code{.} and \code{..} don't belong to
+\code{ls}; they are interpreted the same way by every program. For
+example, if we are in \code{/users/nelle/data}, the command
+\code{ls ..} will give us a listing of \code{/users/nelle}. When the
 meanings of the parts are the same no matter how they're combined,
 programmers say they are \gl{orthogonal}{g:orthogonal}: Orthogonal
 systems tend to be easier for people to learn because there are fewer
@@ -525,13 +524,13 @@ special cases and exceptions to keep track of.
 
 Knowing just this much about files and directories, Nelle is ready to
 organize the files that the protein assay machine will create. First,
-she creates a directory called \texttt{north-pacific-gyre} (to remind
+she creates a directory called \code{north-pacific-gyre} (to remind
 herself where the data came from). Inside that, she creates a directory
-called \texttt{2012-07-03}, which is the date she started processing the
-samples. She used to use names like \texttt{conference-paper} and
-\texttt{revised-results}, but she found them hard to understand after a
+called \code{2012-07-03}, which is the date she started processing the
+samples. She used to use names like \code{conference-paper} and
+\code{revised-results}, but she found them hard to understand after a
 couple of years. (The final straw was when she found herself creating a
-directory called \texttt{revised-revised-results-3}.)
+directory called \code{revised-revised-results-3}.)
 
 \begin{quote}
 Nelle names her directories ``year-month-day'', with leading zeroes for
@@ -546,8 +545,8 @@ convention with a unique ten-character ID, such as ``NENE01729A''. This
 is what she used in her collection log to record the location, time,
 depth, and other characteristics of the sample, so she decides to use it
 as part of each data file's name. Since the assay machine's output is
-plain text, she will call her files \texttt{NENE01729A.txt},
-\texttt{NENE01812A.txt}, and so on. All 1520 files will go into the same
+plain text, she will call her files \code{NENE01729A.txt},
+\code{NENE01812A.txt}, and so on. All 1520 files will go into the same
 directory.
 
 If she is in her home directory, Nelle can see what files she has using
@@ -573,7 +572,7 @@ name for her:
 $ ls north-pacific-gyre/
 \end{VerbIn}
 
-If she presses tab again, Bash will add \texttt{2012-07-03/} to the
+If she presses tab again, Bash will add \code{2012-07-03/} to the
 command, since it's the only possible completion. Pressing tab again
 does nothing, since there are 1520 possibilities; pressing tab twice
 brings up a list of all the files, and so on. This is called
@@ -591,7 +590,7 @@ other tools as we go on.
   Directories can also store other directories, which forms a directory
   tree.
 \item
-  \texttt{/} on its own is the root directory of the whole filesystem.
+  \code{/} on its own is the root directory of the whole filesystem.
 \item
   A relative path specifies a location starting from the current
   location.
@@ -604,7 +603,7 @@ other tools as we go on.
   `..' means ``the directory above the current one'', and `.' on its own
   means ``the current directory''.
 \item
-  Most files' names are \texttt{something.extension}. The extension
+  Most files' names are \code{something.extension}. The extension
   isn't required, and doesn't guarantee anything, but is normally used
   to indicate the type of data in the file.
 \item
@@ -618,19 +617,19 @@ Please refer to \figref{f:filesys-challenge} for the following challenges.
 
 \begin{challenge}
 
-  If \texttt{pwd} displays \texttt{/users/thing}, what will
-  \texttt{ls ../backup} display? 1.
-  \texttt{../backup: No such file or directory} 2.
-  \texttt{2012-12-01 2013-01-08 2013-01-27} 3.
-  \texttt{2012-12-01/ 2013-01-08/ 2013-01-27/} 4.
-  \texttt{original pnas\_final pnas\_sub}
+  If \code{pwd} displays \code{/users/thing}, what will
+  \code{ls ../backup} display? 1.
+  \code{../backup: No such file or directory} 2.
+  \code{2012-12-01 2013-01-08 2013-01-27} 3.
+  \code{2012-12-01/ 2013-01-08/ 2013-01-27/} 4.
+  \code{original pnas\_final pnas\_sub}
 
 \end{challenge}
 
 \begin{challenge}
 
-  If \texttt{pwd} displays \texttt{/users/backup}, and \texttt{-r} tells
-  \texttt{ls} to display things in reverse order, what command will
+  If \code{pwd} displays \code{/users/backup}, and \code{-r} tells
+  \code{ls} to display things in reverse order, what command will
   display:
 
 \begin{VerbOut}
@@ -639,11 +638,11 @@ pnas-sub/ pnas-final/ original/
 
 \begin{swcenumerate}
 \item
-  \texttt{ls pwd}
+  \code{ls pwd}
 \item
-  \texttt{ls -r -F}
+  \code{ls -r -F}
 \item
-  \texttt{ls -r -F /users/backup}
+  \code{ls -r -F /users/backup}
 \item
   Either \#2 or \#3 above, but not \#1.
 \end{swcenumerate}
@@ -652,8 +651,8 @@ pnas-sub/ pnas-final/ original/
 
 \begin{challenge}
 
-  What does the command \texttt{cd} without a directory name do? 1. It has
-  no effect. 2. It changes the working directory to \texttt{/}. 3. It
+  What does the command \code{cd} without a directory name do? 1. It has
+  no effect. 2. It changes the working directory to \code{/}. 3. It
   changes the working directory to the user's home directory. 4. It
   produces an error message.
 
@@ -661,7 +660,7 @@ pnas-sub/ pnas-final/ original/
 
 \begin{challenge}
 
-  What does the command \texttt{ls} do when used with the -s and -h
+  What does the command \code{ls} do when used with the -s and -h
   arguments?
 
 \end{challenge}
@@ -684,7 +683,7 @@ pnas-sub/ pnas-final/ original/
 
 We now know how to explore files and directories, but how do we create
 them in the first place? Let's go back to Nelle's home directory,
-\texttt{/users/nelle}, and use \texttt{ls -F} to see what it contains:
+\code{/users/nelle}, and use \code{ls -F} to see what it contains:
 
 \begin{VerbIn}
 $ pwd
@@ -707,15 +706,15 @@ notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
 \end{VerbOut}
 
-Let's create a new directory called \texttt{thesis} using the command
-\texttt{mkdir thesis} (which has no output):
+Let's create a new directory called \code{thesis} using the command
+\code{mkdir thesis} (which has no output):
 
 \begin{VerbIn}
 $ mkdir thesis
 \end{VerbIn}
 
-As you might (or might not) guess from its name, \texttt{mkdir} means
-``make directory''. Since \texttt{thesis} is a relative path (i.e.,
+As you might (or might not) guess from its name, \code{mkdir} means
+``make directory''. Since \code{thesis} is a relative path (i.e.,
 doesn't have a leading slash), the new directory is made below the
 current working directory:
 
@@ -736,9 +735,9 @@ However, there's nothing in it yet:
 $ ls -F thesis
 \end{VerbIn}
 
-Let's change our working directory to \texttt{thesis} using \texttt{cd},
+Let's change our working directory to \code{thesis} using \code{cd},
 then run a text editor called Nano to create a file called
-\texttt{draft.txt} (\figref{f:nano}).
+\code{draft.txt} (\figref{f:nano}).
 
 \begin{VerbIn}
 $ cd thesis
@@ -749,7 +748,7 @@ $ nano draft.txt
 
 \begin{swcbox}{Which Editor?}
 
-When we say, ``\texttt{nano} is a text editor'' we really do mean
+When we say, ``\code{nano} is a text editor'' we really do mean
 ``text'': it can only work with plain character data, not tables,
 images, or any other human-friendly media. We use it in examples because
 almost anyone can drive it anywhere without training, but please use
@@ -773,9 +772,9 @@ another directory the first time you ``Save As\ldots{}''
 Let's type in a few lines of text, then use Control-O to write our
 data to disk.  Once our file is saved, we can use Control-X to quit
 the editor and return to the shell. (Unix documentation often uses the
-shorthand \texttt{\^{}A} to mean ``control-A''.) \texttt{nano} doesn't
-leave any output on the screen after it exits, but \texttt{ls} now
-shows that we have created a file called \texttt{draft.txt}:
+shorthand \code{\^{}A} to mean ``control-A''.) \code{nano} doesn't
+leave any output on the screen after it exits, but \code{ls} now
+shows that we have created a file called \code{draft.txt}:
 
 \begin{VerbIn}
 $ ls
@@ -786,7 +785,7 @@ $ ls
 draft.txt
 \end{VerbOut}
 
-Let's tidy up by running \texttt{rm draft.txt}:
+Let's tidy up by running \code{rm draft.txt}:
 
 \begin{VerbIn}
 $ rm draft.txt
@@ -794,7 +793,7 @@ $ rm draft.txt
 
 \noindent
 This command removes files (``rm'' is short for ``remove''). If we run
-\texttt{ls} again, its output is empty once more, which tells us that
+\code{ls} again, its output is empty once more, which tells us that
 our file is gone:
 
 \begin{VerbIn}
@@ -812,7 +811,7 @@ computer may recycle the file's disk space right away.
 \end{swcbox}
 
 Let's re-create that file and then move up one directory to
-\texttt{/users/nelle} using \texttt{cd ..}:
+\code{/users/nelle} using \code{cd ..}:
 
 \begin{VerbIn}
 $ pwd
@@ -839,8 +838,8 @@ draft.txt
 $ cd ..
 \end{VerbIn}
 
-If we try to remove the entire \texttt{thesis} directory using
-\texttt{rm thesis}, we get an error message:
+If we try to remove the entire \code{thesis} directory using
+\code{rm thesis}, we get an error message:
 
 \begin{VerbIn}
 $ rm thesis
@@ -852,8 +851,8 @@ rm: cannot remove `thesis': Is a directory
 \end{VerbErr}
 
 \noindent
-This happens because \texttt{rm} only works on files, not directories.
-The right command is \texttt{rmdir}, which is short for ``remove
+This happens because \code{rm} only works on files, not directories.
+The right command is \code{rmdir}, which is short for ``remove
 directory''. It doesn't work yet either, though, because the directory
 we're trying to remove isn't empty:
 
@@ -867,14 +866,14 @@ rmdir: failed to remove `thesis': Directory not empty
 \end{VerbErr}
 
 This little safety feature can save you a lot of grief, particularly if
-you are a bad typist. To really get rid of \texttt{thesis} we must first
-delete the file \texttt{draft.txt}:
+you are a bad typist. To really get rid of \code{thesis} we must first
+delete the file \code{draft.txt}:
 
 \begin{VerbIn}
 $ rm thesis/draft.txt
 \end{VerbIn}
 
-The directory is now empty, so \texttt{rmdir} can delete it:
+The directory is now empty, so \code{rmdir} can delete it:
 
 \begin{VerbIn}
 $ rmdir thesis
@@ -883,8 +882,8 @@ $ rmdir thesis
 \begin{swcbox}{With Great Power Comes Great Responsibility}
 
 Removing the files in a directory just so that we can remove the
-directory quickly becomes tedious. Instead, we can use \texttt{rm} with
-the \texttt{-r} flag (which stands for ``recursive''):
+directory quickly becomes tedious. Instead, we can use \code{rm} with
+the \code{-r} flag (which stands for ``recursive''):
 
 \begin{VerbIn}
 $ rm -r thesis
@@ -892,16 +891,16 @@ $ rm -r thesis
 
 \noindent
 This removes everything in the directory, then the directory itself. If
-the directory contains sub-directories, \texttt{rm -r} does the same
+the directory contains sub-directories, \code{rm -r} does the same
 thing to them, and so on. It's very handy, but can do a lot of damage if
 used without care.
 
 \end{swcbox}
 
 Let's create that directory and file one more time. (Note that this time
-we're running \texttt{nano} with the path \texttt{thesis/draft.txt},
-rather than going into the \texttt{thesis} directory and running
-\texttt{nano} on \texttt{draft.txt} there.)
+we're running \code{nano} with the path \code{thesis/draft.txt},
+rather than going into the \code{thesis} directory and running
+\code{nano} on \code{draft.txt} there.)
 
 \begin{VerbIn}
 $ pwd
@@ -928,19 +927,19 @@ $ ls thesis
 draft.txt
 \end{VerbOut}
 
-\texttt{draft.txt} isn't a particularly informative name, so let's
-change the file's name using \texttt{mv}, which is short for ``move'':
+\code{draft.txt} isn't a particularly informative name, so let's
+change the file's name using \code{mv}, which is short for ``move'':
 
 \begin{VerbIn}
 $ mv thesis/draft.txt thesis/quotes.txt
 \end{VerbIn}
 
 \noindent
-The first argument tells \texttt{mv} what we're ``moving'', while the
+The first argument tells \code{mv} what we're ``moving'', while the
 second is where it's to go. In this case, we're moving
-\texttt{thesis/draft.txt} to \texttt{thesis/quotes.txt}, which has the
-same effect as renaming the file. Sure enough, \texttt{ls} shows us that
-\texttt{thesis} now contains one file called \texttt{quotes.txt}:
+\code{thesis/draft.txt} to \code{thesis/quotes.txt}, which has the
+same effect as renaming the file. Sure enough, \code{ls} shows us that
+\code{thesis} now contains one file called \code{quotes.txt}:
 
 \begin{VerbIn}
 $ ls thesis
@@ -952,15 +951,15 @@ quotes.txt
 \end{VerbOut}
 
 \noindent
-(Just for the sake of inconsistency, \texttt{mv} also works on
-directories---there is no separate \texttt{mvdir} command.)
+(Just for the sake of inconsistency, \code{mv} also works on
+directories---there is no separate \code{mvdir} command.)
 
-Let's move \texttt{quotes.txt} into the current working directory. We
-use \texttt{mv} once again, but this time we'll just use the name of a
-directory as the second argument to tell \texttt{mv} that we want to
+Let's move \code{quotes.txt} into the current working directory. We
+use \code{mv} once again, but this time we'll just use the name of a
+directory as the second argument to tell \code{mv} that we want to
 keep the filename, but put the file somewhere new. (This is why the
 command is called ``move''.) In this case, the directory name we use is
-the special directory name \texttt{.} that we mentioned earlier.
+the special directory name \code{.} that we mentioned earlier.
 
 \begin{VerbIn}
 $ mv thesis/quotes.txt .
@@ -968,7 +967,7 @@ $ mv thesis/quotes.txt .
 
 \noindent
 The effect is to move the file from the directory it was in to the
-current working directory. \texttt{ls} now shows us that \texttt{thesis}
+current working directory. \code{ls} now shows us that \code{thesis}
 is empty:
 
 \begin{VerbIn}
@@ -976,9 +975,9 @@ $ ls thesis
 \end{VerbIn}
 
 \noindent
-Further, \texttt{ls} with a filename or directory name as an argument
+Further, \code{ls} with a filename or directory name as an argument
 only lists that file or directory. We can use this to see that
-\texttt{quotes.txt} is still in our current directory:
+\code{quotes.txt} is still in our current directory:
 
 \begin{VerbIn}
 $ ls quotes.txt
@@ -989,10 +988,10 @@ $ ls quotes.txt
 quotes.txt
 \end{VerbOut}
 
-The \texttt{cp} command works very much like \texttt{mv}, except it
+The \code{cp} command works very much like \code{mv}, except it
 copies a file instead of moving it. We can check that it did the right
-thing using \texttt{ls} with two paths as arguments---like most Unix
-commands, \texttt{ls} can be given thousands of paths at once:
+thing using \code{ls} with two paths as arguments---like most Unix
+commands, \code{ls} can be given thousands of paths at once:
 
 \begin{VerbIn}
 $ cp quotes.txt thesis/quotations.txt
@@ -1004,10 +1003,10 @@ $ ls quotes.txt thesis/quotations.txt
 quotes.txt   thesis/quotations.txt
 \end{VerbOut}
 
-To prove that we made a copy, let's delete the \texttt{quotes.txt} file
-in the current directory and then run that same \texttt{ls} again. This
-time it tells us that it can't find \texttt{quotes.txt} in the current
-directory, but it does find the copy in \texttt{thesis} that we didn't
+To prove that we made a copy, let's delete the \code{quotes.txt} file
+in the current directory and then run that same \code{ls} again. This
+time it tells us that it can't find \code{quotes.txt} in the current
+directory, but it does find the copy in \code{thesis} that we didn't
 delete:
 
 \begin{VerbIn}
@@ -1026,13 +1025,13 @@ thesis/quotations.txt
 
 \begin{swcbox}{Another Useful Abbreviation}
 
-The shell interprets the character \texttt{\textasciitilde{}} (tilde) at
+The shell interprets the character \code{\textasciitilde{}} (tilde) at
 the start of a path to mean ``the current user's home directory''. For
-example, if Nelle's home directory is \texttt{/home/nelle}, then
-\texttt{\textasciitilde{}/data} expands to
-\texttt{/home/nelle/data}. This only works if it is the first character
-in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
-\emph{not} \texttt{/home/nelle/elsewhere}.
+example, if Nelle's home directory is \code{/home/nelle}, then
+\code{\textasciitilde{}/data} expands to
+\code{/home/nelle/data}. This only works if it is the first character
+in the path: \code{here/there/\textasciitilde{}/elsewhere} is
+\emph{not} \code{/home/nelle/elsewhere}.
 
 \end{swcbox}
 
@@ -1050,7 +1049,7 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 \end{keypoints}
 
 \begin{challenge}
-  What is the output of the closing \texttt{ls} command in the sequence
+  What is the output of the closing \code{ls} command in the sequence
   shown below?
 
 \begin{VerbIn}
@@ -1117,7 +1116,7 @@ fructose.dat    sucrose.dat
 \end{challenge}
 
 \begin{challenge}
-  What does \texttt{cp} do when given several filenames and a directory
+  What does \code{cp} do when given several filenames and a directory
   name, as in:
 
 \begin{VerbIn}
@@ -1143,12 +1142,12 @@ $ cp intro.txt methods.txt survey.txt
 \end{challenge}
 
 \begin{challenge}
-  The command \texttt{ls -R} lists the contents of directories
+  The command \code{ls -R} lists the contents of directories
   recursively, i.e., lists their sub-directories, sub-sub-directories,
   and so on in alphabetical order at each level. The command
-  \texttt{ls -t} lists things by time of last change, with most recently
+  \code{ls -t} lists things by time of last change, with most recently
   changed files or directories first. In what order does
-  \texttt{ls -R -t} display things?
+  \code{ls -R -t} display things?
 \end{challenge}
 
 \section{Pipes and Filters}
@@ -1172,8 +1171,8 @@ $ cp intro.txt methods.txt survey.txt
 Now that we know a few basic commands, we can finally look at the
 shell's most powerful feature: the ease with which it lets us combine
 existing programs in new ways. We'll start with a directory called
-\texttt{molecules} that contains six files describing some simple
-organic molecules. The \texttt{.pdb} extension indicates that these
+\code{molecules} that contains six files describing some simple
+organic molecules. The \code{.pdb} extension indicates that these
 files are in Protein Data Bank format, a simple text format that
 specifies the type and position of each atom in the molecule.
 
@@ -1187,11 +1186,11 @@ cubane.pdb    ethane.pdb    methane.pdb
 octane.pdb    pentane.pdb   propane.pdb
 \end{VerbOut}
 
-Let's go into that directory with \texttt{cd} and run the command
-\texttt{wc *.pdb}. \texttt{wc} is the ``word count'' command: it counts
-the number of lines, words, and characters in files. The \texttt{*} in
-\texttt{*.pdb} matches zero or more characters, so the shell turns
-\texttt{*.pdb} into a complete list of \texttt{.pdb} files:
+Let's go into that directory with \code{cd} and run the command
+\code{wc *.pdb}. \code{wc} is the ``word count'' command: it counts
+the number of lines, words, and characters in files. The \code{*} in
+\code{*.pdb} matches zero or more characters, so the shell turns
+\code{*.pdb} into a complete list of \code{.pdb} files:
 
 % [c]
 \begin{VerbIn}
@@ -1212,33 +1211,33 @@ $ wc *.pdb
 
 \begin{swcbox}{Wildcards}
 
-\texttt{*} is a \gl{wildcard}{g:wildcard}. It matches zero or more
-characters, so \texttt{*.pdb} matches \texttt{ethane.pdb},
-\texttt{propane.pdb}, and so on. On the other hand, \texttt{p*.pdb} only
-matches \texttt{pentane.pdb} and \texttt{propane.pdb}, because the `p'
+\code{*} is a \gl{wildcard}{g:wildcard}. It matches zero or more
+characters, so \code{*.pdb} matches \code{ethane.pdb},
+\code{propane.pdb}, and so on. On the other hand, \code{p*.pdb} only
+matches \code{pentane.pdb} and \code{propane.pdb}, because the `p'
 at the front only matches itself.
 
-\texttt{?} is also a wildcard, but it only matches a single character.
-This means that \texttt{p?.pdb} matches \texttt{pi.pdb} or
-\texttt{p5.pdb}, but not \texttt{propane.pdb}. We can use any number of
-wildcards at a time: for example, \texttt{p*.p?*} matches anything that
+\code{?} is also a wildcard, but it only matches a single character.
+This means that \code{p?.pdb} matches \code{pi.pdb} or
+\code{p5.pdb}, but not \code{propane.pdb}. We can use any number of
+wildcards at a time: for example, \code{p*.p?*} matches anything that
 starts with a `p' and ends with `.', `p', and at least one more
 character (since the `?' has to match one character, and the final `*'
-can match any number of characters). Thus, \texttt{p*.p?*} would match
-\texttt{preferred.practice}, and even \texttt{p.pi} (since the first `*'
-can match no characters at all), but not \texttt{quality.practice}
-(doesn't start with `p') or \texttt{preferred.p} (there isn't at least
+can match any number of characters). Thus, \code{p*.p?*} would match
+\code{preferred.practice}, and even \code{p.pi} (since the first `*'
+can match no characters at all), but not \code{quality.practice}
+(doesn't start with `p') or \code{preferred.p} (there isn't at least
 one character after the `.p').
 
 When the shell sees a wildcard, it expands the wildcard to create a list
 of matching filenames \emph{before} running the command that was asked
-for. This means that commands like \texttt{wc} and \texttt{ls} never see
+for. This means that commands like \code{wc} and \code{ls} never see
 the wildcard characters, just what those wildcards matched. This is
 another example of orthogonal design.
 
 \end{swcbox}
 
-If we run \texttt{wc -l} instead of just \texttt{wc}, the output shows
+If we run \code{wc -l} instead of just \code{wc}, the output shows
 only the number of lines per file:
 
 \begin{VerbIn}
@@ -1257,8 +1256,8 @@ $ wc -l *.pdb
 \end{VerbOut}
 
 \noindent
-We can also use \texttt{-w} to get only the number of words, or
-\texttt{-c} to get only the number of characters.
+We can also use \code{-w} to get only the number of words, or
+\code{-c} to get only the number of characters.
 
 Which of these files is shortest? It's an easy question to answer when
 there are only six files, but what if there were 6000? Our first step
@@ -1268,13 +1267,13 @@ toward a solution is to run the command:
 $ wc -l *.pdb > lengths
 \end{VerbIn}
 
-The \texttt{\textgreater{}} tells the shell to
+The \code{\textgreater{}} tells the shell to
 \gl{redirect}{g:redirect} the command's output to a file instead
 of printing it to the screen. The shell will create the file if it
 doesn't exist, or overwrite the contents of that file if it does. (This
-is why there is no screen output: everything that \texttt{wc} would have
-printed has gone into the file \texttt{lengths} instead.)
-\texttt{ls lengths} confirms that the file exists:
+is why there is no screen output: everything that \code{wc} would have
+printed has gone into the file \code{lengths} instead.)
+\code{ls lengths} confirms that the file exists:
 
 \begin{VerbIn}
 $ ls lengths
@@ -1285,10 +1284,10 @@ $ ls lengths
 lengths
 \end{VerbOut}
 
-We can now send the content of \texttt{lengths} to the screen using
-\texttt{cat lengths}. \texttt{cat} stands for ``concatenate'': it prints
+We can now send the content of \code{lengths} to the screen using
+\code{cat lengths}. \code{cat} stands for ``concatenate'': it prints
 the contents of files one after another. There's only one file in this
-case, so \texttt{cat} just shows us what it contains:
+case, so \code{cat} just shows us what it contains:
 
 \begin{VerbIn}
 $ cat lengths
@@ -1305,7 +1304,7 @@ $ cat lengths
  107  total
 \end{VerbOut}
 
-Now let's use the \texttt{sort} command to sort its contents. This does
+Now let's use the \code{sort} command to sort its contents. This does
 \emph{not} change the file; instead, it sends the sorted result to the
 screen:
 
@@ -1325,12 +1324,12 @@ $ sort lengths
 \end{VerbOut}
 
 We can put the sorted list of lines in another temporary file called
-\texttt{sorted-lengths} by putting
-\texttt{\textgreater{} sorted-lengths} after the command, just as we
-used \texttt{\textgreater{} lengths} to put the output of \texttt{wc}
-into \texttt{lengths}. Once we've done that, we can run another command
-called \texttt{head} to get the first few lines in
-\texttt{sorted-lengths}:
+\code{sorted-lengths} by putting
+\code{\textgreater{} sorted-lengths} after the command, just as we
+used \code{\textgreater{} lengths} to put the output of \code{wc}
+into \code{lengths}. Once we've done that, we can run another command
+called \code{head} to get the first few lines in
+\code{sorted-lengths}:
 
 \begin{VerbIn}
 $ sort lengths > sorted-lengths
@@ -1342,16 +1341,16 @@ $ head -1 sorted-lengths
   9  methane.pdb
 \end{VerbOut}
 
-Using the argument \texttt{-1} with \texttt{head} tells it that we only
-want the first line of the file; \texttt{-20} would get the first 20,
-and so on. Since \texttt{sorted-lengths} contains the lengths of our
-files ordered from least to greatest, the output of \texttt{head} must
+Using the argument \code{-1} with \code{head} tells it that we only
+want the first line of the file; \code{-20} would get the first 20,
+and so on. Since \code{sorted-lengths} contains the lengths of our
+files ordered from least to greatest, the output of \code{head} must
 be the file with the fewest lines.
 
 If you think this is confusing, you're in good company: even once you
-understand what \texttt{wc}, \texttt{sort}, and \texttt{head} do, all
+understand what \code{wc}, \code{sort}, and \code{head} do, all
 those intermediate files make it hard to follow what's going on. We can
-make it easier to understand by running \texttt{sort} and \texttt{head}
+make it easier to understand by running \code{sort} and \code{head}
 together:
 
 \begin{VerbIn}
@@ -1370,8 +1369,8 @@ right. The computer might create a temporary file if it needs to, or
 copy data from one program to the other in memory, or something else
 entirely; we don't have to know or care.
 
-We can use another pipe to send the output of \texttt{wc} directly to
-\texttt{sort}, which then sends its output to \texttt{head}:
+We can use another pipe to send the output of \code{wc} directly to
+\code{sort}, which then sends its output to \code{head}:
 
 \begin{VerbIn}
 $ wc -l *.pdb | sort | head -1
@@ -1386,7 +1385,7 @@ $ wc -l *.pdb | sort | head -1
 This is exactly like a mathematician nesting functions like
 \emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
 \emph{x} times $\pi$''. In our case, the calculation is ``head of sort of
-word count of \texttt{*.pdb}''.
+word count of \code{*.pdb}''.
 
 Here's what actually happens behind the scenes when we create a pipe.
 When a computer runs a program---any program---it creates a
@@ -1407,22 +1406,22 @@ process's standard input, and whatever the process sends to standard
 output to the screen.
 
 When we run
-\texttt{wc -l *.pdb \textgreater{} lengths}, the shell starts by telling
-the computer to create a new process to run the \texttt{wc} program.
-Since we've provided some filenames as arguments, \texttt{wc} reads
+\code{wc -l *.pdb \textgreater{} lengths}, the shell starts by telling
+the computer to create a new process to run the \code{wc} program.
+Since we've provided some filenames as arguments, \code{wc} reads
 from them instead of from standard input. And since we've used
-\texttt{\textgreater{}} to redirect output to a file, the shell connects
+\code{\textgreater{}} to redirect output to a file, the shell connects
 the process's standard output to that file.
 
-If we run \texttt{wc -l *.pdb \textbar{} sort} instead, the shell
+If we run \code{wc -l *.pdb \textbar{} sort} instead, the shell
 creates two processes (one for each process in the pipe) so that
-\texttt{wc} and \texttt{sort} run simultaneously. The standard output of
-\texttt{wc} is fed directly to the standard input of \texttt{sort};
-since there's no redirection with \texttt{\textgreater{}},
-\texttt{sort}'s output goes to the screen. And if we run
-\texttt{wc -l *.pdb \textbar{} sort \textbar{} head -1}, we get three
-processes with data flowing from the files, through \texttt{wc} to
-\texttt{sort}, and from \texttt{sort} through \texttt{head} to the
+\code{wc} and \code{sort} run simultaneously. The standard output of
+\code{wc} is fed directly to the standard input of \code{sort};
+since there's no redirection with \code{\textgreater{}},
+\code{sort}'s output goes to the screen. And if we run
+\code{wc -l *.pdb \textbar{} sort \textbar{} head -1}, we get three
+processes with data flowing from the files, through \code{wc} to
+\code{sort}, and from \code{sort} through \code{head} to the
 screen.
 
 This simple idea is why Unix has been so successful. Instead of creating
@@ -1430,8 +1429,8 @@ enormous programs that try to do many different things, Unix programmers
 focus on creating lots of simple tools that each do one job well, and
 that work well with each other. This programming model is called
 \gl{pipes and filters}{g:pipe-and-filter}. We've already seen
-pipes; a \gl{filter}{g:filter} is a program like \texttt{wc} or
-\texttt{sort} that transforms a stream of input into a stream of output.
+pipes; a \gl{filter}{g:filter} is a program like \code{wc} or
+\code{sort} that transforms a stream of input into a stream of output.
 Almost all of the standard Unix tools can work this way: unless told to
 do otherwise, they read from standard input, do something with what
 they've read, and write to standard output.
@@ -1446,22 +1445,22 @@ programs into pipes to multiply their power.
 
 % FIXME: delay this until it's used.
 
-As well as using \texttt{\textgreater{}} to redirect a program's output,
-we can use \texttt{\textless{}} to redirect its input, i.e., to read
+As well as using \code{\textgreater{}} to redirect a program's output,
+we can use \code{\textless{}} to redirect its input, i.e., to read
 from a file instead of from standard input. For example, instead of
-writing \texttt{wc ammonia.pdb}, we could write
-\texttt{wc \textless{} ammonia.pdb}. In the first case, \texttt{wc} gets
+writing \code{wc ammonia.pdb}, we could write
+\code{wc \textless{} ammonia.pdb}. In the first case, \code{wc} gets
 a command line argument telling it what file to open. In the second,
-\texttt{wc} doesn't have any command line arguments, so it reads from
+\code{wc} doesn't have any command line arguments, so it reads from
 standard input, but we have told the shell to send the contents of
-\texttt{ammonia.pdb} to \texttt{wc}'s standard input.
+\code{ammonia.pdb} to \code{wc}'s standard input.
 
 \end{swcbox}
 
 \subsection*{Nelle's Pipeline: Checking Files}
 
 Nelle has run her samples through the assay machines and created 1520
-files in the \texttt{north-pacific-gyre/2012-07-03} directory described
+files in the \code{north-pacific-gyre/2012-07-03} directory described
 earlier. As a quick sanity check, she types:
 
 \begin{VerbIn}
@@ -1534,21 +1533,21 @@ NENE01971Z.txt    NENE02040Z.txt
 Sure enough, when she checks the log on her laptop, there's no depth
 recorded for either of those samples. Since it's too late to get the
 information any other way, she must exclude those two files from her
-analysis. She could just delete them using \texttt{rm}, but there are
+analysis. She could just delete them using \code{rm}, but there are
 actually some analyses she might do later where depth doesn't matter, so
 instead, she'll just be careful later on to select files using the
-wildcard expression \texttt{*{[}AB{]}.txt}. As always, the `*' matches
-any number of characters; the expression \texttt{{[}AB{]}} matches
+wildcard expression \code{*{[}AB{]}.txt}. As always, the `*' matches
+any number of characters; the expression \code{{[}AB{]}} matches
 either an `A' or a `B', so this matches all the valid data files she
 has.
 
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  \texttt{command \textgreater{} file} redirects a command's output to a
+  \code{command \textgreater{} file} redirects a command's output to a
   file.
 \item
-  \texttt{first \textbar{} second} is a pipeline: the output of the
+  \code{first \textbar{} second} is a pipeline: the output of the
   first command is used as the input to the second.
 \item
   The best way to use the shell is to use pipes to combine simple
@@ -1557,7 +1556,7 @@ has.
 \end{keypoints}
 
 \begin{challenge}
-  If we run \texttt{sort} on this file:
+  If we run \code{sort} on this file:
 
 \begin{VerbOut}
 10
@@ -1579,7 +1578,7 @@ has.
 \end{VerbOut}
 
   \noindent
-  If we run \texttt{sort -n} on the same input, we get this instead:
+  If we run \code{sort -n} on the same input, we get this instead:
 
 \begin{VerbOut}
 2
@@ -1590,7 +1589,7 @@ has.
 \end{VerbOut}
 
   \noindent
-  Explain why \texttt{-n} has this effect.
+  Explain why \code{-n} has this effect.
 \end{challenge}
 
 \begin{challenge}
@@ -1609,8 +1608,8 @@ $ wc -l mydata.dat
 \end{challenge}
 
 \begin{challenge}
-  The command \texttt{uniq} removes adjacent duplicated lines from its
-  input. For example, if a file \texttt{salmon.txt} contains:
+  The command \code{uniq} removes adjacent duplicated lines from its
+  input. For example, if a file \code{salmon.txt} contains:
 
 \begin{VerbOut}
 coho
@@ -1622,7 +1621,7 @@ steelhead
 \end{VerbOut}
 
   \noindent
-  then \texttt{uniq salmon.txt} produces:
+  then \code{uniq salmon.txt} produces:
 
 \begin{VerbOut}
 coho
@@ -1632,13 +1631,13 @@ steelhead
 \end{VerbOut}
 
   \noindent
-  Why do you think \texttt{uniq} only removes \emph{adjacent} duplicated
+  Why do you think \code{uniq} only removes \emph{adjacent} duplicated
   lines? (Hint: think about very large data sets.) What other command
   could you combine with it in a pipe to remove all duplicated lines?
 \end{challenge}
 
 \begin{challenge}
-  A file called \texttt{animals.txt} contains the following data:
+  A file called \code{animals.txt} contains the following data:
 
 \begin{VerbOut}
 2012-11-05,deer
@@ -1711,9 +1710,9 @@ bear
 Wildcards and tab completion are two ways to reduce typing (and typing
 mistakes). Another is to tell the shell to do something over and over
 again. Suppose we have several hundred genome data files named
-\texttt{basilisk.dat}, \texttt{unicorn.dat}, and so on. When new files
+\code{basilisk.dat}, \code{unicorn.dat}, and so on. When new files
 arrive, we'd like to rename the existing ones to
-\texttt{original-basilisk.dat} and \texttt{original-unicorn.dat}. We
+\code{original-basilisk.dat} and \code{original-unicorn.dat}. We
 can't use:
 
 \begin{VerbIn}
@@ -1728,7 +1727,7 @@ $ mv basilisk.dat unicorn.dat
 \end{VerbIn}
 
 This wouldn't back up our files: it would replace the content of
-\texttt{unicorn.dat} with whatever's in \texttt{basilisk.dat}.
+\code{unicorn.dat} with whatever's in \code{basilisk.dat}.
 Instead, we can use a \gl{loop}{g:for-loop} to do some operation
 once for each thing in a list. Here's a simple example that displays the
 first three lines of each file in turn:
@@ -1750,27 +1749,27 @@ CLASSIFICATION: equus monoceros
 UPDATED: 1738-11-24
 \end{VerbOut}
 
-When the shell sees the keyword \texttt{for}, it knows it is supposed to
+When the shell sees the keyword \code{for}, it knows it is supposed to
 repeat a command (or group of commands) once for each thing in a list.
 In this case, the list is the two filenames. Each time through the loop,
 the name of the thing currently being operated on is assigned to the
-\gl{variable}{g:variable} called \texttt{filename}. Inside the
-loop, we get the variable's value by putting \texttt{\$} in front of it:
-\texttt{\$filename} is \texttt{basilisk.dat} the first time through the
-loop, \texttt{unicorn.dat} the second, and so on. Finally, the command
-that's actually being run is our old friend \texttt{head}, so this loop
+\gl{variable}{g:variable} called \code{filename}. Inside the
+loop, we get the variable's value by putting \code{\$} in front of it:
+\code{\$filename} is \code{basilisk.dat} the first time through the
+loop, \code{unicorn.dat} the second, and so on. Finally, the command
+that's actually being run is our old friend \code{head}, so this loop
 prints out the first three lines of each data file in turn.
 
 \begin{swcbox}{Follow the Prompt}
 
-The shell prompt changes from \texttt{\$} to \texttt{\textgreater{}} and
+The shell prompt changes from \code{\$} to \code{\textgreater{}} and
 back again as we were typing in our loop. The second prompt,
-\texttt{\textgreater{}}, is different to remind us that we haven't
+\code{\textgreater{}}, is different to remind us that we haven't
 finished typing a complete command yet.
 
 \end{swcbox}
 
-We have called the variable in this loop \texttt{filename} in order to
+We have called the variable in this loop \code{filename} in order to
 make its purpose clearer to human readers. The shell itself doesn't care
 what the variable is called; if we wrote this loop as:
 
@@ -1794,7 +1793,7 @@ done
 \noindent
 it would work exactly the same way. \emph{Don't do this.} Programs are
 only useful if people can understand them, so meaningless names (like
-\texttt{x}) or misleading names (like \texttt{temperature}) increase the
+\code{x}) or misleading names (like \code{temperature}) increase the
 odds that the program won't do what its readers think it does.
 
 Here's a slightly more complicated loop:
@@ -1807,9 +1806,9 @@ do
 done
 \end{VerbIn}
 
-The shell starts by expanding \texttt{*.dat} to create the list of files
+The shell starts by expanding \code{*.dat} to create the list of files
 it will process. The \gl{loop body}{g:loop-body} then executes two
-commands for each of those files. The first, \texttt{echo}, just prints
+commands for each of those files. The first, \code{echo}, just prints
 its command-line arguments to standard output. For example:
 
 \begin{VerbIn}
@@ -1823,8 +1822,8 @@ prints:
 hello there
 \end{VerbOut}
 
-In this case, since the shell expands \texttt{\$filename} to be the name
-of a file, \texttt{echo \$filename} just prints the name of the file.
+In this case, since the shell expands \code{\$filename} to be the name
+of a file, \code{echo \$filename} just prints the name of the file.
 Note that we can't write this as:
 
 \begin{VerbIn}
@@ -1836,10 +1835,10 @@ done
 \end{VerbIn}
 
 \noindent
-because then the first time through the loop, when \texttt{\$filename}
-expanded to \texttt{basilisk.dat}, the shell would try to run
-\texttt{basilisk.dat} as a program. Finally, the \texttt{head} and
-\texttt{tail} combination selects lines 81-100 from whatever file is
+because then the first time through the loop, when \code{\$filename}
+expanded to \code{basilisk.dat}, the shell would try to run
+\code{basilisk.dat} as a program. Finally, the \code{head} and
+\code{tail} combination selects lines 81-100 from whatever file is
 being processed.
 
 \begin{swcbox}{Spaces in Names}
@@ -1864,13 +1863,13 @@ done
 \end{VerbIn}
 
 \noindent
-then the shell will expand \texttt{*.dat} to create:
+then the shell will expand \code{*.dat} to create:
 
 \begin{VerbOut}
 basilisk.dat red dragon.dat unicorn.dat
 \end{VerbOut}
 
-With older versions of Bash, or most other shells, \texttt{filename}
+With older versions of Bash, or most other shells, \code{filename}
 will then be assigned the following values in turn:
 
 \begin{VerbFile}
@@ -1880,9 +1879,9 @@ dragon.dat
 unicorn.dat
 \end{VerbFile}
 
-That's a problem: \texttt{head} can't read files called \texttt{red} and
-\texttt{dragon.dat} because they don't exist, and won't be asked to read
-the file \texttt{red dragon.dat}.
+That's a problem: \code{head} can't read files called \code{red} and
+\code{dragon.dat} because they don't exist, and won't be asked to read
+the file \code{red dragon.dat}.
 
 We can make our script a little bit more robust by
 \gl{quoting}{g:shell-quoting} our use of the variable:
@@ -1911,8 +1910,8 @@ done
 \end{VerbIn}
 
 \noindent
-This loop runs the \texttt{mv} command once for each filename. The first
-time, when \texttt{\$filename} expands to \texttt{basilisk.dat}, the
+This loop runs the \code{mv} command once for each filename. The first
+time, when \code{\$filename} expands to \code{basilisk.dat}, the
 shell executes:
 
 \begin{VerbIn}
@@ -1941,7 +1940,7 @@ do
 done
 \end{VerbIn}
 
-Instead of running \texttt{mv}, this loop runs \texttt{echo}, which
+Instead of running \code{mv}, this loop runs \code{echo}, which
 prints out:
 
 \begin{VerbIn}
@@ -1951,9 +1950,9 @@ mv unicorn.dat original-unicorn.dat
 
 \noindent
 \emph{without} actually running those commands. We can then use up-arrow
-to redisplay the loop, back-arrow to get to the word \texttt{echo},
+to redisplay the loop, back-arrow to get to the word \code{echo},
 delete it, and then press ``enter'' to run the loop with the actual
-\texttt{mv} commands. This isn't foolproof, but it's a handy way to see
+\code{mv} commands. This isn't foolproof, but it's a handy way to see
 what's going to happen when you're still learning how loops work.
 
 \end{swcbox}
@@ -1985,7 +1984,7 @@ NENE02043B.txt
 \end{VerbOut}
 
 Her next step is to decide what to call the files that the
-\texttt{goostats} analysis program will create. Prefixing each input
+\code{goostats} analysis program will create. Prefixing each input
 file's name with ``stats'' seems simple, so she modifies her loop to do
 that:
 
@@ -2006,7 +2005,7 @@ NENE02043A.txt stats-NENE02043A.txt
 NENE02043B.txt stats-NENE02043B.txt
 \end{VerbOut}
 
-She hasn't actually run \texttt{goostats} yet, but now she's sure she
+She hasn't actually run \code{goostats} yet, but now she's sure she
 can select the right files and generate the right output filenames.
 
 Typing in commands over and over again is becoming tedious, though, and
@@ -2019,7 +2018,7 @@ $ for datafile in *[AB].txt; do echo $datafile stats-$datafile; done
 \end{VerbIn}
 
 Using the left arrow key, Nelle backs up and changes the command
-\texttt{echo} to \texttt{goostats}:
+\code{echo} to \code{goostats}:
 
 \begin{VerbIn}
 $ for datafile in *[AB].txt; do bash goostats $datafile stats-$datafile; done
@@ -2039,8 +2038,8 @@ $ for datafile in *[AB].txt; do echo $datafile; bash goostats $datafile stats-$d
 \begin{swcbox}{Beginning and End}
 
 We can move to the beginning of a line in the shell by typing
-\texttt{\^{}A} (which means Control-A) and to the end using
-\texttt{\^{}E}.
+\code{\^{}A} (which means Control-A) and to the end using
+\code{\^{}E}.
 
 \end{swcbox}
 
@@ -2056,16 +2055,16 @@ NENE01736A.txt
 
 1518 times 5 seconds, divided by 60, tells her that her script will take
 about two hours to run. As a final check, she opens another terminal
-window, goes into \texttt{north-pacific-gyre/2012-07-03}, and uses
-\texttt{cat stats-NENE01729B.txt} to examine one of the output files. It
+window, goes into \code{north-pacific-gyre/2012-07-03}, and uses
+\code{cat stats-NENE01729B.txt} to examine one of the output files. It
 looks good, so she decides to get some coffee and catch up on her
 reading.
 
 \begin{swcbox}{Those Who Know History Can Choose to Repeat It}
 
-Another way to repeat previous work is to use the \texttt{history}
+Another way to repeat previous work is to use the \code{history}
 command to get a list of the last few hundred commands that have been
-executed, and then to use \texttt{!123} (where ``123'' is replaced by
+executed, and then to use \code{!123} (where ``123'' is replaced by
 the command number) to repeat one of those commands. For example, if
 Nelle types this:
 
@@ -2083,20 +2082,20 @@ $ history | tail -5
 \end{VerbOut}
 
 \noindent
-then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
-by typing \texttt{!458}.
+then she can re-run \code{goostats} on \code{NENE01729B.txt} simply
+by typing \code{!458}.
 
 \end{swcbox}
 
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  A \texttt{for} loop repeats commands once for every thing in a list.
+  A \code{for} loop repeats commands once for every thing in a list.
 \item
-  Every \texttt{for} loop needs a variable to refer to the current
+  Every \code{for} loop needs a variable to refer to the current
   ``thing''.
 \item
-  Use \texttt{\$name} to expand a variable (i.e., get its value).
+  Use \code{\$name} to expand a variable (i.e., get its value).
 \item
   Do not use spaces, quotes, or wildcard characters such as `*' or `?'
   in filenames, as it complicates variable expansion.
@@ -2107,13 +2106,13 @@ by typing \texttt{!458}.
   Use the up-arrow key to scroll up through previous commands to edit
   and repeat them.
 \item
-  Use \texttt{history} to display recent commands, and \texttt{!number}
+  Use \code{history} to display recent commands, and \code{!number}
   to repeat a command by number.
 \end{swcitemize}
 \end{keypoints}
 
 \begin{challenge}
-  Suppose that \texttt{ls} initially displays:
+  Suppose that \code{ls} initially displays:
 
 \begin{VerbOut}
 fructose.dat    glucose.dat   sucrose.dat
@@ -2143,24 +2142,24 @@ done
 
   \begin{swcenumerate}
   \item
-    Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
-    \texttt{sucrose.dat}, and copies \texttt{sucrose.dat} to create
-    \texttt{xylose.dat}.
+    Prints \code{fructose.dat}, \code{glucose.dat}, and
+    \code{sucrose.dat}, and copies \code{sucrose.dat} to create
+    \code{xylose.dat}.
   \item
-    Prints \texttt{fructose.dat}, \texttt{glucose.dat}, and
-    \texttt{sucrose.dat}, and concatenates all three files to create
-    \texttt{xylose.dat}.
+    Prints \code{fructose.dat}, \code{glucose.dat}, and
+    \code{sucrose.dat}, and concatenates all three files to create
+    \code{xylose.dat}.
   \item
-    Prints \texttt{fructose.dat}, \texttt{glucose.dat},
-    \texttt{sucrose.dat}, and \texttt{xylose.dat}, and copies
-    \texttt{sucrose.dat} to create \texttt{xylose.dat}.
+    Prints \code{fructose.dat}, \code{glucose.dat},
+    \code{sucrose.dat}, and \code{xylose.dat}, and copies
+    \code{sucrose.dat} to create \code{xylose.dat}.
   \item
     None of the above.
   \end{swcenumerate}
 \end{challenge}
 
 \begin{challenge}
-  The \texttt{expr} program does simple arithmetic using command-line
+  The \code{expr} program does simple arithmetic using command-line
   arguments:
 
 \begin{VerbIn}
@@ -2233,18 +2232,18 @@ reasons, a bunch of commands saved in a file is usually called a
 actually small programs.
 
 Let's start by putting the following line in the file
-\texttt{middle.sh}:
+\code{middle.sh}:
 
 \begin{VerbFile}
 head -20 cholesterol.pdb | tail -5
 \end{VerbFile}
 
 This is a variation on the pipe we constructed earlier: it selects lines
-16-20 of the file \texttt{cholesterol.pdb}. Remember, we are \emph{not}
+16-20 of the file \code{cholesterol.pdb}. Remember, we are \emph{not}
 running it as a command just yet: we are putting the commands in a file.
 
 Once we have saved the file, we can ask the shell to execute the
-commands it contains. Our shell is called \texttt{bash}, so we run the
+commands it contains. Our shell is called \code{bash}, so we run the
 following command:
 
 \begin{VerbIn}
@@ -2267,10 +2266,10 @@ that pipeline directly.
 
 We usually call programs like Microsoft Word or LibreOffice Writer
 ``text editors'', but we need to be a bit more careful when it comes to
-programming. By default, Microsoft Word uses \texttt{.docx} files to
+programming. By default, Microsoft Word uses \code{.docx} files to
 store not only text, but also formatting information about fonts,
 headings, and so on. This extra information isn't stored as characters,
-and doesn't mean anything to tools like \texttt{head}: they expect input
+and doesn't mean anything to tools like \code{head}: they expect input
 files to contain nothing but the letters, digits, and punctuation on a
 standard computer keyboard. When editing programs, therefore, you must
 either use a plain text editor, or be careful to save files as plain
@@ -2279,10 +2278,10 @@ text.
 \end{swcbox}
 
 What if we want to select lines from an arbitrary file? We could edit
-\texttt{middle.sh} each time to change the filename, but that would
+\code{middle.sh} each time to change the filename, but that would
 probably take longer than just retyping the command. Instead, let's edit
-\texttt{middle.sh} and replace \texttt{cholesterol.pdb} with a special
-variable called \texttt{\$1}:
+\code{middle.sh} and replace \code{cholesterol.pdb} with a special
+variable called \code{\$1}:
 
 \begin{VerbIn}
 $ cat middle.sh
@@ -2293,7 +2292,7 @@ $ cat middle.sh
 head -20 $1 | tail -5
 \end{VerbFile}
 
-Inside a shell script, \texttt{\$1} means ``the first filename (or other
+Inside a shell script, \code{\$1} means ``the first filename (or other
 argument) on the command line''. We can now run our script like this:
 
 \begin{VerbIn}
@@ -2324,9 +2323,9 @@ ATOM     17  C           1       5.406  -0.117  -1.087
 ATOM     18  C           1      -0.696  -2.628  -0.641
 \end{VerbOut}
 
-We still need to edit \texttt{middle.sh} each time we want to adjust the
+We still need to edit \code{middle.sh} each time we want to adjust the
 range of lines, though. Let's fix that by using the special variables
-\texttt{\$2} and \texttt{\$3}:
+\code{\$2} and \code{\$3}:
 
 \begin{VerbIn}
 $ cat middle.sh
@@ -2351,7 +2350,7 @@ ATOM     17  C           1       5.406  -0.117  -1.087
 ATOM     18  C           1      -0.696  -2.628  -0.641
 \end{VerbOut}
 
-This works, but it may take the next person who reads \texttt{middle.sh}
+This works, but it may take the next person who reads \code{middle.sh}
 a moment to figure out what it does. We can improve our script by adding
 some \gl{comments}{g:comment} at the top:
 
@@ -2366,26 +2365,26 @@ $ cat middle.sh
 head $2 $1 | tail $3
 \end{VerbOut}
 
-A comment starts with a \texttt{\#} character and runs to the end of the
+A comment starts with a \code{\#} character and runs to the end of the
 line. The computer ignores comments, but they're invaluable for helping
 people understand and use scripts.
 
 What if we want to process many files in a single pipeline? For example,
-if we want to sort our \texttt{.pdb} files by length, we would type:
+if we want to sort our \code{.pdb} files by length, we would type:
 
 \begin{VerbIn}
 $ wc -l *.pdb | sort -n
 \end{VerbIn}
 
 \noindent
-because \texttt{wc -l} lists the number of lines in the files and
-\texttt{sort -n} sorts things numerically. We could put this in a file,
-but then it would only ever sort a list of \texttt{.pdb} files in the
+because \code{wc -l} lists the number of lines in the files and
+\code{sort -n} sorts things numerically. We could put this in a file,
+but then it would only ever sort a list of \code{.pdb} files in the
 current directory. If we want to be able to get a sorted list of other
 kinds of files, we need a way to get all those names into the script. We
-can't use \texttt{\$1}, \texttt{\$2}, and so on because we don't know
+can't use \code{\$1}, \code{\$2}, and so on because we don't know
 how many files there are. Instead, we use the special variable
-\texttt{\$*}, which means, ``All of the command-line arguments to the
+\code{\$*}, which means, ``All of the command-line arguments to the
 shell script.'' Here's an example:
 
 \begin{VerbIn}
@@ -2422,15 +2421,15 @@ $ bash sorted.sh
 \end{VerbIn}
 
 \noindent
-but don't add \texttt{*.dat} (or anything else)? In this case,
-\texttt{\$*} expands to nothing at all, so the pipeline inside the
+but don't add \code{*.dat} (or anything else)? In this case,
+\code{\$*} expands to nothing at all, so the pipeline inside the
 script is effectively:
 
 \begin{VerbFile}
 wc -l | sort -n
 \end{VerbFile}
 
-Since it doesn't have any filenames, \texttt{wc} assumes it is supposed
+Since it doesn't have any filenames, \code{wc} assumes it is supposed
 to process standard input, so it just sits there and waits for us to
 give it some data interactively. From the outside, though, all we see is
 it sitting there: the script doesn't appear to do anything.
@@ -2471,7 +2470,7 @@ want to save the commands in a file. Instead of typing them in again
 $ history | tail -4 > redo-figure-3.sh
 \end{VerbIn}
 
-The file \texttt{redo-figure-3.sh} now contains:
+The file \code{redo-figure-3.sh} now contains:
 
 \begin{VerbFile}
 297 goostats -r NENE01729B.txt stats-NENE01729B.txt
@@ -2487,7 +2486,7 @@ figure.
 
 \begin{swcbox}{Unnumbering}
 
-Nelle could also use \texttt{colrm} (short for ``column removal'') to
+Nelle could also use \code{colrm} (short for ``column removal'') to
 remove the serial numbers on her previous commands. Its arguments are
 the range of characters to strip from its input:
 
@@ -2525,13 +2524,13 @@ In practice, most people develop shell scripts by running commands at
 the shell prompt a few times to make sure they're doing the right thing,
 then saving them in a file for re-use. This style of work allows people
 to recycle what they discover about their data and their workflow with
-one call to \texttt{history} and a bit of editing to clean up the output
+one call to \code{history} and a bit of editing to clean up the output
 and save it as a shell script.
 
 \subsection*{Nelle's Pipeline: Creating a Script}
 
 An off-hand comment from her supervisor has made Nelle realize that she
-should have provided a couple of extra arguments to \texttt{goostats}
+should have provided a couple of extra arguments to \code{goostats}
 when she processed her files. This might have been a disaster if she had
 done all the analysis by hand, but thanks to for loops, it will only
 take a couple of hours to re-do.
@@ -2550,9 +2549,9 @@ done
 \end{VerbFile}
 
 \noindent
-(The arguments \texttt{-J 100} and \texttt{-r} are the ones her
+(The arguments \code{-J 100} and \code{-r} are the ones her
 supervisor said she should have used.) She saves this in a file called
-\texttt{do-stats.sh} so that she can now re-do the first stage of her
+\code{do-stats.sh} so that she can now re-do the first stage of her
 analysis by typing:
 
 \begin{VerbIn}
@@ -2588,7 +2587,7 @@ have to remember to exclude the `Z' files. The disadvantage is that it
 (including the `Z' files), or on the `G' or `H' files her colleagues in
 Antarctica are producing, without editing the script. If she wanted to
 be more adventurous, she could modify her script to check for
-command-line arguments, and use \texttt{*{[}AB{]}.txt} if none were
+command-line arguments, and use \code{*{[}AB{]}.txt} if none were
 provided. Of course, this introduces another tradeoff between
 flexibility and complexity.
 
@@ -2597,12 +2596,12 @@ flexibility and complexity.
 \item
   Save commands in files (usually called shell scripts) for re-use.
 \item
-  \texttt{bash filename} runs the commands saved in a file.
+  \code{bash filename} runs the commands saved in a file.
 \item
-  \texttt{\$*} refers to all of a shell script's command-line
+  \code{\$*} refers to all of a shell script's command-line
   arguments.
 \item
-  \texttt{\$1}, \texttt{\$2}, etc., refer to specified command-line
+  \code{\$1}, \code{\$2}, etc., refer to specified command-line
   arguments.
 \item
   Letting users decide what files to process is more flexible and more
@@ -2626,14 +2625,14 @@ flexibility and complexity.
 \end{VerbFile}
 
   \noindent
-  Write a shell script called \texttt{species.sh} that takes any number
-  of filenames as command-line arguments, and uses \texttt{cut},
-  \texttt{sort}, and \texttt{uniq} to print a list of the unique species
+  Write a shell script called \code{species.sh} that takes any number
+  of filenames as command-line arguments, and uses \code{cut},
+  \code{sort}, and \code{uniq} to print a list of the unique species
   appearing in each of those files separately.
 \end{challenge}
 
 \begin{challenge}
-  Write a shell script called \texttt{longest.sh} that takes the name of
+  Write a shell script called \code{longest.sh} that takes the name of
   a directory and a filename extension as its arguments, and prints out
   the name of the file with the most lines in that directory with that
   extension. For example:
@@ -2643,7 +2642,7 @@ $ bash longest.sh /tmp/data pdb
 \end{VerbIn}
 
   \noindent
-  would print the name of the \texttt{.pdb} file in \texttt{/tmp/data}
+  would print the name of the \code{.pdb} file in \code{/tmp/data}
   that has the most lines.
 \end{challenge}
 
@@ -2655,17 +2654,17 @@ $ history | tail -5 > recent.sh
 \end{VerbIn}
 
   \noindent
-  the last command in the file is the \texttt{history} command itself,
-  i.e., the shell has added \texttt{history} to the command log before
+  the last command in the file is the \code{history} command itself,
+  i.e., the shell has added \code{history} to the command log before
   actually running it. In fact, the shell \emph{always} adds commands to
   the log before running them. Why do you think it does this?
 \end{challenge}
 
 \begin{challenge}
-  Joel's \texttt{data} directory contains three files:
-  \texttt{fructose.dat}, \texttt{glucose.dat}, and \texttt{sucrose.dat}.
-  Explain what a script called \texttt{example.sh} would do when run as
-  \texttt{bash example.sh *.dat} if it contained the following lines:
+  Joel's \code{data} directory contains three files:
+  \code{fructose.dat}, \code{glucose.dat}, and \code{sucrose.dat}.
+  Explain what a script called \code{example.sh} would do when run as
+  \code{bash example.sh *.dat} if it contained the following lines:
 
 \begin{VerbFile}
 # Script 1
@@ -2692,10 +2691,10 @@ echo $*.dat
 \begin{objectives}
 \begin{swcitemize}
 \item
-  Use \texttt{grep} to select lines from text files that match simple
+  Use \code{grep} to select lines from text files that match simple
   patterns.
 \item
-  Use \texttt{find} to find files whose names match simple patterns.
+  Use \code{find} to find files whose names match simple patterns.
 \item
   Use the output of one command as the command-line arguments to
   another command.
@@ -2711,7 +2710,7 @@ use ``Google'' as a verb, while crusty old Unix programmers use
 expression/print'', a common sequence of operations in early Unix text
 editors. It is also the name of a very useful command-line program.
 
-\texttt{grep} finds and prints lines in files that match a pattern. For
+\code{grep} finds and prints lines in files that match a pattern. For
 our examples, we will use a file that contains three haikus taken from a
 1998 competition in \emph{Salon} magazine:
 
@@ -2758,7 +2757,7 @@ Today it is not working
 \end{VerbOut}
 
 \noindent
-Here, \texttt{not} is the pattern we're searching for. It's pretty
+Here, \code{not} is the pattern we're searching for. It's pretty
 simple: every alphanumeric character matches against itself. After the
 pattern comes the name or names of the files we're searching in. The
 output is the three lines in the file that contain the letters ``not''.
@@ -2776,8 +2775,8 @@ Today it is not working
 \end{VerbOut}
 
 This time, the output is lines containing the words ``Yesterday'' and
-``Today'', which both have the letters ``day''. If we give \texttt{grep}
-the \texttt{-w} flag, it restricts matches to word boundaries, so that
+``Today'', which both have the letters ``day''. If we give \code{grep}
+the \code{-w} flag, it restricts matches to word boundaries, so that
 only lines with the word ``day'' will be printed:
 
 \begin{VerbIn}
@@ -2785,9 +2784,9 @@ $ grep -w day haiku.txt
 \end{VerbIn}
 
 \noindent
-In this case, there aren't any, so \texttt{grep}'s output is empty.
+In this case, there aren't any, so \code{grep}'s output is empty.
 
-Another useful option is \texttt{-n}, which numbers the lines that
+Another useful option is \code{-n}, which numbers the lines that
 match:
 
 \begin{VerbIn}
@@ -2805,7 +2804,7 @@ $ grep -n it haiku.txt
 Here, we can see that lines 5, 9, and 10 contain the letters ``it''.
 
 We can combine flags as we do with other Unix commands. For example,
-since \texttt{-i} makes matching case-insensitive and \texttt{-v}
+since \code{-i} makes matching case-insensitive and \code{-v}
 inverts the match, using them both only prints lines that \emph{don't}
 match the pattern in any mix of upper and lower case:
 
@@ -2824,8 +2823,8 @@ Today it is not working
 Software is like that.
 \end{VerbOut}
 
-\texttt{grep} has lots of other options. To find out what they are, we
-can type \texttt{man grep}. \texttt{man} is the Unix ``manual'' command:
+\code{grep} has lots of other options. To find out what they are, we
+can type \code{man grep}. \code{man} is the Unix ``manual'' command:
 it prints a description of a command and its options, and (if you're
 lucky) provides a few examples of how to use it:
 
@@ -2874,7 +2873,7 @@ matched.  (-F is specified by POSIX.)
 
 \begin{swcbox}{Wildcards}
 
-\texttt{grep}'s real power doesn't come from its options, though; it
+\code{grep}'s real power doesn't come from its options, though; it
 comes from the fact that patterns can include wildcards. (The technical
 name for these is \gl{regular expressions}{g:regular-expression},
 which is what the ``re'' in ``grep'' stands for.) Regular expressions
@@ -2894,34 +2893,34 @@ Today it is not working
 Software is like that.
 \end{VerbOut}
 
-We use the \texttt{-E} flag and put the pattern in quotes to prevent the
+We use the \code{-E} flag and put the pattern in quotes to prevent the
 shell from trying to interpret it. (If the pattern contained a `*', for
-example, the shell would try to expand it before running \texttt{grep}.)
+example, the shell would try to expand it before running \code{grep}.)
 The `\textbackslash{}\^{}' in the pattern anchors the match to the start
 of the line. The `.' matches a single character (just like `?' in the
 shell), while the `o' matches an actual `o'.
 
 \end{swcbox}
 
-While \texttt{grep} finds lines in files, the \texttt{find} command
+While \code{grep} finds lines in files, the \code{find} command
 finds files themselves. Again, it has a lot of options; to show how the
 simplest ones work, we'll use the directory tree shown in \figref{f:find-tree}.
 
-\swcgraphics{f:find-tree}{Directory Tree for \texttt{find} Examples}{novice/shell/img/find-file-tree.pdf}{0.75}
+\swcgraphics{f:find-tree}{Directory Tree for \code{find} Examples}{novice/shell/img/find-file-tree.pdf}{0.75}
 
-Nelle's home directory contains one file called \texttt{notes.txt} and
-four subdirectories: \texttt{thesis} (which is sadly empty),
-\texttt{data} (which contains two files \texttt{one.txt} and
-\texttt{two.txt}), a \texttt{tools} directory that contains the programs
-\texttt{format} and \texttt{stats}, and an empty subdirectory called
-\texttt{old}.
+Nelle's home directory contains one file called \code{notes.txt} and
+four subdirectories: \code{thesis} (which is sadly empty),
+\code{data} (which contains two files \code{one.txt} and
+\code{two.txt}), a \code{tools} directory that contains the programs
+\code{format} and \code{stats}, and an empty subdirectory called
+\code{old}.
 
-For our first command, let's run \texttt{find . -type d -print}. As
-always, the \texttt{.} on its own means the current working directory,
-which is where we want our search to start; \texttt{-type d} means
-``things that are directories'', and (unsurprisingly) \texttt{-print}
-means ``print what's found''. Sure enough, \texttt{find}'s output is the
-names of the five directories in our little tree (including \texttt{.}):
+For our first command, let's run \code{find . -type d -print}. As
+always, the \code{.} on its own means the current working directory,
+which is where we want our search to start; \code{-type d} means
+``things that are directories'', and (unsurprisingly) \code{-print}
+means ``print what's found''. Sure enough, \code{find}'s output is the
+names of the five directories in our little tree (including \code{.}):
 
 \begin{VerbIn}
 $ find . -type d -print
@@ -2936,7 +2935,7 @@ $ find . -type d -print
 ./tools/old
 \end{VerbOut}
 
-If we change \texttt{-type d} to \texttt{-type f}, we get a listing of
+If we change \code{-type d} to \code{-type f}, we get a listing of
 all the files instead:
 
 \begin{VerbIn}
@@ -2952,9 +2951,9 @@ $ find . -type f -print
 ./tools/stats
 \end{VerbOut}
 
-\texttt{find} automatically goes into subdirectories, their
+\code{find} automatically goes into subdirectories, their
 subdirectories, and so on to find everything that matches the pattern
-we've given it. If we don't want it to, we can use \texttt{-maxdepth} to
+we've given it. If we don't want it to, we can use \code{-maxdepth} to
 restrict the depth of search:
 
 \begin{VerbIn}
@@ -2966,9 +2965,9 @@ $ find . -maxdepth 1 -type f -print
 ./notes.txt
 \end{VerbOut}
 
-The opposite of \texttt{-maxdepth} is \texttt{-mindepth}, which tells
-\texttt{find} to only report things that are at or below a certain
-depth. \texttt{-mindepth 2} therefore finds all the files that are two
+The opposite of \code{-maxdepth} is \code{-mindepth}, which tells
+\code{find} to only report things that are at or below a certain
+depth. \code{-mindepth 2} therefore finds all the files that are two
 or more levels below us:
 
 \begin{VerbIn}
@@ -2983,7 +2982,7 @@ $ find . -mindepth 2 -type f -print
 ./tools/stats
 \end{VerbOut}
 
-Another option is \texttt{-empty}, which restricts matches to empty
+Another option is \code{-empty}, which restricts matches to empty
 files and directories:
 
 \begin{VerbIn}
@@ -3009,9 +3008,9 @@ $ find . -name *.txt -print
 
 \noindent
 We expected it to find all the text files, but it only prints out
-\texttt{./notes.txt}. The problem is that the shell expands wildcard
-characters like \texttt{*} \emph{before} commands run. Since
-\texttt{*.txt} in the current directory expands to \texttt{notes.txt},
+\code{./notes.txt}. The problem is that the shell expands wildcard
+characters like \code{*} \emph{before} commands run. Since
+\code{*.txt} in the current directory expands to \code{notes.txt},
 the command we actually ran was:
 
 \begin{VerbIn}
@@ -3019,12 +3018,12 @@ $ find . -name notes.txt -print
 \end{VerbIn}
 
 \noindent
-\texttt{find} did what we asked; we just asked for the wrong thing.
+\code{find} did what we asked; we just asked for the wrong thing.
 
-To get what we want, let's do what we did with \texttt{grep}: put
-\texttt{*.txt} in single quotes to prevent the shell from expanding the
-\texttt{*} wildcard. This way, \texttt{find} actually gets the pattern
-\texttt{*.txt}, not the expanded filename \texttt{notes.txt}:
+To get what we want, let's do what we did with \code{grep}: put
+\code{*.txt} in single quotes to prevent the shell from expanding the
+\code{*} wildcard. This way, \code{find} actually gets the pattern
+\code{*.txt}, not the expanded filename \code{notes.txt}:
 
 \begin{VerbIn}
 $ find . -name '*.txt' -print
@@ -3039,21 +3038,21 @@ $ find . -name '*.txt' -print
 
 \begin{swcbox}{Listing vs. Finding}
 
-\texttt{ls} and \texttt{find} can be made to do similar things given the
-right options, but under normal circumstances, \texttt{ls} lists
-everything it can, while \texttt{find} searches for things with certain
+\code{ls} and \code{find} can be made to do similar things given the
+right options, but under normal circumstances, \code{ls} lists
+everything it can, while \code{find} searches for things with certain
 properties and shows them.
 
 \end{swcbox}
 
 As we said earlier, the command line's power lies in combining tools.
 We've seen how to do that with pipes; let's look at another technique.
-As we just saw, \texttt{find . -name '*.txt' -print} gives us a list of
+As we just saw, \code{find . -name '*.txt' -print} gives us a list of
 all text files in or below the current directory. How can we combine
-that with \texttt{wc -l} to count the lines in all those files?
+that with \code{wc -l} to count the lines in all those files?
 
-The simplest way is to put the \texttt{find} command inside
-\texttt{\$()}:
+The simplest way is to put the \code{find} command inside
+\code{\$()}:
 
 \begin{VerbIn}
 $ wc -l $(find . -name '*.txt' -print)
@@ -3068,10 +3067,10 @@ $ wc -l $(find . -name '*.txt' -print)
 \end{VerbOut}
 
 When the shell executes this command, the first thing it does is run
-whatever is inside the \texttt{\$()}. It then replaces the \texttt{\$()}
-expression with that command's output. Since the output of \texttt{find}
-is the three filenames \texttt{./data/one.txt}, \texttt{./data/two.txt},
-and \texttt{./notes.txt}, the shell constructs the command:
+whatever is inside the \code{\$()}. It then replaces the \code{\$()}
+expression with that command's output. Since the output of \code{find}
+is the three filenames \code{./data/one.txt}, \code{./data/two.txt},
+and \code{./notes.txt}, the shell constructs the command:
 
 \begin{VerbIn}
 $ wc -l ./data/one.txt ./data/two.txt ./notes.txt
@@ -3079,14 +3078,14 @@ $ wc -l ./data/one.txt ./data/two.txt ./notes.txt
 
 \noindent
 which is what we wanted. This expansion is exactly what the shell does
-when it expands wildcards like \texttt{*} and \texttt{?}, but lets us
+when it expands wildcards like \code{*} and \code{?}, but lets us
 use any command we want as our own ``wildcard''.
 
-It's very common to use \texttt{find} and \texttt{grep} together. The
+It's very common to use \code{find} and \code{grep} together. The
 first finds files that match a pattern; the second looks for lines
 inside those files that match another pattern. Here, for example, we can
 find PDB files that contain iron atoms by looking for the string ``FE''
-in all the \texttt{.pdb} files below the current directory:
+in all the \code{.pdb} files below the current directory:
 
 \begin{VerbIn}
 $ grep FE $(find . -name '*.pdb' -print)
@@ -3101,7 +3100,7 @@ $ grep FE $(find . -name '*.pdb' -print)
 
 We have focused exclusively on finding things in text files. What if
 your data is stored as images, in databases, or in some other format?
-One option would be to extend tools like \texttt{grep} to handle those
+One option would be to extend tools like \code{grep} to handle those
 formats. This hasn't happened, and probably won't, because there are too
 many formats to support.
 
@@ -3111,7 +3110,7 @@ since it only requires people to build one tool per data format (to
 extract information). On the one hand, it makes simple things easy to
 do. On the negative side, complex things are usually impossible. For
 example, it's easy enough to write a program that will extract X and Y
-dimensions from image files for \texttt{grep} to play with, but how
+dimensions from image files for \code{grep} to play with, but how
 would you write something to find values in a spreadsheet whose cells
 contained formulas?
 
@@ -3139,12 +3138,12 @@ about them.''
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  Use \texttt{find} to find files and directories, and \texttt{grep} to
+  Use \code{find} to find files and directories, and \code{grep} to
   find text patterns in files.
 \item
-  \texttt{\$(command)} inserts a command's output in place.
+  \code{\$(command)} inserts a command's output in place.
 \item
-  \texttt{man command} displays the manual page for a given command.
+  \code{man command} displays the manual page for a given command.
 \end{swcitemize}
 \end{keypoints}
 
@@ -3157,20 +3156,20 @@ find . -name '*.dat' -print | wc -l | sort -n
 \end{challenge}
 
 \begin{challenge}
-  The \texttt{-v} flag to \texttt{grep} inverts pattern matching, so
+  The \code{-v} flag to \code{grep} inverts pattern matching, so
   that only lines which do \emph{not} match the pattern are printed.
   Given that, which of the following commands will find all files in
-  \texttt{/data} whose names end in \texttt{ose.dat} (e.g.,
-  \texttt{sucrose.dat} or \texttt{maltose.dat}), but do \emph{not}
-  contain the word \texttt{temp}?
+  \code{/data} whose names end in \code{ose.dat} (e.g.,
+  \code{sucrose.dat} or \code{maltose.dat}), but do \emph{not}
+  contain the word \code{temp}?
 
   \begin{swcenumerate}
   \item
-    \texttt{find /data -name '*.dat' -print \textbar{} grep ose \textbar{} grep -v temp}
+    \code{find /data -name '*.dat' -print \textbar{} grep ose \textbar{} grep -v temp}
   \item
-    \texttt{find /data -name ose.dat -print \textbar{} grep -v temp}
+    \code{find /data -name ose.dat -print \textbar{} grep -v temp}
   \item
-    \texttt{grep -v temp \$(find /data -name '*ose.dat' -print)}
+    \code{grep -v temp \$(find /data -name '*ose.dat' -print)}
   \item
     None of the above.
   \end{swcenumerate}

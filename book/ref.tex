@@ -9,75 +9,75 @@ in our lessons.
 
 \begin{swcitemize}
 \item
-  \texttt{cat} displays the contents of its inputs.
+  \code{cat} displays the contents of its inputs.
 \item
-  \texttt{cd path} changes the current working directory.
+  \code{cd path} changes the current working directory.
 \item
-  \texttt{cp old new} copies a file.
+  \code{cp old new} copies a file.
 \item
-  \texttt{find} finds files with specific properties that match
+  \code{find} finds files with specific properties that match
   patterns.
 \item
-  \texttt{grep} selects lines in files that match patterns.
+  \code{grep} selects lines in files that match patterns.
 \item
-  \texttt{head} displays the first few lines of its input.
+  \code{head} displays the first few lines of its input.
 \item
-  \texttt{ls path} prints a listing of a specific file or directory;
-  \texttt{ls} on its own lists the current working directory.
+  \code{ls path} prints a listing of a specific file or directory;
+  \code{ls} on its own lists the current working directory.
 \item
-  \texttt{man command} displays the manual page for a given command.
+  \code{man command} displays the manual page for a given command.
 \item
-  \texttt{mkdir path} creates a new directory.
+  \code{mkdir path} creates a new directory.
 \item
-  \texttt{mv old new} moves (renames) a file or directory.
+  \code{mv old new} moves (renames) a file or directory.
 \item
-  \texttt{pwd} prints the user's current working directory.
+  \code{pwd} prints the user's current working directory.
 \item
-  \texttt{rm path} removes (deletes) a file.
+  \code{rm path} removes (deletes) a file.
 \item
-  \texttt{rmdir path} removes (deletes) an empty directory.
+  \code{rmdir path} removes (deletes) an empty directory.
 \item
-  \texttt{sort} sorts its inputs.
+  \code{sort} sorts its inputs.
 \item
-  \texttt{tail} displays the last few lines of its input.
+  \code{tail} displays the last few lines of its input.
 \item
-  \texttt{touch path} creates an empty file if it doesn't already exist.
+  \code{touch path} creates an empty file if it doesn't already exist.
 \item
-  \texttt{wc} counts lines, words, and characters in its inputs.
+  \code{wc} counts lines, words, and characters in its inputs.
 \item
-  \texttt{whoami} shows the user's current identity.
+  \code{whoami} shows the user's current identity.
 \end{swcitemize}
 
 \subsection*{Paths}
 
 \begin{swcitemize}
 \item
-  \texttt{/path/from/root} is an absolute path.
+  \code{/path/from/root} is an absolute path.
 \item
-  \texttt{/} on its own refers to the root of the filesystem.
+  \code{/} on its own refers to the root of the filesystem.
 \item
-  \texttt{path/without/leading/slash} is a relative path.
+  \code{path/without/leading/slash} is a relative path.
 \item
-  \texttt{.} refers to the current directory, \texttt{..} to its parent.
+  \code{.} refers to the current directory, \code{..} to its parent.
 \item
-  \texttt{*} matches zero or more characters in a filename, so
-  \texttt{*.txt} matches all files ending in \texttt{.txt}.
+  \code{*} matches zero or more characters in a filename, so
+  \code{*.txt} matches all files ending in \code{.txt}.
 \item
-  \texttt{?} matches any single character in a filename, so
-  \texttt{?.txt} matches \texttt{a.txt} but not \texttt{any.txt}.
+  \code{?} matches any single character in a filename, so
+  \code{?.txt} matches \code{a.txt} but not \code{any.txt}.
 \end{swcitemize}
 
 \subsection*{Combining Commands}
 
 \begin{swcitemize}
 \item
-  \texttt{command \textgreater{} file} redirects a command's output to a
+  \code{command \textgreater{} file} redirects a command's output to a
   file.
 \item
-  \texttt{first \textbar{} second} connects the output of the first
+  \code{first \textbar{} second} connects the output of the first
   command to the input of the second.
 \item
-  A \texttt{for} loop repeats commands once for every thing in a list:
+  A \code{for} loop repeats commands once for every thing in a list:
 
 \begin{Verbatim}
 for variable in name_1 name_2 name_3
@@ -86,20 +86,20 @@ do
 done
 \end{Verbatim}
 \item
-  Use \texttt{\$name} to expand a variable (i.e., get its value).
+  Use \code{\$name} to expand a variable (i.e., get its value).
 \item
-  \texttt{history} displays recent commands, and \texttt{!number} to
+  \code{history} displays recent commands, and \code{!number} to
   repeat a command by number.
 \item
-  \texttt{bash filename} runs commands saved in \texttt{filename}.
+  \code{bash filename} runs commands saved in \code{filename}.
 \item
-  \texttt{\$*} refers to all of a shell script's command-line
+  \code{\$*} refers to all of a shell script's command-line
   parameters.
 \item
-  \texttt{\$1}, \texttt{\$2}, etc., refer to specified command-line
+  \code{\$1}, \code{\$2}, etc., refer to specified command-line
   parameters.
 \item
-  \texttt{\$(command)} inserts a command's output in place.
+  \code{\$(command)} inserts a command's output in place.
 \end{swcitemize}
 
 \section{Git Reference}
@@ -139,7 +139,7 @@ git add -A .
 \end{Verbatim}
 
 Commit changes in the staging area to the repository's history: (Without
-\texttt{-m} and a message, this command runs a text editor.)
+\code{-m} and a message, this command runs a text editor.)
 
 \begin{Verbatim}
 git commit -m "Some message"
@@ -215,13 +215,13 @@ git remote -v
 \end{Verbatim}
 
 Push changes from a local repository to a remote (assuming
-\texttt{master} already exists in the remote):
+\code{master} already exists in the remote):
 
 \begin{Verbatim}
 git push nickname master
 \end{Verbatim}
 
-Push changes from a local repository to a remote (if \texttt{master}
+Push changes from a local repository to a remote (if \code{master}
 doesn't yet exist in the remote):
 
 \begin{Verbatim}
@@ -234,7 +234,7 @@ Pull changes from a remote repoisitory:
 git pull nickname master
 \end{Verbatim}
 
-Note: \texttt{master} may be replaced with another branch name by more
+Note: \code{master} may be replaced with another branch name by more
 advanced users.
 
 Clone a remote repository:
@@ -259,30 +259,30 @@ lines from remote file
 
 \begin{swcitemize}
 \item
-  Use \texttt{variable = value} to assign a value to a variable.
+  Use \code{variable = value} to assign a value to a variable.
 \item
-  Use \texttt{print first, second, third} to display values.
+  Use \code{print first, second, third} to display values.
 \item
   Python counts from 0, not from 1.
 \item
-  \texttt{\#} starts a comment.
+  \code{\#} starts a comment.
 \item
   Statements in a block must be indented (usually by four spaces).
 \item
-  \texttt{help(thing)} displays help.
+  \code{help(thing)} displays help.
 \item
-  \texttt{len(thing)} produces the length of a collection.
+  \code{len(thing)} produces the length of a collection.
 \item
-  \texttt{{[}value1, value2, value3, ...{]}} creates a list.
+  \code{{[}value1, value2, value3, ...{]}} creates a list.
 \item
-  \texttt{list\_name{[}i{]}} selects the i'th value from a list.
+  \code{list\_name{[}i{]}} selects the i'th value from a list.
 \end{swcitemize}
 
 \subsection*{Control Flow}
 
 \begin{swcitemize}
 \item
-  Create a \texttt{for} loop to process elements in a collection one at
+  Create a \code{for} loop to process elements in a collection one at
   a time:
 
 \begin{Verbatim}
@@ -290,8 +290,8 @@ for variable in collection:
     ...body...
 \end{Verbatim}
 \item
-  Create a conditional using \texttt{if}, \texttt{elif}, and
-  \texttt{else}:
+  Create a conditional using \code{if}, \code{elif}, and
+  \code{else}:
 
 \begin{Verbatim}
 if condition_1:
@@ -302,13 +302,13 @@ else:
     ...body...
 \end{Verbatim}
 \item
-  Use \texttt{==} to test for equality.
+  Use \code{==} to test for equality.
 \item
-  \texttt{X and Y} is only true if both X and Y are true.
+  \code{X and Y} is only true if both X and Y are true.
 \item
-  \texttt{X or Y} is true if either X or Y, or both, are true.
+  \code{X or Y} is true if either X or Y, or both, are true.
 \item
-  Use \texttt{assert condition, message} to check that something is true
+  Use \code{assert condition, message} to check that something is true
   when the program is running.
 \end{swcitemize}
 
@@ -316,31 +316,31 @@ else:
 
 \begin{swcitemize}
 \item
-  \texttt{def name(...params...)} defines a new function.
+  \code{def name(...params...)} defines a new function.
 \item
-  \texttt{def name(param=default)} specifies a default value for a
+  \code{def name(param=default)} specifies a default value for a
   parameter.
 \item
-  Call a function using \texttt{name(...values...)}.
+  Call a function using \code{name(...values...)}.
 \end{swcitemize}
 
 \subsection*{Libraries}
 
 \begin{swcitemize}
 \item
-  Import a library into a program using \texttt{import libraryname}.
+  Import a library into a program using \code{import libraryname}.
 \item
-  The \texttt{sys} library contains:
+  The \code{sys} library contains:
 
   \begin{swcitemize2}
   \item
-    \texttt{sys.argv}: the command-line arguments a program was run
+    \code{sys.argv}: the command-line arguments a program was run
     with.
   \item
-    \texttt{sys.stdin}, \texttt{sys.stdout}: standard input and output.
+    \code{sys.stdin}, \code{sys.stdout}: standard input and output.
    \end{swcitemize2}
 \item
-  \texttt{glob.glob(pattern)} returns a list of files whose names match
+  \code{glob.glob(pattern)} returns a list of files whose names match
   a pattern.
 \end{swcitemize}
 
@@ -348,19 +348,19 @@ else:
 
 \begin{swcitemize}
 \item
-  \texttt{import numpy} to load the NumPy library.
+  \code{import numpy} to load the NumPy library.
 \item
-  \texttt{array.shape} gives the shape of an array.
+  \code{array.shape} gives the shape of an array.
 \item
-  \texttt{array{[}x, y{]}} selects a single element from an array.
+  \code{array{[}x, y{]}} selects a single element from an array.
 \item
-  \texttt{low:high} specifies a slice including elements from
-  \texttt{low} to \texttt{high-1}.
+  \code{low:high} specifies a slice including elements from
+  \code{low} to \code{high-1}.
 \item
-  \texttt{array.mean()}, \texttt{array.max()}, and \texttt{array.min()}
+  \code{array.mean()}, \code{array.max()}, and \code{array.min()}
   calculate simple statistics.
 \item
-  \texttt{array.mean(axis=0)} calculates statistics across the specified
+  \code{array.mean(axis=0)} calculates statistics across the specified
   axis.
 \end{swcitemize}
 
@@ -420,11 +420,11 @@ SELECT * FROM table_name WHERE (column_name_1 >= 1000) AND (column_name_2 = 'A' 
 
 \subsection*{Missing Data}
 
-Use \texttt{NULL} to represent missing data.
+Use \code{NULL} to represent missing data.
 
-\texttt{NULL} is not 0, false, or any other specific value. Operations
-involving \texttt{NULL} produce \texttt{NULL}, so \texttt{1+NULL},
-\texttt{2\textgreater{}NULL}, and \texttt{3=NULL} are all \texttt{NULL}.
+\code{NULL} is not 0, false, or any other specific value. Operations
+involving \code{NULL} produce \code{NULL}, so \code{1+NULL},
+\code{2\textgreater{}NULL}, and \code{3=NULL} are all \code{NULL}.
 
 Test whether a value is null:
 
@@ -462,9 +462,9 @@ SELECT * FROM table_name_1 JOIN table_name_2 ON table_name_1.column_name = table
 
 \subsection*{Writing Queries}
 
-SQL commands must be combined in the following order: \texttt{SELECT},
-\texttt{FROM}, \texttt{JOIN}, \texttt{ON}, \texttt{WHERE},
-\texttt{GROUP BY}, \texttt{ORDER BY}.
+SQL commands must be combined in the following order: \code{SELECT},
+\code{FROM}, \code{JOIN}, \code{ON}, \code{WHERE},
+\code{GROUP BY}, \code{ORDER BY}.
 
 \subsection*{Creating Tables}
 

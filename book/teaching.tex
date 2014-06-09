@@ -136,7 +136,7 @@ wiki page}.
   If you're really keen, keep the SVG's of the diagrams handy in the
   directory where you're doing your teaching so that you can include
   them in your notebooks by adding an
-  \texttt{\textless{}img src="novice/teaching/..."\textgreater{}}
+  \code{\textless{}img src="novice/teaching/..."\textgreater{}}
   element to a Markdown cell (or just display them in your browser).
   Most people don't ever actually do this though, either because they
   forget to or because they have a whiteboard or flipchart handy.
@@ -147,7 +147,7 @@ wiki page}.
   \begin{swcenumerate2}
   \item
     Create a zip file, add it to your bootcamp's repository, and put a
-    link to it in your bootcamp's \texttt{index.html} page so that they
+    link to it in your bootcamp's \code{index.html} page so that they
     can click, download, and unzip. This uses something everyone already
     understands, but does assume they know how to navigate from their
     download directory to their working (lesson) directory, which is
@@ -292,14 +292,14 @@ The first answer is, ``Because so much else depends on it.'' Installing
 software, configuring your default editor, and controlling remote
 machines frequently assume a basic familiarity with the shell, and with
 related ideas like standard input and output. Many tools also use its
-terminology (for example, the \texttt{\%ls} and \texttt{\%cd} magic
+terminology (for example, the \code{\%ls} and \code{\%cd} magic
 commands in IPython).
 
 The second answer is, ``Because it's an easy way to introduce some
 fundamental ideas about how to use computers.'' As we teach people how
 to use the Unix shell, we teach them that they should get the computer
-to repeat things (via tab completion, \texttt{!} followed by a command
-number, and \texttt{for} loops) rather than repeating things themselves.
+to repeat things (via tab completion, \code{!} followed by a command
+number, and \code{for} loops) rather than repeating things themselves.
 We also teach them to take things they've discovered they do frequently
 and save them for later re-use (via shell scripts), to give things
 sensible names, and to write a little bit of documentation (like comment
@@ -328,13 +328,13 @@ using Windows do not run into roadblocks such as:
 
 \begin{swcitemize}
 \item
-  Have learners open a shell and then do \texttt{whoami}, \texttt{pwd},
-  and \texttt{ls}. Then have them create a directory called
-  \texttt{bootcamp} and \texttt{cd} into it, so that everything else
+  Have learners open a shell and then do \code{whoami}, \code{pwd},
+  and \code{ls}. Then have them create a directory called
+  \code{bootcamp} and \code{cd} into it, so that everything else
   they do during the lesson is unlikely to harm whatever files they
   already have.
 \item
-  Get them to run an editor and save a file in their \texttt{bootcamp}
+  Get them to run an editor and save a file in their \code{bootcamp}
   directory as early as possible. Doing this is usually the biggest
   stumbling block during the entire lesson: many will try to run the
   same editor as the instructor (which may leave them trapped in the
@@ -344,15 +344,15 @@ using Windows do not run into roadblocks such as:
   is to have more knowledgeable learners help those who need it.
 \item
   Tab completion sounds like a small thing: it isn't. Re-running old
-  commands using \texttt{!123} or \texttt{!wc} isn't a small thing
-  either, and neither are wildcard expansion and \texttt{for} loops.
+  commands using \code{!123} or \code{!wc} isn't a small thing
+  either, and neither are wildcard expansion and \code{for} loops.
   Each one is an opportunity to repeat one of the big ideas of Software
   Carpentry: if the computer \emph{can} repeat it, some programmer
   somewhere will almost certainly have built some way for the computer
   \emph{to} repeat it.
 \item
   Building up a pipeline with four or five stages, then putting it in a
-  shell script for re-use and calling that script inside a \texttt{for}
+  shell script for re-use and calling that script inside a \code{for}
   loop, is a great opportunity to show how ``seven plus or minus two''
   connects to programming. Once we have figured out how to do something
   moderately complicated, we make it re-usable and give it a name so
@@ -368,7 +368,7 @@ using Windows do not run into roadblocks such as:
   instead using the online lessons as guidelines. These limitations also
   have follow-on consequences:
 \item
-  It's hard to discuss \texttt{\#!} (shebang) wihtout first discussing
+  It's hard to discuss \code{\#!} (shebang) wihtout first discussing
   permissions, which we don't do.
 \item
   Installing Bash and a reasonable set of Unix commands on Windows
@@ -527,7 +527,7 @@ We close with material on licensing because:
 
 \subsection*{Text Editor}
 
-We suggest instructors and students use \texttt{nano} as the text editor
+We suggest instructors and students use \code{nano} as the text editor
 for this lessons because:
 
 \begin{swcitemize}
@@ -585,7 +585,7 @@ function call stacks work.
 The final example asks them to build a command-line tool that works with
 the Unix pipe-and-filter model. We do this because it is a useful skill
 and because it helps learners see that the software they use isn't
-magical. Tools like \texttt{grep} might be more sophisticated than the
+magical. Tools like \code{grep} might be more sophisticated than the
 programs our learners can write at this point in their careers, but it's
 crucial they realize this is a difference of scale rather than kind.
 
@@ -618,14 +618,14 @@ crucial they realize this is a difference of scale rather than kind.
 
   \begin{swcitemize2}
   \item
-    Launch from the command line with \texttt{ipython notebook}.
+    Launch from the command line with \code{ipython notebook}.
   \item
     Create a new notebook.
   \item
     Enter code or data in a cell and execute it.
   \item
-    Explain the difference between \texttt{In{[}\#{]}} and
-    \texttt{Out{[}\#{]}}.
+    Explain the difference between \code{In{[}\#{]}} and
+    \code{Out{[}\#{]}}.
    \end{swcitemize2}
 \item
   Watching the instructor grow programs step by step is as helpful to
@@ -646,7 +646,7 @@ crucial they realize this is a difference of scale rather than kind.
 ipython notebook --pylab [backend]
 \end{VerbIn}
 
-  The \texttt{-{}-pylab} option has been deprecated for a long time, and
+  The \code{-{}-pylab} option has been deprecated for a long time, and
   is being removed soon.
 \end{swcitemize}
 
@@ -706,6 +706,6 @@ find what they want to.
     \emph{which} NoSQL database we should teach.
   \end{swcenumerate2}
 \item
-  Run \texttt{sqlite3 survey.db \textless{} gen-survey-database.sql} to
+  Run \code{sqlite3 survey.db \textless{} gen-survey-database.sql} to
   re-create survey database before loading notebooks.
 \end{swcitemize}

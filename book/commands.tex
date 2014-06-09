@@ -100,10 +100,12 @@
 \newcommand{\swcgraphics}[4]{\begin{figure}\begin{center}\includegraphics[scale=#4]{#3}\caption{#2}\label{#1}\end{center}\end{figure}}
 
 % environments for code listings: FIXME need optional arg for 'continue'
-\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontfamily=zi4,fontseries=b,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontfamily=zi4,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbIn}{Verbatim}{fontfamily=zi4,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbOut}{Verbatim}{fontfamily=zi4,fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontshape=it,fontseries=b,fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbIn}{Verbatim}{fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbOut}{Verbatim}{fontshape=it,fontsize=\relsize{-1}}
+
+\newcommand{\code}[1]{{\footnotesize\texttt{#1}\normalsize}}
 
 % SQL output tables
 \newenvironment{sqltable}[1]{\begin{tabular}{#1}}{\end{tabular}}

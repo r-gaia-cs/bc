@@ -93,9 +93,9 @@ $ git config --global core.editor "nano"
 
 (Please use your own name and email address instead of Dracula's, and
 please make sure you choose an editor that's actually on your system,
-such as \texttt{notepad} on Windows.)
+such as \code{notepad} on Windows.)
 
-Git commands are written \texttt{git verb}, where \texttt{verb} is what
+Git commands are written \code{git verb}, where \code{verb} is what
 we actually want it to do. In this case, we're telling Git:
 
 \begin{swcitemize}
@@ -110,7 +110,7 @@ we actually want it to do. In this case, we're telling Git:
 \end{swcitemize}
 
 The four commands above only need to be run once: the flag
-\texttt{-{}-global} tells Git to use the settings for every project on
+\code{-{}-global} tells Git to use the settings for every project on
 this machine.
 
 \subsection*{Creating a Repository}
@@ -130,15 +130,15 @@ where Git can store old versions of our files:
 $ git init
 \end{VerbIn}
 
-If we use \texttt{ls} to show the directory's contents, it appears that
+If we use \code{ls} to show the directory's contents, it appears that
 nothing has changed:
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
-But if we add the \texttt{-a} flag to show everything, we can see that
-Git has created a hidden directory called \texttt{.git}:
+But if we add the \code{-a} flag to show everything, we can see that
+Git has created a hidden directory called \code{.git}:
 
 \begin{VerbIn}
 $ ls -a
@@ -168,8 +168,8 @@ nothing to commit (create/copy files and use "git add" to track)
 
 \subsection*{Tracking Changes to Files}
 
-Let's create a file called \texttt{mars.txt} that contains some notes
-about the Red Planet's suitability as a base. (We'll use \texttt{nano}
+Let's create a file called \code{mars.txt} that contains some notes
+about the Red Planet's suitability as a base. (We'll use \code{nano}
 to edit the file; you can use whatever editor you like. In particular,
 this does not have to be the core.editor you set globally earlier.)
 
@@ -177,13 +177,13 @@ this does not have to be the core.editor you set globally earlier.)
 $ nano mars.txt
 \end{VerbIn}
 
-Type the text below into the \texttt{mars.txt} file:
+Type the text below into the \code{mars.txt} file:
 
 \begin{VerbOut}
 Cold and dry, but everything is my favorite color
 \end{VerbOut}
 
-\texttt{mars.txt} now contains a single line:
+\code{mars.txt} now contains a single line:
 
 \begin{VerbIn}
 $ ls
@@ -222,7 +222,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 The ``untracked files'' message means that there's a file in the
 directory that Git isn't keeping track of. We can tell Git that it
-should do so using \texttt{git add}:
+should do so using \code{git add}:
 
 \begin{VerbIn}
 $ git add mars.txt
@@ -246,7 +246,7 @@ $ git status
 #
 \end{VerbOut}
 
-Git now knows that it's supposed to keep track of \texttt{mars.txt}, but
+Git now knows that it's supposed to keep track of \code{mars.txt}, but
 it hasn't yet recorded any changes for posterity as a commit. To get it
 to do that, we need to run one more command:
 
@@ -260,19 +260,19 @@ $ git commit -m "Starting to think about Mars"
  create mode 100644 mars.txt
 \end{VerbOut}
 
-When we run \texttt{git commit}, Git takes everything we have told it to
-save by using \texttt{git add} and stores a copy permanently inside the
-special \texttt{.git} directory. This permanent copy is called a
+When we run \code{git commit}, Git takes everything we have told it to
+save by using \code{git add} and stores a copy permanently inside the
+special \code{.git} directory. This permanent copy is called a
 \gl{revision}{g:revision} and its short identifier is
-\texttt{f22b25e}. (Your revision may have another identifier.)
+\code{f22b25e}. (Your revision may have another identifier.)
 
-We use the \texttt{-m} flag (for ``message'') to record a comment that
+We use the \code{-m} flag (for ``message'') to record a comment that
 will help us remember later on what we did and why. If we just run
-\texttt{git commit} without the \texttt{-m} option, Git will launch
-\texttt{nano} (or whatever other editor we configured at the start) so
+\code{git commit} without the \code{-m} option, Git will launch
+\code{nano} (or whatever other editor we configured at the start) so
 that we can write a longer message.
 
-If we run \texttt{git status} now:
+If we run \code{git status} now:
 
 \begin{VerbIn}
 $ git status
@@ -285,7 +285,7 @@ nothing to commit, working directory clean
 
 it tells us everything is up to date. If we want to know what we've done
 recently, we can ask Git to show us the project's history using
-\texttt{git log}:
+\code{git log}:
 
 \begin{VerbIn}
 $ git log
@@ -299,18 +299,18 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
     Starting to think about Mars
 \end{VerbOut}
 
-\texttt{git log} lists all revisions made to a repository in reverse
+\code{git log} lists all revisions made to a repository in reverse
 chronological order. The listing for each revision includes the
 revision's full identifier (which starts with the same characters as the
-short identifier printed by the \texttt{git commit} command earlier),
+short identifier printed by the \code{git commit} command earlier),
 the revision's author, when it was created, and the log message Git was
 given when the revision was created.
 
 \begin{swcbox}{Where Are My Changes?}
 
-If we run \texttt{ls} at this point, we will still see just one file
-called \texttt{mars.txt}. That's because Git saves information about
-files' history in the special \texttt{.git} directory mentioned earlier
+If we run \code{ls} at this point, we will still see just one file
+called \code{mars.txt}. That's because Git saves information about
+files' history in the special \code{.git} directory mentioned earlier
 so that our filesystem doesn't become cluttered (and so that we can't
 accidentally edit or delete an old version).
 
@@ -319,9 +319,9 @@ accidentally edit or delete an old version).
 \subsection*{Changing a File}
 
 Now suppose Dracula adds more information to the file. (Again, we'll
-edit with \texttt{nano} and then \texttt{cat} the file to show its
+edit with \code{nano} and then \code{cat} the file to show its
 contents; you may use a different editor, and don't need to
-\texttt{cat}.)
+\code{cat}.)
 
 \begin{VerbIn}
 $ nano mars.txt
@@ -333,7 +333,7 @@ Cold and dry, but everything is my favorite color
 The two moons may be a problem for Wolfman
 \end{VerbOut}
 
-When we run \texttt{git status} now, it tells us that a file it already
+When we run \code{git status} now, it tells us that a file it already
 knows about has been modified:
 
 \begin{VerbIn}
@@ -353,8 +353,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 The last line is the key phrase: ``no changes added to commit''. We have
 changed this file, but we haven't told Git we will want to save those
-changes (which we do with \texttt{git add}) much less actually saved
-them. Let's double-check our work using \texttt{git diff}, which shows
+changes (which we do with \code{git add}) much less actually saved
+them. Let's double-check our work using \code{git diff}, which shows
 us the differences between the current state of the file and the most
 recently saved version:
 
@@ -373,20 +373,20 @@ index df0654a..315bf3a 100644
 \end{VerbOut}
 
 The output is cryptic because it is actually a series of commands for
-tools like editors and \texttt{patch} telling them how to reconstruct
+tools like editors and \code{patch} telling them how to reconstruct
 one file given the other. If we can break it down into pieces:
 
 \begin{swcenumerate}
 \item
-  The first line tells us that Git is using the Unix \texttt{diff}
+  The first line tells us that Git is using the Unix \code{diff}
   command to compare the old and new versions of the file.
 \item
   The second line tells exactly which \gl{revisions}{g:revision}
-  of the file Git is comparing; \texttt{df0654a} and \texttt{315bf3a}
+  of the file Git is comparing; \code{df0654a} and \code{315bf3a}
   are unique computer-generated labels for those revisions.
 \item
   The remaining lines show us the actual differences and the lines on
-  which they occur. In particular, the \texttt{+} markers in the first
+  which they occur. In particular, the \code{+} markers in the first
   column show where we are adding lines.
 \end{swcenumerate}
 
@@ -407,7 +407,7 @@ $ git commit -m "Concerns about Mars's moons on my furry friend"
 no changes added to commit (use "git add" and/or "git commit -a")
 \end{VerbOut}
 
-Whoops: Git won't commit because we didn't use \texttt{git add} first.
+Whoops: Git won't commit because we didn't use \code{git add} first.
 Let's fix that:
 
 \begin{VerbIn}
@@ -431,7 +431,7 @@ haven't finished yet).
 To allow for this, Git has a special staging area where it keeps track
 of things that have been added to the current
 \gl{change set}{g:change-set} but not yet committed (\figref{f:staging-area}).
-\texttt{git add} puts things in this area, and \texttt{git commit} then
+\code{git add} puts things in this area, and \code{git commit} then
 copies them to long-term storage (as a commit).
 
 \swcgraphics{f:staging-area}{Git's Staging Area}{novice/git/img/git-staging-area.pdf}{0.75}
@@ -467,8 +467,8 @@ index 315bf3a..b36abfd 100644
 \end{VerbOut}
 
 So far, so good: we've added one line to the end of the file (shown with
-a \texttt{+} in the first column). Now let's put that change in the
-staging area and see what \texttt{git diff} reports:
+a \code{+} in the first column). Now let's put that change in the
+staging area and see what \code{git diff} reports:
 
 \begin{VerbIn}
 $ git add mars.txt
@@ -545,9 +545,9 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 
 \subsection*{Exploring History}
 
-If we want to see what we changed when, we use \texttt{git diff} again,
+If we want to see what we changed when, we use \code{git diff} again,
 but refer to old versions using the notation
-\texttt{HEAD\textasciitilde{}1}, \texttt{HEAD\textasciitilde{}2}, and so
+\code{HEAD\textasciitilde{}1}, \code{HEAD\textasciitilde{}2}, and so
 on:
 
 \begin{VerbIn}
@@ -581,14 +581,14 @@ index df0654a..b36abfd 100644
 \end{VerbOut}
 
 In this way, we build up a chain of revisions. The most recent end of
-the chain is referred to as \texttt{HEAD}; we can refer to previous
-revisions using the \texttt{\textasciitilde{}} notation, so
-\texttt{HEAD\textasciitilde{}1} (pronounced ``head minus one'') means
-``the previous revision'', while \texttt{HEAD\textasciitilde{}123} goes
+the chain is referred to as \code{HEAD}; we can refer to previous
+revisions using the \code{\textasciitilde{}} notation, so
+\code{HEAD\textasciitilde{}1} (pronounced ``head minus one'') means
+``the previous revision'', while \code{HEAD\textasciitilde{}123} goes
 back 123 revisions from where we are now.
 
 We can also refer to revisions using those long strings of digits and
-letters that \texttt{git log} displays. These are unique IDs for the
+letters that \code{git log} displays. These are unique IDs for the
 changes, and ``unique'' really does mean unique: every change to any set
 of files on any machine has a unique 40-character identifier. Our first
 commit was given the ID f22b25e3233b4645dabd0d81e651fe074bd8e73b, so
@@ -642,7 +642,7 @@ $ cat mars.txt
 We will need to manufacture our own oxygen
 \end{VerbOut}
 
-\texttt{git status} now tells us that the file has been changed, but
+\code{git status} now tells us that the file has been changed, but
 those changes haven't been staged:
 
 \begin{VerbIn}
@@ -660,7 +660,7 @@ $ git status
 no changes added to commit (use "git add" and/or "git commit -a")
 \end{VerbOut}
 
-We can put things back the way they were by using \texttt{git checkout}:
+We can put things back the way they were by using \code{git checkout}:
 
 \begin{VerbIn}
 $ git checkout HEAD mars.txt
@@ -673,10 +673,10 @@ The two moons may be a problem for Wolfman
 But the Mummy will appreciate the lack of humidity
 \end{VerbOut}
 
-As you might guess from its name, \texttt{git checkout} checks out
+As you might guess from its name, \code{git checkout} checks out
 (i.e., restores) an old version of a file. In this case, we're telling
 Git that we want to recover the version of the file recorded in
-\texttt{HEAD}, which is the last saved revision. If we want to go back
+\code{HEAD}, which is the last saved revision. If we want to go back
 even further, we can use a revision identifier instead:
 
 \begin{VerbIn}
@@ -692,15 +692,15 @@ commit in which we made the change we're trying to get rid of (\figref{f:when-up
 
 \begin{swcbox}{Simplifying the Common Case}
 
-If you read the output of \texttt{git status} carefully, you'll see that
+If you read the output of \code{git status} carefully, you'll see that
 it includes this hint:
 
 \begin{VerbOut}
 (use "git checkout -- <file>..." to discard changes in working directory)
 \end{VerbOut}
 
-As it says, \texttt{git checkout} without a version identifier restores
-files to the state saved in \texttt{HEAD}. The double dash \texttt{-{}-}
+As it says, \code{git checkout} without a version identifier restores
+files to the state saved in \code{HEAD}. The double dash \code{-{}-}
 is needed to separate the names of the files being recovered from the
 command itself: without it, Git would try to use the name of the file as
 the revision identifier.
@@ -748,7 +748,7 @@ space. What's worse, having them all listed could distract us from
 changes that actually matter, so let's tell Git to ignore them.
 
 We do this by creating a file in the root directory of our project
-called \texttt{.gitignore}.
+called \code{.gitignore}.
 
 \begin{VerbIn}
 $ nano .gitignore
@@ -761,11 +761,11 @@ results/
 \end{VerbOut}
 
 These patterns tell Git to ignore any file whose name ends in
-\texttt{.dat} and everything in the \texttt{results} directory. (If any
+\code{.dat} and everything in the \code{results} directory. (If any
 of these files were already being tracked, Git would continue to track
 them.)
 
-Once we have created this file, the output of \texttt{git status} is
+Once we have created this file, the output of \code{git status} is
 much cleaner:
 
 \begin{VerbIn}
@@ -781,10 +781,10 @@ $ git status
 nothing added to commit but untracked files present (use "git add" to track)
 \end{VerbOut}
 
-The only thing Git notices now is the newly-created \texttt{.gitignore}
+The only thing Git notices now is the newly-created \code{.gitignore}
 file. You might think we wouldn't want to track it, but everyone we're
 sharing our repository with will probably want to ignore the same things
-that we're ignoring. Let's add and commit \texttt{.gitignore}:
+that we're ignoring. Let's add and commit \code{.gitignore}:
 
 \begin{VerbIn}
 $ git add .gitignore
@@ -797,7 +797,7 @@ $ git status
 nothing to commit, working directory clean
 \end{VerbOut}
 
-As a bonus, using \texttt{.gitignore} helps us avoid accidentally adding
+As a bonus, using \code{.gitignore} helps us avoid accidentally adding
 files to the repository that we don't want.
 
 \begin{VerbIn}
@@ -812,7 +812,7 @@ fatal: no files added
 \end{VerbOut}
 
 If we really want to override our ignore settings, we can use
-\texttt{git add -f} to force Git to add something. We can also always
+\code{git add -f} to force Git to add something. We can also always
 see the status of ignored files if we want:
 
 \begin{VerbIn}
@@ -835,36 +835,36 @@ nothing to commit, working directory clean
 \begin{keypoints}
 \begin{swcitemize}
 \item
-  Use \texttt{git config} to configure a user name, email address,
+  Use \code{git config} to configure a user name, email address,
   editor, and other preferences once per machine.
 \item
-  \texttt{git init} initializes a repository.
+  \code{git init} initializes a repository.
 \item
-  \texttt{git status} shows the status of a repository.
+  \code{git status} shows the status of a repository.
 \item
   Files can be stored in a project's working directory (which users
   see), the staging area (where the next commit is being built up) and
   the local repository (where snapshots are permanently recorded).
 \item
-  \texttt{git add} puts files in the staging area.
+  \code{git add} puts files in the staging area.
 \item
-  \texttt{git commit} creates a snapshot of the staging area in the
+  \code{git commit} creates a snapshot of the staging area in the
   local repository.
 \item
   Always write a log message when committing changes.
 \item
-  \texttt{git diff} displays differences between revisions.
+  \code{git diff} displays differences between revisions.
 \item
-  \texttt{git checkout} recovers old versions of files.
+  \code{git checkout} recovers old versions of files.
 \item
-  The \texttt{.gitignore} file tells Git what files to ignore.
+  The \code{.gitignore} file tells Git what files to ignore.
 \end{swcitemize}
 \end{keypoints}
 
 \begin{challenge}
-  Create a new Git repository on your computer called \texttt{bio}.
+  Create a new Git repository on your computer called \code{bio}.
   Write a three-line biography for yourself in a file called
-  \texttt{me.txt}, commit your changes, then modify one line and add a
+  \code{me.txt}, commit your changes, then modify one line and add a
   fourth and display the differences between its updated state and its
   original state.
 \end{challenge}
@@ -915,7 +915,7 @@ lesson.
 
 Let's start by sharing the changes we've made to our current project
 with the world. Log in to GitHub, then click on the icon in the top
-right corner to create a new repository called \texttt{planets}
+right corner to create a new repository called \code{planets}
 (\figref{f:create-repo-01}).
 
 \swcgraphics{f:create-repo-01}{First Step in Creating a Repository}{novice/git/img/github-create-repo-01.png}{0.35}
@@ -937,7 +937,7 @@ $ git init
 \end{VerbIn}
 
 Our local repository still contains our earlier work on
-\texttt{mars.txt}, but the remote repository on GitHub doesn't contain
+\code{mars.txt}, but the remote repository on GitHub doesn't contain
 any files yet (\figref{f:create-repo-04}).
 
 \swcgraphics{f:create-repo-04}{Fourth Step in Creating a Repository}{novice/git/img/git-freshly-made-github-repo.pdf}{0.75}
@@ -955,7 +955,7 @@ much less work for beginners to set up (\figref{f:create-repo-06}).
 
 \swcgraphics{f:create-repo-06}{Sixth Step in Creating a Repository}{novice/git/img/github-change-repo-string.png}{0.35}
 
-Copy that URL from the browser, go into the local \texttt{planets}
+Copy that URL from the browser, go into the local \code{planets}
 repository, and run this command:
 
 \begin{VerbIn}
@@ -963,10 +963,10 @@ $ git remote add origin https://github.com/vlad/planets
 \end{VerbIn}
 
 Make sure to use the URL for your repository rather than Vlad's: the
-only difference should be your username instead of \texttt{vlad}.
+only difference should be your username instead of \code{vlad}.
 
 We can check that the command has worked by running
-\texttt{git remote -v}:
+\code{git remote -v}:
 
 \begin{VerbIn}
 $ git remote -v
@@ -977,11 +977,11 @@ origin   https://github.com/vlad/planets.git (push)
 origin   https://github.com/vlad/planets.git (fetch)
 \end{VerbOut}
 
-The name \texttt{origin} is a local nickname for your remote repository:
-we could use something else if we wanted to, but \texttt{origin} is by
+The name \code{origin} is a local nickname for your remote repository:
+we could use something else if we wanted to, but \code{origin} is by
 far the most common choice.
 
-Once the nickname \texttt{origin} is set up, this command will push the
+Once the nickname \code{origin} is set up, this command will push the
 changes from our local repository to the repository on GitHub:
 
 \begin{VerbIn}
@@ -1005,7 +1005,7 @@ Our local and remote repositories are now in the state show in \figref{f:after-f
 
 \begin{swcbox}{The `-u' Flag}
 
-You may see a \texttt{-u} option used with \texttt{git push} in some
+You may see a \code{-u} option used with \code{git push} in some
 documentation. It is related to concepts we cover in our intermediate
 lesson, and can safely be ignored for now.
 
@@ -1029,10 +1029,10 @@ repository on GitHub, though, this command would download them to our
 local repository.
 
 We can simulate working with a collaborator using another copy of the
-repository on our local machine. To do this, \texttt{cd} to the
-directory \texttt{/tmp}. (Note the absolute path: don't make
-\texttt{tmp} a subdirectory of the existing repository). Instead of
-creating a new repository here with \texttt{git init}, we will
+repository on our local machine. To do this, \code{cd} to the
+directory \code{/tmp}. (Note the absolute path: don't make
+\code{tmp} a subdirectory of the existing repository). Instead of
+creating a new repository here with \code{git init}, we will
 \gl{clone}{g:repository-clone} the existing repository from
 GitHub:
 
@@ -1041,14 +1041,14 @@ $ cd /tmp
 $ git clone https://github.com/vlad/planets.git
 \end{VerbIn}
 
-\texttt{git clone} creates a fresh local copy of a remote repository.
-(We did it in \texttt{/tmp} or some other directory so that we don't
-overwrite our existing \texttt{planets} directory.) Our computer now has
+\code{git clone} creates a fresh local copy of a remote repository.
+(We did it in \code{/tmp} or some other directory so that we don't
+overwrite our existing \code{planets} directory.) Our computer now has
 two copies of the repository (\figref{f:after-duplicate-clone}).
 
 \swcgraphics{f:after-duplicate-clone}{After Cloning}{novice/git/img/git-after-duplicate-clone.pdf}{0.75}
 
-Let's make a change in the copy in \texttt{/tmp/planets}:
+Let's make a change in the copy in \code{/tmp/planets}:
 
 \begin{VerbIn}
 $ cd /tmp/planets
@@ -1086,9 +1086,9 @@ To https://github.com/vlad/planets.git
    9272da5..29aba7c  master -> master
 \end{VerbOut}
 
-Note that we didn't have to create a remote called \texttt{origin}: Git
+Note that we didn't have to create a remote called \code{origin}: Git
 does this automatically, using that name, when we clone a repository.
-(This is why \texttt{origin} was a sensible choice earlier when we were
+(This is why \code{origin} was a sensible choice earlier when we were
 setting up remotes by hand.)
 
 Our three repositories are now as shown in \figref{f:after-change-to-duplicate}.
@@ -1135,14 +1135,14 @@ work between different people and machines.
   Use the HTTPS protocol to connect to remote repositories until you
   have learned how to set up SSH.
 \item
-  \texttt{git push} copies changes from a local repository to a remote
+  \code{git push} copies changes from a local repository to a remote
   repository.
 \item
-  \texttt{git pull} copies changes from a remote repository to a local
+  \code{git pull} copies changes from a remote repository to a local
   repository.
 \item
-  \texttt{git clone} copies a remote repository to create a local
-  repository with a remote called \texttt{origin} automatically set up.
+  \code{git clone} copies a remote repository to create a local
+  repository with a remote called \code{origin} automatically set up.
 \end{swcitemize}
 \end{keypoints}
 
@@ -1172,9 +1172,9 @@ helps us manage these \gl{conflicts}{g:conflict} by giving us
 tools to \gl{resolve}{g:resolve} overlapping changes.
 
 To see how we can resolve conflicts, we must first create one. The file
-\texttt{mars.txt} currently looks like this in both local copies of our
-\texttt{planets} repository (the one in our home directory and the one
-in \texttt{/tmp}):
+\code{mars.txt} currently looks like this in both local copies of our
+\code{planets} repository (the one in our home directory and the one
+in \code{/tmp}):
 
 \begin{VerbIn}
 $ cat mars.txt
@@ -1230,7 +1230,7 @@ Our repositories are now as shown in \figref{f:after-first-conflict}.
 
 \swcgraphics{f:after-first-conflict}{Repositories After First Conflict}{novice/git/img/git-after-first-conflicting-change.pdf}{0.75}
 
-Now let's switch to the copy under \texttt{/tmp} and make a different
+Now let's switch to the copy under \code{/tmp} and make a different
 change there \emph{without} updating from GitHub:
 
 \begin{VerbIn}
@@ -1296,7 +1296,7 @@ CONFLICT (content): Merge conflict in mars.txt
 Automatic merge failed; fix conflicts and then commit the result.
 \end{VerbOut}
 
-\texttt{git pull} tells us there's a conflict, and marks that conflict
+\code{git pull} tells us there's a conflict, and marks that conflict
 in the affected file:
 
 \begin{VerbIn}
@@ -1314,12 +1314,12 @@ This line added to our home copy
 >>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
 \end{VerbOut}
 
-Our change---the one in \texttt{HEAD}---is preceded by
-\texttt{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}}.
-Git has then inserted \texttt{=======} as a separator between the
+Our change---the one in \code{HEAD}---is preceded by
+\code{\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}}.
+Git has then inserted \code{=======} as a separator between the
 conflicting changes and marked the end of the content downloaded from
 GitHub with
-\texttt{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}.
+\code{\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}.
 (The string of letters and digits after that marker identifies the
 revision we've just downloaded.)
 
@@ -1340,7 +1340,7 @@ But the Mummy will appreciate the lack of humidity
 We removed the conflict on this line
 \end{VerbOut}
 
-To finish merging, we add \texttt{mars.txt} to the changes being made by
+To finish merging, we add \code{mars.txt} to the changes being made by
 the merge and then commit:
 
 \begin{VerbIn}
@@ -1575,7 +1575,7 @@ different sources. At the end of the day, what matters most is that:
 \begin{swcenumerate}
 \item
   every project have a file in its home directory called something like
-  \texttt{LICENSE} or \texttt{LICENSE.txt} that clearly states what the
+  \code{LICENSE} or \code{LICENSE.txt} that clearly states what the
   license is, and
 \item
   people use existing licenses rather than writing new ones.
@@ -1636,9 +1636,9 @@ pd & X & X & X & X & X & X & X \\
 \urlfoot{http://software-carpentry.org/license.html}{Software Carpentry}
 uses CC-BY for its lessons and the MIT License for its code in order to
 encourage the widest possible re-use. Again, the most important thing is
-for the \texttt{LICENSE} file in the root directory of your project to
+for the \code{LICENSE} file in the root directory of your project to
 state clearly what your license is. You may also want to include a file
-called \texttt{CITATION} or \texttt{CITATION.txt} that describes how to
+called \code{CITATION} or \code{CITATION.txt} that describes how to
 reference your project; the one for Software Carpentry states:
 
 \begin{VerbFile}
