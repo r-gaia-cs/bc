@@ -2002,17 +2002,14 @@ loads \texttt{ImageGrid} from that library, since that's the only thing
 we need (for now).
 
 Once we have \texttt{ImageGrid} loaded, we can use it to create a very
-simple grid of colored cells:
+simple grid of colored cells (\figref{f:grid5x3}:
 
 \begin{VerbIn}
 grid = ImageGrid(5, 3)
 grid.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks84e827e4-60f2-4e82-b41a-c95955a972aa td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:grid5x3}{A Simple Grid}{novice/python/img/grid5x3.png}{1.0}
 
 Just like a NumPy array, an \texttt{ImageGrid} has some properties that
 hold information about it:
@@ -2093,7 +2090,7 @@ it's the largest number that can be represented in an 8-bit byte (i.e.,
 colors, while providing fine enough gradations to fool most human eyes,
 most of the time.
 
-Let's see what a few RGB colors actually look like:
+Let's see what a few RGB colors actually look like (\figref{f:color_row}):
 
 \begin{VerbIn}
 row = ImageGrid(8, 1)
@@ -2108,24 +2105,19 @@ row[7, 0] = (0, 255, 255) # green and blue
 row.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks9d1f4bb1-553c-4074-aec0-dc48fde66e06 td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:color_row}{A Row of Colors}{novice/python/img/color_row.png}{1.0}
 
 Simple color values like \texttt{(0,255,0)} are easy enough to decipher
 with a bit of practice, but what color is \texttt{(214,90,127)}? To help
 us, \texttt{ipythonblocks} provides a function called
-\texttt{show\_color}:
+\texttt{show\_color}.
 
 \begin{VerbIn}
 from ipythonblocks import show_color
 show_color(214, 90, 127)
 \end{VerbIn}
 
-% FIXME: image
-
-It also provides a table of standard colors:
+It also provides a table of standard colors (\figref{f:standard_colors}):
 
 \begin{VerbIn}
 from ipythonblocks import colors
@@ -2139,10 +2131,7 @@ c[2, 1] = colors['HotPink']
 c.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksb8c954b3-f908-4ab1-8013-65bf49ec1b2f td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:standard_colors}{A Few Standard Colors}{novice/python/img/standard_colors.png}{1.0}
 
 \begin{challenge}
   Fill in the \texttt{\_\_\_\_} in the code below to create a bar that
@@ -2346,7 +2335,7 @@ runs once.
 
 \swcgraphics{f:nested-loop}{Execution of Nested Loops}{novice/python/img/python-flowchart-nested-loops.pdf}{0.75}
 
-We can combine nesting and conditionals to create patterns in an image:
+We can combine nesting and conditionals to create patterns in an image (\figref{f:diagonal}):
 
 \begin{VerbIn}
 square = ImageGrid(5, 5)
@@ -2361,10 +2350,7 @@ for x in range(square.width):
 square.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksa391625e-64d4-47e1-a54a-2953c1aea09c td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:diagonal}{Creating Images Using Conditionals}{novice/python/img/diagonal.png}{1.0}
 
 This is our first hand-made data visualization: the colors show where
 \texttt{x} is less than, equal to, or greater than \texttt{y}.
@@ -2436,13 +2422,11 @@ for x in range(width):
 heatmap.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks1cdd8344-bb95-4b16-bc13-b4fb6f13235a td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:initial_heatmap}{Initial Heatmap}{novice/python/img/initial_heatmap.png}{0.30}
 
-This may be what we asked for, but both the image and the code are
-hideous:
+The image it produces is shown in \figref{f:initial_heatmap},
+and while it may be what we asked for,
+both the image and the code are hideous:
 
 \begin{swcenumerate}
 \item
@@ -2481,7 +2465,8 @@ Here's how we can improve it:
   that value over and over.
 \end{swcenumerate}
 
-Our modified code looks like this:
+Our modified code is shown below,
+and the image it produces is shown in \figref{f:pink_heatmap}.
 
 \begin{VerbIn}
 flipped = data.transpose()
@@ -2499,10 +2484,7 @@ for x in range(width):
 heatmap.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocksa46f17da-750a-4616-8173-7dfb16227fb8 td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:pink_heatmap}{Improved Heatmap}{novice/python/img/pink_heatmap.png}{1.0}
 
 That's a bit better---but now the contrast between the colors isn't
 great enough. And there still aren't very many fuchsia cells: we may
@@ -2529,29 +2511,21 @@ def make_heatmap(values, low_color, mid_color, high_color, low_band, high_band, 
     return result
 \end{VerbIn}
 
-To test this function, we'll run it with the settings we just used:
+To test this function, we'll run it with the settings we just used to make sure it produces the same image:
 
 \begin{VerbIn}
 h = make_heatmap(flipped, colors['Orchid'], colors['Fuchsia'], colors['HotPink'], 0.8, 1.2, 5)
 h.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks01f46f8f-ce3d-4e60-810e-14913fdd0249 td {border: 1px solid white;}
-\end{Verbatim}
-
-That seems right, so let's widen the band and use more dramatic colors:
+The output seems right, so let's widen the band and use more dramatic colors (\figref{f:heatmap_improved}):
 
 \begin{VerbIn}
 h = make_heatmap(flipped, colors['Gray'], colors['YellowGreen'], colors['SpringGreen'], 0.5, 1.5, 5)
 h.show()
 \end{VerbIn}
 
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks934bdfbe-fa39-46bc-951f-e504b83c5ed2 td {border: 1px solid white;}
-\end{Verbatim}
+\swcgraphics{f:heatmap_improved}{An Even Better Heat Map}{novice/python/img/heatmap_improved.png}{1.0}
 
 We'll probably want to experiment a bit more before publishing, but
 writing a function has made experimenting easy. We can make it even
@@ -2587,17 +2561,13 @@ logical groups to make it more readable.
 
 Again, our first test is to re-run it with the same values as before
 (which we give it in a different order, since we've changed the order of
-parameters):
+parameters)
+and make sure it produces the same image:
 
 \begin{VerbIn}
 h = make_heatmap(flipped, 0.5, 1.5, colors['Gray'], colors['YellowGreen'], colors['SpringGreen'], 5)
 h.show()
 \end{VerbIn}
-
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks68bc8298-2807-40bb-8077-cb6a6c133f91 td {border: 1px solid white;}
-\end{Verbatim}
 
 We can now leave out everything except the data being visualized, or
 provide the data and the bands and re-use the default colors and block
@@ -2607,11 +2577,6 @@ size:
 h = make_heatmap(flipped, 0.4, 1.6)
 h.show()
 \end{VerbIn}
-
-% FIXME
-\begin{Verbatim}
-table.blockgrid {border: none;} .blockgrid tr {border: none;} .blockgrid td {padding: 0px;} #blocks3a6cb5f4-cba3-448a-b130-320fed0e64e4 td {border: 1px solid white;}
-\end{Verbatim}
 
 We can now explore our data with just a few keystrokes, which means we
 can concentrate on our science and not on our programming.
