@@ -57,12 +57,12 @@ of \texttt{goodiff}). At 30 seconds each, that will take more than two
 weeks. Not only would she miss her paper deadline, the chances of her
 typing all of those commands right are practically zero.
 
-The next few lessons will explore what she should do instead. More
-specifically, they explain how she can use a command shell to automate
-the repetitive steps in her processing pipeline so that her computer can
-work 24 hours a day while she writes her paper. As a bonus, once she has
-put a processing pipeline together, she will be able to use it again
-whenever she collects more data.
+This chapter will explore what she should do instead. More
+specifically, it will explain how she can use a command shell to
+automate the repetitive steps in her processing pipeline so that her
+computer can work 24 hours a day while she writes her paper. As a
+bonus, once she has put a processing pipeline together, she will be
+able to use it again whenever she collects more data.
 
 \subsection*{What and Why}
 
@@ -192,10 +192,12 @@ are:
 $ whoami
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-vlad
+nelle
 \end{VerbOut}
 
+\noindent
 More specifically, when we type \texttt{whoami} the shell:
 
 \begin{swcenumerate}
@@ -215,29 +217,30 @@ moment, our \gl{current working
 directory}{g:current-working-directory} is our current default directory, i.e., the directory that
 the computer assumes we want to run commands in unless we explicitly
 specify something else. Here, the computer's response is
-\texttt{/users/vlad}, which is Vlad's \gl{home
+\texttt{/users/nelle}, which is Nelle's \gl{home
 directory}{g:home-directory}:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad
+/users/nelle
 \end{VerbOut}
 
 \begin{swcbox}{Alphabet Soup}
 
-If the command to find out who we are is \texttt{whoami}, the command to
-find out where we are ought to be called \texttt{whereami}, so why is it
-\texttt{pwd} instead? The usual answer is that in the early 1970s, when
-Unix was first being developed, every keystroke counted: the devices of
-the day were slow, and backspacing on a teletype was so painful that
-cutting the number of keystrokes in order to cut the number of typing
-mistakes was actually a win for usability. The reality is that commands
-were added to Unix one by one, without any master plan, by people who
-were immersed in its jargon. The result is as inconsistent as the roolz
-uv Inglish speling, but we're stuck with it now.
+If the command to find out who we are is \texttt{whoami}, why is the
+command to find out where we are called \texttt{pwd} instead of
+\texttt{whereami}?  The usual answer is that in the early 1970s, when
+Unix was first being developed, every keystroke counted: the devices
+of the day were slow, and backspacing on a teletype was so painful
+that cutting the number of keystrokes in order to cut the number of
+typing mistakes was actually a win for usability. The reality is that
+commands were added to Unix one by one, without any master plan, by
+people who were immersed in its jargon. The result is as inconsistent
+as the roolz uv Inglish speling, but we're stuck with it now.
 
 \end{swcbox}
 
@@ -245,7 +248,7 @@ To understand what a ``home directory'' is, let's have a look at how the
 file system as a whole is organized. At the top is the
 \gl{root directory}{g:root-directory} that holds everything else.
 We refer to it using a slash character \texttt{/} on its own; this is
-the leading slash in \texttt{/users/vlad}.
+the leading slash in \texttt{/users/nelle}.
 
 Inside that directory are several other directories: \texttt{bin} (which
 is where some built-in programs are stored), \texttt{data} (for
@@ -255,16 +258,16 @@ need to be stored long-term), and so on (\figref{f:filesystem}).
 
 \swcgraphics{f:filesystem}{A Typical Filesystem}{novice/shell/img/filesystem.pdf}{0.75}
 
-We know that our current working directory \texttt{/users/vlad} is
+We know that our current working directory \texttt{/users/nelle} is
 stored inside \texttt{/users} because \texttt{/users} is the first part
 of its name. Similarly, we know that \texttt{/users} is stored inside
 the root directory \texttt{/} because its name begins with \texttt{/}.
 
-Underneath \texttt{/users}, we find one directory for each user with an
-account on this machine (\figref{f:homedir}). The Mummy's files are stored in
-\texttt{/users/imhotep}, Wolfman's in \texttt{/users/larry}, and ours in
-\texttt{/users/vlad}, which is why \texttt{vlad} is the last part of the
-directory's name.
+Underneath \texttt{/users}, we find one directory for each user with
+an account on this machine (\figref{f:homedir}). The Mummy's files are
+stored in \texttt{/users/imhotep}, Wolfman's in \texttt{/users/larry},
+and ours in \texttt{/users/nelle}, which is why \texttt{nelle} is the
+last part of the directory's name.
 
 \swcgraphics{f:homedir}{Home Directories}{novice/shell/img/home-directories.pdf}{0.75}
 
@@ -274,20 +277,21 @@ appears at the front of a file or directory name, it refers to the root
 directory. When it appears \emph{inside} a name, it's just a separator.
 \end{quote}
 
-Let's see what's in Vlad's home directory by running \texttt{ls}, which
+Let's see what's in Nelle's home directory by running \texttt{ls}, which
 stands for ``listing'' (\figref{f:listing}):
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 bin          data      mail       music
 notes.txt    papers    pizza.cfg  solar
 solar.pdf    swc
 \end{VerbOut}
 
-\swcgraphics{f:listing}{Vlad's Home Directory}{novice/shell/img/vlad-homedir.pdf}{0.75}
+\swcgraphics{f:listing}{Nelle's Home Directory}{novice/shell/img/homedir.pdf}{0.75}
 
 \texttt{ls} prints the names of the files and directories in the current
 directory in alphabetical order, arranged neatly into columns. We can
@@ -299,13 +303,14 @@ make its output more comprehensible by using the
 $ ls -F
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
 solar.pdf    swc/
 \end{VerbOut}
 
-Here, we can see that \texttt{/users/vlad} contains seven
+Here, we can see that \texttt{/users/nelle} contains seven
 \gl{sub-directories}{g:sub-directory}. The names that don't have
 trailing slashes, like \texttt{notes.txt}, \texttt{pizza.cfg}, and
 \texttt{solar.pdf}, are plain old files. And note that there is a space
@@ -314,7 +319,7 @@ trying to run a command called \texttt{ls-F}, which doesn't exist.
 
 \begin{swcbox}{What's In A Name?}
 
-You may have noticed that all of Vlad's files' names are ``something dot
+You may have noticed that all of Nelle's files' names are ``something dot
 something''. This is just a convention: we can call a file
 \texttt{mythesis} or almost anything else we want. However, most people
 use two-part names most of the time to help them (and their programs)
@@ -325,20 +330,19 @@ plain text file, \texttt{.pdf} indicates a PDF document, \texttt{.cfg}
 is a configuration file full of parameters for some program or other,
 and so on.
 
-This is just a convention, albeit an important one. Files contain bytes:
-it's up to us and our programs to interpret those bytes according to the
-rules for PDF documents, images, and so on.
-
-Naming a PNG image of a whale as \texttt{whale.mp3} doesn't somehow
-magically turn it into a recording of whalesong, though it \emph{might}
-cause the operating system to try to open it with a music player when
+This is just a convention, albeit an important one. Files contain
+bytes: it's up to us and our programs to interpret those bytes
+according to the rules for PDF documents, images, and so on.  Naming a
+PNG image of a whale as \texttt{whale.mp3} doesn't somehow magically
+turn it into a recording of whalesong, though it \emph{might} cause
+the operating system to try to open it with a music player when
 someone double-clicks it.
 
 \end{swcbox}
 
-Now let's take a look at what's in Vlad's \texttt{data} directory by
+Now let's take a look at what's in Nelle's \texttt{data} directory by
 running \texttt{ls -F data}, i.e., the command \texttt{ls} with the
-parameters \texttt{-F} and \texttt{data}. The second parameter---the one
+arguments \texttt{-F} and \texttt{data}. The second argument---the one
 \emph{without} a leading dash---tells \texttt{ls} that we want a listing
 of something other than our current working directory:
 
@@ -346,6 +350,7 @@ of something other than our current working directory:
 $ ls -F data
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 amino-acids.txt   elements/     morse.txt
 pdb/              planets.txt   sunspot.txt
@@ -373,31 +378,36 @@ different answer, because \texttt{/data} is an
 $ ls -F /data
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 access.log    backup/    hardware.cfg
 network.cfg
 \end{VerbOut}
 
+\noindent
 The leading \texttt{/} tells the computer to follow the path from the
 root of the filesystem, so it always refers to exactly one directory, no
 matter where we are when we run the command.
 
 What if we want to change our current working directory? Before we do
-this, \texttt{pwd} shows us that we're in \texttt{/users/vlad}, and
-\texttt{ls} without any parameters shows us that directory's contents:
+this, \texttt{pwd} shows us that we're in \texttt{/users/nelle}, and
+\texttt{ls} without any arguments shows us that directory's contents:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad
+/users/nelle
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
@@ -414,22 +424,25 @@ $ cd data
 \end{VerbIn}
 
 \texttt{cd} doesn't print anything, but if we run \texttt{pwd} after it,
-we can see that we are now in \texttt{/users/vlad/data}. If we run
-\texttt{ls} without parameters now, it lists the contents of
-\texttt{/users/vlad/data}, because that's where we now are:
+we can see that we are now in \texttt{/users/nelle/data}. If we run
+\texttt{ls} without arguments now, it lists the contents of
+\texttt{/users/nelle/data}, because that's where we now are:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad/data
+/users/nelle/data
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 amino-acids.txt   elements/     morse.txt
 pdb/              planets.txt   sunspot.txt
@@ -439,36 +452,37 @@ We now know how to go down the directory tree: how do we go up? We could
 use an absolute path:
 
 \begin{VerbIn}
-$ cd /users/vlad
+$ cd /users/nelle
 \end{VerbIn}
 
+\noindent
 but it's almost always simpler to use \texttt{cd ..} to go up one level:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad/data
+/users/nelle/data
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ cd ..
+$ pwd
 \end{VerbIn}
+
+% [c]
+\begin{VerbOut}
+/users/nelle
+\end{VerbOut}
 
 \texttt{..} is a special directory name meaning ``the directory
 containing this one'', or more succinctly, the
 \gl{parent}{g:parent-directory} of the current directory. Sure
 enough, if we run \texttt{pwd} after running \texttt{cd ..}, we're back
-in \texttt{/users/vlad}:
-
-\begin{VerbIn}
-$ pwd
-\end{VerbIn}
-
-\begin{VerbOut}
-/users/vlad
-\end{VerbOut}
+in \texttt{/users/nelle}.
 
 The special directory \texttt{..} doesn't usually show up when we run
 \texttt{ls}. If we want to display it, we can give \texttt{ls} the
@@ -478,15 +492,17 @@ The special directory \texttt{..} doesn't usually show up when we run
 $ ls -F -a
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./           ../       bin/       data/
 mail/        music/    notes.txt  papers/
 pizza.cfg    solar/    solar.pdf    swc/
 \end{VerbOut}
 
+\noindent
 \texttt{-a} stands for ``show all''; it forces \texttt{ls} to show us
 file and directory names that begin with \texttt{.}, such as \texttt{..}
-(which, if we're in \texttt{/users/vlad}, refers to the \texttt{/users}
+(which, if we're in \texttt{/users/nelle}, refers to the \texttt{/users}
 directory). As you can see, it also displays another special directory
 that's just called \texttt{.}, which means ``the current working
 directory''. It may seem redundant to have a name for it, but we'll see
@@ -496,8 +512,8 @@ some uses for it soon.
 
 The special names \texttt{.} and \texttt{..} don't belong to
 \texttt{ls}; they are interpreted the same way by every program. For
-example, if we are in \texttt{/users/vlad/data}, the command
-\texttt{ls ..} will give us a listing of \texttt{/users/vlad}. When the
+example, if we are in \texttt{/users/nelle/data}, the command
+\texttt{ls ..} will give us a listing of \texttt{/users/nelle}. When the
 meanings of the parts are the same no matter how they're combined,
 programmers say they are \gl{orthogonal}{g:orthogonal}: Orthogonal
 systems tend to be easier for people to learn because there are fewer
@@ -541,6 +557,7 @@ the command:
 $ ls north-pacific-gyre/2012-07-03/
 \end{VerbIn}
 
+\noindent
 This is a lot to type, but she can let the shell do most of the work. If
 she types:
 
@@ -548,6 +565,7 @@ she types:
 $ ls no
 \end{VerbIn}
 
+\noindent
 and then presses tab, the shell automatically completes the directory
 name for her:
 
@@ -583,7 +601,7 @@ other tools as we go on.
   Directory names in a path are separated with `/' on Unix, but
   `\textbackslash{}' on Windows.
 \item
-  `..' means ``the directory above the current one''; `.' on its own
+  `..' means ``the directory above the current one'', and `.' on its own
   means ``the current directory''.
 \item
   Most files' names are \texttt{something.extension}. The extension
@@ -665,21 +683,24 @@ pnas-sub/ pnas-final/ original/
 \end{objectives}
 
 We now know how to explore files and directories, but how do we create
-them in the first place? Let's go back to Vlad's home directory,
-\texttt{/users/vlad}, and use \texttt{ls -F} to see what it contains:
+them in the first place? Let's go back to Nelle's home directory,
+\texttt{/users/nelle}, and use \texttt{ls -F} to see what it contains:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad
+/users/nelle
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ ls -F
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
@@ -702,6 +723,7 @@ current working directory:
 $ ls -F
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 bin/         data/     mail/      music/
 notes.txt    papers/   pizza.cfg  solar/
@@ -748,19 +770,18 @@ another directory the first time you ``Save As\ldots{}''
 
 \end{swcbox}
 
-Let's type in a few lines of text, then use Control-O to write our data
-to disk:
-
-Once our file is saved, we can use Control-X to quit the editor and
-return to the shell. (Unix documentation often uses the shorthand
-\texttt{\^{}A} to mean ``control-A''.) \texttt{nano} doesn't leave any
-output on the screen after it exits, but \texttt{ls} now shows that we
-have created a file called \texttt{draft.txt}:
+Let's type in a few lines of text, then use Control-O to write our
+data to disk.  Once our file is saved, we can use Control-X to quit
+the editor and return to the shell. (Unix documentation often uses the
+shorthand \texttt{\^{}A} to mean ``control-A''.) \texttt{nano} doesn't
+leave any output on the screen after it exits, but \texttt{ls} now
+shows that we have created a file called \texttt{draft.txt}:
 
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 draft.txt
 \end{VerbOut}
@@ -771,6 +792,7 @@ Let's tidy up by running \texttt{rm draft.txt}:
 $ rm draft.txt
 \end{VerbIn}
 
+\noindent
 This command removes files (``rm'' is short for ``remove''). If we run
 \texttt{ls} again, its output is empty once more, which tells us that
 our file is gone:
@@ -790,25 +812,29 @@ computer may recycle the file's disk space right away.
 \end{swcbox}
 
 Let's re-create that file and then move up one directory to
-\texttt{/users/vlad} using \texttt{cd ..}:
+\texttt{/users/nelle} using \texttt{cd ..}:
 
 \begin{VerbIn}
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad/thesis
+/users/nelle/thesis
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ nano draft.txt
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 draft.txt
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ cd ..
 \end{VerbIn}
@@ -820,10 +846,12 @@ If we try to remove the entire \texttt{thesis} directory using
 $ rm thesis
 \end{VerbIn}
 
+% [c]
 \begin{VerbErr}
 rm: cannot remove `thesis': Is a directory
 \end{VerbErr}
 
+\noindent
 This happens because \texttt{rm} only works on files, not directories.
 The right command is \texttt{rmdir}, which is short for ``remove
 directory''. It doesn't work yet either, though, because the directory
@@ -833,6 +861,7 @@ we're trying to remove isn't empty:
 $ rmdir thesis
 \end{VerbIn}
 
+% [c]
 \begin{VerbErr}
 rmdir: failed to remove `thesis': Directory not empty
 \end{VerbErr}
@@ -861,6 +890,7 @@ the \texttt{-r} flag (which stands for ``recursive''):
 $ rm -r thesis
 \end{VerbIn}
 
+\noindent
 This removes everything in the directory, then the directory itself. If
 the directory contains sub-directories, \texttt{rm -r} does the same
 thing to them, and so on. It's very handy, but can do a lot of damage if
@@ -877,19 +907,23 @@ rather than going into the \texttt{thesis} directory and running
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
-/users/vlad
+/users/nelle
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ mkdir thesis
 \end{VerbIn}
 
+% [c]
 \begin{VerbIn}
 $ nano thesis/draft.txt
 $ ls thesis
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 draft.txt
 \end{VerbOut}
@@ -901,7 +935,8 @@ change the file's name using \texttt{mv}, which is short for ``move'':
 $ mv thesis/draft.txt thesis/quotes.txt
 \end{VerbIn}
 
-The first parameter tells \texttt{mv} what we're ``moving'', while the
+\noindent
+The first argument tells \texttt{mv} what we're ``moving'', while the
 second is where it's to go. In this case, we're moving
 \texttt{thesis/draft.txt} to \texttt{thesis/quotes.txt}, which has the
 same effect as renaming the file. Sure enough, \texttt{ls} shows us that
@@ -911,16 +946,18 @@ same effect as renaming the file. Sure enough, \texttt{ls} shows us that
 $ ls thesis
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 quotes.txt
 \end{VerbOut}
 
-Just for the sake of inconsistency, \texttt{mv} also works on
-directories---there is no separate \texttt{mvdir} command.
+\noindent
+(Just for the sake of inconsistency, \texttt{mv} also works on
+directories---there is no separate \texttt{mvdir} command.)
 
 Let's move \texttt{quotes.txt} into the current working directory. We
 use \texttt{mv} once again, but this time we'll just use the name of a
-directory as the second parameter to tell \texttt{mv} that we want to
+directory as the second argument to tell \texttt{mv} that we want to
 keep the filename, but put the file somewhere new. (This is why the
 command is called ``move''.) In this case, the directory name we use is
 the special directory name \texttt{.} that we mentioned earlier.
@@ -929,6 +966,7 @@ the special directory name \texttt{.} that we mentioned earlier.
 $ mv thesis/quotes.txt .
 \end{VerbIn}
 
+\noindent
 The effect is to move the file from the directory it was in to the
 current working directory. \texttt{ls} now shows us that \texttt{thesis}
 is empty:
@@ -937,7 +975,8 @@ is empty:
 $ ls thesis
 \end{VerbIn}
 
-Further, \texttt{ls} with a filename or directory name as a parameter
+\noindent
+Further, \texttt{ls} with a filename or directory name as an argument
 only lists that file or directory. We can use this to see that
 \texttt{quotes.txt} is still in our current directory:
 
@@ -945,13 +984,14 @@ only lists that file or directory. We can use this to see that
 $ ls quotes.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 quotes.txt
 \end{VerbOut}
 
 The \texttt{cp} command works very much like \texttt{mv}, except it
 copies a file instead of moving it. We can check that it did the right
-thing using \texttt{ls} with two paths as parameters---like most Unix
+thing using \texttt{ls} with two paths as arguments---like most Unix
 commands, \texttt{ls} can be given thousands of paths at once:
 
 \begin{VerbIn}
@@ -959,6 +999,7 @@ $ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 quotes.txt   thesis/quotations.txt
 \end{VerbOut}
@@ -973,9 +1014,12 @@ delete:
 $ ls quotes.txt thesis/quotations.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbErr}
 ls: cannot access quotes.txt: No such file or directory
 \end{VerbErr}
+
+% [c]
 \begin{VerbOut}
 thesis/quotations.txt
 \end{VerbOut}
@@ -984,11 +1028,11 @@ thesis/quotations.txt
 
 The shell interprets the character \texttt{\textasciitilde{}} (tilde) at
 the start of a path to mean ``the current user's home directory''. For
-example, if Vlad's home directory is \texttt{/home/vlad}, then
-\texttt{\textasciitilde{}/data} is equivalent to
-\texttt{/home/vlad/data}. This only works if it is the first character
+example, if Nelle's home directory is \texttt{/home/nelle}, then
+\texttt{\textasciitilde{}/data} expands to
+\texttt{/home/nelle/data}. This only works if it is the first character
 in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
-\emph{not} \texttt{/home/vlad/elsewhere}.
+\emph{not} \texttt{/home/nelle/elsewhere}.
 
 \end{swcbox}
 
@@ -1013,18 +1057,22 @@ in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is
 $ pwd
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 /home/thing/data
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 proteins.dat
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ mkdir recombine
 $ mv proteins.dat recombine
@@ -1040,6 +1088,7 @@ $ ls
 $ ls -F
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 analyzed/  fructose.dat    raw/   sucrose.dat
 \end{VerbOut}
@@ -1051,14 +1100,17 @@ analyzed/  fructose.dat    raw/   sucrose.dat
 $ ls
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 analyzed   raw
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ ls analyzed
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 fructose.dat    sucrose.dat
 \end{VerbOut}
@@ -1079,10 +1131,12 @@ $ cp thesis/citations.txt thesis/quotations.txt backup
 $ ls -F
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 intro.txt    methods.txt    survey.txt
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ cp intro.txt methods.txt survey.txt
 \end{VerbIn}
@@ -1127,6 +1181,7 @@ specifies the type and position of each atom in the molecule.
 $ ls molecules
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 cubane.pdb    ethane.pdb    methane.pdb
 octane.pdb    pentane.pdb   propane.pdb
@@ -1138,11 +1193,13 @@ the number of lines, words, and characters in files. The \texttt{*} in
 \texttt{*.pdb} matches zero or more characters, so the shell turns
 \texttt{*.pdb} into a complete list of \texttt{.pdb} files:
 
+% [c]
 \begin{VerbIn}
 $ cd molecules
 $ wc *.pdb
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   20  156 1158 cubane.pdb
   12   84  622 ethane.pdb
@@ -1188,6 +1245,7 @@ only the number of lines per file:
 $ wc -l *.pdb
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   20  cubane.pdb
   12  ethane.pdb
@@ -1198,6 +1256,7 @@ $ wc -l *.pdb
  107  total
 \end{VerbOut}
 
+\noindent
 We can also use \texttt{-w} to get only the number of words, or
 \texttt{-c} to get only the number of characters.
 
@@ -1221,6 +1280,7 @@ printed has gone into the file \texttt{lengths} instead.)
 $ ls lengths
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 lengths
 \end{VerbOut}
@@ -1234,6 +1294,7 @@ case, so \texttt{cat} just shows us what it contains:
 $ cat lengths
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   20  cubane.pdb
   12  ethane.pdb
@@ -1252,6 +1313,7 @@ screen:
 $ sort lengths
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   9  methane.pdb
  12  ethane.pdb
@@ -1275,11 +1337,12 @@ $ sort lengths > sorted-lengths
 $ head -1 sorted-lengths
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   9  methane.pdb
 \end{VerbOut}
 
-Using the parameter \texttt{-1} with \texttt{head} tells it that we only
+Using the argument \texttt{-1} with \texttt{head} tells it that we only
 want the first line of the file; \texttt{-20} would get the first 20,
 and so on. Since \texttt{sorted-lengths} contains the lengths of our
 files ordered from least to greatest, the output of \texttt{head} must
@@ -1295,6 +1358,7 @@ together:
 $ sort lengths | head -1
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   9  methane.pdb
 \end{VerbOut}
@@ -1313,10 +1377,12 @@ We can use another pipe to send the output of \texttt{wc} directly to
 $ wc -l *.pdb | sort | head -1
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   9  methane.pdb
 \end{VerbOut}
 
+\noindent
 This is exactly like a mathematician nesting functions like
 \emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
 \emph{x} times $\pi$''. In our case, the calculation is ``head of sort of
@@ -1328,7 +1394,7 @@ When a computer runs a program---any program---it creates a
 and its current state. Every process has an input channel called
 \gl{standard input}{g:standard-input}. (By this point, you may be
 surprised that the name is so memorable, but don't worry: most Unix
-programmers call it ``stdin''. Every process also has a default output
+programmers call it ``stdin''.) Every process also has a default output
 channel called \gl{standard output}{g:standard-output} (or
 ``stdout'').
 
@@ -1340,10 +1406,10 @@ process and temporarily sends whatever we type on our keyboard to that
 process's standard input, and whatever the process sends to standard
 output to the screen.
 
-Here's what happens when we run
-\texttt{wc -l *.pdb \textgreater{} lengths}. The shell starts by telling
+When we run
+\texttt{wc -l *.pdb \textgreater{} lengths}, the shell starts by telling
 the computer to create a new process to run the \texttt{wc} program.
-Since we've provided some filenames as parameters, \texttt{wc} reads
+Since we've provided some filenames as arguments, \texttt{wc} reads
 from them instead of from standard input. And since we've used
 \texttt{\textgreater{}} to redirect output to a file, the shell connects
 the process's standard output to that file.
@@ -1378,13 +1444,15 @@ programs into pipes to multiply their power.
 
 \begin{swcbox}{Redirecting Input}
 
+% FIXME: delay this until it's used.
+
 As well as using \texttt{\textgreater{}} to redirect a program's output,
 we can use \texttt{\textless{}} to redirect its input, i.e., to read
 from a file instead of from standard input. For example, instead of
 writing \texttt{wc ammonia.pdb}, we could write
 \texttt{wc \textless{} ammonia.pdb}. In the first case, \texttt{wc} gets
-a command line parameter telling it what file to open. In the second,
-\texttt{wc} doesn't have any command line parameters, so it reads from
+a command line argument telling it what file to open. In the second,
+\texttt{wc} doesn't have any command line arguments, so it reads from
 standard input, but we have told the shell to send the contents of
 \texttt{ammonia.pdb} to \texttt{wc}'s standard input.
 
@@ -1401,6 +1469,7 @@ $ cd north-pacific-gyre/2012-07-03
 $ wc -l *.txt
 \end{VerbIn}
 
+\noindent
 The output is 1520 lines that look like this:
 
 \begin{VerbOut}
@@ -1410,7 +1479,7 @@ The output is 1520 lines that look like this:
 300 NENE01751A.txt
 300 NENE01751B.txt
 300 NENE01812A.txt
-... ...
+...
 \end{VerbOut}
 
 Now she types this:
@@ -1419,6 +1488,7 @@ Now she types this:
 $ wc -l *.txt | sort | head -5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
  240 NENE02018B.txt
  300 NENE01729A.txt
@@ -1427,6 +1497,7 @@ $ wc -l *.txt | sort | head -5
  300 NENE01751A.txt
 \end{VerbOut}
 
+\noindent
 Whoops: one of the files is 60 lines shorter than the others. When she
 goes back and checks it, she sees that she did that assay at 8:00 on a
 Monday morning---someone was probably in using the machine on the
@@ -1437,6 +1508,7 @@ checks to see if any files have too much data:
 $ wc -l *.txt | sort | tail -5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
  300 NENE02040A.txt
  300 NENE02040B.txt
@@ -1454,6 +1526,7 @@ information. To find others like it, she does this:
 $ ls *Z.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 NENE01971Z.txt    NENE02040Z.txt
 \end{VerbOut}
@@ -1494,6 +1567,7 @@ has.
 6
 \end{VerbOut}
 
+  \noindent
   the output is:
 
 \begin{VerbOut}
@@ -1504,6 +1578,7 @@ has.
 6
 \end{VerbOut}
 
+  \noindent
   If we run \texttt{sort -n} on the same input, we get this instead:
 
 \begin{VerbOut}
@@ -1514,6 +1589,7 @@ has.
 22
 \end{VerbOut}
 
+  \noindent
   Explain why \texttt{-n} has this effect.
 \end{challenge}
 
@@ -1524,6 +1600,7 @@ has.
 $ wc -l < mydata.dat
 \end{VerbIn}
 
+  \noindent
   and:
 
 \begin{VerbIn}
@@ -1544,6 +1621,7 @@ steelhead
 steelhead
 \end{VerbOut}
 
+  \noindent
   then \texttt{uniq salmon.txt} produces:
 
 \begin{VerbOut}
@@ -1553,6 +1631,7 @@ coho
 steelhead
 \end{VerbOut}
 
+  \noindent
   Why do you think \texttt{uniq} only removes \emph{adjacent} duplicated
   lines? (Hint: think about very large data sets.) What other command
   could you combine with it in a pipe to remove all duplicated lines?
@@ -1587,7 +1666,8 @@ $ cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 $ cut -d , -f 2 animals.txt
 \end{VerbIn}
 
-  produces the following output:
+  \noindent
+  produces:
 
 \begin{VerbOut}
 deer
@@ -1600,6 +1680,7 @@ rabbit
 bear
 \end{VerbOut}
 
+  \noindent
   What other command(s) could be added to this in a pipeline to find out
   what animals the file contains (without any duplicates in their
   names)?
@@ -1639,6 +1720,7 @@ can't use:
 $ mv *.dat original-*.dat
 \end{VerbIn}
 
+\noindent
 because that would expand (in the two-file case) to:
 
 \begin{VerbIn}
@@ -1647,7 +1729,6 @@ $ mv basilisk.dat unicorn.dat
 
 This wouldn't back up our files: it would replace the content of
 \texttt{unicorn.dat} with whatever's in \texttt{basilisk.dat}.
-
 Instead, we can use a \gl{loop}{g:for-loop} to do some operation
 once for each thing in a list. Here's a simple example that displays the
 first three lines of each file in turn:
@@ -1659,6 +1740,7 @@ $ for filename in basilisk.dat unicorn.dat
 > done
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 COMMON NAME: basilisk
 CLASSIFICATION: basiliscus vulgaris
@@ -1699,6 +1781,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 or:
 
 \begin{VerbIn}
@@ -1708,6 +1791,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 it would work exactly the same way. \emph{Don't do this.} Programs are
 only useful if people can understand them, so meaningless names (like
 \texttt{x}) or misleading names (like \texttt{temperature}) increase the
@@ -1726,12 +1810,13 @@ done
 The shell starts by expanding \texttt{*.dat} to create the list of files
 it will process. The \gl{loop body}{g:loop-body} then executes two
 commands for each of those files. The first, \texttt{echo}, just prints
-its command-line parameters to standard output. For example:
+its command-line arguments to standard output. For example:
 
 \begin{VerbIn}
 $ echo hello there
 \end{VerbIn}
 
+\noindent
 prints:
 
 \begin{VerbOut}
@@ -1750,6 +1835,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 because then the first time through the loop, when \texttt{\$filename}
 expanded to \texttt{basilisk.dat}, the shell would try to run
 \texttt{basilisk.dat} as a program. Finally, the \texttt{head} and
@@ -1767,6 +1853,7 @@ red dragon.dat
 unicorn.dat
 \end{VerbFile}
 
+\noindent
 If we try to process them using:
 
 \begin{VerbIn}
@@ -1776,6 +1863,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 then the shell will expand \texttt{*.dat} to create:
 
 \begin{VerbOut}
@@ -1806,6 +1894,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 but it's simpler just to avoid using spaces (or other special
 characters) in filenames.
 
@@ -1821,6 +1910,7 @@ do
 done
 \end{VerbIn}
 
+\noindent
 This loop runs the \texttt{mv} command once for each filename. The first
 time, when \texttt{\$filename} expands to \texttt{basilisk.dat}, the
 shell executes:
@@ -1829,6 +1919,7 @@ shell executes:
 mv basilisk.dat original-basilisk.dat
 \end{VerbIn}
 
+\noindent
 The second time, the command is:
 
 \begin{VerbIn}
@@ -1858,6 +1949,7 @@ mv basilisk.dat original-basilisk.dat
 mv unicorn.dat original-unicorn.dat
 \end{VerbIn}
 
+\noindent
 \emph{without} actually running those commands. We can then use up-arrow
 to redisplay the loop, back-arrow to get to the word \texttt{echo},
 delete it, and then press ``enter'' to run the loop with the actual
@@ -1882,6 +1974,7 @@ $ for datafile in *[AB].txt
 > done
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 NENE01729A.txt
 NENE01729B.txt
@@ -1903,6 +1996,7 @@ $ for datafile in *[AB].txt
 > done
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 NENE01729A.txt stats-NENE01729A.txt
 NENE01729B.txt stats-NENE01729B.txt
@@ -1979,6 +2073,7 @@ Nelle types this:
 $ history | tail -5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   456  ls -l NENE0*.txt
   457  rm stats-NENE01729B.txt.txt
@@ -1987,6 +2082,7 @@ $ history | tail -5
   460  history
 \end{VerbOut}
 
+\noindent
 then she can re-run \texttt{goostats} on \texttt{NENE01729B.txt} simply
 by typing \texttt{!458}.
 
@@ -2023,6 +2119,7 @@ by typing \texttt{!458}.
 fructose.dat    glucose.dat   sucrose.dat
 \end{VerbOut}
 
+  \noindent
   What is the output of:
 
 \begin{VerbIn}
@@ -2064,24 +2161,28 @@ done
 
 \begin{challenge}
   The \texttt{expr} program does simple arithmetic using command-line
-  parameters:
+  arguments:
 
 \begin{VerbIn}
 $ expr 3 + 5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 8
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ expr 30 / 5 - 2
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 4
 \end{VerbOut}
 
+  \noindent
   Given this, what is the output of:
 
 \begin{VerbIn}
@@ -2150,6 +2251,7 @@ following command:
 $ bash middle.sh
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
 ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
@@ -2161,7 +2263,7 @@ ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
 Sure enough, our script's output is exactly what we would get if we ran
 that pipeline directly.
 
-\begin{swcbox}{Text vs. Whatever}
+\begin{swcbox}{Text vs.\ Whatever}
 
 We usually call programs like Microsoft Word or LibreOffice Writer
 ``text editors'', but we need to be a bit more careful when it comes to
@@ -2186,17 +2288,19 @@ variable called \texttt{\$1}:
 $ cat middle.sh
 \end{VerbIn}
 
+% [c]
 \begin{VerbFile}
 head -20 $1 | tail -5
 \end{VerbFile}
 
 Inside a shell script, \texttt{\$1} means ``the first filename (or other
-parameter) on the command line''. We can now run our script like this:
+argument) on the command line''. We can now run our script like this:
 
 \begin{VerbIn}
 $ bash middle.sh cholesterol.pdb
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ATOM     14  C           1      -1.463  -0.666   1.001  1.00  0.00
 ATOM     15  C           1       0.762  -0.929   0.295  1.00  0.00
@@ -2205,6 +2309,7 @@ ATOM     17  C           1      -0.664  -0.610   2.293  1.00  0.00
 ATOM     18  C           1      -4.705   2.108  -0.396  1.00  0.00
 \end{VerbOut}
 
+\noindent
 or on a different file like this:
 
 \begin{VerbIn}
@@ -2227,14 +2332,17 @@ range of lines, though. Let's fix that by using the special variables
 $ cat middle.sh
 \end{VerbIn}
 
+% [c]
 \begin{VerbFile}
 head $2 $1 | tail $3
 \end{VerbFile}
 
+% [c]
 \begin{VerbIn}
 $ bash middle.sh vitamin-a.pdb -20 -5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ATOM     14  C           1       1.788  -0.987  -0.861
 ATOM     15  C           1       2.994  -0.265  -0.829
@@ -2251,6 +2359,7 @@ some \gl{comments}{g:comment} at the top:
 $ cat middle.sh
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 # Select lines from the middle of a file.
 # Usage: middle.sh filename -end_line -num_lines
@@ -2268,6 +2377,7 @@ if we want to sort our \texttt{.pdb} files by length, we would type:
 $ wc -l *.pdb | sort -n
 \end{VerbIn}
 
+\noindent
 because \texttt{wc -l} lists the number of lines in the files and
 \texttt{sort -n} sorts things numerically. We could put this in a file,
 but then it would only ever sort a list of \texttt{.pdb} files in the
@@ -2275,21 +2385,24 @@ current directory. If we want to be able to get a sorted list of other
 kinds of files, we need a way to get all those names into the script. We
 can't use \texttt{\$1}, \texttt{\$2}, and so on because we don't know
 how many files there are. Instead, we use the special variable
-\texttt{\$*}, which means, ``All of the command-line parameters to the
+\texttt{\$*}, which means, ``All of the command-line arguments to the
 shell script.'' Here's an example:
 
 \begin{VerbIn}
 $ cat sorted.sh
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 wc -l $* | sort -n
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ bash sorted.sh *.dat backup/*.dat
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
       29 chloratin.dat
       89 backup/chloratin.dat
@@ -2308,7 +2421,8 @@ don't give it any filenames? For example, what if we type:
 $ bash sorted.sh
 \end{VerbIn}
 
-but don't say \texttt{*.dat} (or anything else)? In this case,
+\noindent
+but don't add \texttt{*.dat} (or anything else)? In this case,
 \texttt{\$*} expands to nothing at all, so the pipeline inside the
 script is effectively:
 
@@ -2330,6 +2444,7 @@ shell scripts. If you look at a script like:
 wc -l $* | sort -n
 \end{VerbFile}
 
+\noindent
 you can probably puzzle out what it does. On the other hand, if you look
 at this script:
 
@@ -2338,6 +2453,7 @@ at this script:
 wc -l $* | sort -n
 \end{VerbFile}
 
+\noindent
 you don't have to puzzle it out---the comment at the top tells you what
 it does. A line or two of documentation like this make it much easier
 for other people (including your future self) to re-use your work. The
@@ -2364,6 +2480,7 @@ The file \texttt{redo-figure-3.sh} now contains:
 300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
 \end{VerbFile}
 
+\noindent
 After a moment's work in an editor to remove the serial numbers on the
 commands, we have a completely accurate record of how we created that
 figure.
@@ -2371,13 +2488,14 @@ figure.
 \begin{swcbox}{Unnumbering}
 
 Nelle could also use \texttt{colrm} (short for ``column removal'') to
-remove the serial numbers on her previous commands. Its parameters are
+remove the serial numbers on her previous commands. Its arguments are
 the range of characters to strip from its input:
 
 \begin{VerbIn}
 $ history | tail -5
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
   173  cd /tmp
   174  ls
@@ -2386,10 +2504,12 @@ $ history | tail -5
   177  history | tail -5
 \end{VerbOut}
 
+% [c]
 \begin{VerbIn}
 $ history | tail -5 | colrm 1 7
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 cd /tmp
 ls
@@ -2411,7 +2531,7 @@ and save it as a shell script.
 \subsection*{Nelle's Pipeline: Creating a Script}
 
 An off-hand comment from her supervisor has made Nelle realize that she
-should have provided a couple of extra parameters to \texttt{goostats}
+should have provided a couple of extra arguments to \texttt{goostats}
 when she processed her files. This might have been a disaster if she had
 done all the analysis by hand, but thanks to for loops, it will only
 take a couple of hours to re-do.
@@ -2429,7 +2549,8 @@ do
 done
 \end{VerbFile}
 
-(The parameters \texttt{-J 100} and \texttt{-r} are the ones her
+\noindent
+(The arguments \texttt{-J 100} and \texttt{-r} are the ones her
 supervisor said she should have used.) She saves this in a file called
 \texttt{do-stats.sh} so that she can now re-do the first stage of her
 analysis by typing:
@@ -2438,12 +2559,14 @@ analysis by typing:
 $ bash do-stats.sh *[AB].txt
 \end{VerbIn}
 
+\noindent
 She can also do this:
 
 \begin{VerbIn}
 $ bash do-stats.sh *[AB].txt | wc -l
 \end{VerbIn}
 
+\noindent
 so that the output is just the number of files processed rather than the
 names of the files that were processed.
 
@@ -2465,7 +2588,7 @@ have to remember to exclude the `Z' files. The disadvantage is that it
 (including the `Z' files), or on the `G' or `H' files her colleagues in
 Antarctica are producing, without editing the script. If she wanted to
 be more adventurous, she could modify her script to check for
-command-line parameters, and use \texttt{*{[}AB{]}.txt} if none were
+command-line arguments, and use \texttt{*{[}AB{]}.txt} if none were
 provided. Of course, this introduces another tradeoff between
 flexibility and complexity.
 
@@ -2477,10 +2600,10 @@ flexibility and complexity.
   \texttt{bash filename} runs the commands saved in a file.
 \item
   \texttt{\$*} refers to all of a shell script's command-line
-  parameters.
+  arguments.
 \item
   \texttt{\$1}, \texttt{\$2}, etc., refer to specified command-line
-  parameters.
+  arguments.
 \item
   Letting users decide what files to process is more flexible and more
   consistent with built-in Unix commands.
@@ -2502,15 +2625,16 @@ flexibility and complexity.
 2013-11-07,bear,1
 \end{VerbFile}
 
+  \noindent
   Write a shell script called \texttt{species.sh} that takes any number
-  of filenames as command-line parameters, and uses \texttt{cut},
+  of filenames as command-line arguments, and uses \texttt{cut},
   \texttt{sort}, and \texttt{uniq} to print a list of the unique species
   appearing in each of those files separately.
 \end{challenge}
 
 \begin{challenge}
   Write a shell script called \texttt{longest.sh} that takes the name of
-  a directory and a filename extension as its parameters, and prints out
+  a directory and a filename extension as its arguments, and prints out
   the name of the file with the most lines in that directory with that
   extension. For example:
 
@@ -2518,6 +2642,7 @@ flexibility and complexity.
 $ bash longest.sh /tmp/data pdb
 \end{VerbIn}
 
+  \noindent
   would print the name of the \texttt{.pdb} file in \texttt{/tmp/data}
   that has the most lines.
 \end{challenge}
@@ -2529,6 +2654,7 @@ $ bash longest.sh /tmp/data pdb
 $ history | tail -5 > recent.sh
 \end{VerbIn}
 
+  \noindent
   the last command in the file is the \texttt{history} command itself,
   i.e., the shell has added \texttt{history} to the command log before
   actually running it. In fact, the shell \emph{always} adds commands to
@@ -2571,7 +2697,7 @@ echo $*.dat
 \item
   Use \texttt{find} to find files whose names match simple patterns.
 \item
-  Use the output of one command as the command-line parameters to
+  Use the output of one command as the command-line arguments to
   another command.
 \item
   Explain what is meant by ``text'' and ``binary'' files, and why many
@@ -2593,6 +2719,7 @@ our examples, we will use a file that contains three haikus taken from a
 $ cat haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 The Tao that is seen
 Is not the true Tao, until
@@ -2623,12 +2750,14 @@ Let's find lines that contain the word ``not'':
 $ grep not haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 Is not the true Tao, until
 "My Thesis" not found
 Today it is not working
 \end{VerbOut}
 
+\noindent
 Here, \texttt{not} is the pattern we're searching for. It's pretty
 simple: every alphanumeric character matches against itself. After the
 pattern comes the name or names of the files we're searching in. The
@@ -2640,6 +2769,7 @@ Let's try a different pattern: ``day''.
 $ grep day haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 Yesterday it worked
 Today it is not working
@@ -2654,6 +2784,7 @@ only lines with the word ``day'' will be printed:
 $ grep -w day haiku.txt
 \end{VerbIn}
 
+\noindent
 In this case, there aren't any, so \texttt{grep}'s output is empty.
 
 Another useful option is \texttt{-n}, which numbers the lines that
@@ -2663,12 +2794,14 @@ match:
 $ grep -n it haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 5:With searching comes loss
 9:Yesterday it worked
 10:Today it is not working
 \end{VerbOut}
 
+\noindent
 Here, we can see that lines 5, 9, and 10 contain the letters ``it''.
 
 We can combine flags as we do with other Unix commands. For example,
@@ -2680,6 +2813,7 @@ match the pattern in any mix of upper and lower case:
 $ grep -i -v the haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 You bring fresh toner.
 
@@ -2699,6 +2833,8 @@ lucky) provides a few examples of how to use it:
 $ man grep
 \end{VerbIn}
 
+\begin{small}
+% [c]
 \begin{VerbOut}
 GREP(1)                                                                                              GREP(1)
 
@@ -2734,6 +2870,7 @@ Interpret PATTERN as a list of fixed strings, separated by newlines, any of  whi
 matched.  (-F is specified by POSIX.)
 ...        ...        ...
 \end{VerbOut}
+\end{small}
 
 \begin{swcbox}{Wildcards}
 
@@ -2750,6 +2887,7 @@ position like this:
 $ grep -E '^.o' haiku.txt
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 You bring fresh toner.
 Today it is not working
@@ -2771,7 +2909,7 @@ simplest ones work, we'll use the directory tree shown in \figref{f:find-tree}.
 
 \swcgraphics{f:find-tree}{Directory Tree for \texttt{find} Examples}{novice/shell/img/find-file-tree.pdf}{0.75}
 
-Vlad's home directory contains one file called \texttt{notes.txt} and
+Nelle's home directory contains one file called \texttt{notes.txt} and
 four subdirectories: \texttt{thesis} (which is sadly empty),
 \texttt{data} (which contains two files \texttt{one.txt} and
 \texttt{two.txt}), a \texttt{tools} directory that contains the programs
@@ -2789,6 +2927,7 @@ names of the five directories in our little tree (including \texttt{.}):
 $ find . -type d -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./
 ./data
@@ -2804,6 +2943,7 @@ all the files instead:
 $ find . -type f -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
@@ -2821,6 +2961,7 @@ restrict the depth of search:
 $ find . -maxdepth 1 -type f -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./notes.txt
 \end{VerbOut}
@@ -2834,6 +2975,7 @@ or more levels below us:
 $ find . -mindepth 2 -type f -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
@@ -2848,6 +2990,7 @@ files and directories:
 $ find . -empty -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./thesis
 ./tools/old
@@ -2859,10 +3002,12 @@ Now let's try matching by name:
 $ find . -name *.txt -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./notes.txt
 \end{VerbOut}
 
+\noindent
 We expected it to find all the text files, but it only prints out
 \texttt{./notes.txt}. The problem is that the shell expands wildcard
 characters like \texttt{*} \emph{before} commands run. Since
@@ -2873,6 +3018,7 @@ the command we actually ran was:
 $ find . -name notes.txt -print
 \end{VerbIn}
 
+\noindent
 \texttt{find} did what we asked; we just asked for the wrong thing.
 
 To get what we want, let's do what we did with \texttt{grep}: put
@@ -2884,6 +3030,7 @@ To get what we want, let's do what we did with \texttt{grep}: put
 $ find . -name '*.txt' -print
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./data/one.txt
 ./data/two.txt
@@ -2912,6 +3059,7 @@ The simplest way is to put the \texttt{find} command inside
 $ wc -l $(find . -name '*.txt' -print)
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 70  ./data/one.txt
 420  ./data/two.txt
@@ -2929,6 +3077,7 @@ and \texttt{./notes.txt}, the shell constructs the command:
 $ wc -l ./data/one.txt ./data/two.txt ./notes.txt
 \end{VerbIn}
 
+\noindent
 which is what we wanted. This expansion is exactly what the shell does
 when it expands wildcards like \texttt{*} and \texttt{?}, but lets us
 use any command we want as our own ``wildcard''.
@@ -2943,6 +3092,7 @@ in all the \texttt{.pdb} files below the current directory:
 $ grep FE $(find . -name '*.pdb' -print)
 \end{VerbIn}
 
+% [c]
 \begin{VerbOut}
 ./human/heme.pdb:ATOM  25  FE  1  -0.924  0.535  -0.518
 \end{VerbOut}

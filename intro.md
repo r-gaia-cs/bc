@@ -85,7 +85,8 @@ or [our most popular blog posts](http://software-carpentry.org/blog/index.html#p
 
 Software Carpentry has been made possible by the generous support of:
 
-*   [Continuum Analytics](http://continuum.io/)
+*   [Continuum Analytics](http://continuum.io)
+*   [Enthought](http://enthought.com)
 *   [Indiana University](http://www.indiana.edu)
 *   [Lawrence Berkeley National Laboratory](http://www.lbl.gov)
 *   [Los Alamos National Laboratory](http://www.lanl.gov)
@@ -94,7 +95,7 @@ Software Carpentry has been made possible by the generous support of:
 *   [Microsoft](http://www.microsoft.com)
 *   [MITACS](http://www.mitacs.ca)
 *   [The Mozilla Foundation](http://mozillafoundation.org)
-*   [The Python Software Foundation](http://www.python.org/psf/)
+*   [The Python Software Foundation](http://www.python.org/psf)
 *   [Queen Mary University of London](http://www.qmul.ac.uk)
 *   [Scimatic Software](http://www.scimatic.com)
 *   [SciNet](http://www.scinet.utoronto.ca)

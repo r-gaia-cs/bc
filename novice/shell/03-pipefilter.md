@@ -235,7 +235,7 @@ When a computer runs a program&mdash;any program&mdash;it creates a [process](..
 in memory to hold the program's software and its current state.
 Every process has an input channel called [standard input](../../gloss.html#standard-input).
 (By this point, you may be surprised that the name is so memorable, but don't worry:
-most Unix programmers call it "stdin".
+most Unix programmers call it "stdin".)
 Every process also has a default output channel called [standard output](../../gloss.html#standard-output)
 (or "stdout").
 
@@ -248,8 +248,8 @@ it creates a new process
 and temporarily sends whatever we type on our keyboard to that process's standard input,
 and whatever the process sends to standard output to the screen.
 
-Here's what happens when we run `wc -l *.pdb > lengths`.
-The shell starts by telling the computer to create a new process to run the `wc` program.
+When we run `wc -l *.pdb > lengths`,
+the shell starts by telling the computer to create a new process to run the `wc` program.
 Since we've provided some filenames as parameters,
 `wc` reads from them instead of from standard input.
 And since we've used `>` to redirect output to a file,

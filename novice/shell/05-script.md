@@ -207,7 +207,7 @@ $ bash sorted.sh *.dat backup/*.dat
 >
 >     $ bash sorted.sh
 >
-> but don't say `*.dat` (or anything else)? In this case, `$*` expands to
+> but don't add `*.dat` (or anything else)? In this case, `$*` expands to
 > nothing at all, so the pipeline inside the script is effectively:
 >
 >     wc -l | sort -n

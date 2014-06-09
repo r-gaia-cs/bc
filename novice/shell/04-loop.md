@@ -36,7 +36,6 @@ $ mv basilisk.dat unicorn.dat
 
 This wouldn't back up our files:
 it would replace the content of `unicorn.dat` with whatever's in `basilisk.dat`.
-
 Instead, we can use a [loop](../../gloss.html#for-loop)
 to do some operation once for each thing in a list.
 Here's a simple example that displays the first three lines of each file in turn:
