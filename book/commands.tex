@@ -99,18 +99,35 @@
 \newcommand{\figref}[1]{Figure~\ref{#1}}
 \newcommand{\swcgraphics}[4]{\begin{figure}\begin{center}\includegraphics[scale=#4]{#3}\caption{#2}\label{#1}\end{center}\end{figure}}
 
-% environments for code listings: FIXME need optional arg for 'continue'
-\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontshape=it,fontseries=b,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbIn}{Verbatim}{fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbOut}{Verbatim}{fontshape=it,fontsize=\relsize{-1}}
-
-\newcommand{\code}[1]{{\footnotesize\texttt{#1}\normalsize}}
-
 % SQL output tables
 \newenvironment{sqltable}[1]{\begin{tabular}{#1}}{\end{tabular}}
 
 % glossary terms
 \newcommand{\gterm}[1]{\noindent\textbf{#1}}
+
+% inline code (shrink because of our choice of fonts)
+\newcommand{\code}[1]{{\footnotesize\texttt{#1}\normalsize}}
+
+% Environments for code listings
+% The forms ending in 'X' set the style, but should not be used directly.
+% The forms that don't end in 'X' append a micro-vertical space to the end,
+% then check if the previous construct had that space: if so, they suppress
+% the inter-block spacing so that consecutive blocks aren't separated by
+% inter-paragraph-sized blanks.
+\DefineVerbatimEnvironment{VerbInX}{Verbatim}{fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbOutX}{Verbatim}{fontshape=it,fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontshape=it,fontseries=b,fontsize=\relsize{-1}}
+\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontsize=\relsize{-1}}
+
+\newenvironment{VerbIn}
+  {\VerbatimEnvironment
+   \par\VerbInX}
+  {\endVerbInX\vskip1sp}
+
+\newenvironment{VerbOut}
+  {\VerbatimEnvironment
+   \par\ifdim\lastskip=1sp\vspace{\dimexpr-2\topsep-2\partopsep\relax}\fi
+   \VerbOutX}
+  {\endVerbOutX}
 
 \raggedbottom
