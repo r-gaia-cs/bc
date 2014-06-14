@@ -145,6 +145,7 @@ or restrict further re-use.
 The table below shows how the six Creative Commons licenses and PD relate to one another:
 
 <table border="1">
+  <tbody>
   <tr>
     <td></td>
     <td colspan="7" align="center">Licenses that can be used for derivative work or adaptation</td>
@@ -173,6 +174,7 @@ The table below shows how the six Creative Commons licenses and PD relate to one
   <tr>
     <td>pd</td>       <td>X</td> <td>X</td> <td>X</td> <td>X</td> <td>X</td> <td>X</td> <td>X</td>
   </tr>
+  </tbody>
 </table>
 
 [Software Carpentry](http://software-carpentry.org/license.html)
