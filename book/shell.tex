@@ -1304,12 +1304,13 @@ $ cat lengths
  107  total
 \end{VerbOut}
 
-Now let's use the \code{sort} command to sort its contents. This does
-\emph{not} change the file; instead, it sends the sorted result to the
-screen:
+Now let's use the \code{sort} command to sort its contents.  We will
+also use the \code{-n} flag to specify that the sort is numerical
+instead of alphabetical.  This does \emph{not} change the file;
+instead, it sends the sorted result to the screen:
 
 \begin{VerbIn}
-$ sort lengths
+$ sort -n lengths
 \end{VerbIn}
 
 % [c]
@@ -1332,7 +1333,7 @@ called \code{head} to get the first few lines in
 \code{sorted-lengths}:
 
 \begin{VerbIn}
-$ sort lengths > sorted-lengths
+$ sort -n lengths > sorted-lengths
 $ head -1 sorted-lengths
 \end{VerbIn}
 
@@ -1354,7 +1355,7 @@ make it easier to understand by running \code{sort} and \code{head}
 together:
 
 \begin{VerbIn}
-$ sort lengths | head -1
+$ sort -n lengths | head -1
 \end{VerbIn}
 
 % [c]
@@ -1373,7 +1374,7 @@ We can use another pipe to send the output of \code{wc} directly to
 \code{sort}, which then sends its output to \code{head}:
 
 \begin{VerbIn}
-$ wc -l *.pdb | sort | head -1
+$ wc -l *.pdb | sort -n | head -1
 \end{VerbIn}
 
 % [c]
@@ -1385,7 +1386,7 @@ $ wc -l *.pdb | sort | head -1
 This is exactly like a mathematician nesting functions like
 \emph{sin($\pi$x)\textsuperscript{2}} and saying ``the square of the sine of
 \emph{x} times $\pi$''. In our case, the calculation is ``head of sort of
-word count of \code{*.pdb}''.
+line count of \code{*.pdb}''.
 
 Here's what actually happens behind the scenes when we create a pipe.
 When a computer runs a program---any program---it creates a
@@ -1413,13 +1414,13 @@ from them instead of from standard input. And since we've used
 \code{\textgreater{}} to redirect output to a file, the shell connects
 the process's standard output to that file.
 
-If we run \code{wc -l *.pdb \textbar{} sort} instead, the shell
+If we run \code{wc -l *.pdb \textbar{} sort -n} instead, the shell
 creates two processes (one for each process in the pipe) so that
 \code{wc} and \code{sort} run simultaneously. The standard output of
 \code{wc} is fed directly to the standard input of \code{sort};
 since there's no redirection with \code{\textgreater{}},
 \code{sort}'s output goes to the screen. And if we run
-\code{wc -l *.pdb \textbar{} sort \textbar{} head -1}, we get three
+\code{wc -l *.pdb \textbar{} sort -n \textbar{} head -1}, we get three
 processes with data flowing from the files, through \code{wc} to
 \code{sort}, and from \code{sort} through \code{head} to the
 screen.
@@ -1484,7 +1485,7 @@ The output is 1520 lines that look like this:
 Now she types this:
 
 \begin{VerbIn}
-$ wc -l *.txt | sort | head -5
+$ wc -l *.txt | sort -n | head -5
 \end{VerbIn}
 
 % [c]
@@ -1504,7 +1505,7 @@ weekend, and she forgot to reset it. Before re-running that sample, she
 checks to see if any files have too much data:
 
 \begin{VerbIn}
-$ wc -l *.txt | sort | tail -5
+$ wc -l *.txt | sort -n | tail -5
 \end{VerbIn}
 
 % [c]
