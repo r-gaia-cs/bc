@@ -114,20 +114,33 @@
 % then check if the previous construct had that space: if so, they suppress
 % the inter-block spacing so that consecutive blocks aren't separated by
 % inter-paragraph-sized blanks.
-\DefineVerbatimEnvironment{VerbInX}{Verbatim}{fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbOutX}{Verbatim}{fontshape=it,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontshape=it,fontseries=b,fontsize=\relsize{-1}}
-\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontsize=\relsize{-1}}
+%\DefineVerbatimEnvironment{VerbInX}{Verbatim}{fontsize=\relsize{-1}}
+%\DefineVerbatimEnvironment{VerbOutX}{Verbatim}{fontshape=it,fontsize=\relsize{-1}}
+%\DefineVerbatimEnvironment{VerbErr}{Verbatim}{fontshape=it,fontseries=b,fontsize=\relsize{-1}}
+%\DefineVerbatimEnvironment{VerbFile}{Verbatim}{fontsize=\relsize{-1}}
+%
+%\newenvironment{VerbIn}
+%  {\VerbatimEnvironment
+%   \par\VerbInX}
+%  {\endVerbInX}
+%
+%\newenvironment{VerbOut}
+%  {\VerbatimEnvironment
+%   \par\VerbOutX}
+%  {\endVerbOutX}
 
-\newenvironment{VerbIn}
-  {\VerbatimEnvironment
-   \par\VerbInX}
-  {\endVerbInX\vskip1sp}
-
-\newenvironment{VerbOut}
-  {\VerbatimEnvironment
-   \par\ifdim\lastskip=1sp\vspace{\dimexpr-2\topsep-2\partopsep\relax}\fi
-   \VerbOutX}
-  {\endVerbOutX}
+\newenvironment{VerbGroup}{\smallskip}{\smallskip}
+\lstnewenvironment{VerbIn}
+{\lstset{aboveskip=0pt,belowskip=0pt,basicstyle=\relsize{-1}}}
+{}
+\lstnewenvironment{VerbOut}
+{\lstset{aboveskip=0pt,belowskip=0pt,basicstyle=\relsize{-1}\itshape}}
+{}
+\lstnewenvironment{VerbErr}
+{\lstset{aboveskip=0pt,belowskip=0pt,basicstyle=\relsize{-1}\bfseries}}
+{}
+\lstnewenvironment{VerbFile}
+{\lstset{aboveskip=0pt,belowskip=0pt,basicstyle=\relsize{-1}}}
+{}
 
 \raggedbottom
