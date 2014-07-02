@@ -14,5 +14,6 @@ $(EPUB) : $(EPUB_SOURCE)
 	    --standalone \
 	    --epub-stylesheet=_site/css/lesson.css \
 	    --epub-metadata=_epub/metadata.xml \
+	    --toc --toc-depth=2 \
 	    --epub-chapter-level=2 \
 	    $<
