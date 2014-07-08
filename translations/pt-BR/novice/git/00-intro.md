@@ -1,40 +1,38 @@
 ---
 layout: lesson
 root: ../..
-title: Introducing Version Control
+title: Introdução ao Controle de Versão
 ---
-Wolfman and Dracula have been hired by Universal Missions
-(a space services spinoff from Euphoric State University)
-to figure out where the company should send its next planetary lander.
-They want to be able to work on the plans at the same time,
-but they have run into problems doing this in the past.
-If they take turns,
-each one will spend a lot of time waiting for the other to finish,
-but if they work on their own copies and email changes back and forth
-things will be lost, overwritten, or duplicated.
+Lobisomem e Drácula foram contratados pelo Universal Missions
+(uma agência de serviços espaciais da Euphoric State University)
+para descobrir onde a companhia deveria enviar sue próximo robô explorador.
+Eles desejam trabalhar nos planos ao mesmo tempo
+mas tiveram problemas ao fazer isso no passado.
+Se eles trabalharem em turnos,
+cada um deles irá gastar muito tempo esperando o outro terminar
+mas se eles trabalharem em sua cópia e trocarem emails com as mudanças
+alguma coisa acabará se perdendo, sendo reescrita ou duplicada.
 
-The right solution is to use [version control](../../gloss.html#version-control)
-to manage their work.
-Version control is better than mailing files back and forth because:
+A solução é eles utilizarem [controle de versão](../../gloss.html#version-control)
+para gerenciar o trabalho.
+Controle de versão é melhor que trocar arquivos por email pois:
 
-*   Nothing that is committed to version control is ever lost.
-    This means it can be used like the "undo" feature in an editor,
-    and since all old versions of files are saved
-    it's always possible to go back in time to see exactly who wrote what on a particular day,
-    or what version of a program was used to generate a particular set of results.
-*   It keeps a record of who made what changes when,
-    so that if people have questions later on,
-    they know who to ask.
-*   It's hard (but not impossible) to accidentally overlook or overwrite someone's changes:
-    the version control system automatically notifies users
-    whenever there's a conflict between one person's work and another's.
+*   Nada que é salva no controle de versão pode ser perdido.
+    Isso significa que ele pode ser utilizado como a ferramenta "desfazer" de um
+    editor de texto e como todas as versões anteriores dos arquivos estão salvas
+    sempre é possível voltar no tempo para saber quem escreveu o que em um dia
+    particular ou que versão de um programa foi utilizado para gerar um
+    resultado.
+*   Ele mantem um registro de quem fez cada mudança e quando ela foi feita e
+    assim, se alguém tiver perguntas depois saberá a quem perguntar.
+*   É difícil (mas não impossível) de acidentalmente sobrescrever as mudanças
+    de alguém: o sistema de controle de versão automaticamente avisa o usuário
+    quando existe um conflito entre o trabalho de duas ou mais pessoas.
 
-This lesson shows how to use
-a popular open source version control system called Git.
-It is more complex than some alternatives,
-but it is widely used,
-both because it's easy to set up
-and because of a hosting site called [GitHub](http://github.com).
-No matter which version control system you use,
-the most important thing to learn is not the details of their more obscure commands,
-but the workflow that they encourage.
+Essa lição mostra como utilizar um popular sistema de controle de versão de
+código aberto chamado Git. Ele é mais complexo que outras alternativas, mas é
+amplamente utilizado, tanto porque é fácil de configurar e também devido a um
+site de hospedagem chamado GitHub [GitHub](http://github.com). Não importa qual
+sistema de controle de versão você utiliza, o mais importante para aprender não
+é os detalhes dos comandos mais obscuros, mas a forma de trabalhar que ele
+encoraja.
