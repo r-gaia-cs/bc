@@ -1,38 +1,37 @@
 ---
 layout: lesson
 root: ../..
-title: A Better Kind of Backup
+title: Uma Melhor Solução de Backup
 ---
 <div class="objectives" markdown="1">
 
-#### Objectives
-*   Explain which initialization and configuration steps are required once per machine,
-    and which are required once per repository.
-*   Go through the modify-add-commit cycle for single and multiple files
-    and explain where information is stored at each stage.
-*   Identify and use Git revision numbers.
-*   Compare files with old versions of themselves.
-*   Restore old versions of files.
-*   Configure Git to ignore specific files,
-    and explain why it is sometimes useful to do so.
+#### Objetivos
+*   Explicar os passos de inicialização e configuração necessários para
+    cada máquina e aqueles necessários para cada repositório.
+*   Passa pelo ciclo de modificação, adição e commit para um ou mais arquivos e
+    explicar onde a informação é salva em cada estágio.
+*   Identificar e utilizar o número de versão atribuído pelo Git.
+*   Comparar o arquivo atual com versões antigas.
+*   Restaurar versões antigas de arquivos.
+*   Configurar Git para ignorar arquivos específicos, e explicar porque em
+*   alguns casos é útil fazer isso.
 
 </div>
 
-We'll start by exploring how version control can be used
-to keep track of what one person did and when.
-Even if you aren't collaborating with other people,
-version control is much better for this than this:
+Nós vamos começar explorando como o controle de versão pode ser utilizado para
+manter o registro do que e de quando uma pessoa fez algo. Mesmo se você não
+estiver colaborando com outros, controle de versão é muito melhor que:
 
 <div>
   <a href="http://www.phdcomics.com"><img src="img/phd101212s.gif" alt="Piled Higher and Deeper by Jorge Cham, http://www.phdcomics.com" /></a>
   <p>"Piled Higher and Deeper" by Jorge Cham, http://www.phdcomics.com</p>
 </div>
 
-### Setting Up
+### Configurando
 
-The first time we use Git on a new machine,
-we need to configure a few things.
-Here's how Dracula sets up his new laptop:
+Na primeira vez que utilizamos Git em uma máquina, precisamos configurar algumas
+coisas. A seguir encontra-se o que Drácula fez para configurar seu novo
+notebook:
 
 ~~~
 $ git config --global user.name "Vlad Dracula"
@@ -42,53 +41,53 @@ $ git config --global core.editor "nano"
 ~~~
 {:class="in"}
 
-(Please use your own name and email address instead of Dracula's,
-and please make sure you choose an editor that's actually on your system,
-such as `notepad` on Windows.)
+(Por favor, utilize seu nome e endereço de email ao invés do de Drácula e por
+favor certifique-se que você escolheu um editor disponível no seu sistema, como
+o `notepad` se estiver utilizando Windows).
 
-Git commands are written `git verb`,
-where `verb` is what we actually want it to do.
-In this case,
-we're telling Git:
+Os commandos do Git são escritos como `git verbo`, onde `verbo` é o que
+desejamos fazer. No caso anterior, estamos dizendo para o Git:
 
-*   our name and email address,
-*   to colorize output,
-*   what our favorite text editor is, and
-*   that we want to use these settings globally (i.e., for every project),
+*   nosso nome e endereço de email,
+*   para colorir a saída,
+*   qual o nosso editor de texto favorito, e
+*   que queremos utilizar essas informações globalmente (i.e., para todo
+*   projeto).
 
-The four commands above only need to be run once:
-the flag `--global` tells Git to use the settings for every project on this machine.
+Os quatro comandos anteriores só precisam ser executados uma vez: a opção (em
+inglês denominada de *flag*) ``--global`` diz para o Git utilizar as
+configurações para todo projeto na máquina atual.
 
-### Creating a Repository
+### Criando um repositório
 
-Once Git is configured,
-we can start using it.
-Let's create a directory for our work:
+Uma vez que Git está configurado, podemos começar a utilizá-lo.
+Vamos criar um diretório para nosso trabalho:
 
 ~~~
-$ mkdir planets
-$ cd planets
+$ mkdir planetas
+$ cd planetas
 ~~~
 {:class="in"}
 
-and tell Git to make it a [repository](../../gloss.html#repository)&mdash;a place where
-Git can store old versions of our files:
+e dizemos para fazer do diretório um 
+[repositório](../../gloss.html#repository)&mdash;um lugar onde Git irá
+armazenar as versões anteriores de nossos arquivos:
 
 ~~~
 $ git init
 ~~~
 {:class="in"}
 
-If we use `ls` to show the directory's contents,
-it appears that nothing has changed:
+Se utilizarmos `ls` para mostrar o conteúdo do diretório irá parecer que nada
+foi feito:
 
 ~~~
 $ ls
 ~~~
 {:class="in"}
 
-But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory called `.git`:
+Mas se adicionarmos a opção `-a` para mostrar todos os arquivos, iremos ver que
+Git criou um diretório oculto denominado `.git`:
 
 ~~~
 $ ls -a
@@ -99,12 +98,11 @@ $ ls -a
 ~~~
 {:class="out"}
 
-Git stores information about the project in this special sub-directory.
-If we ever delete it,
-we will lose the project's history.
+Git armazena informações sobre o projeto nesse subdiretório especial. Se
+deletarmos ele iremos perder o histórico do projeto.
 
-We can check that everything is set up correctly
-by asking Git to tell us the status of our project:
+Podemos verificar que a configuração foi feita com sucesso requisitando o estado
+do nosso projeto para o Git:
 
 ~~~
 $ git status
@@ -119,47 +117,47 @@ nothing to commit (create/copy files and use "git add" to track)
 ~~~
 {:class="out"}
 
-### Tracking Changes to Files
+### Monitorando Alterações nos Arquivos
 
-Let's create a file called `mars.txt` that contains some notes
-about the Red Planet's suitability as a base.
-(We'll use `nano` to edit the file;
-you can use whatever editor you like.
-In particular, this does not have to be the core.editor you set globally earlier.)
-
-~~~
-$ nano mars.txt
-~~~
-{:class="in"}
-
-Type the text below into the `mars.txt` file:
+Vamos criar um arquivo chamado `marte.txt` que contém algumas notas sobre a
+sustentabilidade de uma base no planeta vermelho. (Iremos utilizar um editor
+chamado `nano` para editar o arquivo mas você pode utilizar o editor de sua
+preferência. Em particular, ele não precisa ser o mesmo editor informado para o
+Git).
 
 ~~~
-Cold and dry, but everything is my favorite color
+$ nano marte.txt
 ~~~
 {:class="in"}
 
-`mars.txt` now contains a single line:
+Escreva o texto abaixo no arquivo `marte.txt`:
+
+~~~
+Frio e seco, mas tudo é da minha cor favorita.
+~~~
+{:class="in"}
+
+`marte.txt` agora contem a seguinte linha:
 
 ~~~
 $ ls
 ~~~
 {:class="in"}
 ~~~
-mars.txt
+marte.txt
 ~~~
 {:class="out"}
 ~~~
-$ cat mars.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
+Frio e seco, mas tudo é da minha cor favorita.
 ~~~
 {:class="out"}
 
-If we check the status of our project again,
-Git tells us that it's noticed the new file:
+Se verificarmos o estado do nosso projeto novamente, Git irá informar que ele
+encontrou um novo arquivo:
 
 ~~~
 $ git status
@@ -173,21 +171,21 @@ $ git status
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
-#	mars.txt
+#	marte.txt
 nothing added to commit but untracked files present (use "git add" to track)
 ~~~
 {:class="out"}
 
-The "untracked files" message means that there's a file in the directory
-that Git isn't keeping track of.
-We can tell Git that it should do so using `git add`:
+A mensagem "untracked files" significa que existe um arquivo no diretório que
+Git não está monitorando. Iremos dizer para o Git que ele deve fazê-lo
+utilizando `git add`:
 
 ~~~
-$ git add mars.txt
+$ git add marte.txt
 ~~~
 {:class="in"}
 
-and then check that the right thing happened:
+e então verificamos alteração na mensagem de estado:
 
 ~~~
 $ git status
@@ -201,41 +199,38 @@ $ git status
 # Changes to be committed:
 #   (use "git rm --cached <file>..." to unstage)
 #
-#	new file:   mars.txt
+#	new file:   marte.txt
 #
 ~~~
 {:class="out"}
 
-Git now knows that it's supposed to keep track of `mars.txt`,
-but it hasn't yet recorded any changes for posterity as a commit.
-To get it to do that,
-we need to run one more command:
+Git agora sabe que ele deve monitorar o arquivo `marte.txt` mas ele ainda não
+salvou nenhuma mudança para a posterioridade como um commit. Para fazer isso
+precisamos executar mais um comando:
 
 ~~~
-$ git commit -m "Starting to think about Mars"
+$ git commit -m "Começando a pensar em Marte"
 ~~~
 {:class="in"}
 ~~~
-[master (root-commit) f22b25e] Starting to think about Mars
+[master (root-commit) f22b25e] Começando a pensar em Marte
  1 file changed, 1 insertion(+)
- create mode 100644 mars.txt
+ create mode 100644 marte.txt
 ~~~
 {:class="out"}
 
-When we run `git commit`,
-Git takes everything we have told it to save by using `git add`
-and stores a copy permanently inside the special `.git` directory.
-This permanent copy is called a [revision](../../gloss.html#revision)
-and its short identifier is `f22b25e`.
-(Your revision may have another identifier.)
+Quando executamos `git commit`, Git pega todas as mudanças que informamos
+precisar ser salvas quando utilizamos `git add` e armazena uma cópia permanente
+dentro do diretório especial `.git`. Essa cópia permanente é denominada
+[revisão](../../gloss.html#revision) é brevemente identificada por `f22b25e`.
+(Sua revisão pode ter um identificador diferente.)
 
-We use the `-m` flag (for "message")
-to record a comment that will help us remember later on what we did and why.
-If we just run `git commit` without the `-m` option,
-Git will launch `nano` (or whatever other editor we configured at the start)
-so that we can write a longer message.
+Utilizamos a opção `-m` (de "mensagem") para salvar um comentário que irá nos
+ajudar a lembrar depois o que fizemos e porque. Se apenas executarmos `git
+commit` sem a opção `-m`, Git irá iniciar `nano` (ou o editor que tivermos
+configurado no início) para que possamos escrever um comentário longo.
 
-If we run `git status` now:
+Se executarmos `git status` agora:
 
 ~~~
 $ git status
@@ -247,9 +242,9 @@ nothing to commit, working directory clean
 ~~~
 {:class="out"}
 
-it tells us everything is up to date.
-If we want to know what we've done recently,
-we can ask Git to show us the project's history using `git log`:
+Git está dizendo que tudo está atualizado. Se desejarmos saber o que foi feito
+recentemente podemos pedir ao Git que mostre o histórico do projeto utilizando
+`git log`:
 
 ~~~
 $ git log
@@ -260,26 +255,23 @@ commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
-    Starting to think about Mars
+    Começando a pensar em Marte
 ~~~
 {:class="out"}
 
-`git log` lists all revisions  made to a repository in reverse chronological order.
-The listing for each revision includes
-the revision's full identifier
-(which starts with the same characters as
-the short identifier printed by the `git commit` command earlier),
-the revision's author,
-when it was created,
-and the log message Git was given when the revision was created.
+`git log` lista todas as revisões salvas em um repositório na ordem cronológica
+reversa. Essa lista inclui, para cada revisão, o identificador completo da
+revisão (que inicia com os mesmos caracteres que o identificador curto impresso
+pelo comando `git commit` anteriormente), o autor da revisão, quando ela foi
+criada e o comentário dado à revisão quando ela foi criada.
 
-> #### Where Are My Changes?
+> #### Onde estão minhas mudanças?
 >
-> If we run `ls` at this point, we will still see just one file called `mars.txt`.
-> That's because Git saves information about files' history
-> in the special `.git` directory mentioned earlier
-> so that our filesystem doesn't become cluttered
-> (and so that we can't accidentally edit or delete an old version).
+> Se executarmos `ls` agora continuamos a encontrar apenas um arquivo chamado
+> `marte.txt`. Isso deve-se ao fato do Git salvar as informações com
+> histórico dos arquivos no diretório especial denominado `.git` mencionado
+> anteriormente tal que nosso sitema de arquivos não fique cheio (e nós
+> acidentalmente editemos ou removemos uma versão anterior.
 
 ### Changing a File
 
@@ -288,8 +280,8 @@ Now suppose Dracula adds more information to the file.
 you may use a different editor, and don't need to `cat`.)
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
@@ -311,7 +303,7 @@ $ git status
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   mars.txt
+#	modified:   marte.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -333,10 +325,10 @@ $ git diff
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index df0654a..315bf3a 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1 +1,2 @@
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
@@ -370,7 +362,7 @@ $ git commit -m "Concerns about Mars's moons on my furry friend"
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   mars.txt
+#	modified:   marte.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -381,7 +373,7 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ~~~
-$ git add mars.txt
+$ git add marte.txt
 $ git commit -m "Concerns about Mars's moons on my furry friend"
 ~~~
 {:class="in"}
@@ -419,8 +411,8 @@ First,
 we'll add another line to the file:
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
@@ -434,10 +426,10 @@ $ git diff
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1,2 +1,3 @@
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
@@ -452,7 +444,7 @@ Now let's put that change in the staging area
 and see what `git diff` reports:
 
 ~~~
-$ git add mars.txt
+$ git add marte.txt
 $ git diff
 ~~~
 {:class="in"}
@@ -469,10 +461,10 @@ $ git diff --staged
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1,2 +1,3 @@
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
@@ -542,14 +534,14 @@ but refer to old versions
 using the notation `HEAD~1`, `HEAD~2`, and so on:
 
 ~~~
-$ git diff HEAD~1 mars.txt
+$ git diff HEAD~1 marte.txt
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1,2 +1,3 @@
  Cold and dry, but everything is my favorite color
  The two moons may be a problem for Wolfman
@@ -557,14 +549,14 @@ index 315bf3a..b36abfd 100644
 ~~~
 {:class="out"}
 ~~~
-$ git diff HEAD~2 mars.txt
+$ git diff HEAD~2 marte.txt
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1 +1,3 @@
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
@@ -592,14 +584,14 @@ f22b25e3233b4645dabd0d81e651fe074bd8e73b,
 so let's try this:
 
 ~~~
-$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b marte.txt
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1 +1,3 @@
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
@@ -612,14 +604,14 @@ but typing random 40-character strings is annoying,
 so Git lets us use just the first few:
 
 ~~~
-$ git diff f22b25e mars.txt
+$ git diff f22b25e marte.txt
 ~~~
 {:class="in"}
 ~~~
-diff --git a/mars.txt b/mars.txt
+diff --git a/marte.txt b/mars.txt
 index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+--- a/marte.txt
++++ b/marte.txt
 @@ -1 +1,3 @@
  Cold and dry, but everything is my favorite color
 +The two moons may be a problem for Wolfman
@@ -635,8 +627,8 @@ can we restore older versions of things?
 Let's suppose we accidentally overwrite our file:
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
@@ -657,7 +649,7 @@ $ git status
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   mars.txt
+#	modified:   marte.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -667,8 +659,8 @@ We can put things back the way they were
 by using `git checkout`:
 
 ~~~
-$ git checkout HEAD mars.txt
-$ cat mars.txt
+$ git checkout HEAD marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
@@ -687,7 +679,7 @@ If we want to go back even further,
 we can use a revision identifier instead:
 
 ~~~
-$ git checkout f22b25e mars.txt
+$ git checkout f22b25e marte.txt
 ~~~
 {:class="in"}
 
