@@ -1,65 +1,62 @@
 ---
 layout: lesson
 root: ../..
-title: Conflicts
+title: Conflitos
 ---
 <div class="objectives" markdown="1">
 
-#### Objectives
-*   Explain what conflicts are and when they can occur.
-*   Resolve conflicts resulting from a merge.
+#### Objetivos
+*   Explicar o que são conflitos e quando eles ocorrem.
+*   Resolver conflitos ocorridos durante um merge.
 
 </div>
 
-As soon as people can work in parallel,
-someone's going to step on someone else's toes.
-This will even happen with a single person:
-if we are working on a piece of software on both our laptop and a server in the lab,
-we could make different changes to each copy.
-Version control helps us manage these [conflicts](../../gloss.html#conflict)
-by giving us tools to [resolve](../../gloss.html#resolve) overlapping changes.
+Logo que pessoas começam a trabalhar em paralelo alguém irá pisar no pé de outra
+pessoa. Isso também pode acontecer com uma única pessoa: se trabalharmos no
+mesmo arquivo do nosso notebook e do computador no laboratório, pode ser que
+façamos mudanças diferentes em cada uma das cópias. Controle de versão ajuda a
+gerenciarmos esses [conflitos](../../gloss.html#conflict) ao fornecer uma
+ferramenta para [resolver](../../gloss.html#resolve) a sobreposição de mudanças.
 
-To see how we can resolve conflicts,
-we must first create one.
-The file `mars.txt` currently looks like this
-in both local copies of our `planets` repository
-(the one in our home directory and the one in `/tmp`):
+Para que possamos aprender como resolver conflitos precisamos, primeiro, criar
+um. Atualmente o arquivo `marte.txt` corresponde, em todas as nossas cópias do
+repositório `planeta`, a
 
 ~~~
-$ cat mars.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
 ~~~
 {:class="out"}
 
-Let's add a line to the copy under our home directory:
+Vamos adicionar uma linha na cópia no nosso diretório de usuário:
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-This line added to our home copy
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
+Essa linha foi adiciona na cópia presente no nosso diretório de usuário.
 ~~~
 {:class="out"}
 
-and then push the change to GitHub:
+e enviar essa mudança para o GitHub:
 
 ~~~
-$ git add mars.txt
-$ git commit -m "Adding a line in our home copy"
+$ git add marte.txt
+$ git commit -m "Adicionado linha em $HOME/planetas/marte.txt"
 ~~~
 {:class="in"}
 ~~~
-[master 5ae9631] Adding a line in our home copy
+[master 5ae9631] Adicionado linha em $HOME/planetas/marte.txt
  1 file changed, 1 insertion(+)
 ~~~
 {:class="out"}
@@ -73,60 +70,60 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 352 bytes, done.
 Total 3 (delta 1), reused 0 (delta 0)
-To https://github.com/vlad/planets
+To https://github.com/vlad/planetas
    29aba7c..dabb4c8  master -> master
 ~~~
 {:class="out"}
 
-Our repositories are now in this state:
+Nossos repositórios agora estão no seguinte estado:
 
-<img src="img/git-after-first-conflicting-change.svg" alt="After Making First Change" />
+<img src="img/git-after-first-conflicting-change.svg" alt="Depois de realizar primeira mudança" />
 
-Now let's switch to the copy under `/tmp`
-and make a different change there
-*without* updating from GitHub:
+Agora vamos mudar para nossa cópia em `/tmp` e realizar uma mudança diferente
+**sem** enviar para o GitHub:
 
 ~~~
-$ cd /tmp/planets
-$ nano mars.txt
-$ cat mars.txt
+$ cd /tmp/planetas
+$ nano marte.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-We added a different line in the temporary copy
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
+Adicionado linha diferente no cópia temporária.
 ~~~
 {:class="out"}
 
-We can commit the change locally:
+Podemos salvar a alteração localmente:
 
 ~~~
-$ git add mars.txt
-$ git commit -m "Adding a line in the temporary copy"
+$ git add marte.txt
+$ git commit -m "Adicionado linha em /tmp/planetas/marte.txt"
 ~~~
 {:class="in"}
 ~~~
-[master 07ebc69] Adding a line in the temporary copy
+[master 07ebc69] Adicionado linha em /tmp/planetas/marte.txt
  1 file changed, 1 insertion(+)
 ~~~
 {:class="out"}
 
-giving us the following local repository state:
+que leva-nos para o seguinte estado dos repositórios locais:
 
-<img src="img/git-after-second-conflicting-change.svg" alt="After Making Second (Conflicting) Change" />
+<img src="img/git-after-second-conflicting-change.svg" alt="Depois de fazer segunda alteração (conflitante)" />
 
-However, Git won't let us push this change in the temporary repository to GitHub:
+Se você tentar enviar as alteração no repositório temporário para o GitHub, o
+Git não irá deixá-lo fazer isso:
 
 ~~~
 $ git push origin master
 ~~~
 {:class="in"}
 ~~~
-To https://github.com/vlad/planets.git
+To https://github.com/vlad/planetas.git
  ! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to 'https://github.com/vlad/planets.git'
+error: failed to push some refs to 'https://github.com/vlad/planetas.git'
 hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
 hint: before pushing again.
@@ -134,12 +131,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ~~~
 {:class="out"}
 
-Git detects that the changes made in one copy overlap with those made in the other
-and stops us from trampling on our previous work.
-What we have to do is pull the changes from GitHub,
-[merge](../../gloss.html#repository-merge) them into the copy we're currently working in,
-and then push that.
-Let's start by pulling:
+Git detecta que as alterações em uma cópia local sobrepõe aquelas feitas em
+outra cópia e previne de nós bagunçarmos nosso trabalho anterior. O que
+precisamos fazer é pegar as mudanças no GitHub, fazer um
+[merge](../../gloss.html#repository-merge) delas na cópia que estamos
+trabalhando atualmente e depois enviá-las novamente. Vamos começar por baixar as
+mudanças:
 
 ~~~
 $ git pull origin master
@@ -150,66 +147,62 @@ remote: Counting objects: 5, done.
 remote: Compressing objects: 100% (2/2), done.        
 remote: Total 3 (delta 1), reused 3 (delta 1)        
 Unpacking objects: 100% (3/3), done.
-From https://github.com/vlad/planets
+From https://github.com/vlad/planetas
  * branch            master     -> FETCH_HEAD
-Auto-merging mars.txt
-CONFLICT (content): Merge conflict in mars.txt
+Auto-merging marte.txt
+CONFLICT (content): Merge conflict in marte.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ~~~
 {:class="out"}
 
-`git pull` tells us there's a conflict,
-and marks that conflict in the affected file:
+`git pull` informa que existe um conflito e marca os conflitos nas linhas
+afetadas:
 
 ~~~
-$ cat mars.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
 <<<<<<< HEAD
-We added a different line in the temporary copy
+Adicionado linha diferente no cópia temporária.
 =======
-This line added to our home copy
+Essa linha foi adiciona na cópia presente no nosso diretório de usuário.
 >>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
 ~~~
 {:class="out"}
 
-Our change---the one in `HEAD`---is preceded by `<<<<<<<`.
-Git has then inserted `=======` as a separator between the conflicting changes
-and marked the end of the content downloaded from GitHub with `>>>>>>>`.
-(The string of letters and digits after that marker
-identifies the revision we've just downloaded.)
+Nossas mudanças---aquelas em `HEAD`---é precedido por `<<<<<<<`.
+Depois das nossas mudanças conflitantes, Git adiciona `=======` como um
+separador das mudanças e maca o fim das alterações conflitantes baixadas do
+GitHub com `>>>>>>>`. (O conjunto de letras e dígitos depois desse marcador
+identifica a versão que acabamos de baixar.)
 
-It is now up to us to edit this file to remove these markers
-and reconcile the changes.
-We can do anything we want:
-keep the change in this branch,
-keep the change made in the other,
-write something new to replace both,
-or get rid of the change entirely.
-Let's replace both so that the file looks like this:
+Agora depende de nós editar o arquivo para remover os marcadores e reconciliar
+as alterações. Podemos fazer o que desejarmos: manter as alterações feitas nessa
+cópia, manter as alterações feitas na outra cópia, escrever algo novo para
+substituir ambas alterações ou removê-las. Vamos substituir ambas de modo que o
+arquivo fique como:
 
 ~~~
-$ cat mars.txt
+$ cat marte.txt
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-We removed the conflict on this line
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
+Removemos o conflito nessa linha.
 ~~~
 {:class="out"}
 
-To finish merging,
-we add `mars.txt` to the changes being made by the merge
-and then commit:
+Para finalizar o merge, nos adicionamos o arquivo `marte.txt` e criamos uma
+nova revisão:
 
 ~~~
-$ git add mars.txt
+$ git add marte.txt
 $ git status
 ~~~
 {:class="in"}
@@ -220,24 +213,24 @@ $ git status
 #
 # Changes to be committed:
 #
-#	modified:   mars.txt
+#	modified:   marte.txt
 #
 ~~~
 {:class="out"}
 ~~~
-$ git commit -m "Merging changes from GitHub"
+$ git commit -m "Merge alterações provenientes do GitHub"
 ~~~
 {:class="in"}
 ~~~
-[master 2abf2b1] Merging changes from GitHub
+[master 2abf2b1] Merge alterações provenientes do GitHub
 ~~~
 {:class="out"}
 
-Our repositories now look like this after locally merging in the changes:
+Nossos repositórios agora assemelham-se a:
 
-<img src="img/git-after-merging.svg" alt="After Merging Changes Locally" />
+<img src="img/git-after-merging.svg" alt="Depois de realizar o merge" />
 
-so we push our merged changes to GitHub:
+e podemos enviar nossas alterações para o GitHub:
 
 ~~~
 $ git push origin master
@@ -249,21 +242,21 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (6/6), 697 bytes, done.
 Total 6 (delta 2), reused 0 (delta 0)
-To https://github.com/vlad/planets.git
+To https://github.com/vlad/planetas.git
    dabb4c8..2abf2b1  master -> master
 ~~~
 {:class="out"}
 
-to get this:
+para obtermos:
 
-<img src="img/git-after-pushing-merge.svg" alt="After Pushing The Merged Changes To GitHub" />
+<img src="img/git-after-pushing-merge.svg" alt="Depois de enviar merge para o GitHub" />
 
-Git keeps track of what we've merged with what,
-so we don't have to fix things by hand again
-if we switch back to the repository in our home directory and pull from GitHub:
+Git mantem o registro de quando realizamos um merge e desse modo não precisamos
+corrigir novamente esse conflito se voltarmos para o repositório no nosso
+diretório de usuário e baixar as alterações do GitHub:
 
 ~~~
-$ cd ~/planets
+$ cd ~/planetas
 $ git pull origin master
 ~~~
 {:class="in"}
@@ -272,60 +265,57 @@ remote: Counting objects: 10, done.
 remote: Compressing objects: 100% (4/4), done.        
 remote: Total 6 (delta 2), reused 6 (delta 2)        
 Unpacking objects: 100% (6/6), done.
-From https://github.com/vlad/planets
+From https://github.com/vlad/planetas
  * branch            master     -> FETCH_HEAD
 Updating dabb4c8..2abf2b1
 Fast-forward
- mars.txt | 2 +-
+ marte.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 ~~~
 {:class="out"}
 
-we get the merged file:
+Como podemos verificar o arquivo `marte.txt` encontra na forma que salvamos após
+o merge:
 
 ~~~
-$ cat mars.txt 
+$ cat marte.txt 
 ~~~
 {:class="in"}
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-We removed the conflict on this line
+Frio e seco, mas tudo é da minha cor favorita.
+Duas luas pode ser um problema para o Lobisomem.
+Mas a Múmia irá apreciar a falta de humidade.
+Removemos o conflito nessa linha.
 ~~~
 {:class="out"}
 
-We don't need to merge again because GitHub knows someone has already done that.
-
-Version control's ability to merge conflicting changes
-is another reason users tend to divide their programs and papers into multiple files
-instead of storing everything in one large file.
-There's another benefit too:
-whenever there are repeated conflicts in a particular file,
-the version control system is essentially trying to tell its users
-that they ought to clarify who's responsible for what,
-or find a way to divide the work up differently.
+A habilidade de sistemas de controle de versão em resolver conflitos é uma das
+razões pela qual vários usuários tendem a dividir seus programas e artigos em
+vários arquivos ao invés de armazená-los em um único grande arquivo. Existe um
+outro benefício: quando conflitos em um arquivo ocorrem com frequência isso é
+uma indicação de que as responsabilidades não estão claras ou o trabalho precisa
+ser melhor dividido.
 
 <div class="keypoints" markdown="1">
 
-#### Key Points
-*   Conflicts occur when two or more people change the same file(s) at the same time.
-*   The version control system does not allow people to blindly overwrite each other's changes.
-    Instead, it highlights conflicts so that they can be resolved.
+#### Pontos Chaves
+*   Conflitos ocorrem quando duas pessoas alteram o mesmo arquivo no mesmo
+    momento.
+*   Sistemas de controle de versão não permitem que alguém sobrescreva,
+    cegamente, as mudanças de outra pessoa. Ao invés disso, ele marca os
+    conflitos que precisam ser resolvidos.
 
 </div>
 
 <div class="challenge" markdown="1">
-Clone the repository created by your instructor.
-Add a new file to it,
-and modify an existing file (your instructor will tell you which one).
-When asked by your instructor,
-pull her changes from the repository to create a conflict,
-then resolve it.
+1. Clone o repositório criado pelo seu instrutor.
+2. Adicione um novo arquivo nele e altere um arquivo existente (seu instrutor
+   irá informar qual arquivo).
+3. Quando requisitado pelo seu instrutor, baixe as mudanças do repositório para
+   criar um conflito e resolva-o.
 </div>
 
 <div class="challenge" markdown="1">
-What does Git do
-when there is a conflict in an image or some other non-textual file
-that is stored in version control?
+O que o Git faz quando existe um conflito em uma imagem ou em um arquivo não
+texto que está armazenado no controle de versão?
 </div>
